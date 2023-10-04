@@ -18,8 +18,6 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace GerenciadorDeEstoque.Apresentação
 {
     // NOME DO BANCO DE DADOS: ESTOQUE
-
-    public class Vazio { }
     public partial class TelaLogado : Form
     {
         SqlCommand cmdListView = new SqlCommand();
