@@ -18,6 +18,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 namespace GerenciadorDeEstoque.Apresentação
 {
     // NOME DO BANCO DE DADOS: ESTOQUE
+    //teste 3
     public partial class TelaLogado : Form
     {
         SqlCommand cmdListView = new SqlCommand();
@@ -1190,5 +1191,10 @@ namespace GerenciadorDeEstoque.Apresentação
             MostrarSuporteTecnico();
         }
         #endregion
+
+        private void TelaLogado_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

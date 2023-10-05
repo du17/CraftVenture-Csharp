@@ -877,6 +877,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.Name = "TelaLogado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciador de estoque";
+            this.Load += new System.EventHandler(this.TelaLogado_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSuporte)).EndInit();
