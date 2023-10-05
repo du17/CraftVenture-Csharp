@@ -243,9 +243,9 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             // 
             this.btnAlterarDados.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnAlterarDados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterarDados.Location = new System.Drawing.Point(161, 159);
+            this.btnAlterarDados.Location = new System.Drawing.Point(448, 166);
             this.btnAlterarDados.Name = "btnAlterarDados";
-            this.btnAlterarDados.Size = new System.Drawing.Size(215, 23);
+            this.btnAlterarDados.Size = new System.Drawing.Size(161, 23);
             this.btnAlterarDados.TabIndex = 20;
             this.btnAlterarDados.Text = "ALTERAR DADOS";
             this.btnAlterarDados.UseVisualStyleBackColor = false;
@@ -255,7 +255,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             // 
             this.btnRemoverProdutos.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnRemoverProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoverProdutos.Location = new System.Drawing.Point(384, 159);
+            this.btnRemoverProdutos.Location = new System.Drawing.Point(617, 166);
             this.btnRemoverProdutos.Name = "btnRemoverProdutos";
             this.btnRemoverProdutos.Size = new System.Drawing.Size(130, 23);
             this.btnRemoverProdutos.TabIndex = 21;

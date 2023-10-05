@@ -76,5 +76,10 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
                 NotificacaoM("nome da empresa");
             }
         }
+
+        private void txb_celularCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 }

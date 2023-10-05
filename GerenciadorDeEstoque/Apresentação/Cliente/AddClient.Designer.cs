@@ -87,7 +87,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 88);
+            this.label5.Location = new System.Drawing.Point(13, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 13);
             this.label5.TabIndex = 9;
@@ -96,7 +96,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 114);
+            this.label6.Location = new System.Drawing.Point(13, 146);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 13);
             this.label6.TabIndex = 11;
@@ -105,7 +105,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 140);
+            this.label7.Location = new System.Drawing.Point(13, 172);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 13);
             this.label7.TabIndex = 13;
@@ -113,7 +113,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_Endereco
             // 
-            this.txb_Endereco.Location = new System.Drawing.Point(128, 137);
+            this.txb_Endereco.Location = new System.Drawing.Point(129, 169);
             this.txb_Endereco.Name = "txb_Endereco";
             this.txb_Endereco.Size = new System.Drawing.Size(590, 20);
             this.txb_Endereco.TabIndex = 12;
@@ -121,7 +121,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(343, 62);
+            this.label8.Location = new System.Drawing.Point(13, 94);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 15;
@@ -130,7 +130,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 166);
+            this.label9.Location = new System.Drawing.Point(13, 198);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 13);
             this.label9.TabIndex = 17;
@@ -138,7 +138,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_Email
             // 
-            this.txb_Email.Location = new System.Drawing.Point(128, 163);
+            this.txb_Email.Location = new System.Drawing.Point(129, 195);
             this.txb_Email.Name = "txb_Email";
             this.txb_Email.Size = new System.Drawing.Size(355, 20);
             this.txb_Email.TabIndex = 16;
@@ -146,7 +146,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 192);
+            this.label10.Location = new System.Drawing.Point(13, 224);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(87, 13);
             this.label10.TabIndex = 19;
@@ -154,7 +154,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_Observacoes
             // 
-            this.txb_Observacoes.Location = new System.Drawing.Point(128, 189);
+            this.txb_Observacoes.Location = new System.Drawing.Point(129, 221);
             this.txb_Observacoes.Name = "txb_Observacoes";
             this.txb_Observacoes.Size = new System.Drawing.Size(590, 20);
             this.txb_Observacoes.TabIndex = 18;
@@ -178,7 +178,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_Celular
             // 
-            this.txb_Celular.Location = new System.Drawing.Point(416, 59);
+            this.txb_Celular.Location = new System.Drawing.Point(128, 87);
             this.txb_Celular.Mask = "(000) 00000-0000";
             this.txb_Celular.Name = "txb_Celular";
             this.txb_Celular.Size = new System.Drawing.Size(190, 20);
@@ -186,7 +186,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_CPF
             // 
-            this.txb_CPF.Location = new System.Drawing.Point(129, 111);
+            this.txb_CPF.Location = new System.Drawing.Point(130, 143);
             this.txb_CPF.Mask = "000.000.000-00";
             this.txb_CPF.Name = "txb_CPF";
             this.txb_CPF.Size = new System.Drawing.Size(190, 20);
@@ -196,9 +196,9 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             this.btn_CadastrarCliente.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btn_CadastrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CadastrarCliente.Location = new System.Drawing.Point(15, 223);
+            this.btn_CadastrarCliente.Location = new System.Drawing.Point(561, 269);
             this.btn_CadastrarCliente.Name = "btn_CadastrarCliente";
-            this.btn_CadastrarCliente.Size = new System.Drawing.Size(703, 23);
+            this.btn_CadastrarCliente.Size = new System.Drawing.Size(157, 23);
             this.btn_CadastrarCliente.TabIndex = 24;
             this.btn_CadastrarCliente.Text = "CADASTRAR CLIENTE";
             this.btn_CadastrarCliente.UseVisualStyleBackColor = false;
@@ -206,7 +206,7 @@ namespace GerenciadorDeEstoque.Apresentação
             // 
             // txb_RG
             // 
-            this.txb_RG.Location = new System.Drawing.Point(128, 85);
+            this.txb_RG.Location = new System.Drawing.Point(129, 117);
             this.txb_RG.Name = "txb_RG";
             this.txb_RG.Size = new System.Drawing.Size(191, 20);
             this.txb_RG.TabIndex = 8;
@@ -216,7 +216,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(730, 266);
+            this.ClientSize = new System.Drawing.Size(730, 314);
             this.Controls.Add(this.txb_CPF);
             this.Controls.Add(this.btn_CadastrarCliente);
             this.Controls.Add(this.label2);
