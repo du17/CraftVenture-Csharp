@@ -204,9 +204,9 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             // 
             this.btnPedido.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPedido.Location = new System.Drawing.Point(14, 121);
+            this.btnPedido.Location = new System.Drawing.Point(637, 124);
             this.btnPedido.Name = "btnPedido";
-            this.btnPedido.Size = new System.Drawing.Size(781, 23);
+            this.btnPedido.Size = new System.Drawing.Size(158, 23);
             this.btnPedido.TabIndex = 8;
             this.btnPedido.Text = "CADASTRAR PEDIDO";
             this.btnPedido.UseVisualStyleBackColor = false;
@@ -410,7 +410,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(813, 160);
+            this.ClientSize = new System.Drawing.Size(813, 152);
             this.Controls.Add(this.comboBoxPlataformaVirtual);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txbQnt);

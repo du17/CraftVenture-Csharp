@@ -42,9 +42,9 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             // 
             this.btnExcluirPedido.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnExcluirPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluirPedido.Location = new System.Drawing.Point(9, 130);
+            this.btnExcluirPedido.Location = new System.Drawing.Point(119, 129);
             this.btnExcluirPedido.Name = "btnExcluirPedido";
-            this.btnExcluirPedido.Size = new System.Drawing.Size(423, 23);
+            this.btnExcluirPedido.Size = new System.Drawing.Size(195, 23);
             this.btnExcluirPedido.TabIndex = 7;
             this.btnExcluirPedido.Text = "EXCLUIR PEDIDO";
             this.btnExcluirPedido.UseVisualStyleBackColor = false;
@@ -54,9 +54,9 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             // 
             this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(9, 101);
+            this.button1.Location = new System.Drawing.Point(119, 100);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(423, 23);
+            this.button1.Size = new System.Drawing.Size(195, 23);
             this.button1.TabIndex = 6;
             this.button1.Text = "MUDAR ESTADO DO PEDIDO";
             this.button1.UseVisualStyleBackColor = false;
