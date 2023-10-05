@@ -199,6 +199,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.Name = "AddClienteCNPJ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar cliente (jurídico)";
+            this.Load += new System.EventHandler(this.AddClienteCNPJ_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

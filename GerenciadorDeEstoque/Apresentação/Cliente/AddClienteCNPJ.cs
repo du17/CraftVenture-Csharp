@@ -81,5 +81,10 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
         {
 
         }
+
+        private void AddClienteCNPJ_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
