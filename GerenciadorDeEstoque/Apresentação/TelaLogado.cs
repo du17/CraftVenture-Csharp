@@ -17,8 +17,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
-    // NOME DO BANCO DE DADOS: ESTOQUE7777
-    //teste 3sds
+    // NOME DO BANCO DE DADOS: ESTOQUE
     public partial class TelaLogado : Form
     {
         SqlCommand cmdListView = new SqlCommand();
