@@ -123,6 +123,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.Name = "EditarProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar produto";
+            this.Load += new System.EventHandler(this.EditarProduto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -75,5 +75,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show("Por favor, informe a ID do produto!");
             }
         }
+
+        private void EditarProduto_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
