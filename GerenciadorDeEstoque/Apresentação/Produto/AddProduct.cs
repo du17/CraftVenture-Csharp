@@ -77,5 +77,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show("Por favor, adicione o nome do produto!");
             }
         }
+
+        private void AddProduct_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

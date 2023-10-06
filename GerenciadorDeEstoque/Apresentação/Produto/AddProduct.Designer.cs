@@ -196,6 +196,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar produto";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.AddProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

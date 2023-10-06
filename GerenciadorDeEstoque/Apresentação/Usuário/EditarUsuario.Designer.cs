@@ -56,9 +56,9 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             // 
             this.btnEditar.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Location = new System.Drawing.Point(51, 117);
+            this.btnEditar.Location = new System.Drawing.Point(191, 117);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(235, 23);
+            this.btnEditar.Size = new System.Drawing.Size(95, 23);
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "EDITAR";
             this.btnEditar.UseVisualStyleBackColor = false;
