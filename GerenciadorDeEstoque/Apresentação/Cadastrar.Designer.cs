@@ -80,7 +80,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txb_register.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txb_register.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.txb_register.Location = new System.Drawing.Point(51, 239);
+            this.txb_register.Location = new System.Drawing.Point(63, 12);
             this.txb_register.Name = "txb_register";
             this.txb_register.Size = new System.Drawing.Size(177, 37);
             this.txb_register.TabIndex = 7;
