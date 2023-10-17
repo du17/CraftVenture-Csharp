@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    public class LoginDaoComandos : Cadastrar
+    public class LoginDaoComandos : Login
     {
         public bool check = false;
         public string mensagem = "";
@@ -315,11 +315,14 @@ namespace GerenciadorDeEstoque.DAO
         private void InitializeComponent()
         {
             this.SuspendLayout();
+            // 
             // LoginDaoComandos
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "LoginDaoComandos";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

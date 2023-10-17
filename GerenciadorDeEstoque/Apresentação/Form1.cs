@@ -1,23 +1,23 @@
-﻿using System;
+﻿using GerenciadorDeEstoque.DAO;
+using GerenciadorDeEstoque.Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using GerenciadorDeEstoque.Apresentação;
-using GerenciadorDeEstoque.Modelo;
-using System.Data.SqlClient;
 using GerenciadorDeEstoque.DAO;
 
-namespace GerenciadorDeEstoque
+namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class Form1 : Form
     {
-        Thread TelaCadastro; // Criando tela cadastro
+        Thread TelaCadastro;
         public Form1()
         {
             InitializeComponent();
@@ -47,12 +47,12 @@ namespace GerenciadorDeEstoque
             con.Close();
             dt = ds.Tables["estoque"];
 
-            for(int i = 0; i <= dt.Rows.Count - 1; i++)
+            for (int i = 0; i <= dt.Rows.Count - 1; i++)
             {
                 CodSalvoLogin = Convert.ToInt32(dt.Rows[i].ItemArray[0].ToString());
             }
 
-            if(CodSalvoLogin == 1)
+            if (CodSalvoLogin == 1)
             {
                 EmailSalvo();
                 SenhaSalva();
@@ -92,25 +92,7 @@ namespace GerenciadorDeEstoque
             }
         }
 
-        private void txb_register_Click(object sender, EventArgs e) // Botão "Cadastrar"
-        {
-            TelaCadastro = new Thread(OpenCadastro);
-            TelaCadastro.SetApartmentState(ApartmentState.MTA);
-            TelaCadastro.Start();
-            this.Close();
-        }
-
-        public void OpenCadastro() // Método para abrir a tela "Cadastrar"
-        {
-            Application.Run(new Cadastrar());
-        }
-
-        private void button1_Click(object sender, EventArgs e) // Botão sair
-        {
-            this.Close();
-        }
-
-        private void txb_join_Click(object sender, EventArgs e) // Botão entrar
+        private void txb_join_Click(object sender, EventArgs e)
         {
             if (!txb_email.Text.Equals(""))
             {
@@ -143,32 +125,33 @@ namespace GerenciadorDeEstoque
                     {
                         MessageBox.Show(controle.mensagem);
                     }
-                    }
+                }
                 else
                 {
-                        MessageBox.Show("Por favor, digite uma senha!");
+                    MessageBox.Show("Por favor, digite uma senha!");
                 }
-                }
+            }
             else
             {
-                    MessageBox.Show("Por favor, digite um e-mail!");
+                MessageBox.Show("Por favor, digite um e-mail!");
             }
         }
-        
 
-        private void txb_email_Click(object sender, EventArgs e) // Quando o user clica no text box e-mail, limpa a escrita "Email"
+        private void txb_register_Click(object sender, EventArgs e)
         {
-            txb_email.Clear();
+            TelaCadastro = new Thread(OpenCadastro);
+            TelaCadastro.SetApartmentState(ApartmentState.MTA);
+            TelaCadastro.Start();
+            this.Close();
         }
 
-        private void txb_password_Click_1(object sender, EventArgs e) // Quando o user clica no text box senha, limpa a escrita "Senha"
+        private void button1_Click(object sender, EventArgs e)
         {
-            txb_password.Clear();
+            this.Close();
         }
-
-        private void txb_password_TextChanged_1(object sender, EventArgs e) // Quando altera o texto da text box senha
+        public void OpenCadastro() // Método para abrir a tela "Cadastrar"
         {
-            txb_password.PasswordChar = '*'; // Os caracteres da senha saem com *
+            Application.Run(new Login());
         }
     }
 }
