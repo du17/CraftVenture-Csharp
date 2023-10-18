@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeEstoque.Apresentação;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,12 @@ namespace GerenciadorDeEstoque
         [STAThread]
         static void Main()
         {
+
+            CadastroUsuario cadastro = new CadastroUsuario();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new frmLogin(cadastro));
         }
     }
 }
