@@ -37,9 +37,17 @@ namespace GerenciadorDeEstoque
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.buttonSair = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.textUser = new System.Windows.Forms.TextBox();
+            this.textSenha = new System.Windows.Forms.TextBox();
+            this.buttonEntrar = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -78,12 +86,17 @@ namespace GerenciadorDeEstoque
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Image = global::GerenciadorDeEstoque.Properties.Resources.logo64x64;
             resources.ApplyResources(this.pictureBox4, "pictureBox4");
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.TabStop = false;
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.buttonEntrar);
+            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Controls.Add(this.label4);
             this.panel6.Controls.Add(this.buttonSair);
             resources.ApplyResources(this.panel6, "panel6");
             this.panel6.Name = "panel6";
@@ -95,6 +108,45 @@ namespace GerenciadorDeEstoque
             this.buttonSair.Name = "buttonSair";
             this.buttonSair.UseVisualStyleBackColor = true;
             this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Name = "label4";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.textUser);
+            resources.ApplyResources(this.panel7, "panel7");
+            this.panel7.Name = "panel7";
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.textSenha);
+            resources.ApplyResources(this.panel8, "panel8");
+            this.panel8.Name = "panel8";
+            // 
+            // textUser
+            // 
+            resources.ApplyResources(this.textUser, "textUser");
+            this.textUser.Name = "textUser";
+            this.textUser.TextChanged += new System.EventHandler(this.textUser_TextChanged);
+            // 
+            // textSenha
+            // 
+            resources.ApplyResources(this.textSenha, "textSenha");
+            this.textSenha.Name = "textSenha";
+            this.textSenha.UseSystemPasswordChar = true;
+            // 
+            // buttonEntrar
+            // 
+            this.buttonEntrar.BackColor = System.Drawing.SystemColors.Highlight;
+            resources.ApplyResources(this.buttonEntrar, "buttonEntrar");
+            this.buttonEntrar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonEntrar.Name = "buttonEntrar";
+            this.buttonEntrar.UseVisualStyleBackColor = false;
             // 
             // Login
             // 
@@ -108,6 +160,11 @@ namespace GerenciadorDeEstoque
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -133,6 +190,12 @@ namespace GerenciadorDeEstoque
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonSair;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonEntrar;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox textSenha;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox textUser;
     }
 }
 

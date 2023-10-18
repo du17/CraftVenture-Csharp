@@ -46,5 +46,10 @@ namespace GerenciadorDeEstoque
         {
             Application.Exit();
         }
+
+        private void textUser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
