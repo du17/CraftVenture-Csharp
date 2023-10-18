@@ -37,6 +37,7 @@ namespace GerenciadorDeEstoque
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.buttonSair = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel6.SuspendLayout();
@@ -78,12 +79,14 @@ namespace GerenciadorDeEstoque
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Image = global::GerenciadorDeEstoque.Properties.Resources.logo64x64;
             resources.ApplyResources(this.pictureBox4, "pictureBox4");
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.TabStop = false;
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.label4);
             this.panel6.Controls.Add(this.buttonSair);
             resources.ApplyResources(this.panel6, "panel6");
             this.panel6.Name = "panel6";
@@ -95,6 +98,13 @@ namespace GerenciadorDeEstoque
             this.buttonSair.Name = "buttonSair";
             this.buttonSair.UseVisualStyleBackColor = true;
             this.buttonSair.Click += new System.EventHandler(this.buttonSair_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Name = "label4";
             // 
             // Login
             // 
@@ -108,6 +118,7 @@ namespace GerenciadorDeEstoque
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -133,6 +144,7 @@ namespace GerenciadorDeEstoque
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonSair;
+        private System.Windows.Forms.Label label4;
     }
 }
 
