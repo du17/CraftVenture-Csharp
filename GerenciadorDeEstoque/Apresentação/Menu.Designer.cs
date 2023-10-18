@@ -30,11 +30,11 @@ namespace GerenciadorDeEstoque.Apresentação
         private void InitializeComponent()
         {
             this.menuOpcoes = new System.Windows.Forms.Panel();
-            this.buttonCadastro = new System.Windows.Forms.Button();
-            this.buttonEstoque = new System.Windows.Forms.Button();
-            this.buttonVenda = new System.Windows.Forms.Button();
-            this.buttonHistorico = new System.Windows.Forms.Button();
             this.buttonSair = new System.Windows.Forms.Button();
+            this.buttonHistorico = new System.Windows.Forms.Button();
+            this.buttonVenda = new System.Windows.Forms.Button();
+            this.buttonEstoque = new System.Windows.Forms.Button();
+            this.buttonCadastro = new System.Windows.Forms.Button();
             this.menuOpcoes.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,36 +52,21 @@ namespace GerenciadorDeEstoque.Apresentação
             this.menuOpcoes.Size = new System.Drawing.Size(205, 537);
             this.menuOpcoes.TabIndex = 0;
             // 
-            // buttonCadastro
+            // buttonSair
             // 
-            this.buttonCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonCadastro.Location = new System.Drawing.Point(28, 124);
-            this.buttonCadastro.Name = "buttonCadastro";
-            this.buttonCadastro.Size = new System.Drawing.Size(146, 45);
-            this.buttonCadastro.TabIndex = 1;
-            this.buttonCadastro.Text = "Cadastro";
-            this.buttonCadastro.UseVisualStyleBackColor = true;
-            // 
-            // buttonEstoque
-            // 
-            this.buttonEstoque.Location = new System.Drawing.Point(28, 195);
-            this.buttonEstoque.Name = "buttonEstoque";
-            this.buttonEstoque.Size = new System.Drawing.Size(146, 45);
-            this.buttonEstoque.TabIndex = 2;
-            this.buttonEstoque.Text = "Estoque";
-            this.buttonEstoque.UseVisualStyleBackColor = true;
-            // 
-            // buttonVenda
-            // 
-            this.buttonVenda.Location = new System.Drawing.Point(28, 262);
-            this.buttonVenda.Name = "buttonVenda";
-            this.buttonVenda.Size = new System.Drawing.Size(146, 45);
-            this.buttonVenda.TabIndex = 3;
-            this.buttonVenda.Text = "Venda";
-            this.buttonVenda.UseVisualStyleBackColor = true;
+            this.buttonSair.FlatAppearance.BorderSize = 0;
+            this.buttonSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSair.Location = new System.Drawing.Point(28, 398);
+            this.buttonSair.Name = "buttonSair";
+            this.buttonSair.Size = new System.Drawing.Size(146, 45);
+            this.buttonSair.TabIndex = 5;
+            this.buttonSair.Text = "Sair";
+            this.buttonSair.UseVisualStyleBackColor = true;
             // 
             // buttonHistorico
             // 
+            this.buttonHistorico.FlatAppearance.BorderSize = 0;
+            this.buttonHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHistorico.Location = new System.Drawing.Point(28, 330);
             this.buttonHistorico.Name = "buttonHistorico";
             this.buttonHistorico.Size = new System.Drawing.Size(146, 45);
@@ -89,14 +74,39 @@ namespace GerenciadorDeEstoque.Apresentação
             this.buttonHistorico.Text = "Historico";
             this.buttonHistorico.UseVisualStyleBackColor = true;
             // 
-            // buttonSair
+            // buttonVenda
             // 
-            this.buttonSair.Location = new System.Drawing.Point(28, 398);
-            this.buttonSair.Name = "buttonSair";
-            this.buttonSair.Size = new System.Drawing.Size(146, 45);
-            this.buttonSair.TabIndex = 5;
-            this.buttonSair.Text = "Sair";
-            this.buttonSair.UseVisualStyleBackColor = true;
+            this.buttonVenda.FlatAppearance.BorderSize = 0;
+            this.buttonVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVenda.Location = new System.Drawing.Point(28, 262);
+            this.buttonVenda.Name = "buttonVenda";
+            this.buttonVenda.Size = new System.Drawing.Size(146, 45);
+            this.buttonVenda.TabIndex = 3;
+            this.buttonVenda.Text = "Venda";
+            this.buttonVenda.UseVisualStyleBackColor = true;
+            // 
+            // buttonEstoque
+            // 
+            this.buttonEstoque.FlatAppearance.BorderSize = 0;
+            this.buttonEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEstoque.Location = new System.Drawing.Point(28, 195);
+            this.buttonEstoque.Name = "buttonEstoque";
+            this.buttonEstoque.Size = new System.Drawing.Size(146, 45);
+            this.buttonEstoque.TabIndex = 2;
+            this.buttonEstoque.Text = "Estoque";
+            this.buttonEstoque.UseVisualStyleBackColor = true;
+            // 
+            // buttonCadastro
+            // 
+            this.buttonCadastro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCadastro.FlatAppearance.BorderSize = 0;
+            this.buttonCadastro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCadastro.Location = new System.Drawing.Point(28, 124);
+            this.buttonCadastro.Name = "buttonCadastro";
+            this.buttonCadastro.Size = new System.Drawing.Size(146, 45);
+            this.buttonCadastro.TabIndex = 1;
+            this.buttonCadastro.Text = "Cadastro";
+            this.buttonCadastro.UseVisualStyleBackColor = true;
             // 
             // Menu
             // 
