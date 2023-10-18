@@ -15,9 +15,12 @@ namespace GerenciadorDeEstoque
         [STAThread]
         static void Main()
         {
+
+            CadastroUsuario cadastro = new CadastroUsuario();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new frmLogin(cadastro));
         }
     }
 }

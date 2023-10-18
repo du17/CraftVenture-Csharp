@@ -206,7 +206,7 @@
     <Compile Include="Apresentação\Usuário\EditarUsuario.Designer.cs">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAO\CadastroUsuario.cs" />
+    <Compile Include="Apresentação\CadastroUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
     <Compile Include="DAO\LoginDaoComandos.cs">
       <SubType>Form</SubType>

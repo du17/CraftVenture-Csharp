@@ -55,6 +55,7 @@
             // 
             this.txtSenha.Location = new System.Drawing.Point(406, 383);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '●';
             this.txtSenha.Size = new System.Drawing.Size(453, 45);
             this.txtSenha.StateCommon.Back.Color1 = System.Drawing.Color.White;
             this.txtSenha.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -63,6 +64,7 @@
             this.txtSenha.StateCommon.Border.Rounding = 25;
             this.txtSenha.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.TabIndex = 19;
+            this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // lblNome
@@ -129,9 +131,12 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnCadastrar.StateCommon.Border.Rounding = 4;
             this.btnCadastrar.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrar.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnCadastrar.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
             this.btnCadastrar.StateNormal.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.TabIndex = 22;
             this.btnCadastrar.Values.Text = "";
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // frmLogin
             // 

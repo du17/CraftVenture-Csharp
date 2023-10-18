@@ -77,6 +77,7 @@
             // 
             this.txtRepetirSenha.Location = new System.Drawing.Point(412, 431);
             this.txtRepetirSenha.Name = "txtRepetirSenha";
+            this.txtRepetirSenha.PasswordChar = '●';
             this.txtRepetirSenha.Size = new System.Drawing.Size(453, 45);
             this.txtRepetirSenha.StateCommon.Back.Color1 = System.Drawing.Color.White;
             this.txtRepetirSenha.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -85,6 +86,7 @@
             this.txtRepetirSenha.StateCommon.Border.Rounding = 25;
             this.txtRepetirSenha.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRepetirSenha.TabIndex = 17;
+            this.txtRepetirSenha.UseSystemPasswordChar = true;
             this.txtRepetirSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRepetirSenha_KeyPress);
             // 
             // lblSenha
@@ -104,6 +106,7 @@
             // 
             this.txtSenha.Location = new System.Drawing.Point(412, 356);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '●';
             this.txtSenha.Size = new System.Drawing.Size(453, 45);
             this.txtSenha.StateCommon.Back.Color1 = System.Drawing.Color.White;
             this.txtSenha.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -112,6 +115,7 @@
             this.txtSenha.StateCommon.Border.Rounding = 25;
             this.txtSenha.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.TabIndex = 15;
+            this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // lblEmail
@@ -188,6 +192,7 @@
             this.btnCadastrar.TabIndex = 10;
             this.btnCadastrar.Values.Image = global::GerenciadorDeEstoque.Properties.Resources.Cadastrar;
             this.btnCadastrar.Values.Text = "";
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // frmCadastro
             // 
