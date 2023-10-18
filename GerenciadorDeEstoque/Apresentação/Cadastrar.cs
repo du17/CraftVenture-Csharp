@@ -223,5 +223,12 @@ namespace GerenciadorDeEstoque
         {
                 lblNome.Visible = false;
         }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            frmLogin Login = new frmLogin();
+
+            Login.ShowDialog();
+        }
     }
 }

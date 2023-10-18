@@ -114,6 +114,12 @@
     <Compile Include="Apresentação\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\Pedido\EncerrarPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     <EmbeddedResource Include="Apresentação\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Pedido\EncerrarPedido.resx">
       <DependentUpon>EncerrarPedido.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,14 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="estoqueDataSet.xsc">
       <DependentUpon>estoqueDataSet.xsd</DependentUpon>
     </None>
@@ -301,6 +305,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -311,7 +320,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\baloo-thambi.ttf" />
     <None Include="Resources\iconfinder_kthememgr_7240.png" />
   </ItemGroup>
   <ItemGroup>
@@ -378,7 +386,16 @@
     <None Include="Resources\Cadastrar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\baloo-thambi-maisfontes.4e7c\" />
+    <None Include="Resources\Cadastrar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Frame 20frameCadastro1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

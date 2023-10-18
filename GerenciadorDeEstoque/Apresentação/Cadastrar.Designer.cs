@@ -48,7 +48,6 @@ namespace GerenciadorDeEstoque
             // 
             this.btnCadastrar.AllowDrop = true;
             this.btnCadastrar.BackColor = System.Drawing.Color.Transparent;
-            this.btnCadastrar.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Cadastrar;
             resources.ApplyResources(this.btnCadastrar, "btnCadastrar");
             this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrar.FlatAppearance.BorderSize = 0;
@@ -144,13 +143,13 @@ namespace GerenciadorDeEstoque
             resources.ApplyResources(this.btnEntrar, "btnEntrar");
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.UseVisualStyleBackColor = false;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Frame_20frameCadastro;
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.lblEmail);
