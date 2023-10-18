@@ -26,7 +26,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private void telaLogada() // Método para abrir a tela após logar
         {
-            Application.Run(new TelaLogado());
+            Application.Run(new Apresentação.Menu());
         }
 
         public bool VerificarLogin(string login, string senha) // Método que verifica se login e senha estão corretos, passando a string true or false
@@ -45,7 +45,7 @@ namespace GerenciadorDeEstoque.DAO
                     check = true;
                     // Cmds para abrir a tela "TelaLogado" após a checagem dos logins
                     this.Visible = false;
-                    TelaLogado formLogado = new TelaLogado();
+                    Apresentação.Menu formLogado = new Apresentação.Menu();
                     formLogado.Show();
                     Login telaForm1 = new Login();
                 }
