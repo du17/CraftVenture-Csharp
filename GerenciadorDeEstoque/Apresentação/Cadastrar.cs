@@ -126,7 +126,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            Form1 TelaPrincipal = new Form1();
+            Login TelaPrincipal = new Login();
             TelaPrincipal.Show();
             this.Hide();
         }

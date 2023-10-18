@@ -47,7 +47,7 @@ namespace GerenciadorDeEstoque.DAO
                     this.Visible = false;
                     TelaLogado formLogado = new TelaLogado();
                     formLogado.Show();
-                    Form1 telaForm1 = new Form1();
+                    Login telaForm1 = new Login();
                 }
 
                 conect.Desconectar();

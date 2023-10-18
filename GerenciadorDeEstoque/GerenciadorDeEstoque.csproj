@@ -104,11 +104,11 @@
     <Compile Include="Apresentação\Produto\EditarProduto.Designer.cs">
       <DependentUpon>EditarProduto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Form1.cs">
+    <Compile Include="Apresentação\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apresentação\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Apresentação\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\TelaLogado.cs">
       <SubType>Form</SubType>
@@ -181,8 +181,8 @@
     <EmbeddedResource Include="Apresentação\Produto\EditarProduto.resx">
       <DependentUpon>EditarProduto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Apresentação\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\TelaLogado.resx">
       <DependentUpon>TelaLogado.cs</DependentUpon>
