@@ -154,6 +154,7 @@
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtNome);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

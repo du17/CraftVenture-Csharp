@@ -224,6 +224,7 @@
             this.Controls.Add(this.btnProduto);
             this.Controls.Add(this.btnCliente);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMenuCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro";
