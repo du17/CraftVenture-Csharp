@@ -43,11 +43,13 @@
             // btnEntrar
             // 
             this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEntrar.Location = new System.Drawing.Point(579, 642);
+            this.btnEntrar.Location = new System.Drawing.Point(573, 642);
             this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(124, 26);
+            this.btnEntrar.Size = new System.Drawing.Size(133, 25);
             this.btnEntrar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnEntrar.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ENTRAR;
+            this.btnEntrar.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnEntrar.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnEntrar.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnEntrar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -57,6 +59,7 @@
             this.btnEntrar.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.StateNormal.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrar.TabIndex = 19;
+            this.btnEntrar.Values.Image = global::GerenciadorDeEstoque.Properties.Resources.ENTRAR;
             this.btnEntrar.Values.Text = "";
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 

@@ -140,11 +140,11 @@
     <Compile Include="Apresentação\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Menu.cs">
+    <Compile Include="Apresentação\frmMenuCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apresentação\Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
+      <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\CadastroUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
@@ -157,8 +157,8 @@
     <EmbeddedResource Include="Apresentação\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Menu.resx">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <EmbeddedResource Include="Apresentação\frmMenuCadastro.resx">
+      <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -258,6 +258,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Botao_Cadastro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CADASTRO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastrar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastro_Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estoque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Venda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Historico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CADASTRE-SE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ENTRAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLIENTE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClienteEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaterialEscolha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaterialEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClienteEscolha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProdutoEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProdutoEscolha.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
