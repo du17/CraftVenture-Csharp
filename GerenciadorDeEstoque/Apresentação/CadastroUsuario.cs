@@ -10,6 +10,9 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public class CadastroUsuario
     {
+
+        //conexao com o mysql
+
         private string nome;
         private string email;
         private string senha;

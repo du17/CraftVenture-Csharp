@@ -46,9 +46,9 @@ namespace GerenciadorDeEstoque.Apresentação
 
             /*if(txtNome.Text == cadastro.checaSenha() && txtSenha.Text == cadastro.checaUsusario())
            {
-               Menu Menu = new Menu();
+               frmMenuCadastro Menu = new frmMenuCadastro();
 
-               Menu.ShowDialog();
+                Menu.Show();
            }*/
 
             else
