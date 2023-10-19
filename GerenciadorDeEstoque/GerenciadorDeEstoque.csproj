@@ -128,24 +128,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apresentação\Cliente\AddClient.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Cliente\AddClient.Designer.cs">
-      <DependentUpon>AddClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apresentação\Cliente\AddClienteCNPJ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Cliente\AddClienteCNPJ.Designer.cs">
-      <DependentUpon>AddClienteCNPJ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apresentação\Cliente\EditarCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Cliente\EditarCliente.Designer.cs">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Apresentação\frmCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,47 +146,17 @@
     <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Pedido\EncerrarPedido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Pedido\EncerrarPedido.Designer.cs">
-      <DependentUpon>EncerrarPedido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apresentação\Pedido\Pedidos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Pedido\Pedidos.Designer.cs">
-      <DependentUpon>Pedidos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apresentação\Produto\AddProduct.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Produto\AddProduct.Designer.cs">
-      <DependentUpon>AddProduct.cs</DependentUpon>
-    </Compile>
     <Compile Include="Apresentação\Cadastrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apresentação\Cadastrar.Designer.cs">
       <DependentUpon>Cadastrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Produto\EditarProduto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Produto\EditarProduto.Designer.cs">
-      <DependentUpon>EditarProduto.cs</DependentUpon>
-    </Compile>
     <Compile Include="Apresentação\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apresentação\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Apresentação\Usuário\EditarUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Usuário\EditarUsuario.Designer.cs">
-      <DependentUpon>EditarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\CadastroUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
@@ -239,15 +191,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Apresentação\Cliente\AddClient.resx">
-      <DependentUpon>AddClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Cliente\AddClienteCNPJ.resx">
-      <DependentUpon>AddClienteCNPJ.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Cliente\EditarCliente.resx">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastro.resx">
       <DependentUpon>frmCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,26 +200,11 @@
     <EmbeddedResource Include="Apresentação\frmMenuCadastro.resx">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Pedido\EncerrarPedido.resx">
-      <DependentUpon>EncerrarPedido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Pedido\Pedidos.resx">
-      <DependentUpon>Pedidos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Produto\AddProduct.resx">
-      <DependentUpon>AddProduct.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Cadastrar.resx">
       <DependentUpon>Cadastrar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Produto\EditarProduto.resx">
-      <DependentUpon>EditarProduto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Usuário\EditarUsuario.resx">
-      <DependentUpon>EditarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
