@@ -55,18 +55,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 string email = txtEmail.Text;
                 string senha = txtSenha.Text;
                 
-                if(cadastro.validaEmail(email) == true)
-                {
-                    cadastro.criarCadastro(nome, email, senha);
-                }
-                else
-                {
-                    MessageBox.Show("Email inválido, tente novamente", "Email inválido");
-
-                    txtNome.Text = "";
-                    txtEmail.Text = "";
-                    txtSenha.Text = "";
-                }
+                
             }
             catch(FormatException erro) 
             {
@@ -76,11 +65,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtNome.Text = "";
                 txtEmail.Text = "";
                 txtSenha.Text = "";
+                txtRepetirSenha.Text = "";
             }  
             catch(Exception erro) {
                 txtNome.Text = "";
                 txtEmail.Text = "";
                 txtSenha.Text = "";
+                txtRepetirSenha.Text = "";
             }
         }
     }

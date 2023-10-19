@@ -433,9 +433,6 @@
     <None Include="Resources\btnLogin.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ClienteEscolha.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Botao_Cadastro.png" />
   </ItemGroup>
   <ItemGroup>
@@ -458,6 +455,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Sair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CADASTRE-SE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ENTRAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLIENTE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClienteEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaterialEscolha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaterialEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClienteEscolha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProdutoEscolha %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProdutoEscolha.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

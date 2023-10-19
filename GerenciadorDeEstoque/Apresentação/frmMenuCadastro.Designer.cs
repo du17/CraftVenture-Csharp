@@ -41,53 +41,95 @@
             // 
             // btnCliente
             // 
+            this.btnCliente.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
             this.btnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCliente.Location = new System.Drawing.Point(262, 93);
+            this.btnCliente.Location = new System.Drawing.Point(262, 94);
             this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(306, 562);
+            this.btnCliente.Size = new System.Drawing.Size(310, 559);
             this.btnCliente.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnCliente.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
             this.btnCliente.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ClienteEscolha;
+            this.btnCliente.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
+            this.btnCliente.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnCliente.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCliente.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnCliente.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnCliente.StateCommon.Border.Rounding = 10;
+            this.btnCliente.StateCommon.Border.Rounding = 7;
+            this.btnCliente.StateCommon.Content.Image.ImageColorMap = System.Drawing.Color.Transparent;
+            this.btnCliente.StateCommon.Content.Image.ImageColorTo = System.Drawing.Color.Transparent;
+            this.btnCliente.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.btnCliente.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ClienteEscolha;
+            this.btnCliente.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ClienteEscolha__1_;
+            this.btnCliente.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnCliente.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnCliente.StateTracking.Border.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnCliente.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnCliente.StateTracking.Border.Rounding = 7;
             this.btnCliente.TabIndex = 0;
             this.btnCliente.Values.Text = "";
             // 
             // btnProduto
             // 
             this.btnProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProduto.Location = new System.Drawing.Point(593, 94);
+            this.btnProduto.Location = new System.Drawing.Point(594, 94);
             this.btnProduto.Name = "btnProduto";
-            this.btnProduto.Size = new System.Drawing.Size(306, 562);
+            this.btnProduto.Size = new System.Drawing.Size(306, 559);
             this.btnProduto.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnProduto.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnProduto.StateCommon.Back.Image = ((System.Drawing.Image)(resources.GetObject("btnProduto.StateCommon.Back.Image")));
             this.btnProduto.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnProduto.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnProduto.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnProduto.StateCommon.Border.Rounding = -5;
+            this.btnProduto.StateCommon.Border.Rounding = 7;
+            this.btnProduto.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnProduto.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnProduto.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.MaterialEscolha__1_;
+            this.btnProduto.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnProduto.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnProduto.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnProduto.StateTracking.Border.Rounding = 7;
             this.btnProduto.TabIndex = 1;
             this.btnProduto.Values.Text = "";
             // 
             // btnMaterial
             // 
             this.btnMaterial.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMaterial.Location = new System.Drawing.Point(927, 94);
+            this.btnMaterial.Location = new System.Drawing.Point(928, 95);
             this.btnMaterial.Name = "btnMaterial";
-            this.btnMaterial.Size = new System.Drawing.Size(306, 562);
+            this.btnMaterial.Size = new System.Drawing.Size(300, 562);
             this.btnMaterial.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnMaterial.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnMaterial.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ProdutoEscolha;
+            this.btnMaterial.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnMaterial.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnMaterial.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnMaterial.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnMaterial.StateCommon.Border.Rounding = -5;
+            this.btnMaterial.StateCommon.Border.Rounding = 7;
+            this.btnMaterial.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnMaterial.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnMaterial.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ProdutoEscolha__1_;
+            this.btnMaterial.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnMaterial.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnMaterial.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnMaterial.StateTracking.Border.Rounding = 7;
             this.btnMaterial.TabIndex = 2;
             this.btnMaterial.Values.Text = "";
             // 

@@ -97,7 +97,7 @@
             // btnLogin
             // 
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogin.Location = new System.Drawing.Point(514, 500);
+            this.btnLogin.Location = new System.Drawing.Point(513, 500);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(257, 49);
             this.btnLogin.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
@@ -119,11 +119,13 @@
             // btnCadastrar
             // 
             this.btnCadastrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastrar.Location = new System.Drawing.Point(526, 629);
+            this.btnCadastrar.Location = new System.Drawing.Point(517, 626);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(220, 26);
+            this.btnCadastrar.Size = new System.Drawing.Size(233, 36);
             this.btnCadastrar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnCadastrar.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnCadastrar.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.CADASTRE_SE;
+            this.btnCadastrar.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnCadastrar.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCadastrar.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnCadastrar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
