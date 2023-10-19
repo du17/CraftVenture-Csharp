@@ -27,9 +27,25 @@ namespace GerenciadorDeEstoque.Apresentação
 
         public void criarCadastro(string nome, string email, string senha)
         {
-            this.nome = nome;
-            this.email = email;
-            this.senha = senha;
+
+            if(nome.Length != 0)
+            {
+                this.nome = nome;
+            }
+            else { throw new ArgumentException("O nome não pode ser nulo"); }
+
+            if(senha.Length >= 8)
+            {
+                this.senha = senha;
+
+            }
+            else { throw new ArgumentException("A senha deve ter pelo menos 8 caracteres"); }
+            if(validaEmail(email) == true)
+            {
+                this.email = email;
+            }
+            else { throw new ArgumentException("O email não é válido, cheque e tente novamente");  }
+
         }
 
         public bool checaSenha(string senha)

@@ -16,11 +16,15 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmCadastro : Form
     {
         CadastroUsuario cadastro;
+        ListaUsuario listaUsuario;
+
         public frmCadastro(CadastroUsuario cadastro)
         {
             InitializeComponent();
 
             this.cadastro = cadastro;
+
+            
         }
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
@@ -55,19 +59,32 @@ namespace GerenciadorDeEstoque.Apresentação
                 string nome = txtNome.Text;
                 string email = txtEmail.Text;
                 string senha = txtSenha.Text;
+
+                cadastro.criarCadastro(nome, email, senha);
+
+                listaUsuario = new ListaUsuario(cadastro);
                 
                 
             }
-            catch(FormatException erro) 
+            catch (FormatException erro)
             {
 
-                MessageBox.Show("Algum dos campos está errado, cheque e tente novamente", "Campos nulos");
-                
+                MessageBox.Show("Algum dos campos está nulo, cheque e tente novamente", "Campos nulos");
+
                 txtNome.Text = "";
                 txtEmail.Text = "";
                 txtSenha.Text = "";
                 txtRepetirSenha.Text = "";
-            }  
+            }
+            catch (ArgumentException erro)
+            {
+
+                StringBuilder sb = new StringBuilder(); 
+
+                sb.Append(erro.Message);
+                MessageBox.Show(sb.ToString(), "Erro de argumento");
+            }
+             
             catch(Exception erro) {
                 txtNome.Text = "";
                 txtEmail.Text = "";

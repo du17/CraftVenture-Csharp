@@ -147,6 +147,7 @@
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\CadastroUsuario.cs" />
+    <Compile Include="Apresentação\ListaUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
     <Compile Include="Modelo\Controle.cs" />
     <Compile Include="Program.cs" />
