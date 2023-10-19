@@ -146,12 +146,6 @@
     <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Cadastrar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Cadastrar.Designer.cs">
-      <DependentUpon>Cadastrar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Apresentação\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,9 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmMenuCadastro.resx">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Cadastrar.resx">
-      <DependentUpon>Cadastrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
