@@ -38,6 +38,10 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btnCadastrar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbSenha = new System.Windows.Forms.PictureBox();
+            this.pbRepetirSenha = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSenha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRepetirSenha)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEntrar
@@ -119,6 +123,7 @@
             this.txtSenha.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.TabIndex = 15;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.WordWrap = false;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // lblEmail
@@ -197,6 +202,32 @@
             this.btnCadastrar.Values.Text = "";
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
+            // pbSenha
+            // 
+            this.pbSenha.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            this.pbSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbSenha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbSenha.Image = global::GerenciadorDeEstoque.Properties.Resources.olho;
+            this.pbSenha.Location = new System.Drawing.Point(815, 364);
+            this.pbSenha.Name = "pbSenha";
+            this.pbSenha.Size = new System.Drawing.Size(36, 31);
+            this.pbSenha.TabIndex = 20;
+            this.pbSenha.TabStop = false;
+            this.pbSenha.Click += new System.EventHandler(this.pbSenha_Click);
+            // 
+            // pbRepetirSenha
+            // 
+            this.pbRepetirSenha.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            this.pbRepetirSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbRepetirSenha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRepetirSenha.Image = global::GerenciadorDeEstoque.Properties.Resources.olho;
+            this.pbRepetirSenha.Location = new System.Drawing.Point(815, 439);
+            this.pbRepetirSenha.Name = "pbRepetirSenha";
+            this.pbRepetirSenha.Size = new System.Drawing.Size(36, 31);
+            this.pbRepetirSenha.TabIndex = 21;
+            this.pbRepetirSenha.TabStop = false;
+            this.pbRepetirSenha.Click += new System.EventHandler(this.pbRepetirSenha_Click);
+            // 
             // frmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +235,8 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Frame_20frameCadastro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.pbRepetirSenha);
+            this.Controls.Add(this.pbSenha);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.lblRepetirSenha);
             this.Controls.Add(this.txtRepetirSenha);
@@ -218,6 +251,8 @@
             this.Name = "frmCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro";
+            ((System.ComponentModel.ISupportInitialize)(this.pbSenha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRepetirSenha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,5 +270,7 @@
         private System.Windows.Forms.Label lblNome;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNome;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCadastrar;
+        private System.Windows.Forms.PictureBox pbSenha;
+        private System.Windows.Forms.PictureBox pbRepetirSenha;
     }
 }
