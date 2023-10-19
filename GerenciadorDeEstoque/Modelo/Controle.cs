@@ -12,17 +12,17 @@ namespace GerenciadorDeEstoque.Modelo
         public bool verificacao;
         public string mensagem = "";
         
-        public bool Acessar(string login, string senha) // Método para acessar a acc
-        {
-            LoginDaoComandos loginDao = new LoginDaoComandos();
-            verificacao = loginDao.VerificarLogin(login, senha);
+       /* //public bool Acessar(string login, string senha) // Método para acessar a acc
+        //{
+            //LoginDaoComandos loginDao = new LoginDaoComandos();
+           // verificacao = loginDao.VerificarLogin(login, senha);
             
-            if (!loginDao.mensagem.Equals("")) // Armazenando mensagem de erro
-            {
-                this.mensagem = loginDao.mensagem;
-            }
-            return verificacao;
-        }
+            //if (!loginDao.mensagem.Equals("")) // Armazenando mensagem de erro
+            //{
+            //    this.mensagem = loginDao.mensagem;
+            //}
+           // return verificacao;
+        //}
 
         // Método para cadastrar a acc
         public string Cadastrar(string nome, string email, string senha, string confirmarsenha, string celular, string lembretesenha)
@@ -195,6 +195,6 @@ namespace GerenciadorDeEstoque.Modelo
                 this.verificacao = true;
             }
             return mensagem;
-        }
+        }*/
     }
 }

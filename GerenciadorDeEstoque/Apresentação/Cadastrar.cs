@@ -20,7 +20,7 @@ namespace GerenciadorDeEstoque.Apresentação
             InitializeComponent();
         }
 
-        Controle controle = new Controle(); // Instanciando a classe Controle
+        /*Controle controle = new Controle(); // Instanciando a classe Controle
 
         private void NotificacaoM(string elemento) // Notificação com palavra no masculino
         {
@@ -134,6 +134,6 @@ namespace GerenciadorDeEstoque.Apresentação
         private void Cadastrar_Load(object sender, EventArgs e)
         {
 
-        }
+        }*/
     }
 }

@@ -72,7 +72,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btn_Cadastrar.TabIndex = 2;
             this.btn_Cadastrar.Text = "CADASTRAR";
             this.btn_Cadastrar.UseVisualStyleBackColor = false;
-            this.btn_Cadastrar.Click += new System.EventHandler(this.btn_Cadastrar_Click);
+            //this.btn_Cadastrar.Click += new System.EventHandler(this.btn_Cadastrar_Click);
             // 
             // txb_Cor
             // 
@@ -196,7 +196,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar produto";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.AddProduct_Load);
+            //this.Load += new System.EventHandler(this.AddProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

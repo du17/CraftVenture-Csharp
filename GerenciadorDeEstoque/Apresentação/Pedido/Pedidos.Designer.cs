@@ -104,7 +104,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.comboBoxVenda.Size = new System.Drawing.Size(149, 21);
             this.comboBoxVenda.TabIndex = 23;
             this.comboBoxVenda.Text = "Selecione";
-            this.comboBoxVenda.SelectedIndexChanged += new System.EventHandler(this.comboBoxVenda_SelectedIndexChanged);
+            //this.comboBoxVenda.SelectedIndexChanged += new System.EventHandler(this.comboBoxVenda_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -138,7 +138,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.txbQnt.Name = "txbQnt";
             this.txbQnt.Size = new System.Drawing.Size(148, 20);
             this.txbQnt.TabIndex = 19;
-            this.txbQnt.TextChanged += new System.EventHandler(this.txbQnt_TextChanged);
+            //this.txbQnt.TextChanged += new System.EventHandler(this.txbQnt_TextChanged);
             // 
             // txb_QntEstoque
             // 
@@ -182,7 +182,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.btnAplicar.TabIndex = 13;
             this.btnAplicar.Text = "APLICAR DESCONTO";
             this.btnAplicar.UseVisualStyleBackColor = true;
-            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
+            //this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
             // 
             // txbDesconto
             // 
@@ -210,7 +210,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.btnPedido.TabIndex = 8;
             this.btnPedido.Text = "CADASTRAR PEDIDO";
             this.btnPedido.UseVisualStyleBackColor = false;
-            this.btnPedido.Click += new System.EventHandler(this.btnPedido_Click);
+            //this.btnPedido.Click += new System.EventHandler(this.btnPedido_Click);
             // 
             // comboBox_FormaPgt
             // 
@@ -267,7 +267,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.comboBox_Produto.Size = new System.Drawing.Size(235, 21);
             this.comboBox_Produto.TabIndex = 3;
             this.comboBox_Produto.ValueMember = "nome";
-            this.comboBox_Produto.SelectedIndexChanged += new System.EventHandler(this.comboBox_Produto_SelectedIndexChanged);
+            //this.comboBox_Produto.SelectedIndexChanged += new System.EventHandler(this.comboBox_Produto_SelectedIndexChanged);
             // 
             // produtosBindingSource7
             // 
@@ -437,7 +437,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.Name = "Pedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar pedidos";
-            this.Load += new System.EventHandler(this.Pedidos_Load);
+            //this.Load += new System.EventHandler(this.Pedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clientefisicoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estoqueDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource7)).EndInit();

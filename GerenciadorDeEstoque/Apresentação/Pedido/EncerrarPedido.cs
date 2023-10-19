@@ -18,7 +18,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             InitializeComponent();
         }
 
-        Controle controle = new Controle(); // Instanciando a classe Controle
+        /*Controle controle = new Controle(); // Instanciando a classe Controle
 
         private void CheckarCheckedBox()
         {
@@ -78,6 +78,6 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             {
                 MessageBox.Show("Por favor, informe a ID do pedido!");
             }
-        }
+        }*/
     }
 }

@@ -53,7 +53,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.txb_celularCNPJ.Name = "txb_celularCNPJ";
             this.txb_celularCNPJ.Size = new System.Drawing.Size(190, 20);
             this.txb_celularCNPJ.TabIndex = 26;
-            this.txb_celularCNPJ.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txb_celularCNPJ_MaskInputRejected);
+            //this.txb_celularCNPJ.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txb_celularCNPJ_MaskInputRejected);
             // 
             // txb_CNPJ
             // 
@@ -73,7 +73,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.button1.TabIndex = 24;
             this.button1.Text = "CADASTRAR CLIENTE";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txb_NomeCNPJ
             // 
@@ -199,7 +199,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.Name = "AddClienteCNPJ";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar cliente (jurídico)";
-            this.Load += new System.EventHandler(this.AddClienteCNPJ_Load);
+            //this.Load += new System.EventHandler(this.AddClienteCNPJ_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

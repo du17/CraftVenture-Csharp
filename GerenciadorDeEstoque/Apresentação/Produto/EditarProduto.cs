@@ -17,7 +17,7 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             InitializeComponent();
         }
-        // Variáveis para conexão com o banco de dados
+        /*// Variáveis para conexão com o banco de dados
         Controle controle = new Controle();
 
         // ADICIONAR QUANTIDADE DO PRODUTO
@@ -79,6 +79,6 @@ namespace GerenciadorDeEstoque.Apresentação
         private void EditarProduto_Load(object sender, EventArgs e)
         {
 
-        }
+        }*/
     }
 }

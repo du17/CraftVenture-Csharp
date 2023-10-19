@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using GerenciadorDeEstoque.Apresentação.Menu;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
@@ -35,6 +36,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            frmMenuCadastro Menu = new frmMenuCadastro();
+
+            Menu.Show();
+
+            
 
         }
 

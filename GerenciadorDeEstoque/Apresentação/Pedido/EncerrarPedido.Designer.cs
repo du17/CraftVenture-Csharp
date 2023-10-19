@@ -48,7 +48,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.btnExcluirPedido.TabIndex = 7;
             this.btnExcluirPedido.Text = "EXCLUIR PEDIDO";
             this.btnExcluirPedido.UseVisualStyleBackColor = false;
-            this.btnExcluirPedido.Click += new System.EventHandler(this.btnExcluirPedido_Click);
+            //this.btnExcluirPedido.Click += new System.EventHandler(this.btnExcluirPedido_Click);
             // 
             // button1
             // 
@@ -60,7 +60,7 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
             this.button1.TabIndex = 6;
             this.button1.Text = "MUDAR ESTADO DO PEDIDO";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkBox_Cancelado
             // 

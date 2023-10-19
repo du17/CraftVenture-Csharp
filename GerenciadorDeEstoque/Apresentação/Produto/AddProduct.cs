@@ -20,7 +20,7 @@ namespace GerenciadorDeEstoque.Apresentação
             InitializeComponent();
         }
 
-        // Variáveis para conexão com o banco de dados
+        /*// Variáveis para conexão com o banco de dados
         Controle controle = new Controle();
 
         public void btn_Cadastrar_Click(object sender, EventArgs e)
@@ -81,6 +81,6 @@ namespace GerenciadorDeEstoque.Apresentação
         private void AddProduct_Load(object sender, EventArgs e)
         {
 
-        }
+        }*/
     }
 }

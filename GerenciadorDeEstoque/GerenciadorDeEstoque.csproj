@@ -158,6 +158,12 @@
     <Compile Include="Apresentação\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\frmMenuCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
+      <DependentUpon>frmMenuCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\Pedido\EncerrarPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,12 +200,6 @@
     <Compile Include="Apresentação\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\Menu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apresentação\Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Apresentação\Usuário\EditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,9 +208,6 @@
     </Compile>
     <Compile Include="Apresentação\CadastroUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
-    <Compile Include="DAO\LoginDaoComandos.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="estoqueDataSet.cs">
       <DependentUpon>estoqueDataSet.xsd</DependentUpon>
     </Compile>
@@ -257,6 +254,9 @@
     <EmbeddedResource Include="Apresentação\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmMenuCadastro.resx">
+      <DependentUpon>frmMenuCadastro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Pedido\EncerrarPedido.resx">
       <DependentUpon>EncerrarPedido.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,14 +275,8 @@
     <EmbeddedResource Include="Apresentação\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\Menu.resx">
-      <DependentUpon>Menu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Usuário\EditarUsuario.resx">
       <DependentUpon>EditarUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DAO\LoginDaoComandos.resx">
-      <DependentUpon>LoginDaoComandos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -437,6 +431,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClienteEscolha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Botao_Cadastro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CADASTRO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastrar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastro_Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Estoque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Venda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Historico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sair.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

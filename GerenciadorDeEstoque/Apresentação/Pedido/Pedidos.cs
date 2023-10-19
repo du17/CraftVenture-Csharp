@@ -19,12 +19,12 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
         public Pedidos()
         {
             InitializeComponent();
-            QuantidadeDisponivel();
-            comboBoxPlataformaVirtual.Enabled = false;
-            ComboBoxPlataformaVendaOnline();
+            //QuantidadeDisponivel();
+            //comboBoxPlataformaVirtual.Enabled = false;
+            //ComboBoxPlataformaVendaOnline();
         }
 
-        // Variáveis para conexão com o banco de dados
+       /* // Variáveis para conexão com o banco de dados
         SqlDataAdapter da;
         DataSet ds;
         DataTable dt = new DataTable();
@@ -238,6 +238,6 @@ namespace GerenciadorDeEstoque.Apresentação.Pedido
                 comboBoxPlataformaVirtual.Enabled = false;
 
             }
-        }
+        }*/
     }
 }

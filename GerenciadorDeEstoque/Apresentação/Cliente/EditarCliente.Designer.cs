@@ -84,7 +84,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.txbString.Size = new System.Drawing.Size(56, 21);
             this.txbString.TabIndex = 0;
             this.txbString.ValueMember = "idclientefisico";
-            this.txbString.SelectedIndexChanged += new System.EventHandler(this.txbString_SelectedIndexChanged_1);
+            //this.txbString.SelectedIndexChanged += new System.EventHandler(this.txbString_SelectedIndexChanged_1);
             // 
             // label1
             // 
@@ -249,7 +249,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.btnAlterarDados.TabIndex = 20;
             this.btnAlterarDados.Text = "ALTERAR DADOS";
             this.btnAlterarDados.UseVisualStyleBackColor = false;
-            this.btnAlterarDados.Click += new System.EventHandler(this.btnAlterarDados_Click);
+           // this.btnAlterarDados.Click += new System.EventHandler(this.btnAlterarDados_Click);
             // 
             // btnRemoverProdutos
             // 
@@ -261,7 +261,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.btnRemoverProdutos.TabIndex = 21;
             this.btnRemoverProdutos.Text = "REMOVER CLIENTE";
             this.btnRemoverProdutos.UseVisualStyleBackColor = false;
-            this.btnRemoverProdutos.Click += new System.EventHandler(this.btnRemoverProdutos_Click_1);
+           // this.btnRemoverProdutos.Click += new System.EventHandler(this.btnRemoverProdutos_Click_1);
             // 
             // EditarCliente
             // 
@@ -295,7 +295,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
             this.Name = "EditarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar Cliente";
-            this.Load += new System.EventHandler(this.EditarCliente_Load);
+            //this.Load += new System.EventHandler(this.EditarCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clientefisicoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estoqueDataSet2)).EndInit();
             this.ResumeLayout(false);

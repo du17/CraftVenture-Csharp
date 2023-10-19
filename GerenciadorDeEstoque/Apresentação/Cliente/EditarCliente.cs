@@ -22,7 +22,7 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
         public bool check = false;
         public string mensagem = "";
 
-        // Variáveis para conexão com banco de dados
+       /* // Variáveis para conexão com banco de dados
         SqlDataAdapter da;
         DataSet ds;
         DataTable dt = new DataTable();
@@ -403,6 +403,6 @@ namespace GerenciadorDeEstoque.Apresentação.Cliente
 
             // método para atualizar a lista de cliente
             RefreshCliente();
-        }
+        }*/
     }
 }

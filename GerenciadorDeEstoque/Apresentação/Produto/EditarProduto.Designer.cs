@@ -48,7 +48,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btn_deleteProduto.TabIndex = 10;
             this.btn_deleteProduto.Text = "EXCLUIR PRODUTO";
             this.btn_deleteProduto.UseVisualStyleBackColor = false;
-            this.btn_deleteProduto.Click += new System.EventHandler(this.btn_deleteProduto_Click);
+            //this.btn_deleteProduto.Click += new System.EventHandler(this.btn_deleteProduto_Click);
             // 
             // btn_rmvQnt
             // 
@@ -60,7 +60,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btn_rmvQnt.TabIndex = 9;
             this.btn_rmvQnt.Text = "REMOVER";
             this.btn_rmvQnt.UseVisualStyleBackColor = false;
-            this.btn_rmvQnt.Click += new System.EventHandler(this.btn_rmvQnt_Click);
+            //this.btn_rmvQnt.Click += new System.EventHandler(this.btn_rmvQnt_Click);
             // 
             // txb_Quantidade
             // 
@@ -104,7 +104,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btn_AddQnt.TabIndex = 2;
             this.btn_AddQnt.Text = "ADICIONAR";
             this.btn_AddQnt.UseVisualStyleBackColor = false;
-            this.btn_AddQnt.Click += new System.EventHandler(this.btn_AddQnt_Click);
+            //this.btn_AddQnt.Click += new System.EventHandler(this.btn_AddQnt_Click);
             // 
             // EditarProduto
             // 
@@ -123,7 +123,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.Name = "EditarProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar produto";
-            this.Load += new System.EventHandler(this.EditarProduto_Load);
+            //this.Load += new System.EventHandler(this.EditarProduto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

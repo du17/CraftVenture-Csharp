@@ -18,7 +18,7 @@ namespace GerenciadorDeEstoque.Apresentação
             InitializeComponent();
         }
 
-        // Método para limpar os campos do cadastro após criar o cadastro do cliente
+        /*// Método para limpar os campos do cadastro após criar o cadastro do cliente
         private void LimparCamposClienteNovo()
         {
             txb_Nome.Clear();
@@ -106,6 +106,6 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 NotificacaoM("nome");
             }
-        }
+        }*/
     }
 }

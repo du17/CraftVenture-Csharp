@@ -202,7 +202,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btn_CadastrarCliente.TabIndex = 24;
             this.btn_CadastrarCliente.Text = "CADASTRAR CLIENTE";
             this.btn_CadastrarCliente.UseVisualStyleBackColor = false;
-            this.btn_CadastrarCliente.Click += new System.EventHandler(this.btn_CadastrarCliente_Click);
+            //this.btn_CadastrarCliente.Click += new System.EventHandler(this.btn_CadastrarCliente_Click);
             // 
             // txb_RG
             // 

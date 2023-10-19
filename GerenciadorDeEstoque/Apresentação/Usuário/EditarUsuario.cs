@@ -19,7 +19,7 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             InitializeComponent();
         }
 
-        // Variáveis para conexão com o banco de dados
+        /*// Variáveis para conexão com o banco de dados
         Controle controle = new Controle();
         SqlDataAdapter da;
         DataSet ds;
@@ -109,6 +109,6 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             nomeantigo = comboBox_Produto.Text;
             EmailUsuario();
             CelularUsuario();
-        }
+        }*/
     }
 }

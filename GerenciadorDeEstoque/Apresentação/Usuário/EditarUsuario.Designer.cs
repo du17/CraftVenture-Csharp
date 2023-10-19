@@ -62,7 +62,7 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "EDITAR";
             this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            //this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // label3
             // 
@@ -109,7 +109,7 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             this.comboBox_Produto.Size = new System.Drawing.Size(235, 21);
             this.comboBox_Produto.TabIndex = 4;
             this.comboBox_Produto.ValueMember = "nome";
-            this.comboBox_Produto.SelectedIndexChanged += new System.EventHandler(this.comboBox_Produto_SelectedIndexChanged);
+            //this.comboBox_Produto.SelectedIndexChanged += new System.EventHandler(this.comboBox_Produto_SelectedIndexChanged);
             // 
             // funcionarioBindingSource
             // 
@@ -142,7 +142,7 @@ namespace GerenciadorDeEstoque.Apresentação.Usuário
             this.Name = "EditarUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditarUsuario";
-            this.Load += new System.EventHandler(this.EditarUsuario_Load);
+            //this.Load += new System.EventHandler(this.EditarUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.funcionarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estoqueDataSet3)).EndInit();
             this.ResumeLayout(false);

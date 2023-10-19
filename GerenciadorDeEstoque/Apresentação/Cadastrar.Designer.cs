@@ -57,8 +57,8 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_password_c.Size = new System.Drawing.Size(220, 15);
             this.txb_password_c.TabIndex = 11;
             this.txb_password_c.Text = "Senha";
-            this.txb_password_c.Click += new System.EventHandler(this.txb_password_c_Click);
-            this.txb_password_c.TextChanged += new System.EventHandler(this.txb_password_c_TextChanged);
+            //this.txb_password_c.Click += new System.EventHandler(this.txb_password_c_Click);
+            //this.txb_password_c.TextChanged += new System.EventHandler(this.txb_password_c_TextChanged);
             // 
             // txb_email_c
             // 
@@ -72,7 +72,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_email_c.Size = new System.Drawing.Size(220, 15);
             this.txb_email_c.TabIndex = 9;
             this.txb_email_c.Text = "Email";
-            this.txb_email_c.Click += new System.EventHandler(this.txb_email_c_Click);
+            //this.txb_email_c.Click += new System.EventHandler(this.txb_email_c_Click);
             // 
             // txb_register
             // 
@@ -86,7 +86,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_register.TabIndex = 7;
             this.txb_register.Text = "CADASTRE-SE";
             this.txb_register.UseVisualStyleBackColor = false;
-            this.txb_register.Click += new System.EventHandler(this.txb_register_Click);
+            //this.txb_register.Click += new System.EventHandler(this.txb_register_Click);
             // 
             // txb_confirmpassword
             // 
@@ -100,8 +100,8 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_confirmpassword.Size = new System.Drawing.Size(220, 15);
             this.txb_confirmpassword.TabIndex = 13;
             this.txb_confirmpassword.Text = "Confirmar senha";
-            this.txb_confirmpassword.Click += new System.EventHandler(this.txb_confirmpassword_Click);
-            this.txb_confirmpassword.TextChanged += new System.EventHandler(this.txb_confirmpassword_TextChanged);
+            //this.txb_confirmpassword.Click += new System.EventHandler(this.txb_confirmpassword_Click);
+            //this.txb_confirmpassword.TextChanged += new System.EventHandler(this.txb_confirmpassword_TextChanged);
             // 
             // txtb_reminderpassword
             // 
@@ -115,7 +115,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txtb_reminderpassword.Size = new System.Drawing.Size(220, 15);
             this.txtb_reminderpassword.TabIndex = 17;
             this.txtb_reminderpassword.Text = "Lembrete da senha";
-            this.txtb_reminderpassword.Click += new System.EventHandler(this.txtb_reminderpassword_Click);
+            //this.txtb_reminderpassword.Click += new System.EventHandler(this.txtb_reminderpassword_Click);
             // 
             // txb_celphone
             // 
@@ -142,7 +142,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.txb_name.Size = new System.Drawing.Size(220, 15);
             this.txb_name.TabIndex = 22;
             this.txb_name.Text = "Nome";
-            this.txb_name.Click += new System.EventHandler(this.txb_name_Click);
+            //this.txb_name.Click += new System.EventHandler(this.txb_name_Click);
             // 
             // panel1
             // 
@@ -204,7 +204,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.btnVoltar.TabIndex = 25;
             this.btnVoltar.Text = "VOLTAR";
             this.btnVoltar.UseVisualStyleBackColor = false;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            //this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // Cadastrar
             // 
@@ -230,7 +230,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.Name = "Cadastrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar";
-            this.Load += new System.EventHandler(this.Cadastrar_Load);
+            //this.Load += new System.EventHandler(this.Cadastrar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
