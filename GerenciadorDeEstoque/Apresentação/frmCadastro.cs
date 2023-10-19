@@ -74,5 +74,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtRepetirSenha.Text = "";
             }
         }
+
+        private void frmCadastro_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

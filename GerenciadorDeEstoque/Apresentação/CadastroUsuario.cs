@@ -13,6 +13,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
         //conexao com o mysql
 
+        List<string> Login = new List<string>();
+
         private string nome;
         private string email;
         private string senha;
@@ -30,9 +32,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
         public void criarCadastro(string nome, string email, string senha)
         {
-            this.nome = nome;
+            /*this.nome = nome;
             this.email = email;
             this.senha = senha;
+            */
+
+            Login.Add(nome);
+            Login.Add(senha);
+            Login.Add(email);
+
         }
 
         public bool checaSenha(string senha)

@@ -16,7 +16,7 @@ namespace GerenciadorDeEstoque.Apresentação
     {
         CadastroUsuario cadastro;
 
-        List<CadastroUsuario> Login = new List<CadastroUsuario>();
+        
 
 
         public frmLogin(CadastroUsuario cadastro)
