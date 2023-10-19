@@ -36,12 +36,25 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMenuCadastro Menu = new frmMenuCadastro();
 
-            Menu.Show();
+            if (txtNome.Text == "adm" && txtSenha.Text == "adm")
+            {
+                frmMenuCadastro Menu = new frmMenuCadastro();
 
-            
+                Menu.Show();
+            }
 
+            /*if(txtNome.Text == cadastro.checaSenha() && txtSenha.Text == cadastro.checaUsusario())
+           {
+                frmMenuCadastro Menu = new frmMenuCadastro();
+
+                Menu.Show();   
+           }*/
+
+            else
+            {
+                MessageBox.Show("Login invalido");
+            }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -49,6 +62,11 @@ namespace GerenciadorDeEstoque.Apresentação
             frmCadastro frmCadastro = new frmCadastro(cadastro);
 
             frmCadastro.ShowDialog();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
