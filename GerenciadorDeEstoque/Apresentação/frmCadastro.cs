@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GerenciadorDeEstoque.DAO;
 using MetroFramework;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
@@ -54,20 +55,21 @@ namespace GerenciadorDeEstoque.Apresentação
                 string nome = txtNome.Text;
                 string email = txtEmail.Text;
                 string senha = txtSenha.Text;
-                
-                
+
+
             }
-            catch(FormatException erro) 
+            catch (FormatException erro)
             {
 
                 MessageBox.Show("Algum dos campos está errado, cheque e tente novamente", "Campos nulos");
-                
+
                 txtNome.Text = "";
                 txtEmail.Text = "";
                 txtSenha.Text = "";
                 txtRepetirSenha.Text = "";
-            }  
-            catch(Exception erro) {
+            }
+            catch (Exception erro)
+            {
                 txtNome.Text = "";
                 txtEmail.Text = "";
                 txtSenha.Text = "";
@@ -75,9 +77,38 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void frmCadastro_Load(object sender, EventArgs e)
+        private void pbSenha_Click(object sender, EventArgs e)
         {
+            if (txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+                txtSenha.PasswordChar = '\0';
+                pbSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+                txtSenha.PasswordChar = '●';
+                pbSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            }
 
+
+        }
+
+        private void pbRepetirSenha_Click(object sender, EventArgs e)
+        {
+            if (txtRepetirSenha.UseSystemPasswordChar == true)
+            {
+                txtRepetirSenha.UseSystemPasswordChar = false;
+                txtRepetirSenha.PasswordChar = '\0';
+                pbRepetirSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho;
+            }
+            else
+            {
+                txtRepetirSenha.UseSystemPasswordChar = true;
+                txtRepetirSenha.PasswordChar = '●';
+                pbRepetirSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            }
         }
     }
 }
