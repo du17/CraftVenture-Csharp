@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação.Menu
 {
@@ -16,6 +17,11 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         public frmMenuCadastro()
         {
             InitializeComponent();
+        }
+
+        private void frmMenuCadastro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -227,6 +227,7 @@
             this.Name = "frmMenuCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro";
+            this.Load += new System.EventHandler(this.frmMenuCadastro_Load);
             this.ResumeLayout(false);
 
         }
