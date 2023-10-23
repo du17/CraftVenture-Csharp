@@ -10,6 +10,12 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public class CadastroUsuario
     {
+
+        /*string conexaoCU = "sever = localhost; user id = root; password = root; database = Estoque";
+        var conexao = new MySqlConnection(conexaoCU);
+        conexao.Open();
+        */
+
         private string nome;
         private string email;
         private string senha;
