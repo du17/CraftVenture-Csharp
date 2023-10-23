@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
     public class CadastroUsuario
     {
 
-        //conexao com o mysql
+        /*string conexaoCU = "sever = localhost; user id = root; password = root; database = Estoque";
+        var conexao = new MySqlConnection(conexaoCU);
+        conexao.Open();
+        */
 
         private string nome;
         private string email;

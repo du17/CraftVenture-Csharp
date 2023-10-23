@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using GerenciadorDeEstoque.Apresentação.Menu;
+using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
@@ -16,7 +17,12 @@ namespace GerenciadorDeEstoque.Apresentação
     {
         CadastroUsuario cadastro;
 
-        
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            string conexaoStr = "sever = localhost; user id = root; password = root; database = Estoque";
+            var conexao = new MySqlConnection(conexaoStr);
+            conexao.Open();
+        }
 
 
         public frmLogin(CadastroUsuario cadastro)
@@ -47,12 +53,17 @@ namespace GerenciadorDeEstoque.Apresentação
                 Menu.Show();
             }
 
-            /*if(txtNome.Text == cadastro.checaSenha() && txtSenha.Text == cadastro.checaUsusario())
-           {
-               frmMenuCadastro Menu = new frmMenuCadastro();
+            /*string cs = @"sever = Estoque; user id = root; password = root; database = Estoque";
+             var con new MySqlConnection(cs);
+             * 
+             * 
+             try{
+            con.Open();
+            string stm = "select Nome, Senha from log where Nome = nome and Senha = senha";
+            var cmd = new MySqlCommand(stm, con);
 
-                Menu.Show();
-           }*/
+            cmd.
+            }*/
 
             else
             {
@@ -65,11 +76,6 @@ namespace GerenciadorDeEstoque.Apresentação
             frmCadastro frmCadastro = new frmCadastro(cadastro);
 
             frmCadastro.ShowDialog();
-        }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
