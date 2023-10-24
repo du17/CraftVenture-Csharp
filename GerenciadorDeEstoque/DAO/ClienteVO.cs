@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace GerenciadorDeEstoque.Apresentação
+namespace GerenciadorDeEstoque.DAO
 {
-    class UsuarioVO
+    class ClienteVO
     {
+
+        /* metodos do cliente!!!!!!
+
         private Int32 _itemid;
         private String nome, senha, email;
         private DAO.DAO dao;
 
-        public UsuarioVO()
+        public ClienteVO()
         {
 
         }
@@ -41,18 +45,21 @@ namespace GerenciadorDeEstoque.Apresentação
         public void Inserir()
         {
             dao = new DAO.DAO();
-            dao.IDU(Email, Senha, Nome);
+            dao.InserirDados(Email, Senha, Nome);
         }
 
+        // erro sen sentido pq isso é uma merda
         public void Atualizar()
         {
             dao = new DAO.DAO();
-            dao.ADU(Email, Senha, Nome, itemid);
+            dao.AtualizarDados(Email, Senha, Nome);
         }
         public void Remover()
         {
             dao = new DAO.DAO();
-            dao.RDU(Nome, itemid);
-        }
+            dao.RemoverDados(Email, Senha, Nome);
+        }*/
+
+
     }
 }

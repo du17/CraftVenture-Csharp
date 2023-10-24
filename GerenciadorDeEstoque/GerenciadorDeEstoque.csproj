@@ -146,6 +146,7 @@
     <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\ClienteVO.cs" />
     <Compile Include="DAO\UsuarioVO.cs" />
     <Compile Include="DAO\Conexao.cs" />
     <Compile Include="DAO\DAO.cs" />
