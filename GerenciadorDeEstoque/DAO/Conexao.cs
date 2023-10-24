@@ -1,37 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    public class Conexao
+    class Conexao
     {
-        SqlConnection conectar = new SqlConnection();
-        public Conexao()
-        {
-            conectar.ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=estoque;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
-        }
+        private String connectionString;
 
-        public SqlConnection Conectar() // Checando se o banco está fechado, antes de abri-lo
+        public String getConnectionString()
         {
-            if(conectar.State == System.Data.ConnectionState.Closed)
-            {
-                conectar.Open();
-            }
-            return conectar;
+            connectionString = ConfigurationManager.ConnectionStrings["Estoque"].ConnectionString;
+            return connectionString;
         }
-                
-        public void Desconectar() // Checando se o banco está aberto, antes de fecha-lo
-        {
-            if(conectar.State == System.Data.ConnectionState.Open)
-            {
-                conectar.Close();
-            }
-        }
-
-
     }
 }

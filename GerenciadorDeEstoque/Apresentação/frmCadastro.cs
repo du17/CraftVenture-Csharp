@@ -109,5 +109,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 pbRepetirSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho__1_;
             }
         }
+
+        private void frmCadastro_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

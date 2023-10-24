@@ -44,13 +44,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 Menu.Show();
             }
 
-            /*if(txtNome.Text == cadastro.checaSenha() && txtSenha.Text == cadastro.checaUsusario())
-           {
-               Menu Menu = new Menu();
-
-               Menu.ShowDialog();
-           }*/
-
             else
             {
                 MessageBox.Show("Login invalido");

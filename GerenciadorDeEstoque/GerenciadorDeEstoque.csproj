@@ -146,8 +146,9 @@
     <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\CadastroUsuario.cs" />
+    <Compile Include="DAO\UsuarioVO.cs" />
     <Compile Include="DAO\Conexao.cs" />
+    <Compile Include="DAO\DAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Apresentação\frmCadastro.resx">
