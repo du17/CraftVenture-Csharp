@@ -17,14 +17,14 @@ namespace GerenciadorDeEstoque.DAO
         }
 
            //  Usuario
-        public void InserirDados(String itemcodigo, String itemdescricao, Double itempreco)
+        public void InserirDados(String email, String nome, String senha)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO inventario (itemcodigo, itemdescricao, itempreco) VALUES";
-            query += "(?itemcodigo, ?itemdescricao, ?itempreco)";
+            String query = "INSERT INTO usuario (email, nome, senha) VALUES";
+            query += "(?emailx  , ?nome, ?senha)";
             try
             {
                 con.Open();

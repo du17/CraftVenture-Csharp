@@ -14,7 +14,7 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmLogin : KryptonForm
     {
-        CadastroUsuario cadastro;
+        /*CadastroUsuario cadastro;
 
         public frmLogin(CadastroUsuario cadastro)
         {
@@ -22,7 +22,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
             this.cadastro = cadastro;
             
-        }
+        }*/
 
         private void txtNome_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -52,7 +52,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            frmCadastro frmCadastro = new frmCadastro(cadastro);
+            frmCadastro frmCadastro = new frmCadastro();
 
             frmCadastro.ShowDialog();
         }

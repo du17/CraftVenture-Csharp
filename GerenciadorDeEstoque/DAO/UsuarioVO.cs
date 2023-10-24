@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace GerenciadorDeEstoque.Apresentação
         /*string conexaoCU = "sever = localhost; user id = root; password = root; database = Estoque";
         var conexao = new MySqlConnection(conexaoCU);
         conexao.Open();
-        */
+        
 
         private string nome;
         private string email;
@@ -55,48 +55,63 @@ namespace GerenciadorDeEstoque.Apresentação
             else { return false; }
         }
 
-        public bool validaEmail(string email)
+        
+    }
+}*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace GerenciadorDeEstoque.Apresentação
+{
+    class UsuarioVO
+    {
+        private Int32 _itemid;
+        private String _itemcodigo, _itemdescricao;
+        private Double _itempreco;
+        private DAO.DAO dao;
+
+        public UsuarioVO()
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
 
-            try
-            {
-                // Normalize the domain
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+        }
 
-                // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
-                {
-                    // Use IdnMapping class to convert Unicode domain names.
-                    var idn = new IdnMapping();
+        public Int32 itemid
+        {
+            get { return _itemid; }
+            set { _itemid = value; }
+        }
+        public String itemcodigo
+        {
+            get { return _itemcodigo; }
+            set { _itemcodigo = value; }
+        }
+        public String itemdescricao
+        {
+            get { return _itemdescricao; }
+            set { _itemdescricao = value; }
+        }
+        public Double itempreco
+        {
+            get { return _itempreco; }
+            set { _itempreco = value; }
+        }
 
-                    // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-
-                    return match.Groups[1].Value + domainName;
-                }
-            }
-            catch (RegexMatchTimeoutException e)
-            {
-                return false;
-            }
-            catch (ArgumentException e)
-            {
-                return false;
-            }
-
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                return false;
-            }
+        public void Inserir()
+        {
+            dao = new DAO.DAO();
+            dao.InserirDados(itemcodigo, itemdescricao, itempreco);
+        }
+        public void Atualizar()
+        {
+            dao = new DAO.DAO();
+            dao.AtualizarDados(itemcodigo, itemdescricao, itempreco, itemid);
+        }
+        public void Remover()
+        {
+            dao = new DAO.DAO();
+            dao.RemoverDados(itemcodigo, itemid);
         }
     }
 }

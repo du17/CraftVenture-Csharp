@@ -15,13 +15,13 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastro : Form
     {
-        CadastroUsuario cadastro;
+        /*CadastroUsuario cadastro;
         public frmCadastro(CadastroUsuario cadastro)
         {
             InitializeComponent();
 
             this.cadastro = cadastro;
-        }
+        }*/
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {

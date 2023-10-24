@@ -20,7 +20,7 @@ namespace GerenciadorDeEstoque
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin(cadastro));
+            Application.Run(new frmLogin());
         }
     }
 }
