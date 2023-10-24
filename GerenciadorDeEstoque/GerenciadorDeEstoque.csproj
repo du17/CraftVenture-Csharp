@@ -148,7 +148,6 @@
     </Compile>
     <Compile Include="Apresentação\CadastroUsuario.cs" />
     <Compile Include="DAO\Conexao.cs" />
-    <Compile Include="Modelo\Controle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Apresentação\frmCadastro.resx">
