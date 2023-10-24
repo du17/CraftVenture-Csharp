@@ -16,7 +16,7 @@ namespace GerenciadorDeEstoque.DAO
         {
         }
 
-           //  Usuario
+        //  Usuario
         public void InserirDados(String email, String nome, String senha)
         {
             con = new MySqlConnection();
@@ -24,14 +24,61 @@ namespace GerenciadorDeEstoque.DAO
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO usuario (email, nome, senha) VALUES";
-            query += "(?emailx  , ?nome, ?senha)";
+            query += "(?email, ?nome, ?senha)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemcodigo", itemcodigo);
-                cmd.Parameters.AddWithValue("?itemdescricao", itemdescricao);
-                cmd.Parameters.AddWithValue("?itempreco", itempreco);
+                cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AtualizarDados(String email, String nome, String senha, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET email = ?email, senha = ?senha, nome = ?nome";
+            query += " WHERE itemid = ?itemid";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RemoverDados(String nome, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += "WHERE nome = ?nome AND itemid = ?itemid";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
