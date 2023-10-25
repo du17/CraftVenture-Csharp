@@ -9,9 +9,10 @@ namespace GerenciadorDeEstoque.DAO
 {
     class ProdutoVO
     {
-        /*private Int32 _itemid;
-        private String nome, senha, email;
-        private DAO.DAO dao;
+        /*private Int32 _itemid, qtde;
+        private Double preco;
+        private String nome;
+        private DAO dao;
 
         public ProdutoVO()
         {
@@ -28,32 +29,33 @@ namespace GerenciadorDeEstoque.DAO
             get { return nome; }
             set { nome = value; }
         }
-        public String Senha
+        public Int32 Quantidade
         {
-            get { return senha; }
-            set { senha = value; }
+            get { return qtde; }
+            set { qtde = value; }
         }
-        public String Email
+        public Double Preco
         {
-            get { return email; }
-            set { email = value; }
+            get { return preco; }
+            set { preco = value; }
         }
 
         public void Inserir()
         {
-            dao = new DAO.DAO();
-            dao.IDU(Email, Senha, Nome);
+            dao = new DAO();
+            dao.IDP(Preco, Quantidade, Nome);
         }
 
         public void Atualizar()
         {
-            dao = new DAO.DAO();
-            dao.ADU(Email, Senha, Nome, itemid);
+            dao = new DAO();
+            dao.ADP(Preco, Quantidade, Nome, itemid);
         }
+
         public void Remover()
         {
-            dao = new DAO.DAO();
-            dao.RDU(Nome, itemid);
+            dao = new DAO();
+            dao.RDP(Preco, Quantidade, Nome, itemid);
         }*/
     }
 }

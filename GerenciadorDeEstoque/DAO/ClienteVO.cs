@@ -13,8 +13,8 @@ namespace GerenciadorDeEstoque.DAO
         /* metodos do cliente!!!!!!
 
         private Int32 _itemid;
-        private String nome, senha, email;
-        private DAO.DAO dao;
+        private String nome, cpf, tell, email;
+        private DAO dao;
 
         public ClienteVO()
         {
@@ -45,19 +45,19 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO.DAO();
-            dao.InserirDados(Email, Senha, Nome);
+            dao.IDC(Email, Senha, Nome);
         }
 
         // erro sen sentido pq isso é uma merda
         public void Atualizar()
         {
             dao = new DAO.DAO();
-            dao.AtualizarDados(Email, Senha, Nome);
+            dao.ADC(Email, Senha, Nome);
         }
         public void Remover()
         {
             dao = new DAO.DAO();
-            dao.RemoverDados(Email, Senha, Nome);
+            dao.RDC(Email, Senha, Nome);
         }*/
 
 
