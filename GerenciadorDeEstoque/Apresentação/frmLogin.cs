@@ -16,7 +16,7 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmLogin : KryptonForm
     {
         private DAO.Conexao conexao;
-        private DAO.UsuarioVO usuarioVO;
+        private UsuarioVO usuarioVO;
         private Int32 catchRowIndex;
 
         private void txtNome_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -31,16 +31,21 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            usuarioVO = new DAO.UsuarioVO();
-            if (txtNome.Text == usuarioVO.Nome && txtSenha.Text == usuarioVO.Senha)
-            {
+            //pq não funciona????????
+            /*conexao = new DAO.Conexao();
+            usuarioVO = new UsuarioVO();
+            string connectionString = conexao.getConnectionString();
+            string query = "SELECT * FROM estoque";
+            using (MySqlConnection conn = new MySqlConnection(connectionString))*/
+
+
+            if (txtNome.Text == usuarioVO.Nome && txtSenha.Text == usuarioVO.Senha){
                 frmMenuCadastro Menu = new frmMenuCadastro();
 
                 Menu.Show();
             }
 
-            else
-            {
+            else{
                 MessageBox.Show("Login invalido");
             }
         }
