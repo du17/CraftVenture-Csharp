@@ -16,6 +16,10 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmLogin : KryptonForm
     {
+        public frmLogin()
+        {
+            InitializeComponent();
+        }
         private DAO.Conexao conexao;
         private UsuarioVO usuarioVO;
         private Int32 catchRowIndex;
