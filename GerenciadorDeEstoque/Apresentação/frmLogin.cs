@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação
@@ -31,12 +32,18 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+           
             //pq não funciona????????
             /*conexao = new DAO.Conexao();
             usuarioVO = new UsuarioVO();
             string connectionString = conexao.getConnectionString();
             string query = "SELECT * FROM estoque";
             using (MySqlConnection conn = new MySqlConnection(connectionString))*/
+
+            conexao = new DAO.Conexao();
+            usuarioVO = new UsuarioVO();
+
+
 
 
             if (txtNome.Text == usuarioVO.Nome && txtSenha.Text == usuarioVO.Senha){

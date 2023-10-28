@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Google.Protobuf;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace GerenciadorDeEstoque.DAO
 {
@@ -11,6 +16,8 @@ namespace GerenciadorDeEstoque.DAO
     {
         private Conexao conexao;
         private MySqlConnection con;
+        MySqlCommand cmd;
+        private MySqlDataReader dr;
 
         public DAO()
         {
@@ -87,6 +94,28 @@ namespace GerenciadorDeEstoque.DAO
                 con.Close();
             }
         }
+
+        public bool BDU(String nome, string senha)
+        {
+            conexaoUso busca = new conexaoUso();
+            cmd = new MySqlCommand();
+
+            busca.Open();
+            cmd.CommandText = "select email, senha, nome WHERE nome ='" + nome + "' AND senha ='" + senha + "'";
+            
+            if (dr.Read())
+            {
+                busca.Close();
+                return true;
+            }
+            else
+            {
+                busca.Close();
+                return false;
+            }
+            
+        }
+
         #endregion
 
         #region Cliente

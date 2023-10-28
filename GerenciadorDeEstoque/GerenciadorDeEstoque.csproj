@@ -147,6 +147,7 @@
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\ClienteVO.cs" />
+    <Compile Include="DAO\conexaoUso.cs" />
     <Compile Include="DAO\PedidoVO.cs" />
     <Compile Include="DAO\ProdutoVO.cs" />
     <Compile Include="DAO\UsuarioVO.cs" />

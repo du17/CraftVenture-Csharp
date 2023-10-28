@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GerenciadorDeEstoque.DAO;
 using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação
@@ -11,6 +12,7 @@ namespace GerenciadorDeEstoque.Apresentação
         private Int32 _itemid;
         private String nome, senha, email;
         private DAO.DAO dao;
+        private conexaoUso conn;
 
         public UsuarioVO()
         {
