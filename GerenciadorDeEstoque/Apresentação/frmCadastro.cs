@@ -32,7 +32,7 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             lblEmail.Visible = false;
         }
-
+        //aa
         private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
         {
             lblSenha.Visible = false;
