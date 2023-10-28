@@ -16,7 +16,7 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmCadastro : Form
     {
 
-        public frmLogin()
+        public frmCadastro()
         {
             InitializeComponent();
         }
