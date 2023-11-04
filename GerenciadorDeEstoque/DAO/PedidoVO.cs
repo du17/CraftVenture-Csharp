@@ -8,6 +8,9 @@ namespace GerenciadorDeEstoque.DAO
 {
     class PedidoVO
     {
+        PedidoVO()
+        {
 
+        }
     }
 }
