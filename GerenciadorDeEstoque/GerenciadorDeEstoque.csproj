@@ -37,27 +37,27 @@
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Design">
-      <HintPath>..\..\..\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Design.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Design.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Docking, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\Área de Trabalho\RashiCode Krypton_toolKitDemo\Krypton_toolKitDemo\bin\Debug\ComponentFactory.Krypton.Docking.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\Área de Trabalho\RashiCode Krypton_toolKitDemo\Krypton_toolKitDemo\bin\Debug\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\Área de Trabalho\RashiCode Krypton_toolKitDemo\Krypton_toolKitDemo\bin\Debug\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\Área de Trabalho\RashiCode Krypton_toolKitDemo\Krypton_toolKitDemo\bin\Debug\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\OneDrive\Área de Trabalho\RashiCode Krypton_toolKitDemo\Krypton_toolKitDemo\bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>..\..\..\..\OneDrive\Documentos\Krypton-master\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
@@ -131,11 +131,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apresentação\frmCadastroAcetato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroAcetato.Designer.cs">
+      <DependentUpon>frmCadastroAcetato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastrarFita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastrarFita.Designer.cs">
+      <DependentUpon>frmCadastrarFita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastrarPapel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastrarPapel.Designer.cs">
+      <DependentUpon>frmCadastrarPapel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\frmCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apresentação\frmCadastro.Designer.cs">
       <DependentUpon>frmCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroCanudo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroCanudo.Designer.cs">
+      <DependentUpon>frmCadastroCanudo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroOpcoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroOpcoes.Designer.cs">
+      <DependentUpon>frmCadastroOpcoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroPerola.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroPerola.Designer.cs">
+      <DependentUpon>frmCadastroPerola.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroRenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroRenda.Designer.cs">
+      <DependentUpon>frmCadastroRenda.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\frmLogin.cs">
       <SubType>Form</SubType>
@@ -149,6 +191,12 @@
     <Compile Include="Apresentação\frmMenuCadastro.Designer.cs">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\frmCadastroTecido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastroTecido.Designer.cs">
+      <DependentUpon>frmCadastroTecido.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\ClienteVO.cs" />
     <Compile Include="DAO\conexaoUso.cs" />
     <Compile Include="DAO\PedidoVO.cs" />
@@ -158,14 +206,38 @@
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Apresentação\frmCadastrarFita.resx">
+      <DependentUpon>frmCadastrarFita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastrarPapel.resx">
+      <DependentUpon>frmCadastrarPapel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastro.resx">
       <DependentUpon>frmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroAcetato.resx">
+      <DependentUpon>frmCadastroAcetato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroCanudo.resx">
+      <DependentUpon>frmCadastroCanudo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroOpcoes.resx">
+      <DependentUpon>frmCadastroOpcoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroPerola.resx">
+      <DependentUpon>frmCadastroPerola.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroRenda.resx">
+      <DependentUpon>frmCadastroRenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmMenuCadastro.resx">
       <DependentUpon>frmMenuCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastroTecido.resx">
+      <DependentUpon>frmCadastroTecido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -177,6 +249,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,39 +264,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_kthememgr_7240.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_sign-add_299068.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_General_Office_09_2530835.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_icon-ios7-refresh_211814.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_User_Customers_1218712.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\3688519-128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_user_male4_172628.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_user_285655.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\345523-suporte-tecnico-glyph-icons-grátis-vetor-removebg-preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_51_5027845.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgsuporte.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\contato.png" />
@@ -241,12 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\TelaLogado\passwordBlue24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_Session Manager_18215.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\iconfinder_Session Manager_18215 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="img\TelaLogado\logo64x64.png" />
@@ -322,6 +357,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\olho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material-Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACETATO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CANUDO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FITA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PÉROLA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RENDA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TECIDO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PAPEL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroPapel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroAcetato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroCanudo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroFita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroPerola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroRenda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroTecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ellipse 77.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LIMPAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SALVAR.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

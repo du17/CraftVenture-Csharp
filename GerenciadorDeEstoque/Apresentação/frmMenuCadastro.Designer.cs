@@ -132,6 +132,7 @@
             this.btnMaterial.StateTracking.Border.Rounding = 7;
             this.btnMaterial.TabIndex = 2;
             this.btnMaterial.Values.Text = "";
+            this.btnMaterial.Click += new System.EventHandler(this.btnMaterial_Click);
             // 
             // btnCadastro
             // 

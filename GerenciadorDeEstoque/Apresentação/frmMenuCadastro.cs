@@ -23,5 +23,11 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         {
 
         }
+
+        private void btnMaterial_Click(object sender, EventArgs e)
+        {
+            frmCadastroOpcoes frmOpcoesmaterial = new frmCadastroOpcoes();
+            frmOpcoesmaterial.ShowDialog();
+        }
     }
 }
