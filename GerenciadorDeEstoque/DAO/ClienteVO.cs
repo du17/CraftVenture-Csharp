@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using GerenciadorDeEstoque.DAO;
 
 namespace GerenciadorDeEstoque.DAO
 {
     class ClienteVO
     {
 
-        /* metodos do cliente!!!!!!
+        //metodos do cliente!!!!!!
 
         private Int32 _itemid;
-        private String nome, cpf, tell, email;
+        private String nome, email;
         private DAO dao;
+        private conexaoUso conn;
 
         public ClienteVO()
         {
@@ -26,16 +28,13 @@ namespace GerenciadorDeEstoque.DAO
             get { return _itemid; }
             set { _itemid = value; }
         }
+
         public String Nome
         {
             get { return nome; }
             set { nome = value; }
         }
-        public String Senha
-        {
-            get { return senha; }
-            set { senha = value; }
-        }
+        
         public String Email
         {
             get { return email; }
@@ -44,22 +43,20 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-            dao = new DAO.DAO();
-            dao.IDC(Email, Senha, Nome);
+            dao = new DAO();
+            dao.IDC(Email, Nome);
         }
 
-        // erro sen sentido pq isso é uma merda
         public void Atualizar()
         {
-            dao = new DAO.DAO();
-            dao.ADC(Email, Senha, Nome);
+            dao = new DAO();
+            dao.ADC(Email, Nome, itemid);
         }
         public void Remover()
         {
-            dao = new DAO.DAO();
-            dao.RDC(Email, Senha, Nome);
-        }*/
-
+            dao = new DAO();
+            dao.RDC(Nome, itemid);
+        }
 
     }
 }
