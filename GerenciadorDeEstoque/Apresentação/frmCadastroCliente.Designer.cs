@@ -198,12 +198,13 @@
             this.btnCadastro.Size = new System.Drawing.Size(250, 88);
             this.btnCadastro.TabIndex = 33;
             this.btnCadastro.UseVisualStyleBackColor = false;
+            this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
             // txtTelefone
             // 
             this.txtTelefone.Location = new System.Drawing.Point(461, 233);
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(296, 50);
+            this.txtTelefone.Size = new System.Drawing.Size(296, 54);
             this.txtTelefone.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtTelefone.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtTelefone.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -212,14 +213,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtTelefone.StateCommon.Border.Rounding = 5;
             this.txtTelefone.StateCommon.Border.Width = 1;
-            this.txtTelefone.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefone.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtTelefone.TabIndex = 32;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(460, 162);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(727, 50);
+            this.txtEmail.Size = new System.Drawing.Size(727, 54);
             this.txtEmail.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtEmail.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtEmail.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -228,14 +229,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtEmail.StateCommon.Border.Rounding = 5;
             this.txtEmail.StateCommon.Border.Width = 1;
-            this.txtEmail.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtEmail.TabIndex = 31;
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(461, 91);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(726, 50);
+            this.txtNome.Size = new System.Drawing.Size(726, 54);
             this.txtNome.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtNome.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtNome.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -244,14 +245,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtNome.StateCommon.Border.Rounding = 5;
             this.txtNome.StateCommon.Border.Width = 1;
-            this.txtNome.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtNome.TabIndex = 30;
             // 
             // txtCep
             // 
             this.txtCep.Location = new System.Drawing.Point(872, 233);
             this.txtCep.Name = "txtCep";
-            this.txtCep.Size = new System.Drawing.Size(315, 50);
+            this.txtCep.Size = new System.Drawing.Size(315, 54);
             this.txtCep.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtCep.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtCep.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -260,14 +261,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtCep.StateCommon.Border.Rounding = 5;
             this.txtCep.StateCommon.Border.Width = 1;
-            this.txtCep.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCep.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtCep.TabIndex = 40;
             // 
             // txtRua
             // 
             this.txtRua.Location = new System.Drawing.Point(461, 303);
             this.txtRua.Name = "txtRua";
-            this.txtRua.Size = new System.Drawing.Size(727, 50);
+            this.txtRua.Size = new System.Drawing.Size(727, 54);
             this.txtRua.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtRua.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtRua.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -276,14 +277,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtRua.StateCommon.Border.Rounding = 5;
             this.txtRua.StateCommon.Border.Width = 1;
-            this.txtRua.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRua.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtRua.TabIndex = 41;
             // 
             // txtBairro
             // 
             this.txtBairro.Location = new System.Drawing.Point(462, 375);
             this.txtBairro.Name = "txtBairro";
-            this.txtBairro.Size = new System.Drawing.Size(727, 50);
+            this.txtBairro.Size = new System.Drawing.Size(727, 54);
             this.txtBairro.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtBairro.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtBairro.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -292,14 +293,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtBairro.StateCommon.Border.Rounding = 5;
             this.txtBairro.StateCommon.Border.Width = 1;
-            this.txtBairro.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBairro.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtBairro.TabIndex = 42;
             // 
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(463, 444);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(138, 50);
+            this.txtNumero.Size = new System.Drawing.Size(138, 54);
             this.txtNumero.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtNumero.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtNumero.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -308,14 +309,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtNumero.StateCommon.Border.Rounding = 5;
             this.txtNumero.StateCommon.Border.Width = 1;
-            this.txtNumero.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumero.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtNumero.TabIndex = 43;
             // 
             // txtEstado
             // 
             this.txtEstado.Location = new System.Drawing.Point(768, 443);
             this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(419, 50);
+            this.txtEstado.Size = new System.Drawing.Size(419, 54);
             this.txtEstado.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtEstado.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtEstado.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -324,14 +325,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtEstado.StateCommon.Border.Rounding = 5;
             this.txtEstado.StateCommon.Border.Width = 1;
-            this.txtEstado.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstado.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtEstado.TabIndex = 44;
             // 
             // txtComplemento
             // 
             this.txtComplemento.Location = new System.Drawing.Point(584, 514);
             this.txtComplemento.Name = "txtComplemento";
-            this.txtComplemento.Size = new System.Drawing.Size(603, 50);
+            this.txtComplemento.Size = new System.Drawing.Size(603, 54);
             this.txtComplemento.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtComplemento.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtComplemento.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -340,7 +341,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtComplemento.StateCommon.Border.Rounding = 5;
             this.txtComplemento.StateCommon.Border.Width = 1;
-            this.txtComplemento.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComplemento.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtComplemento.TabIndex = 45;
             // 
             // frmCadastroCliente

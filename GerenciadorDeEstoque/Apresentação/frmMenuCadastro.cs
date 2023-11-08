@@ -28,6 +28,7 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         {
             frmCadastroOpcoes frmOpcoesmaterial = new frmCadastroOpcoes();
             frmOpcoesmaterial.ShowDialog();
+            this.Close();
         }
     }
 }

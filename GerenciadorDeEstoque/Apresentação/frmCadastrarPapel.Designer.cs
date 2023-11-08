@@ -46,7 +46,7 @@
             // 
             this.txtTipo.Location = new System.Drawing.Point(461, 101);
             this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(468, 50);
+            this.txtTipo.Size = new System.Drawing.Size(468, 54);
             this.txtTipo.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtTipo.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtTipo.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -55,14 +55,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtTipo.StateCommon.Border.Rounding = 5;
             this.txtTipo.StateCommon.Border.Width = 1;
-            this.txtTipo.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipo.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtTipo.TabIndex = 18;
             // 
             // txtCor
             // 
             this.txtCor.Location = new System.Drawing.Point(456, 177);
             this.txtCor.Name = "txtCor";
-            this.txtCor.Size = new System.Drawing.Size(350, 50);
+            this.txtCor.Size = new System.Drawing.Size(350, 54);
             this.txtCor.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtCor.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtCor.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -71,14 +71,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtCor.StateCommon.Border.Rounding = 5;
             this.txtCor.StateCommon.Border.Width = 1;
-            this.txtCor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtCor.TabIndex = 19;
             // 
             // txtTamanho
             // 
             this.txtTamanho.Location = new System.Drawing.Point(460, 259);
             this.txtTamanho.Name = "txtTamanho";
-            this.txtTamanho.Size = new System.Drawing.Size(197, 50);
+            this.txtTamanho.Size = new System.Drawing.Size(197, 54);
             this.txtTamanho.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtTamanho.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtTamanho.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -87,14 +87,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtTamanho.StateCommon.Border.Rounding = 5;
             this.txtTamanho.StateCommon.Border.Width = 1;
-            this.txtTamanho.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTamanho.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtTamanho.TabIndex = 20;
             // 
             // txtGramatura
             // 
             this.txtGramatura.Location = new System.Drawing.Point(865, 259);
             this.txtGramatura.Name = "txtGramatura";
-            this.txtGramatura.Size = new System.Drawing.Size(197, 50);
+            this.txtGramatura.Size = new System.Drawing.Size(197, 54);
             this.txtGramatura.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtGramatura.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtGramatura.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -103,14 +103,14 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtGramatura.StateCommon.Border.Rounding = 5;
             this.txtGramatura.StateCommon.Border.Width = 1;
-            this.txtGramatura.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGramatura.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtGramatura.TabIndex = 21;
             // 
             // txtValor
             // 
             this.txtValor.Location = new System.Drawing.Point(851, 351);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(182, 50);
+            this.txtValor.Size = new System.Drawing.Size(182, 54);
             this.txtValor.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtValor.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtValor.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -118,7 +118,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtValor.StateCommon.Border.Rounding = 5;
             this.txtValor.StateCommon.Border.Width = 1;
-            this.txtValor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtValor.TabIndex = 22;
             // 
             // btnSair
@@ -299,6 +299,7 @@
             this.Controls.Add(this.txtTipo);
             this.DoubleBuffered = true;
             this.Name = "frmCadastrarPapel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

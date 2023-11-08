@@ -433,5 +433,26 @@
   <ItemGroup>
     <None Include="Resources\CADASTRAR_SemFundo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaAcetato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaCanudo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaFita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaPapel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaPerola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaRenda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EscolhaTecido.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,5 +16,12 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             InitializeComponent();
         }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
+            menuOpcoes.Show();
+            this.Close();
+        }
     }
 }
