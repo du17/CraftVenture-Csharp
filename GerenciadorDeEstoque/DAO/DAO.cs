@@ -119,21 +119,20 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Cliente
-        /*public void IDC(String email, String nome, String senha)
+        public void IDC(String email, String nome)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO cliente (email, nome, senha) VALUES";
-            query += "(?email, ?nome, ?senha)";
+            String query = "INSERT INTO cliente (email, nome) VALUES";
+            query += "(?email, ?nome)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?email", email);
                 cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?senha", senha);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -143,7 +142,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(String email, String nome, String senha, Int32 itemid)
+        public void ADC(String email, String nome, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -156,7 +155,6 @@ namespace GerenciadorDeEstoque.DAO
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?email", email);
-                cmd.Parameters.AddWithValue("?senha", senha);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -189,13 +187,13 @@ namespace GerenciadorDeEstoque.DAO
                 con.Close();
             }
 
-        }*/
+        }
 
         #endregion
 
-        #region Pedido
+        #region Venda
 
-        /*public void IDP(String email, String nome, String senha)
+        /*public void IDV(String email, String nome, String senha)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
