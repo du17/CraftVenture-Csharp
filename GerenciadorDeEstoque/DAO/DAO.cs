@@ -73,7 +73,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDU(String nome, Int32 itemid)
+        public void RDU(String email, String nome, String senha, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -85,6 +85,8 @@ namespace GerenciadorDeEstoque.DAO
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?senha", senha);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -193,21 +195,26 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Venda
 
-        /*public void IDV(String email, String nome, String senha)
+        public void IDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (email, nome, senha) VALUES";
-            query += "(?email, ?nome, ?senha)";
+            String query = "INSERT INTO pedido (nome, quantidade, anotacao, valorTotal, nomeCliente, telefone, formaPagamento, CodCliente) VALUES";
+            query += "(?nome, ?quantidade, ?anotacao, ?valorTotal, ?nomeCliente, ?telefone, ?formaPagamento, ?CodCliente)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.Parameters.AddWithValue("?anotacao", anotacao);
+                cmd.Parameters.AddWithValue("?valorTotal", valorTotal);
+                cmd.Parameters.AddWithValue("?nomeCliente", nomeCliente);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?formaPagamento", formaPagamento);
+                cmd.Parameters.AddWithValue("?CodCliente", CodCliente);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -216,22 +223,29 @@ namespace GerenciadorDeEstoque.DAO
                 con.Close();
             }
         }
-
-        public void ADP(String email, String nome, String senha, Int32 itemid)
+        
+        public void ADV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET email = ?email, senha = ?senha, nome = ?nome";
-            query += " WHERE itemid = ?itemid";
+            String query = "UPDATE estoque SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
+                "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
+            query += " WHERE itemid = ?itemid, quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
+                "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?email", email);
-                cmd.Parameters.AddWithValue("?senha", senha);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?anotacao", anotacao);
+                cmd.Parameters.AddWithValue("?valorTotal", valorTotal);
+                cmd.Parameters.AddWithValue("?nomeCliente", nomeCliente);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?formaPagamento", formaPagamento);
+                cmd.Parameters.AddWithValue("?CodCliente", CodCliente);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -242,19 +256,28 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDP(String nome, Int32 itemid)
+        
+        public void RDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += "WHERE nome = ?nome AND itemid = ?itemid";
+            query += "WHERE itemid = ?itemid, quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
+                "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?anotacao", anotacao);
+                cmd.Parameters.AddWithValue("?valorTotal", valorTotal);
+                cmd.Parameters.AddWithValue("?nomeCliente", nomeCliente);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?formaPagamento", formaPagamento);
+                cmd.Parameters.AddWithValue("?CodCliente", CodCliente);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -263,7 +286,11 @@ namespace GerenciadorDeEstoque.DAO
                 con.Close();
             }
 
-        }*/
+        }
+
+        #endregion
+
+        #region Produto
 
         #endregion
 

@@ -82,11 +82,23 @@ namespace GerenciadorDeEstoque.DAO
             set { valorTotal = value; }
         }
 
-        /*public void Inserir()
+        public void Inserir()
         {
             dao = new DAO();
-            dao = dao.IDV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente);
-        }*/
+            dao.IDV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente);
+        }
+
+        public void Atualizar()
+        {
+            dao = new DAO();
+            dao.ADV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente, itemid);
+        }
+
+        public void Remover()
+        {
+            dao = new DAO();
+            dao.RDV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente, itemid);
+        }
 
     }
 }
