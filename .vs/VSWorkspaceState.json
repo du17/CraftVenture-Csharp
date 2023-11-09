@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GerenciadorDeEstoque",
+    "\\GerenciadorDeEstoque\\Apresentação",
+    "\\GerenciadorDeEstoque\\Properties"
   ],
-  "SelectedNode": "\\GerenciadorDeEstoque.sln",
+  "SelectedNode": "\\GerenciadorDeEstoque\\Apresentação\\frmCadastroCliente.cs",
+
   "PreviewInSolutionExplorer": false
 }

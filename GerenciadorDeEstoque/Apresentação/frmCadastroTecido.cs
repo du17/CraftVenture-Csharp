@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,22 @@ namespace GerenciadorDeEstoque.Apresentação
         public frmCadastroTecido()
         {
             InitializeComponent();
+        }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
+            menuOpcoes.Show();
+            this.Close();
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

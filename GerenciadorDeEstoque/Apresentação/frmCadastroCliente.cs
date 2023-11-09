@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,17 @@ using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
-    public partial class frmCadastroAcetato : Form
+    public partial class frmCadastroCliente : Form
     {
-        public frmCadastroAcetato()
+        public frmCadastroCliente()
         {
             InitializeComponent();
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
+            frmMenuCadastro menuCadastro = new frmMenuCadastro();
+            menuCadastro.Show();
             this.Close();
         }
 
@@ -33,12 +34,18 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void btnLimpar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            txtEspessura.Text = string.Empty;
-            txtMetragemAltura.Text = string.Empty;
-            txtMetragemComprimento.Text = string.Empty;
-            txtValor.Text = string.Empty;
+            txtBairro.Text = string.Empty;
+            txtCep.Text = string.Empty;
+            txtComplemento.Text = string.Empty;
+            txtComplemento.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            cbxEstado.Text = "Inserir Estado";
+            txtNome.Text = string.Empty;
+            txtNumero.Text = string.Empty;
+            txtRua.Text = string.Empty;
+            txtTelefone.Text = string.Empty;
         }
     }
 }

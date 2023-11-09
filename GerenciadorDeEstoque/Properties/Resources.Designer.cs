@@ -103,6 +103,16 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CADASTRAR_SemFundo {
+            get {
+                object obj = ResourceManager.GetObject("CADASTRAR_SemFundo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CADASTRE_SE {
             get {
                 object obj = ResourceManager.GetObject("CADASTRE_SE", resourceCulture);
@@ -136,6 +146,16 @@ namespace GerenciadorDeEstoque.Properties {
         internal static System.Drawing.Bitmap CadastroCanudo {
             get {
                 object obj = ResourceManager.GetObject("CadastroCanudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CadastroCliente {
+            get {
+                object obj = ResourceManager.GetObject("CadastroCliente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +213,16 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CANCELAR {
+            get {
+                object obj = ResourceManager.GetObject("CANCELAR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CANUDO {
             get {
                 object obj = ResourceManager.GetObject("CANUDO", resourceCulture);
@@ -236,6 +266,76 @@ namespace GerenciadorDeEstoque.Properties {
         internal static System.Drawing.Bitmap ENTRAR {
             get {
                 object obj = ResourceManager.GetObject("ENTRAR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaAcetato {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaAcetato", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaCanudo {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaCanudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaFita {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaFita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaPapel {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaPapel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaPerola {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaPerola", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaRenda {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaRenda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EscolhaTecido {
+            get {
+                object obj = ResourceManager.GetObject("EscolhaTecido", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
