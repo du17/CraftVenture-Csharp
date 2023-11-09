@@ -23,5 +23,21 @@ namespace GerenciadorDeEstoque.Apresentação
             menuOpcoes.Show();
             this.Close();
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtValor.Text = string.Empty;
+            txtQuantidade.Text = string.Empty;
+            txtCor.Text = string.Empty;
+        }
     }
 }

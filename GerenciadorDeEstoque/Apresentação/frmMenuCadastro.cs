@@ -27,8 +27,25 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         private void btnMaterial_Click(object sender, EventArgs e)
         {
             frmCadastroOpcoes frmOpcoesmaterial = new frmCadastroOpcoes();
-            frmOpcoesmaterial.ShowDialog();
+            frmOpcoesmaterial.Show();
             this.Close();
+
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            frmCadastroCliente cadastroCliente = new frmCadastroCliente();
+            cadastroCliente.Show();
+            this.Close();
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

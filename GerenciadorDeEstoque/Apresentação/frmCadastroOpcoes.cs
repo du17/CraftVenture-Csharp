@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,6 +69,18 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSair_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            frmMenuCadastro menuCadastro = new frmMenuCadastro();
+            menuCadastro.Show();
+            this.Close();
         }
     }
 }

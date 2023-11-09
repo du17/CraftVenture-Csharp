@@ -116,6 +116,7 @@
             this.btnLimpar.StateTracking.Border.Rounding = 7;
             this.btnLimpar.TabIndex = 59;
             this.btnLimpar.Values.Text = "";
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // txtValor
             // 
@@ -146,6 +147,7 @@
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 57;
             this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // btnHistórico
             // 

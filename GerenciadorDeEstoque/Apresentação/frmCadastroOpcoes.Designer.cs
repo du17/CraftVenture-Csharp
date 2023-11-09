@@ -117,6 +117,7 @@
             this.btnCadastro.Size = new System.Drawing.Size(250, 88);
             this.btnCadastro.TabIndex = 8;
             this.btnCadastro.UseVisualStyleBackColor = false;
+            this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
             // btnPapel
             // 

@@ -53,7 +53,7 @@ namespace GerenciadorDeEstoque.Apresentação
             if (txtNome.Text == "adm" && txtSenha.Text == "adm"){
                 frmMenuCadastro Menu = new frmMenuCadastro();
 
-                Menu.Show();
+                Menu.ShowDialog();
                 this.Hide();
             }
 

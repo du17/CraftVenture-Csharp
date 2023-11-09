@@ -59,6 +59,7 @@
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 45;
             this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // btnHistórico
             // 
