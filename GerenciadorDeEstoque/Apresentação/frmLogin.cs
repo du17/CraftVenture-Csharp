@@ -70,7 +70,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 var strConexao = @"server=localhost;uid=root;pwd=root;database=bd_venture;ConnectionTimeout=1";
                 var conexao = new MySqlConnection(strConexao);
@@ -103,7 +103,7 @@ namespace GerenciadorDeEstoque.Apresentação
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro: {ex.Data} - {ex.Message}");
-            }
+            }*/
 
         }
     }

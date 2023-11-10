@@ -205,11 +205,15 @@
     </Compile>
     <Compile Include="DAO\ClienteVO.cs" />
     <Compile Include="DAO\conexaoUso.cs" />
+    <Compile Include="DAO\MaterialVO.cs" />
+    <Compile Include="DAO\TelefonesVO.cs" />
+    <Compile Include="DAO\TipoMaterialVO.cs" />
     <Compile Include="DAO\VendaVO.cs" />
     <Compile Include="DAO\ProdutoVO.cs" />
     <Compile Include="DAO\UsuarioVO.cs" />
     <Compile Include="DAO\Conexao.cs" />
     <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\VendeVO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Apresentação\frmCadastrarFita.resx">
