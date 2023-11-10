@@ -103,7 +103,7 @@ namespace GerenciadorDeEstoque.DAO
             cmd = new MySqlCommand();
 
             busca.Open();
-            cmd.CommandText = "select email, senha, nome WHERE nome ='" + nome + "' AND senha ='" + senha + "'";
+            cmd.CommandText = "select senha, nome WHERE nome ='" + nome + "' AND senha ='" + senha + "'";
             
             if (dr.Read())
             {
@@ -291,6 +291,87 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Produto
+
+        public void IDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (valor, quantidade, nome, materialUsado, tipo) VALUES";
+            query += "(?valor, ?quantidade, ?nome, ?materialUsado, ?tipo)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
+                cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
+                cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+
+        public void RDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
+                cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
 
         #endregion
 

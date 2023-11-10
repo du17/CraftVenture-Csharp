@@ -56,5 +56,11 @@ namespace GerenciadorDeEstoque.DAO
             dao = new DAO();
             dao.RDU(Nome, Senha, Email, itemid);
         }
+
+        public void Login()
+        {
+            dao = new DAO();
+            dao.BDU(Senha, Nome);
+        }
     }
 }
