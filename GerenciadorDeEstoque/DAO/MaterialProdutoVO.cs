@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using GerenciadorDeEstoque.DAO;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    class ClienteVO
+    class MaterialProdutoVO
     {
 
-        //metodos do cliente!!!!!!
-
-        private Int32 _itemid;
-        private String nome, email;
+        private Int32 _itemid, idmaterial, idproduto;
         private DAO dao;
         private conexaoUso conn;
 
-        public ClienteVO()
+        MaterialProdutoVO()
         {
 
         }
@@ -28,34 +23,32 @@ namespace GerenciadorDeEstoque.DAO
             get { return _itemid; }
             set { _itemid = value; }
         }
-
-        public String Nome
+        public Int32 IdMaterial
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return idmaterial; }
+            set { idmaterial = value; }
         }
-        
-        public String Email
+        public Int32 IdProduto
         {
-            get { return email; }
-            set { email = value; }
+            get { return idproduto; }
+            set { idproduto = value; }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDC(Email, Nome);
+            dao.IDMPRODUTO(IdMaterial, IdProduto);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADC(Email, Nome, itemid);
+            dao.ADMPRODUTO(IdMaterial, IdProduto, itemid);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDC(Email, Nome, itemid);
+            dao.RDMPRODUTO(IdMaterial, IdProduto, itemid);
         }
 
     }

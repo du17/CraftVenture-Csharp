@@ -203,9 +203,13 @@
     <Compile Include="Apresentação\frmCadastroTecido.Designer.cs">
       <DependentUpon>frmCadastroTecido.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\CanudoVO.cs" />
     <Compile Include="DAO\ClienteVO.cs" />
     <Compile Include="DAO\conexaoUso.cs" />
+    <Compile Include="DAO\FitaVO.cs" />
+    <Compile Include="DAO\MaterialProdutoVO.cs" />
     <Compile Include="DAO\MaterialVO.cs" />
+    <Compile Include="DAO\RendaVO.cs" />
     <Compile Include="DAO\TelefonesVO.cs" />
     <Compile Include="DAO\TipoMaterialVO.cs" />
     <Compile Include="DAO\VendaVO.cs" />

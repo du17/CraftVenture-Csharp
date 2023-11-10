@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using GerenciadorDeEstoque.DAO;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    class ClienteVO
+    class RendaVO
     {
 
-        //metodos do cliente!!!!!!
-
         private Int32 _itemid;
-        private String nome, email;
+        private String tamnho;
+        private Double metragem;
         private DAO dao;
         private conexaoUso conn;
 
-        public ClienteVO()
+        public RendaVO()
         {
 
         }
@@ -28,34 +25,32 @@ namespace GerenciadorDeEstoque.DAO
             get { return _itemid; }
             set { _itemid = value; }
         }
-
-        public String Nome
+        public String Tamanho
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return tamnho; }
+            set { tamnho = value; }
         }
-        
-        public String Email
+        public Double Metragem
         {
-            get { return email; }
-            set { email = value; }
+            get { return metragem; }
+            set { metragem = value; }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDC(Email, Nome);
+            dao.IDR(Tamanho, Metragem);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADC(Email, Nome, itemid);
+            dao.ADR(Tamanho, Metragem, itemid);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDC(Email, Nome, itemid);
+            dao.RDR(Tamanho, Metragem, itemid);
         }
 
     }

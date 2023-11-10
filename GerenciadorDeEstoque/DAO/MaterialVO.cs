@@ -41,22 +41,22 @@ namespace GerenciadorDeEstoque.DAO
             set { valor = value; }
         }
 
-        /*public void Inserir()
+        public void Inserir()
         {
             dao = new DAO();
-            dao.IDU(IdMaterial, Nome, Valor);
+            dao.IDM(IdMaterial, Nome, Valor);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADU(IdMaterial, Nome, Valor itemid);
+            dao.ADM(IdMaterial, Nome, Valor, itemid);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDU(IdMaterial, Nome, Valor itemid);
-        }*/
+            dao.RDM(IdMaterial, Nome, Valor, itemid);
+        }
 
     }
 }

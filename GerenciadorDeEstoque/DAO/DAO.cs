@@ -79,7 +79,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += "WHERE nome = ?nome AND itemid = ?itemid";
+            query += "WHERE nome = ?nome, email = ?email, senha = ?senha, itemid = ?itemid";
             try
             {
                 con.Open();
@@ -104,7 +104,7 @@ namespace GerenciadorDeEstoque.DAO
 
             busca.Open();
             cmd.CommandText = "select senha, nome WHERE nome ='" + nome + "' AND senha ='" + senha + "'";
-            
+
             if (dr.Read())
             {
                 busca.Close();
@@ -115,7 +115,7 @@ namespace GerenciadorDeEstoque.DAO
                 busca.Close();
                 return false;
             }
-            
+
         }
 
         #endregion
@@ -168,19 +168,20 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDC(String nome, Int32 itemid)
+        public void RDC(String email, String nome, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += "WHERE nome = ?nome AND itemid = ?itemid";
+            query += "WHERE nome = ?nome, itemid = ?itemid, email = ?email";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?email", email);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -223,7 +224,7 @@ namespace GerenciadorDeEstoque.DAO
                 con.Close();
             }
         }
-        
+
         public void ADV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
             con = new MySqlConnection();
@@ -231,8 +232,7 @@ namespace GerenciadorDeEstoque.DAO
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
                 "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
-            query += " WHERE itemid = ?itemid, quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
-                "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -256,7 +256,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        
+
         public void RDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
             con = new MySqlConnection();
@@ -324,7 +324,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
-            query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -351,7 +351,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
             try
             {
@@ -406,7 +406,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET codCLiente = ?codCliente, telefone = ?telefone";
-            query += " WHERE itemid = ?itemid, codCLiente = ?codCliente, telefone = ?telefone";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -429,8 +429,8 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE estoque SET codCLiente = ?codCliente, telefone = ?telefone";
-            query += " WHERE itemid = ?itemid, codCLiente = ?codCliente, telefone = ?telefone";
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemid = ?itemid, codCliente = ?codCliente, telefone = ?telefone";
             try
             {
                 con.Open();
@@ -481,7 +481,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET idvenda = ?idvenda, idproduto = ?idproduto";
-            query += " WHERE itemid = ?itemid, idvenda = ?idvenda, idproduto = ?idproduto";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -504,7 +504,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE estoque SET idvenda = ?idvenda, idproduto = ?idproduto";
+            String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, idvenda = ?idvenda, idproduto = ?idproduto";
             try
             {
@@ -555,7 +555,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET nome = ?nome";
-            query += " WHERE itemid = ?itemid, nome = ?nome";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -577,7 +577,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE estoque SET nome = ?nome";
+            String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, nome = ?nome";
             try
             {
@@ -623,13 +623,13 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        /*public void ADM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
+        public void ADM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET nome = ?nome";
-            query += " WHERE itemid = ?itemid, nome = ?nome";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
@@ -648,29 +648,335 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        /*public void RDM(String nome, Int32 itemid)
+        public void RDM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE estoque SET nome = ?nome";
-            query += " WHERE itemid = ?itemid, nome = ?nome";
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
                 cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?valor", valor);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
             finally
             {
                 con.Close();
-            }*/
+            }
+
+        }
+
+        #endregion
+
+        #region Material Produto
+
+        public void IDMPRODUTO(Int32 idmaterial, Int32 idproduto)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (idmaterial, idproduto) VALUES";
+            query += "(?idmaterial, ?idproduto)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADMPRODUTO(Int32 idmaterial, Int32 idproduto, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET idmaterial = ?idmaterial, idproduto = ?idproduto";
+            query += " WHERE itemid = ?itemid";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RDMPRODUTO(Int32 idmaterial, Int32 idproduto, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemid = ?itemid, idmaterial = ?idmaterial, idproduto = ?idproduto";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Renda
+
+        public void IDR(String tamanho, Double metragem)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (tamanho, metragem) VALUES";
+            query += "(?tamanho, ?metragem)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?tamamnho", tamanho);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADR(String tamanho, Double metragem, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET tamanho = ?tamanho, metragem = ?metragem";
+            query += " WHERE itemid = ?itemid";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?tamamnho", tamanho);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RDR(String tamanho, Double metragem, Int32 itemid)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemid = ?itemid, tamanho = ?tamanho, metragem = ?metragem";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?tamamnho", tamanho);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Canudo
+
+        public void IDCANUDO(Int32 quantidade, String cor)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (quantidade, cor) VALUES";
+            query += "(?quantidade, ?cor)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADCANUDO(Int32 quantidade, String cor, Int32 itemidproduto)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET quantidade = ?quantidade, cor = ?cor";
+            query += " WHERE itemidproduto = ?itemidproduto";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RDCANUDO(Int32 quantidade, String cor, Int32 itemidproduto)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemidproduto = ?itemidproduto, quantidade = ?quantidade, cor = ?cor";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Fita
+
+        /*public void IDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (numero, tipo, marca, numeroCor, metragem) VALUES";
+            query += "(?numero, ?tipo, ?marca, ?numeroCor, ?metragem)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?numero", numero);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?marca", marca);
+                cmd.Parameters.AddWithValue("?numeroCor", numeroCor);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        /*public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor";
+            query += " WHERE itemidproduto = ?itemidproduto";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        /*public void RDCANUDO(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemidproduto = ?itemidproduto, quantidade = ?quantidade, cor = ?cor";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }*/
+
+        #endregion
 
     }
-
-    #endregion
-
 }
