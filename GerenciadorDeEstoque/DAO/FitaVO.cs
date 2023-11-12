@@ -53,22 +53,22 @@ namespace GerenciadorDeEstoque.DAO
             set { metragem = value; }
         }
 
-        /*public void Inserir()
+        public void Inserir()
         {
             dao = new DAO();
-            dao.IDU(Email, Senha, Nome);
+            dao.IDF(Numero, Tipo, Marca, NumeroCor, Metragem);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADU(Email, Senha, Nome, itemid);
+            dao.ADF(Numero, Tipo, Marca, NumeroCor, Metragem, itemidTpoMaterial);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDU(Nome, Senha, Email, itemid);
-        }*/
+            dao.RDF(Numero, Tipo, Marca, NumeroCor, Metragem, itemidTpoMaterial);
+        }
 
     }
 }

@@ -902,7 +902,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Fita
 
-        /*public void IDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem)
+        public void IDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -928,20 +928,23 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        /*public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor";
-            query += " WHERE itemidproduto = ?itemidproduto";
+            String query = "UPDATE estoque SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
-                cmd.Parameters.AddWithValue("?quantidade", quantidade);
-                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?numero", numero);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?marca", marca);
+                cmd.Parameters.AddWithValue("?numeroCor", numeroCor);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -952,20 +955,191 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        /*public void RDCANUDO(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        public void RDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += " WHERE itemidproduto = ?itemidproduto, quantidade = ?quantidade, cor = ?cor";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
-                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?numero", numero);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?marca", marca);
+                cmd.Parameters.AddWithValue("?numeroCor", numeroCor);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Papel
+
+        public void IDPAPEL(String tipo, String gramatura, String cor, String tamanho)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (tipo, gramatura, cor, tamanho) VALUES";
+            query += "(?tipo, ?gramatura, ?cor, ?tamanho)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RDPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Tecido
+
+        /*public void IDPAPEL(String tipo, String gramatura, String cor, String tamanho)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "INSERT INTO pedido (tipo, gramatura, cor, tamanho) VALUES";
+            query += "(?tipo, ?gramatura, ?cor, ?tamanho)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        /*public void ADPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE estoque SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        /*public void RDPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "DELETE FROM estoque";
+            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
