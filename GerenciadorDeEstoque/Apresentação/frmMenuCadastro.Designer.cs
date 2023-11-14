@@ -77,6 +77,7 @@
             this.btnCliente.StateTracking.Border.Rounding = 7;
             this.btnCliente.TabIndex = 0;
             this.btnCliente.Values.Text = "";
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnProduto
             // 
@@ -132,6 +133,7 @@
             this.btnMaterial.StateTracking.Border.Rounding = 7;
             this.btnMaterial.TabIndex = 2;
             this.btnMaterial.Values.Text = "";
+            this.btnMaterial.Click += new System.EventHandler(this.btnMaterial_Click);
             // 
             // btnCadastro
             // 
@@ -207,6 +209,7 @@
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 7;
             this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // frmMenuCadastro
             // 

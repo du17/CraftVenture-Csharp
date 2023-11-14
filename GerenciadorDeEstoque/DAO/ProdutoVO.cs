@@ -9,9 +9,9 @@ namespace GerenciadorDeEstoque.DAO
 {
     class ProdutoVO
     {
-        /*private Int32 _itemid, qtde;
-        private Double preco;
-        private String nome;
+        private Int32 _itemid, quantidade;
+        private Double valor;
+        private String nome, materialUsado, tipo;
         private DAO dao;
 
         public ProdutoVO()
@@ -24,38 +24,53 @@ namespace GerenciadorDeEstoque.DAO
             get { return _itemid; }
             set { _itemid = value; }
         }
+
         public String Nome
         {
             get { return nome; }
             set { nome = value; }
         }
+
         public Int32 Quantidade
         {
-            get { return qtde; }
-            set { qtde = value; }
+            get { return quantidade; }
+            set { quantidade = value; }
         }
-        public Double Preco
+
+        public Double Valor
         {
-            get { return preco; }
-            set { preco = value; }
+            get { return valor; }
+            set { valor = value; }
+        }
+
+        public String MaterialUsado
+        {
+            get{ return materialUsado; }
+            set{ materialUsado = value; }
+        }
+
+        public String Tipo
+        {
+            get { return tipo; }
+            set { tipo = value; }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDP(Preco, Quantidade, Nome);
+            dao.IDP(Valor, Quantidade, Nome, MaterialUsado, Tipo);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADP(Preco, Quantidade, Nome, itemid);
+            dao.ADP(Valor, Quantidade, Nome, MaterialUsado, Tipo, itemid);
         }
 
         public void Remover()
         {
             dao = new DAO();
-            dao.RDP(Preco, Quantidade, Nome, itemid);
-        }*/
+            dao.RDP(Valor, Quantidade, Nome, MaterialUsado, Tipo, itemid);
+        }
     }
 }
