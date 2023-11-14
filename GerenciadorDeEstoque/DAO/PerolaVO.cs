@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    class AcetatoVO
+    class PerolaVO
     {
 
         private Int32 _itemidTipoMaterial;
-        private String tamanho;
-        private Double espessura;
+        private String cor;
+        private Double tamanho;
         private DAO dao;
         private conexaoUso conn;
 
-        public AcetatoVO()
+        public PerolaVO()
         {
 
         }
@@ -25,32 +25,34 @@ namespace GerenciadorDeEstoque.DAO
             get { return _itemidTipoMaterial; }
             set { _itemidTipoMaterial = value; }
         }
-        public String Tamanho
+
+        public String Cor
+        {
+            get { return cor; }
+            set { cor = value; }
+        }
+
+        public Double Tamanho
         {
             get { return tamanho; }
             set { tamanho = value; }
-        }
-        public Double Espessura
-        {
-            get { return espessura; }
-            set { espessura = value; }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDE(Tamanho, Espessura);
+            dao.IDPEROLA(Cor, Tamanho);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADE(Tamanho, Espessura, itemidTipoMaterial);
+            dao.ADPEROLA(Cor, Tamanho, itemidTipoMaterial);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDE(Tamanho, Espessura, itemidTipoMaterial);
+            dao.RDPEROLA(Cor, Tamanho, itemidTipoMaterial);
         }
 
     }
