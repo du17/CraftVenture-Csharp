@@ -121,7 +121,7 @@
   <data name="btnAdicionarProdutos.StateCommon.Back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAXIAAAAYCAYAAADnPHaBAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAC29JREFUeF7tnI2RJTkRhNcETMCEM+E8AA84DzgPwAPwADzgPDg8wARMwATo79ia
+        DgAACw4BQL7hQQAAC29JREFUeF7tnI2RJTkRhNcETMCEM+E8AA84DzgPwAPwADzgPDg8wARMwATo79ia
         qKutTJXU/XaY4DIiY2fnSaX6U0rdM7ufhvjVxV9f/Obz13eAnW8vfveZf/z8528v8v1T+9iFp/OZhw+/
         v4hPkK8nPvF5rH8Kchv5COIP3z/Fbk6eiCNs3O0V5mKDHHS9cicvDvgea1J/yNf0wcmakY9Xx4GdsP1U
         /wDnOzk5BXbhTo+czHkV8IM8dHpxF8QXOa89uB07E/5w8Z8X/13I9/5ykWAmwIEfL/7rYrXV8R8Xf3dx
@@ -173,10 +173,10 @@
         A55GNo0M63EHAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="kryptonButton1.StateCommon.Back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btmConfirmar.StateCommon.Back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMIAAAAYCAYAAACoRCJ4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAABr1JREFUeF7tnIFxZjUMhK8ESqAESqAD6AA6gA6gA+gAOoAOKIESKIESwB9z+k9R
+        EQAACxEBf2RfkQAABr1JREFUeF7tnIFxZjUMhK8ESqAESqAD6AA6gA6gA+gAOoAOKIESKIESwB9z+k9R
         dmX5z0u4BHZm55L327IsaWW/JHPvBvhk8bPFLxe/Xvz8PXl+Lz5dxMZV9v4LIGbkIeIFefY/PuBZYkSR
         /rb45+JfhnzOYhMw7qfFzt7vi18tTp3H5i+LfywyH9v4hA0HBM348IM1v1t0wBc+x/cTVh+IJ2tN1414
         xd4cJ3vOoOGwLnFjHvxxcZdH5n2zmOfx9XTdQLaT90Y8eEZ+psBnfGdujolixGgsDIzvgl+5KyScUPMc
@@ -211,7 +211,7 @@
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABQAAAALQCAYAAADPfd1WAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAApZBJREFUeF7t3X+8XVV95/+gqBQQ0qKCQkIUBa1i0plWCxGhpo/YkkLCbcWGNj86
+        DgAACw4BQL7hQQAApZBJREFUeF7t3X+8XVV95/+gqBQQ0qKCQkIUBa1i0plWCxGhpo/YkkLCbcWGNj86
         RScX0WSANKiFXKqGVilJqxHUSlKJP6pIUqmtxSqVzrSorRnqTLWtFPrL2lak35lOf4y2+3vfh1lh3XU/
         a+21zzn37H3Oev3xfAD3rP3j7HPuPWe/2D8Wvfuv/60CMPlu++q/VZ98pAIAAAAAAIUhAAKFIAACAAAA
         AFAmAiBQCAIgAAAAAABlIgAChSAAAgAAAABQJgIgUAgCIAAAAAAAZSIAAoUgAAIAAAAAUCYCIFAIAiAA

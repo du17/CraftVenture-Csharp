@@ -218,6 +218,12 @@
     <Compile Include="DAO\Conexao.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\VendeVO.cs" />
+    <Compile Include="Apresentação\frmCadastrarProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmCadastrarProduto.Designer.cs">
+      <DependentUpon>frmCadastrarProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastrarPapel.resx">
       <DependentUpon>frmCadastrarPapel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmCadastrarProduto.resx">
+      <DependentUpon>frmCadastrarProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastro.resx">
       <DependentUpon>frmCadastro.cs</DependentUpon>
