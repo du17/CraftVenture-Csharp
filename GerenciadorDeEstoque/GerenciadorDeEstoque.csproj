@@ -203,6 +203,7 @@
     <Compile Include="Apresentação\frmCadastroTecido.Designer.cs">
       <DependentUpon>frmCadastroTecido.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\AcetatoVO.cs" />
     <Compile Include="DAO\CanudoVO.cs" />
     <Compile Include="DAO\ClienteVO.cs" />
     <Compile Include="DAO\conexaoUso.cs" />

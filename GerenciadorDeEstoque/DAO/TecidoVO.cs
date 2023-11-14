@@ -9,8 +9,9 @@ namespace GerenciadorDeEstoque.DAO
     class TecidoVO
     {
 
-        private Int32 _itemid;
-        private String nome, senha, email;
+        private Int32 _itemidTipoMaterial;
+        private String tipo, tipoEstampa; 
+        private Double metragem;
         private DAO dao;
         private conexaoUso conn;
 
@@ -19,43 +20,43 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int32 itemidTipoMaterial
         {
-            get { return _itemid; }
-            set { _itemid = value; }
+            get { return _itemidTipoMaterial; }
+            set { _itemidTipoMaterial = value; }
         }
-        public String Nome
+        public String Tipo
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return tipo; }
+            set { tipo = value; }
         }
-        public String Senha
+        public String TipoEstampa
         {
-            get { return senha; }
-            set { senha = value; }
+            get { return tipoEstampa; }
+            set { tipoEstampa = value; }
         }
-        public String Email
+        public Double Metragem
         {
-            get { return email; }
-            set { email = value; }
+            get { return metragem; }
+            set { metragem = value; }
         }
 
-        /*public void Inserir()
+        public void Inserir()
         {
             dao = new DAO();
-            dao.IDU(Email, Senha, Nome);
+            dao.IDTECIDO(Tipo, TipoEstampa, Metragem);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADU(Email, Senha, Nome, itemid);
+            dao.ADTECIDO(Tipo, TipoEstampa, Metragem, itemidTipoMaterial);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDU(Nome, Senha, Email, itemid);
-        }*/
+            dao.RDTECIDO(Tipo, TipoEstampa, Metragem, itemidTipoMaterial);
+        }
 
     }
 }
