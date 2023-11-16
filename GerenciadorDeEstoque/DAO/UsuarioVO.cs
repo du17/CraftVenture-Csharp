@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using GerenciadorDeEstoque.DAO;
 using MySql.Data.MySqlClient;
 
@@ -12,7 +13,6 @@ namespace GerenciadorDeEstoque.DAO
         private Int32 _itemid;
         private String nome, senha, email;
         private DAO dao;
-        private conexaoUso conn;
 
         public UsuarioVO()
         {
@@ -57,10 +57,25 @@ namespace GerenciadorDeEstoque.DAO
             dao.RDU(Nome, Senha, Email, itemid);
         }
 
-        public void Login()
+        public bool Login()
         {
             dao = new DAO();
-            dao.BDU(Senha, Nome);
+
+            try
+            {
+                if(dao.BDU(Nome, senha) != -1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

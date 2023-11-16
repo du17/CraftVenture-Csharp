@@ -16,13 +16,14 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmLogin : KryptonForm
     {
+        private UsuarioVO usuario;
+
         public frmLogin()
         {
             InitializeComponent();
+
+            usuario = new UsuarioVO();
         }
-        private DAO.Conexao conexao;
-        private UsuarioVO usuarioVO;
-        private Int32 catchRowIndex;
 
         private void txtNome_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -36,29 +37,42 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string nome = txtNome.Text;
+                string senha = txtSenha.Text;
 
-            //pq não funciona????????
-            /*conexao = new DAO.Conexao();
-            usuarioVO = new UsuarioVO();
-            string connectionString = conexao.getConnectionString();
-            string query = "SELECT * FROM estoque";
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            conexao = new DAO.Conexao();
-            usuarioVO = new UsuarioVO();*/
+                usuario.Nome = nome;
+                usuario.Senha = senha;
 
+                try
+                {
+                    if(usuario.Login() == true)
+                    {
+                        
+                        frmMenuCadastro menu = new frmMenuCadastro();
+                        this.Hide();
+                        menu.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("O login falhou", "Tente novamente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                    }
+                }
+                catch (ArgumentException erro)
+                {
+                    MessageBox.Show(erro.ToString(), "Valor inválido");
+                }
+                
 
-
-            if (txtNome.Text == "adm" && txtSenha.Text == "adm"){
-                frmMenuCadastro Menu = new frmMenuCadastro();
-
-                Menu.ShowDialog();
-                this.Hide();
+            }catch(ArgumentNullException erro) 
+            {
+                MessageBox.Show("Algum dos campos está vazio", "Campos nulos");
             }
 
-            else{
-                MessageBox.Show("Login invalido");
-            }
+            
+            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
