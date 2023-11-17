@@ -63,7 +63,7 @@ namespace GerenciadorDeEstoque.DAO
 
             try
             {
-                if(dao.BDU(Nome, senha) != -1)
+                if(dao.BDU(Nome, Senha) != -1)
                 {
                     return true;
                 }

@@ -17,6 +17,8 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmLogin : KryptonForm
     {
         private UsuarioVO usuario;
+        private MySqlConnection con;
+        private DAO.Conexao conexao;
 
         public frmLogin()
         {
@@ -37,6 +39,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
+            int n = 0;
             try
             {
                 string nome = txtNome.Text;
@@ -45,28 +49,16 @@ namespace GerenciadorDeEstoque.Apresentação
                 usuario.Nome = nome;
                 usuario.Senha = senha;
 
-                try
-                {
-                    if(usuario.Login() == true)
+                    if (usuario.Login())
                     {
-                        
-                        frmMenuCadastro menu = new frmMenuCadastro();
+                        frmMenuCadastro menuCadastro = new frmMenuCadastro();
                         this.Hide();
-                        menu.ShowDialog();
+                        menuCadastro.ShowDialog();
+                        
                     }
-                    else
-                    {
-                        MessageBox.Show("O login falhou", "Tente novamente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    }
-                }
-                catch (ArgumentException erro)
-                {
-                    MessageBox.Show(erro.ToString(), "Valor inválido");
-                }
-                
-
-            }catch(ArgumentNullException erro) 
+                                 
+            }
+            catch(ArgumentNullException erro) 
             {
                 MessageBox.Show("Algum dos campos está vazio", "Campos nulos");
             }
@@ -119,6 +111,22 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show($"Erro: {ex.Data} - {ex.Message}");
             }*/
 
+        }
+
+        private void pbSenha_Click(object sender, EventArgs e)
+        {
+            if(txtSenha.UseSystemPasswordChar == true)
+            {
+                txtSenha.UseSystemPasswordChar = false;
+                txtSenha.PasswordChar = '\0';
+                pbSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho;
+            }
+            else
+            {
+                txtSenha.UseSystemPasswordChar = true;
+                txtSenha.PasswordChar = '●';
+                pbSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            }
         }
     }
 }

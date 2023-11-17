@@ -15,7 +15,7 @@ namespace GerenciadorDeEstoque.DAO
         private DAO dao;
         private conexaoUso conn;
 
-        MaterialVO()
+        public MaterialVO()
         {
 
         }

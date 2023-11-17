@@ -28,8 +28,9 @@ namespace GerenciadorDeEstoque.DAO
         #region Usuario
         public void IDU(String email, String nome, String senha)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO usuario (email, nome, senha) VALUES";
@@ -52,8 +53,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADU(String email, String nome, String senha, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE usuario SET email = ?email, senha = ?senha, nome = ?nome";
             query += " WHERE itemid = ?itemid";
@@ -77,8 +79,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDU(String email, String nome, String senha, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM usuario";
             query += "WHERE nome = ?nome, email = ?email, senha = ?senha, itemid = ?itemid";
@@ -103,7 +106,10 @@ namespace GerenciadorDeEstoque.DAO
         {
             try
             {
+                conexao = new Conexao();
                 con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
 
                 con.Open();
 
@@ -111,7 +117,7 @@ namespace GerenciadorDeEstoque.DAO
 
                 cmd.Connection = con;
 
-                cmd.CommandText = "SELECT id FROM contato WHERE nome LIKE @nome OR senha LIKE @senha";
+                cmd.CommandText = "SELECT id FROM usuario WHERE nome LIKE @nome OR senha LIKE @senha";
 
                 cmd.Parameters.Clear();
 
@@ -154,8 +160,9 @@ namespace GerenciadorDeEstoque.DAO
         #region Cliente
         public void IDC(String email, String nome)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO cliente (email, nome) VALUES";
@@ -177,8 +184,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADC(String email, String nome, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET email = ?email, senha = ?senha, nome = ?nome";
             query += " WHERE itemid = ?itemid";
@@ -201,8 +209,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDC(String email, String nome, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += "WHERE nome = ?nome, itemid = ?itemid, email = ?email";
@@ -229,8 +238,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (nome, quantidade, anotacao, valorTotal, nomeCliente, telefone, formaPagamento, CodCliente) VALUES";
@@ -258,8 +268,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
                 "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
@@ -290,8 +301,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += "WHERE itemid = ?itemid, quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
@@ -325,8 +337,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (valor, quantidade, nome, materialUsado, tipo) VALUES";
@@ -351,8 +364,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
             query += " WHERE itemid = ?itemid";
@@ -379,8 +393,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
@@ -410,8 +425,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDT(String telefone, Int32 codCliente)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (telefone, codCliente) VALUES";
@@ -433,8 +449,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADT(String telefone, Int32 codCliente, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET codCLiente = ?codCliente, telefone = ?telefone";
             query += " WHERE itemid = ?itemid";
@@ -457,8 +474,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDT(String telefone, Int32 codCliente, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, codCliente = ?codCliente, telefone = ?telefone";
@@ -485,8 +503,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDVENDE(Int32 idvenda, Int32 idproduto)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (idvenda, idproduto) VALUES";
@@ -508,8 +527,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADVENDE(Int32 idvenda, Int32 idproduto, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET idvenda = ?idvenda, idproduto = ?idproduto";
             query += " WHERE itemid = ?itemid";
@@ -532,8 +552,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDVENDE(Int32 idvenda, Int32 idproduto, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, idvenda = ?idvenda, idproduto = ?idproduto";
@@ -560,8 +581,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDTIPO(String nome)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (nome) VALUES";
@@ -582,8 +604,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADTIPO(String nome, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET nome = ?nome";
             query += " WHERE itemid = ?itemid";
@@ -605,8 +628,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDTIPO(String nome, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid, nome = ?nome";
@@ -632,8 +656,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void IDM(Int32 idmaterial, String nome, Double valor)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (idmaterial, nome, valor) VALUES";
@@ -656,8 +681,9 @@ namespace GerenciadorDeEstoque.DAO
 
         public void ADM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
+            
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET nome = ?nome";
             query += " WHERE itemid = ?itemid";
@@ -681,8 +707,8 @@ namespace GerenciadorDeEstoque.DAO
 
         public void RDM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
         {
-            con = new MySqlConnection();
             conexao = new Conexao();
+            con = new MySqlConnection();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
             query += " WHERE itemid = ?itemid";
@@ -959,18 +985,18 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMaterial);
                 cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?marca", marca);

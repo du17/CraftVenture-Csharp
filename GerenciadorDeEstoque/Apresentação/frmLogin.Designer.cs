@@ -36,6 +36,8 @@
             this.txtNome = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btnLogin = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCadastrar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbSenha = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSenha)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSenha
@@ -65,6 +67,7 @@
             this.txtSenha.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.TabIndex = 19;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.WordWrap = false;
             this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // lblNome
@@ -140,6 +143,19 @@
             this.btnCadastrar.Values.Text = "";
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
+            // pbSenha
+            // 
+            this.pbSenha.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            this.pbSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbSenha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbSenha.Image = global::GerenciadorDeEstoque.Properties.Resources.olho;
+            this.pbSenha.Location = new System.Drawing.Point(810, 393);
+            this.pbSenha.Name = "pbSenha";
+            this.pbSenha.Size = new System.Drawing.Size(36, 31);
+            this.pbSenha.TabIndex = 23;
+            this.pbSenha.TabStop = false;
+            this.pbSenha.Click += new System.EventHandler(this.pbSenha_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +163,7 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Login;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.pbSenha);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblSenha);
@@ -158,6 +175,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbSenha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +189,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNome;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnLogin;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCadastrar;
+        private System.Windows.Forms.PictureBox pbSenha;
     }
 }
