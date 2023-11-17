@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\GerenciadorDeEstoque",
-    "\\GerenciadorDeEstoque\\Apresentação",
-    "\\GerenciadorDeEstoque\\DAO",
-    "\\GerenciadorDeEstoque\\Properties"
+    ""
   ],
-  "SelectedNode": "\\GerenciadorDeEstoque\\App.config",
+  "SelectedNode": "\\GerenciadorDeEstoque.sln",
   "PreviewInSolutionExplorer": false
 }
