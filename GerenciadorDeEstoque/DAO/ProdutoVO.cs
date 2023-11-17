@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
 {
     class ProdutoVO
     {
-        private Int32 _itemid, quantidade;
+        private Int64 _itemid, quantidade;
         private Double valor;
         private String nome, materialUsado, tipo;
         private DAO dao;
@@ -19,7 +19,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
@@ -31,7 +31,7 @@ namespace GerenciadorDeEstoque.DAO
             set { nome = value; }
         }
 
-        public Int32 Quantidade
+        public Int64 Quantidade
         {
             get { return quantidade; }
             set { quantidade = value; }

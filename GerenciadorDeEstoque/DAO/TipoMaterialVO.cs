@@ -8,7 +8,7 @@ namespace GerenciadorDeEstoque.DAO
 {
     class TipoMaterialVO
     {
-        private Int32 _itemid;
+        private Int64 _itemid;
         private String nome;
         private DAO dao;
         private conexaoUso conn;
@@ -18,7 +18,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }

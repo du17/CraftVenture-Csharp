@@ -11,7 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         //Metodos venda, tomara que funcione
 
-        private Int32 _itemid, quantidade, idUsuario, codCliente, formaPagamento;
+        private Int64 _itemid, quantidade, idUsuario, codCliente, formaPagamento;
         private String nomeCliente, telefone, nomeProduto, anotacao;
         private Double valorTotal;
         private DAO dao;
@@ -22,31 +22,31 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
         }
 
-        public Int32 Quantidade
+        public Int64 Quantidade
         {
             get { return quantidade; }
             set { quantidade = value; }
         }
 
-        public Int32 IdUsuario
+        public Int64 IdUsuario
         {
             get { return idUsuario; }
             set { idUsuario = value; }
         }
 
-        public Int32 CodCliente
+        public Int64 CodCliente
         {
             get { return codCliente; }
             set { codCliente = value; }
         }
 
-        public Int32 FormaPagamento
+        public Int64 FormaPagamento
         {
             get { return formaPagamento; }
             set { formaPagamento = value; }

@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class CanudoVO
     {
 
-        private Int32 _itemidproduto, quantidade;
+        private Int64 _itemidproduto, quantidade;
         private String cor;
         private DAO dao;
         private conexaoUso conn;
@@ -19,7 +19,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemidproduto
+        public Int64 itemidproduto
         {
             get { return _itemidproduto; }
             set { _itemidproduto = value; }
@@ -29,7 +29,7 @@ namespace GerenciadorDeEstoque.DAO
             get { return cor; }
             set { cor = value; }
         }
-        public Int32 Quantidade
+        public Int64 Quantidade
         {
             get { return quantidade; }
             set { quantidade = value; }

@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class PapelVO
     {
 
-        private Int32 _itemidTpoMaterial;
+        private Int64 _itemidTpoMaterial;
         private String tipo, gramatura, cor, tamanho;
         private DAO dao;
         private conexaoUso conn;
@@ -19,7 +19,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemidTipoMaterial
+        public Int64 itemidTipoMaterial
         {
             get { return _itemidTpoMaterial; }
             set { _itemidTpoMaterial = value; }

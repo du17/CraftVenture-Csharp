@@ -10,7 +10,7 @@ namespace GerenciadorDeEstoque.DAO
     {
 
         //tipo data ficou complicado
-        private Int32 _itemid, idvenda, idproduto;
+        private Int64 _itemid, idvenda, idproduto;
         //private tipo ai complico dataEntrega, dataVenda;
         private DAO dao;
         private conexaoUso conn;
@@ -20,17 +20,17 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
         }
-        public Int32 IdVenda
+        public Int64 IdVenda
         {
             get { return idvenda; }
             set { idvenda = value; }
         }
-        public Int32 IdProduto
+        public Int64 IdProduto
         {
             get { return idproduto; }
             set { idproduto = value; }

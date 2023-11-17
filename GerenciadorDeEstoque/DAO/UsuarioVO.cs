@@ -10,7 +10,7 @@ namespace GerenciadorDeEstoque.DAO
 {
     class UsuarioVO
     {
-        private Int32 _itemid;
+        private Int64 _itemid;
         private String nome, senha, email;
         private DAO dao;
 
@@ -19,7 +19,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }

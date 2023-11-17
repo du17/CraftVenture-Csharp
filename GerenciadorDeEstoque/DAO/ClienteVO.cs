@@ -13,7 +13,7 @@ namespace GerenciadorDeEstoque.DAO
 
         //metodos do cliente!!!!!!
 
-        private Int32 _itemid;
+        private Int64 _itemid;
         private String nome, email;
         private DAO dao;
         private conexaoUso conn;
@@ -23,7 +23,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }

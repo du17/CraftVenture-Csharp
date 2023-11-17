@@ -8,7 +8,7 @@ namespace GerenciadorDeEstoque.DAO
 {
     class TelefonesVO
     {
-        private Int32 _itemid, codCliente;
+        private Int64 _itemid, codCliente;
         private String telefone;
         private DAO dao;
         private conexaoUso conn;
@@ -17,7 +17,7 @@ namespace GerenciadorDeEstoque.DAO
         {
 
         }
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
@@ -27,7 +27,7 @@ namespace GerenciadorDeEstoque.DAO
             get { return telefone; }
             set { telefone = value; }
         }
-        public Int32 CodCliente
+        public Int64 CodCliente
         {
             get { return codCliente; }
             set { codCliente = value; }
