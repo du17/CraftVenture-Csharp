@@ -15,19 +15,12 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastro : Form
     {
-
+        DAO.UsuarioVO usuario;
         public frmCadastro()
         {
             InitializeComponent();
+            usuario = new DAO.UsuarioVO();
         }
-
-        /*CadastroUsuario cadastro;
-        public frmCadastro(CadastroUsuario cadastro)
-        {
-            InitializeComponent();
-
-            this.cadastro = cadastro;
-        }*/
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -61,25 +54,52 @@ namespace GerenciadorDeEstoque.Apresentação
                 string nome = txtNome.Text;
                 string email = txtEmail.Text;
                 string senha = txtSenha.Text;
-                
+
+                if (senha.Equals( txtRepetirSenha.Text))
+                {
+                    usuario.Nome = nome;
+                    usuario.Email = email;
+                    usuario.Senha = senha;
+
+                    usuario.Inserir();
+
+                    MessageBox.Show("Cadastrado com sucesso!!");
+                }
+                else
+                {
+                    MessageBox.Show("As duas senha devem ser iguais", "Cheque a senha", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    emptyText();
+
+                }
                 
             }
-            catch(FormatException erro) 
+            catch(ArgumentNullException erro) 
             {
 
-                MessageBox.Show("Algum dos campos está errado, cheque e tente novamente", "Campos nulos");
+                MessageBox.Show("Algum dos campos está Nulo, cheque e tente novamente", "Campos nulos");
                 
-                txtNome.Text = "";
-                txtEmail.Text = "";
-                txtSenha.Text = "";
-                txtRepetirSenha.Text = "";
             }  
-            catch(Exception erro) {
-                txtNome.Text = "";
-                txtEmail.Text = "";
-                txtSenha.Text = "";
-                txtRepetirSenha.Text = "";
+            
+            catch(Exception erro)
+            {
+                //cria uma string com as informações do erro
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Tipo da Exceção: " + erro.GetType()); //Classe da Exceção
+                sb.AppendLine();
+                sb.AppendLine(erro.Message); //Mensagem de Erro
+
+                //exibe uma janela de mensagem com as informções do erro ocorrido
+                MessageBox.Show(sb.ToString());
+                emptyText();
             }
+        }
+
+        private void emptyText()
+        {
+            txtNome.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtSenha.Text = string.Empty;
+            txtRepetirSenha.Text = string.Empty;
         }
 
         private void pbSenha_Click(object sender, EventArgs e)

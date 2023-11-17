@@ -39,5 +39,10 @@ namespace GerenciadorDeEstoque.Apresentação
             txtQuantidade.Text = string.Empty;
             txtCor.Text = string.Empty;
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GerenciadorDeEstoque.Apresentação.Menu;
 using Google.Protobuf;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -53,7 +55,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET email = ?email, senha = ?senha, nome = ?nome";
+            String query = "UPDATE usuario SET email = ?email, senha = ?senha, nome = ?nome";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -78,7 +80,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM usuario";
             query += "WHERE nome = ?nome, email = ?email, senha = ?senha, itemid = ?itemid";
             try
             {
@@ -97,24 +99,53 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public bool BDU(String nome, string senha)
+        public int BDU(String nome, String senha)
         {
-            conexaoUso busca = new conexaoUso();
-            cmd = new MySqlCommand();
-
-            busca.Open();
-            cmd.CommandText = "select senha, nome WHERE nome ='" + nome + "' AND senha ='" + senha + "'";
-
-            if (dr.Read())
+            try
             {
-                busca.Close();
-                return true;
+                con = new MySqlConnection();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM contato WHERE nome LIKE @nome OR senha LIKE @senha";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@senha", senha);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
             }
-            else
+            catch (MySqlException ex)
             {
-                busca.Close();
-                return false;
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
 
         }
 
