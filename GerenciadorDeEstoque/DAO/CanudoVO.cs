@@ -10,7 +10,7 @@ namespace GerenciadorDeEstoque.DAO
     {
 
         private Int64 _itemidproduto;
-        private Int32 quantidade;
+        private Int64 quantidade;
 
         private String cor;
         private DAO dao;

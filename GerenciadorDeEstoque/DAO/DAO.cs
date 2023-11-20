@@ -504,7 +504,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Vende
 
-        public void IDVENDE(Int32 idvenda, Int64 idproduto)
+        public void IDVENDE(Int64 idvenda, Int64 idproduto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -941,7 +941,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+        public void ADCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
 
         {
             con = new MySqlConnection();
@@ -966,7 +966,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+        public void RDCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
 
         {
             con = new MySqlConnection();
