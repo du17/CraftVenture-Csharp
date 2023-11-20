@@ -46,6 +46,8 @@
             this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalvar.Location = new System.Drawing.Point(776, 592);
             this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnSalvar.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
             this.btnSalvar.Size = new System.Drawing.Size(463, 66);
             this.btnSalvar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnSalvar.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;

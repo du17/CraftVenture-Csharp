@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace GerenciadorDeEstoque.DAO
         private MySqlConnection con;
         MySqlCommand cmd;
         private MySqlDataReader dr;
+
+        private long idLastInsert = -1;
 
         public DAO()
         {
@@ -583,10 +586,10 @@ namespace GerenciadorDeEstoque.DAO
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (nome) VALUES";
+            String query = "INSERT INTO tipoMaterial (nome) VALUES";
             query += "(?nome)";
             try
             {
@@ -594,7 +597,17 @@ namespace GerenciadorDeEstoque.DAO
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.ExecuteNonQuery();
+                
+                idLastInsert = cmd.LastInsertedId;
+
                 cmd.Dispose();
+
+                
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                
             }
             finally
             {
@@ -661,13 +674,13 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (idmaterial, nome, valor) VALUES";
-            query += "(?idmaterial, ?nome, ?valor)";
+            String query = "INSERT INTO material (idTipoMaterial, nome, valor) VALUES";
+            query += "(?idTipoMaterial, ?nome, ?valor)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idmaterial);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?valor", valor);
                 cmd.ExecuteNonQuery();
@@ -758,6 +771,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
         public void ADMPRODUTO(Int64 idmaterial, Int64 idproduto, Int64 itemid)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -884,21 +898,25 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Canudo
 
-        public void IDCANUDO(Int64 quantidade, String cor)
+      
+        public void IDCANUDO(Int64 idtipomaterial, Int64 quantidade, String cor)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (quantidade, cor) VALUES";
-            query += "(?quantidade, ?cor)";
+            String query = "INSERT INTO canudo (idTipoMaterial, quantidade, cor) VALUES";
+            query += "(?idTipoMaterial, ?quantidade, ?cor)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idtipomaterial);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.ExecuteNonQuery();
+
                 cmd.Dispose();
             }
             finally
@@ -907,7 +925,24 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
+        public long getLastId()
+        {
+            if (idLastInsert != -1)
+            {
+                long lastId = idLastInsert;
+
+                idLastInsert = -1;
+
+                return lastId;
+            }
+            else
+            {
+                throw new ArgumentNullException("O valor não foi encontrado! Algo deu errado com o lastInsertid");
+            }
+        }
+
+        public void ADCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -931,7 +966,8 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
+        public void RDCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();

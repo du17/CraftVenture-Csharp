@@ -1,4 +1,5 @@
 ﻿using GerenciadorDeEstoque.DAO;
+using MetroFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,21 +60,37 @@ namespace GerenciadorDeEstoque.Apresentação
                 string cor = txtCor.Text;
                 int quantidade = Convert.ToInt32(txtQuantidade.Text);
                 double valor = Convert.ToDouble(txtValor.Text);
+                long idTipoMaterial;
 
                 canudo.Cor = cor;
                 canudo.Quantidade = quantidade;
 
                 material.Valor = valor;
-                material.Nome = string.Empty;
+                material.Nome = nome_material;
 
                 tipoMaterial.Nome = nome_material;
-
                 tipoMaterial.Inserir();
+
+                idTipoMaterial = tipoMaterial.getLastId();
+
+                canudo.itemidproduto = idTipoMaterial;
+                material.IdMaterial = idTipoMaterial;
+
+                material.Inserir();
 
                 canudo.Inserir();
 
+                MessageBox.Show("Item cadastrado!");
+
             }
-            catch(ArgumentNullException ex) { }
+            catch(ArgumentNullException ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

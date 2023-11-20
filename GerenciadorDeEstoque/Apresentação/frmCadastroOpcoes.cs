@@ -63,8 +63,9 @@ namespace GerenciadorDeEstoque.Apresentação
         private void btnCanudo_Click_1(object sender, EventArgs e)
         {
             frmCadastroCanudo frmCanudo = new frmCadastroCanudo();
-            frmCanudo.ShowDialog();
             this.Close();
+            frmCanudo.ShowDialog();
+            
         }
 
         private void btnSair_Click(object sender, EventArgs e)
