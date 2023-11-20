@@ -1,4 +1,5 @@
 ﻿using GerenciadorDeEstoque.DAO;
+using MetroFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,10 +71,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 tipoMaterial.Nome = nome_material;
                 tipoMaterial.Inserir();
 
-                idTipoMaterial = tipoMaterial.GetId();
+                idTipoMaterial = tipoMaterial.getLastId();
 
                 canudo.itemidproduto = idTipoMaterial;
-                material.itemid = idTipoMaterial;
+                material.IdMaterial = idTipoMaterial;
 
                 material.Inserir();
 

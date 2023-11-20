@@ -44,7 +44,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDM(itemid, Nome, Valor);
+            dao.IDM(IdMaterial, Nome, Valor);
         }
 
         public void Atualizar()
