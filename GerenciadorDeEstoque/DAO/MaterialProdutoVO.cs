@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class MaterialProdutoVO
     {
 
-        private Int32 _itemid, idmaterial, idproduto;
+        private Int64 _itemid, idmaterial, idproduto;
         private DAO dao;
         private conexaoUso conn;
 
@@ -18,17 +18,17 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
         }
-        public Int32 IdMaterial
+        public Int64 IdMaterial
         {
             get { return idmaterial; }
             set { idmaterial = value; }
         }
-        public Int32 IdProduto
+        public Int64 IdProduto
         {
             get { return idproduto; }
             set { idproduto = value; }

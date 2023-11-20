@@ -54,7 +54,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADU(String email, String nome, String senha, Int32 itemid)
+        public void ADU(String email, String nome, String senha, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -80,7 +80,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDU(String email, String nome, String senha, Int32 itemid)
+        public void RDU(String email, String nome, String senha, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -185,7 +185,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(String email, String nome, Int32 itemid)
+        public void ADC(String email, String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -210,7 +210,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDC(String email, String nome, Int32 itemid)
+        public void RDC(String email, String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -239,7 +239,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Venda
 
-        public void IDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente)
+        public void IDV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, Int64 CodCliente)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -269,7 +269,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
+        public void ADV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, Int64 CodCliente, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -302,7 +302,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
 
-        public void RDV(String nome, Int32 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int32 formaPagamento, Int32 CodCliente, Int32 itemid)
+        public void RDV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, Int64 CodCliente, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -338,7 +338,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Produto
 
-        public void IDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo)
+        public void IDP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -365,7 +365,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
+        public void ADP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -394,7 +394,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
 
-        public void RDP(Double valor, Int32 quantidade, String nome, String materialUsado, String tipo, Int32 itemid)
+        public void RDP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -426,7 +426,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Telefones
 
-        public void IDT(String telefone, Int32 codCliente)
+        public void IDT(String telefone, Int64 codCliente)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -450,7 +450,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADT(String telefone, Int32 codCliente, Int32 itemid)
+        public void ADT(String telefone, Int64 codCliente, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -475,7 +475,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDT(String telefone, Int32 codCliente, Int32 itemid)
+        public void RDT(String telefone, Int64 codCliente, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -504,7 +504,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Vende
 
-        public void IDVENDE(Int32 idvenda, Int32 idproduto)
+        public void IDVENDE(Int32 idvenda, Int64 idproduto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -528,7 +528,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADVENDE(Int32 idvenda, Int32 idproduto, Int32 itemid)
+        public void ADVENDE(Int64 idvenda, Int64 idproduto, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -553,7 +553,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDVENDE(Int32 idvenda, Int32 idproduto, Int32 itemid)
+        public void RDVENDE(Int64 idvenda, Int64 idproduto, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -770,7 +770,8 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADMPRODUTO(Int64 idmaterial, Int64 idproduto, Int32 itemid)
+        public void ADMPRODUTO(Int64 idmaterial, Int64 idproduto, Int64 itemid)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -897,8 +898,9 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Canudo
 
-        
+      
         public void IDCANUDO(Int64 idtipomaterial, Int64 quantidade, String cor)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -940,6 +942,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
         public void ADCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -964,6 +967,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
         public void RDCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1017,7 +1021,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMaterial)
+        public void ADF(Int64 numero, String tipo, String marca, String numeroCor, Double metragem, Int64 itemidTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1044,7 +1048,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem, Int32 itemidTipoMatreial)
+        public void RDF(Int64 numero, String tipo, String marca, String numeroCor, Double metragem, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1101,7 +1105,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        public void ADPAPEL(String tipo, String gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1128,7 +1132,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDPAPEL(String tipo, String gramatura, String cor, String tamanho, Int32 itemidTipoMatreial)
+        public void RDPAPEL(String tipo, String gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1183,7 +1187,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADTECIDO(String tipo, String tipoEstampa, Double metragem, Int32 itemidTipoMatreial)
+        public void ADTECIDO(String tipo, String tipoEstampa, Double metragem, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1208,7 +1212,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDTECIDO(String tipo, String tipoEstampa, Double metragem, Int32 itemidTipoMatreial)
+        public void RDTECIDO(String tipo, String tipoEstampa, Double metragem, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1260,7 +1264,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADE(String tamanho, Double espessura, Int32 itemidTipoMatreial)
+        public void ADE(String tamanho, Double espessura, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1284,7 +1288,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDE(String tamanho, Double espessura, Int32 itemidTipoMatreial)
+        public void RDE(String tamanho, Double espessura, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1335,7 +1339,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADPEROLA(String cor, Double tamanho, Int32 itemidTipoMatreial)
+        public void ADPEROLA(String cor, Double tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -1359,7 +1363,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDPEROLA(String cor, Double tamanho, Int32 itemidTipoMatreial)
+        public void RDPEROLA(String cor, Double tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();

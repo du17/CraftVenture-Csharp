@@ -11,6 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemidproduto;
         private Int32 quantidade;
+
         private String cor;
         private DAO dao;
         private conexaoUso conn;
@@ -30,7 +31,7 @@ namespace GerenciadorDeEstoque.DAO
             get { return cor; }
             set { cor = value; }
         }
-        public Int32 Quantidade
+        public Int64 Quantidade
         {
             get { return quantidade; }
             set { quantidade = value; }

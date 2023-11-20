@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class FitaVO
     {
 
-        private Int32 _itemidTipoMaterial, numero;
+        private Int64 _itemidTipoMaterial, numero;
         private String tipo, marca, numeroCor;
         private Double metragem;
         private DAO dao;
@@ -20,12 +20,12 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemidTpoMaterial
+        public Int64 itemidTpoMaterial
         {
             get { return _itemidTipoMaterial; }
             set { _itemidTipoMaterial = value; }
         }
-        public Int32 Numero
+        public Int64 Numero
         {
             get { return numero; }
             set { numero = value; }

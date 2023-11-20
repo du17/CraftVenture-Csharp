@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class AcetatoVO
     {
 
-        private Int32 _itemidTipoMaterial;
+        private Int64 _itemidTipoMaterial;
         private String tamanho;
         private Double espessura;
         private DAO dao;
@@ -20,7 +20,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemidTipoMaterial
+        public Int64 itemidTipoMaterial
         {
             get { return _itemidTipoMaterial; }
             set { _itemidTipoMaterial = value; }
