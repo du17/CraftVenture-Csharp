@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class MaterialVO
     {
         //tipo foto não tem, agora fudeu
-        private Int32 _itemid, idmaterial;
+        private Int64 _itemid, idmaterial;
         private String nome;
         private Double valor;
         private DAO dao;
@@ -20,7 +20,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public Int32 itemid
+        public Int64 itemid
         {
             get { return _itemid; }
             set { _itemid = value; }
@@ -30,7 +30,7 @@ namespace GerenciadorDeEstoque.DAO
             get { return nome; }
             set { nome = value; }
         }
-        public Int32 IdMaterial
+        public Int64 IdMaterial
         {
             get { return idmaterial; }
             set { idmaterial = value; }
@@ -44,7 +44,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDM(IdMaterial, Nome, Valor);
+            dao.IDM(itemid, Nome, Valor);
         }
 
         public void Atualizar()

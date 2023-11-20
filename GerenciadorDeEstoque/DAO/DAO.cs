@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
@@ -583,7 +584,7 @@ namespace GerenciadorDeEstoque.DAO
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO pedido (nome) VALUES";
@@ -595,6 +596,13 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+
+                
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                
             }
             finally
             {
@@ -602,7 +610,29 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADTIPO(String nome, Int32 itemid)
+        public Int64 GetIdCanudo()
+        {
+            try {
+                con = new MySqlConnection();
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                long lastId = -1;
+
+                lastId = cmd.LastInsertedId;
+
+                MessageBox.Show(lastId.ToString());
+
+                return lastId;
+
+            }
+            catch(MySqlException ex) { return -1; }
+        }
+
+        public void ADTIPO(String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -626,7 +656,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDTIPO(String nome, Int32 itemid)
+        public void RDTIPO(String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -654,7 +684,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Material
 
-        public void IDM(Int32 idmaterial, String nome, Double valor)
+        public void IDM(Int64 idmaterial, String nome, Double valor)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -679,7 +709,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
+        public void ADM(Int64 idmaterial, String nome, Double valor, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -705,7 +735,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDM(Int32 idmaterial, String nome, Double valor, Int32 itemid)
+        public void RDM(Int64 idmaterial, String nome, Double valor, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -734,7 +764,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Material Produto
 
-        public void IDMPRODUTO(Int32 idmaterial, Int32 idproduto)
+        public void IDMPRODUTO(Int64 idmaterial, Int64 idproduto)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -757,7 +787,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADMPRODUTO(Int32 idmaterial, Int32 idproduto, Int32 itemid)
+        public void ADMPRODUTO(Int64 idmaterial, Int64 idproduto, Int32 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -781,7 +811,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDMPRODUTO(Int32 idmaterial, Int32 idproduto, Int32 itemid)
+        public void RDMPRODUTO(Int64 idmaterial, Int64 idproduto, Int64 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -832,7 +862,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADR(String tamanho, Double metragem, Int32 itemid)
+        public void ADR(String tamanho, Double metragem, Int64 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -856,7 +886,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDR(String tamanho, Double metragem, Int32 itemid)
+        public void RDR(String tamanho, Double metragem, Int64 itemid)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -884,18 +914,19 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Canudo
 
-        public void IDCANUDO(Int32 quantidade, String cor)
+        public void IDCANUDO(Int64 idtipomaterial, Int64 quantidade, String cor)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (quantidade, cor) VALUES";
-            query += "(?quantidade, ?cor)";
+            String query = "INSERT INTO pedido (idTipoMaterial, quantidade, cor) VALUES";
+            query += "(?idTipoMaterial, ?quantidade, ?cor)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idtipomaterial);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.ExecuteNonQuery();
@@ -907,7 +938,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADCANUDO(Int32 quantidade, String cor, Int32 itemidproduto)
+        public void ADCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -931,7 +962,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDCANUDO(Int32 quantidade, String cor, Int32 itemidproduto)
+        public void RDCANUDO(Int32 quantidade, String cor, Int64 itemidproduto)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
@@ -959,7 +990,7 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Fita
 
-        public void IDF(Int32 numero, String tipo, String marca, String numeroCor, Double metragem)
+        public void IDF(Int64 numero, String tipo, String marca, String numeroCor, Double metragem)
         {
             con = new MySqlConnection();
             conexao = new Conexao();

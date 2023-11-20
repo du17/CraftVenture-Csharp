@@ -6,6 +6,6 @@
     "\\GerenciadorDeEstoque\\DAO",
     "\\GerenciadorDeEstoque\\Properties"
   ],
-  "SelectedNode": "\\GerenciadorDeEstoque\\App.config",
+  "SelectedNode": "\\GerenciadorDeEstoque\\DAO\\DAO.cs",
   "PreviewInSolutionExplorer": false
 }
