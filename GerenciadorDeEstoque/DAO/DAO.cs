@@ -161,21 +161,28 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Cliente
-        public void IDC(String email, String nome)
+        public void IDC(Int64 telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO cliente (email, nome) VALUES";
-            query += "(?email, ?nome)";
+            String query = "INSERT INTO cliente (telefone, numero, email, nome, cep, rua, bairro, estado, complemento) VALUES";
+            query += "(?telefone, ?numero, ?email, ?nome, ?cep, ?rua, ?bairro, ?estado, ?complemento)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?email", email);
                 cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?cep", cep);
+                cmd.Parameters.AddWithValue("?rua", rua);
+                cmd.Parameters.AddWithValue("?bairro", bairro);
+                cmd.Parameters.AddWithValue("?estado", estado);
+                cmd.Parameters.AddWithValue("?complemento", complemento);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -185,20 +192,27 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(String email, String nome, Int64 itemid)
+        public void ADC(Int64 telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET email = ?email, senha = ?senha, nome = ?nome";
+            String query = "UPDATE estoque SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento";
             query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?cep", cep);
+                cmd.Parameters.AddWithValue("?rua", rua);
+                cmd.Parameters.AddWithValue("?bairro", bairro);
+                cmd.Parameters.AddWithValue("?estado", estado);
+                cmd.Parameters.AddWithValue("?complemento", complemento);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -210,21 +224,28 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDC(String email, String nome, Int64 itemid)
+        public void RDC(Int64 telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += "WHERE nome = ?nome, itemid = ?itemid, email = ?email";
+            query += "WHERE telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento, itemid = ?itemid";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?cep", cep);
+                cmd.Parameters.AddWithValue("?rua", rua);
+                cmd.Parameters.AddWithValue("?bairro", bairro);
+                cmd.Parameters.AddWithValue("?estado", estado);
+                cmd.Parameters.AddWithValue("?complemento", complemento);
+                cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }

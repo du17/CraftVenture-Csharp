@@ -11,10 +11,10 @@ namespace GerenciadorDeEstoque.DAO
     class ClienteVO
     {
 
-        //metodos do cliente!!!!!!
+        //queria dormir
 
-        private Int64 _itemid;
-        private String nome, email;
+        private Int64 _itemid, telefone, numero;
+        private String nome, email, cep, rua, bairro, estado, complemento;
         private DAO dao;
         private conexaoUso conn;
 
@@ -29,6 +29,18 @@ namespace GerenciadorDeEstoque.DAO
             set { _itemid = value; }
         }
 
+        public Int64 Telefone
+        {
+            get { return telefone; }
+            set { telefone = value; }
+        }
+
+        public Int64 Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+
         public String Nome
         {
             get { return nome; }
@@ -41,21 +53,51 @@ namespace GerenciadorDeEstoque.DAO
             set { email = value; }
         }
 
+        public String Cep
+        {
+            get { return cep; }
+            set { cep = value; }
+        }
+
+        public String Rua
+        {
+            get { return rua; }
+            set { rua = value; }
+        }
+
+        public String Bairro
+        {
+            get { return bairro; }
+            set { bairro = value; }
+        }
+
+        public String Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+
+        public String Complemento
+        {
+            get { return complemento; }
+            set { complemento = value; }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDC(Email, Nome);
+            dao.IDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADC(Email, Nome, itemid);
+            dao.ADC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDC(Email, Nome, itemid);
+            dao.RDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
         }
 
     }
