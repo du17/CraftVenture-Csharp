@@ -1343,7 +1343,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (cor, tamanho) VALUES";
+            String query = "INSERT INTO perola (cor, tamanho) VALUES";
             query += "(?cor, ?tamanho)";
             try
             {
@@ -1360,12 +1360,28 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        /*public long getLastIdPerola()
+        {
+            if (idLastInsert != -1)
+            {
+                long lastId = idLastInsert;
+
+                idLastInsert = -1;
+
+                return lastId;
+            }
+            else
+            {
+                throw new ArgumentNullException("O valor não foi encontrado! Algo deu errado com o lastInsertid");
+            }
+        }*/
+
         public void ADPEROLA(String cor, Double tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET cor = ?cor, tamanho = ?tamanho";
+            String query = "UPDATE perola SET cor = ?cor, tamanho = ?tamanho";
             query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
             try
             {
@@ -1389,7 +1405,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM perola";
             query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial, cor = ?cor, espessura = ?espessura";
             try
             {

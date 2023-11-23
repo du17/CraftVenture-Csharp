@@ -32,7 +32,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-
+            
             dao.IDTIPO(Nome);
 
         }
