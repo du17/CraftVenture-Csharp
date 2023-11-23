@@ -1,5 +1,6 @@
-﻿using System;
-using GerenciadorDeEstoque.DAO;
+
+﻿using GerenciadorDeEstoque.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastroPerola : Form
     {
-        static String nome_material = "Perola";
+        static String nome_material = "Pérola";
         PerolaVO perola;
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
@@ -25,8 +26,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -41,55 +40,39 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
-            //pq essa porra não funciona???????
-            /*perola = new PerolaVO();
-            material = new MaterialVO();
+            perola = new PerolaVO();
             tipoMaterial = new TipoMaterialVO();
+            material = new MaterialVO();
+
+            long idTipoMaterial;
 
             try
             {
-                string cor = txtCor.Text;
-                double tamanho = Convert.ToDouble(txtTamanho.Text);
+                String cor = txtCor.Text;
+                Double tamanho = Convert.ToDouble(txtTamanho.Text);
                 double valor = Convert.ToDouble(txtValor.Text);
-                long idTipoMaterial;
-
-                perola.Cor = cor;
-                perola.Tamanho = tamanho;
-
-                material.Valor = valor;
-                material.Nome = nome_material;
 
                 tipoMaterial.Nome = nome_material;
                 tipoMaterial.Inserir();
-                
+
                 idTipoMaterial = tipoMaterial.getLastId();
 
-                perola.itemidTipoMaterial = idTipoMaterial;
                 material.IdMaterial = idTipoMaterial;
-
+                material.Nome = nome_material;
+                material.Valor = valor;
                 material.Inserir();
 
+                perola.itemidTipoMaterial = idTipoMaterial;
+                perola.Cor = cor;
+                perola.Tamanho = tamanho;
                 perola.Inserir();
 
-                MessageBox.Show("Item cadastrado!");
+                MessageBox.Show("Item Cadastrado!");
 
-            }
-            catch (ArgumentNullException ex)
-            {
+            }catch(Exception ex) 
+            { 
                 MessageBox.Show(ex.Message);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
-        }
-
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            txtValor.Text = string.Empty;
-            txtTamanho.Text = string.Empty;
-            txtCor.Text = string.Empty;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDTECIDO(Tipo, TipoEstampa, Metragem);
+            dao.IDTECIDO(itemidTipoMaterial, Tipo, TipoEstampa, Metragem);
         }
 
         public void Atualizar()

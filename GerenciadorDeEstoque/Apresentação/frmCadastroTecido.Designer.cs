@@ -34,7 +34,6 @@
             this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
             this.txtMetragemAltura = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.txtTipo = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtMetragemComprimento = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rdLiso = new ComponentFactory.Krypton.Toolkit.KryptonRadioButton();
@@ -42,7 +41,9 @@
             this.txtValor = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.btnSalvar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnLimpar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cbxTipo = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSair
@@ -137,22 +138,6 @@
             this.txtMetragemAltura.StateCommon.Border.Width = 1;
             this.txtMetragemAltura.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtMetragemAltura.TabIndex = 39;
-            // 
-            // txtTipo
-            // 
-            this.txtTipo.Location = new System.Drawing.Point(519, 101);
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(470, 54);
-            this.txtTipo.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
-            this.txtTipo.StateCommon.Border.Color1 = System.Drawing.Color.Black;
-            this.txtTipo.StateCommon.Border.Color2 = System.Drawing.Color.Black;
-            this.txtTipo.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.txtTipo.StateCommon.Border.Rounding = 5;
-            this.txtTipo.StateCommon.Border.Width = 1;
-            this.txtTipo.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
-            this.txtTipo.TabIndex = 38;
             // 
             // txtMetragemComprimento
             // 
@@ -261,6 +246,7 @@
             this.btnSalvar.StateTracking.Border.Rounding = 7;
             this.btnSalvar.TabIndex = 50;
             this.btnSalvar.Values.Text = "";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnLimpar
             // 
@@ -300,6 +286,82 @@
             this.btnLimpar.TabIndex = 49;
             this.btnLimpar.Values.Text = "";
             // 
+            // cbxTipo
+            // 
+            this.cbxTipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbxTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxTipo.DropBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonGallery;
+            this.cbxTipo.DropButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
+            this.cbxTipo.DropDownWidth = 416;
+            this.cbxTipo.Items.AddRange(new object[] {
+            "Atoalhado",
+            "Fralda",
+            "Tricoline",
+            "Tule",
+            "Feltro"});
+            this.cbxTipo.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
+            this.cbxTipo.Location = new System.Drawing.Point(519, 101);
+            this.cbxTipo.Name = "cbxTipo";
+            this.cbxTipo.Size = new System.Drawing.Size(469, 52);
+            this.cbxTipo.StateActive.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.ComboBox.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateCommon.ComboBox.Border.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.ComboBox.Border.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxTipo.StateCommon.ComboBox.Border.Rounding = 5;
+            this.cbxTipo.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateCommon.DropBack.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateCommon.DropBack.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateCommon.Item.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateCommon.Item.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateCommon.Item.Border.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Border.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxTipo.StateCommon.Item.Border.Rounding = 5;
+            this.cbxTipo.StateCommon.Item.Content.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.cbxTipo.StateCommon.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Content.LongText.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.cbxTipo.StateCommon.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateCommon.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateDisabled.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateDisabled.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateDisabled.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateDisabled.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateDisabled.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateDisabled.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateNormal.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.ComboBox.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxTipo.StateNormal.Item.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateNormal.Item.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxTipo.StateNormal.Item.Border.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Border.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxTipo.StateNormal.Item.Content.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.cbxTipo.StateNormal.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipo.StateNormal.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateNormal.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipo.StateTracking.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateTracking.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateTracking.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipo.StateTracking.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxTipo.StateTracking.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxTipo.StateTracking.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxTipo.TabIndex = 51;
+            this.cbxTipo.Text = "Inserir Tipo";
+            // 
             // frmCadastroTecido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,6 +369,7 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.CadastroTecido;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.cbxTipo);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.txtValor);
@@ -318,12 +381,12 @@
             this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.Controls.Add(this.txtMetragemAltura);
-            this.Controls.Add(this.txtTipo);
             this.DoubleBuffered = true;
             this.Name = "frmCadastroTecido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,7 +400,6 @@
         private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtMetragemAltura;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtTipo;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtMetragemComprimento;
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rdEstampado;
@@ -345,5 +407,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtValor;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSalvar;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnLimpar;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbxTipo;
     }
 }

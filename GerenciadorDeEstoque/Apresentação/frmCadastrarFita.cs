@@ -1,4 +1,6 @@
-﻿using GerenciadorDeEstoque.DAO;
+
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +15,11 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastrarFita : Form
     {
-        static String nome_material = "Fita";
+
+        private static String nome_material = "Fita";
         FitaVO fita;
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
-        string tipo, marca, numeroCor;
-        double metragem, valor;
-        int numero;
-        long idTipoMaterial;
 
         public frmCadastrarFita()
         {
@@ -29,8 +28,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -40,7 +37,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtMetragem.Text = string.Empty;
             txtNumCor.Text = string.Empty;
             txtNumero.Text = string.Empty;
-            txtTipo.Text = string.Empty;
+            cbxTipo.Text = "Inserir Tipo";
             txtValor.Text = string.Empty;
         }
 
@@ -59,44 +56,40 @@ namespace GerenciadorDeEstoque.Apresentação
             material = new MaterialVO();
             tipoMaterial = new TipoMaterialVO();
 
+            long idTipoMaterial;
+
             try
             {
-                tipo = txtTipo.Text;
-                marca = txtMarca.Text;
-                numeroCor = txtNumCor.Text;
-                metragem = Convert.ToDouble(txtMetragem.Text);
-                numero = Convert.ToInt32(txtNumero.Text);
+                String tipo = cbxTipo.Text;
+                int numero = Convert.ToInt32(txtNumero.Text);
+                double metragem = Convert.ToDouble(txtMetragem.Text);
+                String marca = txtMarca.Text;
+                String numeroCor = txtNumCor.Text;
+                double valor = Convert.ToDouble(txtValor.Text);
 
-                valor = Convert.ToDouble(txtValor.Text);
-
-                fita.Tipo = tipo;
-                fita.Marca = marca;
-                fita.Metragem = metragem;
-                fita.Numero = numero;
-                fita.NumeroCor = numeroCor;
-
-                material.Valor = valor;
 
                 tipoMaterial.Nome = nome_material;
                 tipoMaterial.Inserir();
 
                 idTipoMaterial = tipoMaterial.getLastId();
 
-                fita.itemidTpoMaterial = idTipoMaterial;
-                material.IdMaterial = idTipoMaterial;
-
+                material.IdMaterial= idTipoMaterial;
+                material.Nome = nome_material;
+                material.Valor = valor;
                 material.Inserir();
 
+                fita.itemidTpoMaterial = idTipoMaterial;
+                fita.Tipo = tipo;
+                fita.Numero = numero;
+                fita.Metragem = metragem;
+                fita.Marca = marca;
+                fita.NumeroCor = numeroCor;
                 fita.Inserir();
 
-                MessageBox.Show("Item cadastrado!");
+                MessageBox.Show("Item Cadastrado!");
+                
 
-            }
-            catch(ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch(Exception ex)
+            }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

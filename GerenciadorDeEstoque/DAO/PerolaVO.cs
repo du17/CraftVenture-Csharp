@@ -41,7 +41,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDPEROLA(Cor, Tamanho);
+            dao.IDPEROLA(itemidTipoMaterial, Cor, Tamanho);
         }
 
         public void Atualizar()

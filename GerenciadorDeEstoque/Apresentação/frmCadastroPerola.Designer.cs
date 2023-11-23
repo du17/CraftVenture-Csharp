@@ -36,8 +36,8 @@
             this.btnVenda = new System.Windows.Forms.Button();
             this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
-            this.txtTamanho = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtCor = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.txtTamanho = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -211,22 +211,6 @@
             this.btnCadastro.UseVisualStyleBackColor = false;
             this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
-            // txtTamanho
-            // 
-            this.txtTamanho.Location = new System.Drawing.Point(518, 176);
-            this.txtTamanho.Name = "txtTamanho";
-            this.txtTamanho.Size = new System.Drawing.Size(200, 54);
-            this.txtTamanho.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
-            this.txtTamanho.StateCommon.Border.Color1 = System.Drawing.Color.Black;
-            this.txtTamanho.StateCommon.Border.Color2 = System.Drawing.Color.Black;
-            this.txtTamanho.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.txtTamanho.StateCommon.Border.Rounding = 5;
-            this.txtTamanho.StateCommon.Border.Width = 1;
-            this.txtTamanho.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
-            this.txtTamanho.TabIndex = 62;
-            // 
             // txtCor
             // 
             this.txtCor.Location = new System.Drawing.Point(517, 102);
@@ -243,6 +227,22 @@
             this.txtCor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.txtCor.TabIndex = 61;
             // 
+            // txtTamanho
+            // 
+            this.txtTamanho.Location = new System.Drawing.Point(517, 176);
+            this.txtTamanho.Name = "txtTamanho";
+            this.txtTamanho.Size = new System.Drawing.Size(201, 54);
+            this.txtTamanho.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.txtTamanho.StateCommon.Border.Color1 = System.Drawing.Color.Black;
+            this.txtTamanho.StateCommon.Border.Color2 = System.Drawing.Color.Black;
+            this.txtTamanho.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.txtTamanho.StateCommon.Border.Rounding = 5;
+            this.txtTamanho.StateCommon.Border.Width = 1;
+            this.txtTamanho.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
+            this.txtTamanho.TabIndex = 72;
+            // 
             // frmCadastroPerola
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,6 +250,7 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.CadastroPerola;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.txtTamanho);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.txtValor);
@@ -258,7 +259,6 @@
             this.Controls.Add(this.btnVenda);
             this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
-            this.Controls.Add(this.txtTamanho);
             this.Controls.Add(this.txtCor);
             this.DoubleBuffered = true;
             this.Name = "frmCadastroPerola";
@@ -278,7 +278,7 @@
         private System.Windows.Forms.Button btnVenda;
         private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtTamanho;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtCor;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtTamanho;
     }
 }

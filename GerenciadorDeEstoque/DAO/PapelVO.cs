@@ -10,7 +10,8 @@ namespace GerenciadorDeEstoque.DAO
     {
 
         private Int64 _itemidTpoMaterial;
-        private String tipo, gramatura, cor, tamanho;
+        private String tipo, cor, tamanho;
+        private Int32 gramatura;
         private DAO dao;
         private conexaoUso conn;
 
@@ -29,7 +30,7 @@ namespace GerenciadorDeEstoque.DAO
             get { return tipo; }
             set { tipo = value; }
         }
-        public String Gramatura
+        public Int32 Gramatura
         {
             get { return gramatura; }
             set { gramatura = value; }
@@ -49,7 +50,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
          {
              dao = new DAO();
-             dao.IDPAPEL(Tipo, Gramatura, Cor, Tamanho);
+             dao.IDPAPEL(itemidTipoMaterial, Tipo, Gramatura, Cor, Tamanho);
          }
 
          public void Atualizar()

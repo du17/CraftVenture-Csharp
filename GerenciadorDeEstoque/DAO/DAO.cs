@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GerenciadorDeEstoque.Apresentação.Menu;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -454,7 +455,7 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (telefone, codCliente) VALUES";
+            String query = "INSERT INTO telefones(telefone, codCliente) VALUES";
             query += "(?telefone, ?codCliente)";
             try
             {
@@ -844,18 +845,46 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Renda
 
-        public void IDR(String tamanho, Double metragem)
+        public void IDR(Int64 idTipoMaterial, String tamanho, Double metragem)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (tamanho, metragem) VALUES";
-            query += "(?tamanho, ?metragem)";
+            String query = "INSERT INTO renda (idTipoMaterial, tamanho, metragem) VALUES";
+            query += "(?idTipoMaterial, ?tamanho, ?metragem)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADR(String tamanho, Double metragem, Int64 idTipoMaterial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE renda SET tamanho = ?tamanho, metragem = ?metragem";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?tamamnho", tamanho);
                 cmd.Parameters.AddWithValue("?metragem", metragem);
                 cmd.ExecuteNonQuery();
@@ -865,44 +894,21 @@ namespace GerenciadorDeEstoque.DAO
             {
                 con.Close();
             }
-        }
-
-        public void ADR(String tamanho, Double metragem, Int64 itemid)
-        {
-            con = new MySqlConnection();
-            conexao = new Conexao();
-            con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET tamanho = ?tamanho, metragem = ?metragem";
-            query += " WHERE itemid = ?itemid";
-            try
-            {
-                con.Open();
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
-                cmd.Parameters.AddWithValue("?tamamnho", tamanho);
-                cmd.Parameters.AddWithValue("?metragem", metragem);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            finally
-            {
-                con.Close();
-            }
 
         }
 
-        public void RDR(String tamanho, Double metragem, Int64 itemid)
+        public void RDR(String tamanho, Double metragem, Int64 idTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += " WHERE itemid = ?itemid, tamanho = ?tamanho, metragem = ?metragem";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial, tamanho = ?tamanho, metragem = ?metragem";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?tamamnho", tamanho);
                 cmd.Parameters.AddWithValue("?metragem", metragem);
                 cmd.ExecuteNonQuery();
@@ -962,19 +968,19 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
+        public void ADCANUDO(Int64 quantidade, String cor, Int64 idTipoMaterial)
 
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE estoque SET quantidade = ?quantidade, cor = ?cor";
-            query += " WHERE itemidproduto = ?itemidproduto";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.ExecuteNonQuery();
@@ -987,19 +993,19 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDCANUDO(Int64 quantidade, String cor, Int64 itemidproduto)
+        public void RDCANUDO(Int64 quantidade, String cor, Int64 idTipoMaterial)
 
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE FROM estoque";
-            query += " WHERE itemidproduto = ?itemidproduto, quantidade = ?quantidade, cor = ?cor";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial, quantidade = ?quantidade, cor = ?cor";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidproduto", itemidproduto);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.ExecuteNonQuery();
@@ -1016,18 +1022,19 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Fita
 
-        public void IDF(Int64 numero, String tipo, String marca, String numeroCor, Double metragem)
+        public void IDF(Int64 idtipomaterial, Int64 numero, String tipo, String marca, String numeroCor, Double metragem)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (numero, tipo, marca, numeroCor, metragem) VALUES";
-            query += "(?numero, ?tipo, ?marca, ?numeroCor, ?metragem)";
+            String query = "INSERT INTO fita (idtipomaterial, numero, tipo, marca, numeroCor, metragem) VALUES";
+            query += "(?idtipomaterial, ?numero, ?tipo, ?marca, ?numeroCor, ?metragem)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idtipomaterial", idtipomaterial);
                 cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?marca", marca);
@@ -1047,7 +1054,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
+            String query = "UPDATE fita SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
             query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
             try
             {
@@ -1074,13 +1081,13 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
+            String query = "DELETE FROM fita";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMatreia, numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?numero", numero);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?marca", marca);
@@ -1100,18 +1107,44 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Papel
 
-        public void IDPAPEL(String tipo, String gramatura, String cor, String tamanho)
+        public void IDPAPEL(Int64 idTipoMaterial, String tipo, Int32 gramatura, String cor, String tamanho)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (tipo, gramatura, cor, tamanho) VALUES";
-            query += "(?tipo, ?gramatura, ?cor, ?tamanho)";
+            String query = "INSERT INTO papel (idTipoMaterial, tipo, gramatura, cor, tamanho) VALUES";
+            query += "(?idTipoMaterial, ?tipo, ?gramatura, ?cor, ?tamanho)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void ADPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+            String query = "UPDATE papel SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?gramatura", gramatura);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
@@ -1124,47 +1157,21 @@ namespace GerenciadorDeEstoque.DAO
             {
                 con.Close();
             }
+
         }
 
-        public void ADPAPEL(String tipo, String gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
+        public void RDPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            String query = "DELETE FROM papel";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMatreia, tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
-                cmd.Parameters.AddWithValue("?tipo", tipo);
-                cmd.Parameters.AddWithValue("?gramatura", gramatura);
-                cmd.Parameters.AddWithValue("?tamanho", tamanho);
-                cmd.Parameters.AddWithValue("?cor", cor);
-                cmd.Parameters.AddWithValue("?tamanho", tamanho);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            finally
-            {
-                con.Close();
-            }
-
-        }
-
-        public void RDPAPEL(String tipo, String gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
-        {
-            con = new MySqlConnection();
-            conexao = new Conexao();
-            con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
-            try
-            {
-                con.Open();
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?gramatura", gramatura);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
@@ -1184,18 +1191,19 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Tecido
 
-        public void IDTECIDO(String tipo, String tipoEstampa, Double metragem)
+        public void IDTECIDO(Int64 idTipoMaterial, String tipo, String tipoEstampa, Double metragem)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (tipo, tipoEstampa, metragem) VALUES";
-            query += "(?tipo, ?tipoEstampa, ?metragem)";
+            String query = "INSERT INTO tecido (idTipoMaterial, tipo, tipoEstampa, metragem) VALUES";
+            query += "(?idTipoMaterial, ?tipo, ?tipoEstampa, ?metragem)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?tipoEstampa", tipoEstampa);
                 cmd.Parameters.AddWithValue("?metragem", metragem);
@@ -1213,13 +1221,13 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET tipo = ?tipo, tipoEstampa = ?tipoEstampa, metragem = ?metragem";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            String query = "UPDATE tecido SET tipo = ?tipo, tipoEstampa = ?tipoEstampa, metragem = ?metragem";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?tipoEstampa", tipoEstampa);
                 cmd.Parameters.AddWithValue("?metragem", metragem);
@@ -1238,13 +1246,13 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, tipo = ?tipo, tipoEstampa = ?tipoEstampa, metragem = ?metragem";
+            String query = "DELETE FROM tecido";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMatreia, tipo = ?tipo, tipoEstampa = ?tipoEstampa, metragem = ?metragem";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?tipoEstampa", tipoEstampa);
                 cmd.Parameters.AddWithValue("?metragem", metragem);
@@ -1262,18 +1270,19 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Acetato
 
-        public void IDE(String tamanho, Double espessura)
+        public void IDE(Int64 idTipoMaterial, Double tamanho, Double espessura)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (tamanho, espessura) VALUES";
-            query += "(?tamanho, ?espessura)";
+            String query = "INSERT INTO acetato (idTipoMaterial, tamanho, espessura) VALUES";
+            query += "(?idTipoMaterial, ?tamanho, ?espessura)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.Parameters.AddWithValue("?espessura", espessura);
                 cmd.ExecuteNonQuery();
@@ -1285,18 +1294,18 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADE(String tamanho, Double espessura, Int64 itemidTipoMatreial)
+        public void ADE(Double tamanho, Double espessura, Int64 itemidTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET tamanho = ?tamanho, espessura = ?espessura";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+            String query = "UPDATE acetato SET tamanho = ?tamanho, espessura = ?espessura";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMaterial);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.Parameters.AddWithValue("?espessura", espessura);
                 cmd.ExecuteNonQuery();
@@ -1309,18 +1318,18 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDE(String tamanho, Double espessura, Int64 itemidTipoMatreial)
+        public void RDE(Double tamanho, Double espessura, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreia, tamanho = ?tamanho, espessura = ?espessura";
+            String query = "DELETE FROM acetato";
+            query += " WHERE itemidTipoMaterial = ?itemidTipoMatreia, tamanho = ?tamanho, espessura = ?espessura";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.Parameters.AddWithValue("?espessura", espessura);
                 cmd.ExecuteNonQuery();
@@ -1337,18 +1346,20 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Perola
 
-        public void IDPEROLA(String cor, Double tamanho)
+        public void IDPEROLA(Int64 idTipoMaterial, String cor, Double tamanho)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO perola (cor, tamanho) VALUES";
-            query += "(?cor, ?tamanho)";
+            String query = "INSERT INTO perola (idTipoMaterial, cor, tamanho) VALUES";
+            query += "(?idTipoMaterial, ?cor, ?tamanho)";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.ExecuteNonQuery();
@@ -1360,34 +1371,21 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        /*public long getLastIdPerola()
-        {
-            if (idLastInsert != -1)
-            {
-                long lastId = idLastInsert;
+        public void ADPEROLA(String cor, Double tamanho, Int64 idTipoMaterial)
 
-                idLastInsert = -1;
-
-                return lastId;
-            }
-            else
-            {
-                throw new ArgumentNullException("O valor não foi encontrado! Algo deu errado com o lastInsertid");
-            }
-        }*/
-
-        public void ADPEROLA(String cor, Double tamanho, Int64 itemidTipoMatreial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE perola SET cor = ?cor, tamanho = ?tamanho";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial";
+
+            query += " WHERE idTipoMaterial = ?idTipoMaterial";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.ExecuteNonQuery();
@@ -1400,18 +1398,20 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDPEROLA(String cor, Double tamanho, Int64 itemidTipoMatreial)
+        public void RDPEROLA(String cor, Double tamanho, Int64 idTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM perola";
-            query += " WHERE itemidTipoMatreial = ?itemidTipoMatreial, cor = ?cor, espessura = ?espessura";
+
+            String query = "DELETE FROM estoque";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial, cor = ?cor, espessura = ?espessura";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMatreial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.ExecuteNonQuery();
