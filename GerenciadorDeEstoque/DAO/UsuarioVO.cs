@@ -54,7 +54,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDU(Nome, Senha, Email, itemid);
+            dao.RDU(Email, Senha, Nome, itemid);
         }
 
         public bool Login()
