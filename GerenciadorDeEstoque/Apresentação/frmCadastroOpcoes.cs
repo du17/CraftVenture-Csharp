@@ -34,7 +34,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnPerola_Click(object sender, EventArgs e)
         {
-            frmCadastroRenda frmRenda = new frmCadastroRenda();
+            frmCadastroPerola frmRenda = new frmCadastroPerola();
             frmRenda.ShowDialog();
             this.Close();
         }

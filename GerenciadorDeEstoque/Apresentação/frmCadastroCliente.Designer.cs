@@ -102,6 +102,7 @@
             this.btnCadastrar.StateTracking.Border.Rounding = 7;
             this.btnCadastrar.TabIndex = 39;
             this.btnCadastrar.Values.Text = "";
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // btnCancelar
             // 
@@ -479,7 +480,8 @@
             this.txtTelefone.StateCommon.Border.Rounding = 5;
             this.txtTelefone.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.txtTelefone.TabIndex = 48;
-            this.txtTelefone.Text = "(  )     -";
+            this.txtTelefone.Text = "___________";
+            this.txtTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // txtCep
             // 

@@ -1,4 +1,5 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,11 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastroTecido : Form
     {
+        static String nome_material = "Tecido";
+        CanudoVO canudo;
+        MaterialVO material;
+        TipoMaterialVO tipoMaterial;
+
         public frmCadastroTecido()
         {
             InitializeComponent();
@@ -32,6 +38,11 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 Application.Exit();
             }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
