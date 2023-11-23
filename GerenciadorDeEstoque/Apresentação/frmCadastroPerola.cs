@@ -1,3 +1,4 @@
+
 ﻿using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,6 @@ namespace GerenciadorDeEstoque.Apresentação
             { 
                 MessageBox.Show(ex.Message);
             }
-
         }
     }
 }

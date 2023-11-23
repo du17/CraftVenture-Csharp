@@ -30,7 +30,7 @@ namespace GerenciadorDeEstoque.DAO
         }
 
         #region Usuario
-        public void IDU(String email, String nome, String senha)
+        public void IDU(String email, String senha, String nome)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -44,8 +44,8 @@ namespace GerenciadorDeEstoque.DAO
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?email", email);
-                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -55,7 +55,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADU(String email, String nome, String senha, Int64 itemid)
+        public void ADU(String email, String senha, String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -67,9 +67,9 @@ namespace GerenciadorDeEstoque.DAO
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?email", email);
                 cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -81,7 +81,7 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDU(String email, String nome, String senha, Int64 itemid)
+        public void RDU(String email, String senha, String nome, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -93,9 +93,9 @@ namespace GerenciadorDeEstoque.DAO
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?email", email);
                 cmd.Parameters.AddWithValue("?senha", senha);
+                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -1354,6 +1354,7 @@ namespace GerenciadorDeEstoque.DAO
 
             String query = "INSERT INTO perola (idTipoMaterial, cor, tamanho) VALUES";
             query += "(?idTipoMaterial, ?cor, ?tamanho)";
+
             try
             {
                 con.Open();
@@ -1371,12 +1372,15 @@ namespace GerenciadorDeEstoque.DAO
         }
 
         public void ADPEROLA(String cor, Double tamanho, Int64 idTipoMaterial)
+
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE perola SET cor = ?cor, tamanho = ?tamanho";
+
             query += " WHERE idTipoMaterial = ?idTipoMaterial";
+
             try
             {
                 con.Open();
@@ -1399,8 +1403,10 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
+
             String query = "DELETE FROM estoque";
             query += " WHERE idTipoMaterial = ?idTipoMaterial, cor = ?cor, espessura = ?espessura";
+
             try
             {
                 con.Open();

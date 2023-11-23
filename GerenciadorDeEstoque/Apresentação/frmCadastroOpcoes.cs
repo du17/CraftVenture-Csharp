@@ -40,6 +40,7 @@ namespace GerenciadorDeEstoque.Apresentação
             this.Hide();
             frmRenda.ShowDialog();
             this.Show();
+
         }
 
         private void btnAcetato_Click(object sender, EventArgs e)

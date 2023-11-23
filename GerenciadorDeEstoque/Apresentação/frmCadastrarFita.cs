@@ -1,3 +1,4 @@
+
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
 using System;
@@ -19,7 +20,6 @@ namespace GerenciadorDeEstoque.Apresentação
         FitaVO fita;
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
-
 
         public frmCadastrarFita()
         {
@@ -67,6 +67,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 String numeroCor = txtNumCor.Text;
                 double valor = Convert.ToDouble(txtValor.Text);
 
+
                 tipoMaterial.Nome = nome_material;
                 tipoMaterial.Inserir();
 
@@ -92,6 +93,7 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
     }
 }
