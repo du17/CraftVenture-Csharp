@@ -56,7 +56,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDF(Numero, Tipo, Marca, NumeroCor, Metragem);
+            dao.IDF(itemidTpoMaterial, Numero, Tipo, Marca, NumeroCor, Metragem);
         }
 
         public void Atualizar()

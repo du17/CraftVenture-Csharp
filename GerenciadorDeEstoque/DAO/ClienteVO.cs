@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using GerenciadorDeEstoque.DAO;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
@@ -20,7 +21,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public ClienteVO()
         {
-
+            dao = new DAO();
         }
 
         public Int64 itemid
@@ -85,7 +86,6 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-            dao = new DAO();
             dao.IDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento);
         }
 
@@ -98,6 +98,20 @@ namespace GerenciadorDeEstoque.DAO
         {
             dao = new DAO();
             dao.RDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
+        }
+
+        public Int64 getLastIdCliente()
+        {
+            try
+            {
+                return dao.getLastId();
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
         }
 
     }

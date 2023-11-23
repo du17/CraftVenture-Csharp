@@ -10,10 +10,10 @@ namespace GerenciadorDeEstoque.DAO
     {
 
         private Int64 _idTipoMaterial;
+        
         private String tamanho;
         private Double metragem;
         private DAO dao;
-        private conexaoUso conn;
 
         public RendaVO()
         {
@@ -22,8 +22,8 @@ namespace GerenciadorDeEstoque.DAO
 
         public Int64 idTipoMaterial
         {
-            get { return idTipoMaterial; }
-            set { idTipoMaterial = value; }
+            get { return _idTipoMaterial; }
+            set { _idTipoMaterial = value; }
         }
         public String Tamanho
         {

@@ -26,8 +26,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -51,7 +49,7 @@ namespace GerenciadorDeEstoque.Apresentação
             try
             {
 
-                String tamanho = cbxTamanho.Text;
+                String tamanho = cbxTamanho.Text.ToString() ;
                 Double metragem = Convert.ToDouble(txtMetragem.Text);
                 Double valor = Convert.ToDouble(txtValor.Text);
 
@@ -68,6 +66,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 renda.idTipoMaterial = idTipoMaterial;
                 renda.Tamanho = tamanho;
                 renda.Metragem = metragem;
+                MessageBox.Show("Acontece");
                 renda.Inserir();
 
                 MessageBox.Show("Item Cadastrado!");
@@ -76,6 +75,11 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnSalvarTeste_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

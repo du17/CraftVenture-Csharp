@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,8 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmCadastroTecido : Form
     {
         static String nome_material = "Tecido";
-        CanudoVO canudo;
+
+        TecidoVO tecido;
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
@@ -26,8 +28,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -42,7 +42,55 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            tecido = new TecidoVO();    
+            material = new MaterialVO();
+            tipoMaterial = new TipoMaterialVO();
 
+            long idTipoMaterial;
+
+            try
+            {
+                String tipo = cbxTipo.Text;
+                double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
+                double valor = Convert.ToDouble(txtValor.Text);
+                String tipoEstampa;
+
+                if(rdEstampado.Checked == true){
+                    tipoEstampa = "Estampado";
+
+                }
+                else if(rdLiso.Checked == true) 
+                {
+                    tipoEstampa = "Liso";
+                }
+                else
+                {
+                    tipoEstampa = "Sem Tipo";
+                }
+
+                tipoMaterial.Nome = nome_material;
+                tipoMaterial.Inserir();
+                idTipoMaterial = tipoMaterial.getLastId();
+
+                material.IdMaterial = idTipoMaterial;
+                material.Nome = nome_material;
+                material.Valor = valor;
+                material.Inserir();
+
+                tecido.itemidTipoMaterial = idTipoMaterial;
+                tecido.Tipo = tipo;
+                tecido.Metragem = metragem;
+                tecido.TipoEstampa = tipoEstampa;
+                tecido.Inserir();
+
+                MessageBox.Show("Item Cadastrado!");
+
+
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

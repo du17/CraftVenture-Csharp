@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
@@ -15,7 +16,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public TelefonesVO()
         {
-
+            dao = new DAO();
         }
         public Int64 itemid
         {
@@ -35,8 +36,8 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-            dao = new DAO();
             dao.IDT(Telefone, CodCliente);
+
         }
 
         public void Atualizar()
@@ -49,6 +50,20 @@ namespace GerenciadorDeEstoque.DAO
         {
             dao = new DAO();
             dao.RDT(Telefone, CodCliente, itemid);
+        }
+
+        public Int64 getLastIdTelefone()
+        {
+            try
+            {
+                return dao.getLastId();
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
         }
 
     }
