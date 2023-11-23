@@ -29,6 +29,26 @@ namespace GerenciadorDeEstoque.DAO
         {
         }
 
+        #region GetLasId
+
+        public long getLastId()
+        {
+            if (idLastInsert != -1)
+            {
+                long lastId = idLastInsert;
+
+                idLastInsert = -1;
+
+                return lastId;
+            }
+            else
+            {
+                throw new ArgumentNullException("O valor não foi encontrado! Algo deu errado com o lastInsertid");
+            }
+        }
+
+        #endregion
+
         #region Usuario
         public void IDU(String email, String senha, String nome)
         {
@@ -949,22 +969,6 @@ namespace GerenciadorDeEstoque.DAO
             finally
             {
                 con.Close();
-            }
-        }
-
-        public long getLastId()
-        {
-            if (idLastInsert != -1)
-            {
-                long lastId = idLastInsert;
-
-                idLastInsert = -1;
-
-                return lastId;
-            }
-            else
-            {
-                throw new ArgumentNullException("O valor não foi encontrado! Algo deu errado com o lastInsertid");
             }
         }
 
