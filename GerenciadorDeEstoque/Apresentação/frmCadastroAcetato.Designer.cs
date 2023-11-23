@@ -79,6 +79,7 @@
             this.btnSalvar.StateTracking.Border.Rounding = 7;
             this.btnSalvar.TabIndex = 61;
             this.btnSalvar.Values.Text = "";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnLimpar
             // 

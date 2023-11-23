@@ -10,7 +10,7 @@ namespace GerenciadorDeEstoque.DAO
     {
 
         private Int64 _itemidTipoMaterial;
-        private String tamanho;
+        private Double tamanho;
         private Double espessura;
         private DAO dao;
         private conexaoUso conn;
@@ -23,12 +23,27 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemidTipoMaterial
         {
             get { return _itemidTipoMaterial; }
-            set { _itemidTipoMaterial = value; }
+            set { 
+                
+                if(value != -1)
+                {
+                    _itemidTipoMaterial = value;
+                }
+                else { throw new ArgumentException("O id não foi encontrado"); }
+            
+            }
         }
-        public String Tamanho
+        public Double Tamanho
         {
             get { return tamanho; }
-            set { tamanho = value; }
+            set { 
+                if (value > 1)
+                {
+                    tamanho = value;
+                }
+                else { throw new ArgumentException("O tamanho não pode ser menor que 1"); }
+                
+            }
         }
         public Double Espessura
         {
@@ -39,7 +54,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDE(Tamanho, Espessura);
+            dao.IDE(itemidTipoMaterial, Tamanho, Espessura);
         }
 
         public void Atualizar()

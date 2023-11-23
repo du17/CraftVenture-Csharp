@@ -9,26 +9,26 @@ namespace GerenciadorDeEstoque.DAO
     class RendaVO
     {
 
-        private Int64 _itemid;
-        private String tamnho;
+        private Int64 _idTipoMaterial;
+        
+        private String tamanho;
         private Double metragem;
         private DAO dao;
-        private conexaoUso conn;
 
         public RendaVO()
         {
 
         }
 
-        public Int64 itemid
+        public Int64 idTipoMaterial
         {
-            get { return _itemid; }
-            set { _itemid = value; }
+            get { return _idTipoMaterial; }
+            set { _idTipoMaterial = value; }
         }
         public String Tamanho
         {
-            get { return tamnho; }
-            set { tamnho = value; }
+            get { return tamanho; }
+            set { tamanho = value; }
         }
         public Double Metragem
         {
@@ -39,18 +39,18 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDR(Tamanho, Metragem);
+            dao.IDR(idTipoMaterial, Tamanho, Metragem);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADR(Tamanho, Metragem, itemid);
+            dao.ADR(Tamanho, Metragem, idTipoMaterial);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDR(Tamanho, Metragem, itemid);
+            dao.RDR(Tamanho, Metragem, idTipoMaterial);
         }
 
     }

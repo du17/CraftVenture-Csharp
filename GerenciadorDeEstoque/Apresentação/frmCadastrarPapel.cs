@@ -8,11 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastrarPapel : Form
     {
+        static String nome_material = "Papel";
+        PapelVO papel;
+        MaterialVO material;
+        TipoMaterialVO tipoMaterial;
+
         public frmCadastrarPapel()
         {
             InitializeComponent();
@@ -44,8 +50,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -54,8 +58,55 @@ namespace GerenciadorDeEstoque.Apresentação
             txtValor.Text = string.Empty;
             txtCor.Text = string.Empty;
             txtGramatura.Text = string.Empty;
-            txtTamanho.Text = string.Empty;
-            txtTipo.Text = string.Empty;
+            cbxTamanho.Text = string.Empty;
+            cbxTipo.Text = string.Empty;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            papel = new PapelVO();
+            material = new MaterialVO();
+            tipoMaterial = new TipoMaterialVO();
+
+            long idTipoMaterial;
+
+            try
+            {
+                String tipo = cbxTipo.Text;
+                String cor = txtCor.Text;
+                String tamanho = cbxTamanho.Text;
+                int gramatura = Convert.ToInt32(txtGramatura.Text);
+                double valor = Convert.ToDouble(txtValor.Text); 
+
+
+                tipoMaterial.Nome = nome_material;
+                tipoMaterial.Inserir();
+
+                idTipoMaterial = tipoMaterial.getLastId();
+
+                material.Nome = nome_material;
+                material.Valor = valor;
+                material.IdMaterial = idTipoMaterial;
+                material.Inserir();
+
+                papel.itemidTipoMaterial = idTipoMaterial;
+                papel.Tipo = tipo;
+                papel.Cor = cor;
+                papel.Tamanho = tamanho;    
+                papel.Gramatura = gramatura;
+
+                papel.Inserir();
+
+                MessageBox.Show("Item Cadastrado!");
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

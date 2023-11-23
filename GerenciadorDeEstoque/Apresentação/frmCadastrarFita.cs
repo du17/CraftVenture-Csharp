@@ -1,4 +1,6 @@
+
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,12 @@ namespace GerenciadorDeEstoque.Apresentação
 {
     public partial class frmCadastrarFita : Form
     {
+
+        private static String nome_material = "Fita";
+        FitaVO fita;
+        MaterialVO material;
+        TipoMaterialVO tipoMaterial;
+
         public frmCadastrarFita()
         {
             InitializeComponent();
@@ -20,8 +28,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
-            menuOpcoes.Show();
             this.Close();
         }
 
@@ -31,7 +37,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtMetragem.Text = string.Empty;
             txtNumCor.Text = string.Empty;
             txtNumero.Text = string.Empty;
-            txtTipo.Text = string.Empty;
+            cbxTipo.Text = "Inserir Tipo";
             txtValor.Text = string.Empty;
         }
 
@@ -42,6 +48,52 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 Application.Exit();
             }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            fita = new FitaVO();
+            material = new MaterialVO();
+            tipoMaterial = new TipoMaterialVO();
+
+            long idTipoMaterial;
+
+            try
+            {
+                String tipo = cbxTipo.Text;
+                int numero = Convert.ToInt32(txtNumero.Text);
+                double metragem = Convert.ToDouble(txtMetragem.Text);
+                String marca = txtMarca.Text;
+                String numeroCor = txtNumCor.Text;
+                double valor = Convert.ToDouble(txtValor.Text);
+
+
+                tipoMaterial.Nome = nome_material;
+                tipoMaterial.Inserir();
+
+                idTipoMaterial = tipoMaterial.getLastId();
+
+                material.IdMaterial= idTipoMaterial;
+                material.Nome = nome_material;
+                material.Valor = valor;
+                material.Inserir();
+
+                fita.itemidTpoMaterial = idTipoMaterial;
+                fita.Tipo = tipo;
+                fita.Numero = numero;
+                fita.Metragem = metragem;
+                fita.Marca = marca;
+                fita.NumeroCor = numeroCor;
+                fita.Inserir();
+
+                MessageBox.Show("Item Cadastrado!");
+                
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

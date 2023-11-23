@@ -35,8 +35,9 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         private void btnCliente_Click(object sender, EventArgs e)
         {
             frmCadastroCliente cadastroCliente = new frmCadastroCliente();
-            cadastroCliente.Show();
-            this.Close();
+            this.Hide();
+            cadastroCliente.ShowDialog();
+            this.Show();
         }
 
         private void btnSair_Click(object sender, EventArgs e)
