@@ -974,7 +974,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET quantidade = ?quantidade, cor = ?cor";
+            String query = "UPDATE canudo SET quantidade = ?quantidade, cor = ?cor";
             query += " WHERE itemidproduto = ?itemidproduto";
             try
             {
@@ -999,7 +999,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM canudo";
             query += " WHERE itemidproduto = ?itemidproduto, quantidade = ?quantidade, cor = ?cor";
             try
             {
