@@ -219,7 +219,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento";
+            String query = "UPDATE cliente SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -251,7 +251,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM cliente";
             query += "WHERE telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento, itemid = ?itemid";
             try
             {
@@ -277,6 +277,67 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        /*public int BDC(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, Int64 CodCliente)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM cliente WHERE nome LIKE @nome, quantidade LIKE @quantidade, " +
+                    "              anotacao LIKE @valorTotal, nomeCliente LIKE @nomeCliente, telefone LIKE @telefone, " +
+                    "              formaPagamento LIKE @formaPagamento, CodCliente LIKE @CodCliente";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                cmd.Parameters.AddWithValue("@anotacao", anotacao);
+                cmd.Parameters.AddWithValue("@valorTotal", valorTotal);
+                cmd.Parameters.AddWithValue("@nomeCliente", nomeCliente);
+                cmd.Parameters.AddWithValue("@telefone", telefone);
+                cmd.Parameters.AddWithValue("@formaPagamento", formaPagamento);
+                cmd.Parameters.AddWithValue("@CodCLiente", CodCliente);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
         #endregion
 
         #region Venda
@@ -288,7 +349,7 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (nome, quantidade, anotacao, valorTotal, nomeCliente, telefone, formaPagamento, CodCliente) VALUES";
+            String query = "INSERT INTO venda (nome, quantidade, anotacao, valorTotal, nomeCliente, telefone, formaPagamento, CodCliente) VALUES";
             query += "(?nome, ?quantidade, ?anotacao, ?valorTotal, ?nomeCliente, ?telefone, ?formaPagamento, ?CodCliente)";
             try
             {
@@ -317,7 +378,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
+            String query = "UPDATE venda SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
                 "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
             query += " WHERE itemid = ?itemid";
             try
@@ -350,7 +411,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM venda";
             query += "WHERE itemid = ?itemid, quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
                 "                              telefone = ?telefone, formaPagamento = ?formaPagamento, CodCliente = ?CodCliente";
             try
@@ -376,6 +437,67 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        /*public int BDV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, Int64 CodCliente)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM venda WHERE nome LIKE @nome, quantidade LIKE @quantidade, " +
+                    "              anotacao LIKE @valorTotal, nomeCliente LIKE @nomeCliente, telefone LIKE @telefone, " +
+                    "              formaPagamento LIKE @formaPagamento, CodCliente LIKE @CodCliente";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                cmd.Parameters.AddWithValue("@anotacao", anotacao);
+                cmd.Parameters.AddWithValue("@valorTotal", valorTotal);
+                cmd.Parameters.AddWithValue("@nomeCliente", nomeCliente);
+                cmd.Parameters.AddWithValue("@telefone", telefone);
+                cmd.Parameters.AddWithValue("@formaPagamento", formaPagamento);
+                cmd.Parameters.AddWithValue("@CodCLiente", CodCliente);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
         #endregion
 
         #region Produto
@@ -387,7 +509,7 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (valor, quantidade, nome, materialUsado, tipo) VALUES";
+            String query = "INSERT INTO produto (valor, quantidade, nome, materialUsado, tipo) VALUES";
             query += "(?valor, ?quantidade, ?nome, ?materialUsado, ?tipo)";
             try
             {
@@ -413,7 +535,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -442,7 +564,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM produto";
             query += " WHERE itemid = ?itemid, quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
             try
             {
@@ -463,6 +585,62 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM produto WHERE valor LIKE @valor, quantidade LIKE @quantidade, nome LIKE @nome, materialUsado LIKE @materialUsado, tipo LIKE @tipo";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
+                cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -498,7 +676,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET codCLiente = ?codCliente, telefone = ?telefone";
+            String query = "UPDATE telefones SET codCLiente = ?codCliente, telefone = ?telefone";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -523,7 +701,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM telefones";
             query += " WHERE itemid = ?itemid, codCliente = ?codCliente, telefone = ?telefone";
             try
             {
@@ -542,6 +720,60 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        //tabela telefones
+        /*public int BDT(String telefone, Int64 codCliente)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM telefones WHERE telefone LIKE @telefone AND codCliente LIKE @codCliente";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?telefone", telefone);
+                cmd.Parameters.AddWithValue("?codCliente", codCliente);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
         #endregion
 
         #region Vende
@@ -553,7 +785,7 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (idvenda, idproduto) VALUES";
+            String query = "INSERT INTO vende (idvenda, idproduto) VALUES";
             query += "(?idvenda, ?idproduto)";
             try
             {
@@ -576,7 +808,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET idvenda = ?idvenda, idproduto = ?idproduto";
+            String query = "UPDATE vende SET idvenda = ?idvenda, idproduto = ?idproduto";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -601,7 +833,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM vende";
             query += " WHERE itemid = ?itemid, idvenda = ?idvenda, idproduto = ?idproduto";
             try
             {
@@ -619,6 +851,59 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDVENDE(Int64 idvenda, Int64 idproduto)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM vende WHERE idvenda LIKE @idvenda, idproduto LIKE @idproduto";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?idvenda", idvenda);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -663,7 +948,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET nome = ?nome";
+            String query = "UPDATE tipoMaterial SET nome = ?nome";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -687,7 +972,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM tipoMaterial";
             query += " WHERE itemid = ?itemid, nome = ?nome";
             try
             {
@@ -704,6 +989,58 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDTIPO(String nome)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM tipoMaterial WHERE nome LIKE @nome";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?nome", nome);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -740,7 +1077,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET nome = ?nome";
+            String query = "UPDATE material SET nome = ?nome, valor = ?valor, idmaterial = ?idmaterial";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -765,8 +1102,8 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con = new MySqlConnection();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
-            query += " WHERE itemid = ?itemid";
+            String query = "DELETE FROM material";
+            query += " WHERE itemid = ?itemid, nome = ?nome, valor = ?valor, idmaterial = ?idmaterial";
             try
             {
                 con.Open();
@@ -785,6 +1122,60 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        /*public int BDM(Int64 idmaterial, String nome, Double valor)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM material WHERE nome LIKE @nome, idmaterial LIKE @idmaterial, valor LIKE @valor";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?nome", nome);
+                cmd.Parameters.AddWithValue("?valor", valor);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
         #endregion
 
         #region Material Produto
@@ -795,7 +1186,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (idmaterial, idproduto) VALUES";
+            String query = "INSERT INTO MaterialProduto (idmaterial, idproduto) VALUES";
             query += "(?idmaterial, ?idproduto)";
             try
             {
@@ -818,7 +1209,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET idmaterial = ?idmaterial, idproduto = ?idproduto";
+            String query = "UPDATE MaterialProduto SET idmaterial = ?idmaterial, idproduto = ?idproduto";
             query += " WHERE itemid = ?itemid";
             try
             {
@@ -842,7 +1233,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM MaterialProduto";
             query += " WHERE itemid = ?itemid, idmaterial = ?idmaterial, idproduto = ?idproduto";
             try
             {
@@ -860,6 +1251,59 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDPRODUTO(Int64 idmaterial, Int64 idproduto)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT id FROM MaterialProduto WHERE idmaterial LIKE @idmaterial, idproduto LIKE @idproduto";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return id;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -922,7 +1366,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM renda";
             query += " WHERE idTipoMaterial = ?idTipoMaterial, tamanho = ?tamanho, metragem = ?metragem";
             try
             {
@@ -941,11 +1385,65 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        /*public int BDR(String tamanho, Double metragem, Int64 idTipoMaterial)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT idTIpoMaterial FROM renda WHERE tamanhao LIKE @tamanho, metragem LIKE @metragem";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
+                cmd.Parameters.AddWithValue("?tamamnho", tamanho);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int idTIpoMaterial = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return idTIpoMaterial;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
         #endregion
 
         #region Canudo
 
-      
+
         public void IDCANUDO(Int64 idtipomaterial, Int64 quantidade, String cor)
 
         {
@@ -978,7 +1476,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE estoque SET quantidade = ?quantidade, cor = ?cor";
+            String query = "UPDATE canudo SET quantidade = ?quantidade, cor = ?cor";
             query += " WHERE idTipoMaterial = ?idTipoMaterial";
             try
             {
@@ -1003,7 +1501,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM canudo";
             query += " WHERE idTipoMaterial = ?idTipoMaterial, quantidade = ?quantidade, cor = ?cor";
             try
             {
@@ -1021,6 +1519,60 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDCANUDO(Int64 quantidade, String cor, Int64 idTipoMaterial)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT idTIpoMaterial FROM canudo WHERE cor LIKE @cor, quantidade LIKE @quantidade";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+                cmd.Parameters.AddWithValue("?cor", cor);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int idTIpoMaterial = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return idTIpoMaterial;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -1107,6 +1659,64 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        /*public int BDF(Int64 numero, String tipo, String marca, String numeroCor, Double metragem, Int64 itemidTipoMatreial)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT idTIpoMaterial FROM fita WHERE numero LIKE @numero, tipo LIKE @tipo, marca LIKE @marca, numeroCor LIKE @numeroCor ";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?numero", numero);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?marca", marca);
+                cmd.Parameters.AddWithValue("?numeroCor", numeroCor);
+                cmd.Parameters.AddWithValue("?metragem", metragem);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int idTIpoMaterial = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return idTIpoMaterial;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
+
+
         #endregion
 
         #region Papel
@@ -1190,6 +1800,63 @@ namespace GerenciadorDeEstoque.DAO
             }
 
         }
+
+        /*public int BDPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
+        {
+            try
+            {
+                conexao = new Conexao();
+                con = new MySqlConnection();
+
+                con.ConnectionString = conexao.getConnectionString();
+
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = con;
+
+                cmd.CommandText = "SELECT idTIpoMaterial FROM papel WHERE tipo LIKE @tipo, gramatura LIKE @gramatura, cor LIKE @cor, tamanho LIKE @tamanho";
+
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
+                cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?gramatura", gramatura);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?cor", cor);
+                cmd.Parameters.AddWithValue("?tamanho", tamanho);
+
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    int idTIpoMaterial = Convert.ToInt32(reader.GetString(0));
+                    con.Close();
+
+                    return idTIpoMaterial;
+                }
+                else
+                {
+                    con.Close();
+
+                    return -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("erro" + ex.Message + "ocorreu: " + ex.Message, "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally { con.Close(); }
+
+        }*/
 
         #endregion
 
@@ -1408,7 +2075,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "DELETE FROM estoque";
+            String query = "DELETE FROM perola";
             query += " WHERE idTipoMaterial = ?idTipoMaterial, cor = ?cor, espessura = ?espessura";
 
             try
