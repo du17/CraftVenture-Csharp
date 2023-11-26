@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
 {
     class Conexao
     {
-        private String connectionString;
+        private static String connectionString;
 
         public String getConnectionString()
         {

@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing.Text;
 using System.Linq;
 using System.Security.Cryptography;
@@ -1133,23 +1134,55 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
+        public void ADPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Double valor, Int64 idTipoMaterial)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE papel SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
-            query += " WHERE itemidTipoMaterial = ?itemidTipoMaterial";
+
+            String query = "UPDATE papel " +
+                "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
+                " SET tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho, material.valor = ?valor" +
+                " WHERE papel.idTipoMaterial =" + idTipoMaterial;
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
+
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?gramatura", gramatura);
-                cmd.Parameters.AddWithValue("?tamanho", tamanho);
                 cmd.Parameters.AddWithValue("?cor", cor);
                 cmd.Parameters.AddWithValue("?tamanho", tamanho);
+                cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void RDPAPEL(Int64 idTipoMaterial)
+        {
+            con = new MySqlConnection();
+            conexao = new Conexao();
+            con.ConnectionString = conexao.getConnectionString();
+
+            String query = "DELETE papel, material, tipoMaterial FROM papel" +
+                " INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
+                " INNER JOIN tipoMaterial ON papel.idTipoMaterial = tipoMaterial.id" +
+                " WHERE papel.idTipoMaterial ="+idTipoMaterial;
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -1160,32 +1193,67 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public void RDPAPEL(String tipo, Int32 gramatura, String cor, String tamanho, Int64 itemidTipoMatreial)
+        public static DataTable GetPapel()
         {
-            con = new MySqlConnection();
-            conexao = new Conexao();
-            con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE FROM papel";
-            query += " WHERE itemidTipoMaterial = ?itemidTipoMatreia, tipo = ?tipo, gramatura = ?gramatura, cor = ?cor, tamanho = ?tamanho";
+            Conexao con = new Conexao();
+            var dt = new DataTable();
+
+            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor " +
+                "FROM papel " +
+                "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
+                " ORDER BY idTipoMaterial ASC";
+
             try
             {
-                con.Open();
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemidTipoMaterial", itemidTipoMatreial);
-                cmd.Parameters.AddWithValue("?tipo", tipo);
-                cmd.Parameters.AddWithValue("?gramatura", gramatura);
-                cmd.Parameters.AddWithValue("?tamanho", tamanho);
-                cmd.Parameters.AddWithValue("?cor", cor);
-                cmd.Parameters.AddWithValue("?tamanho", tamanho);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            finally
-            {
-                con.Close();
-            }
+                using (var cn = new MySqlConnection(con.getConnectionString()))
+                {
+                    cn.Open();
 
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
         }
+
+        public static DataTable GetPapel(String tipo)
+        {
+            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor " +
+                "FROM papel " +
+                "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
+                " WHERE tipo LIKE '%"+tipo+"%'";
+
+            PapelVO papel = new PapelVO();
+            DataTable dt = new DataTable();
+            Conexao conexao = new Conexao();
+            try
+            {
+                using (var cn = new MySqlConnection(conexao.getConnectionString()))
+                {
+                    cn.Open();
+
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+
+
 
         #endregion
 

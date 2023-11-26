@@ -435,9 +435,6 @@
     <None Include="Resources\LIMPAR.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\SALVAR.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CadastroCliente.png" />
   </ItemGroup>
   <ItemGroup>
@@ -466,6 +463,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\EscolhaTecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_papel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Papel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apagar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apagar_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salvar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salvar_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Novo_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Novo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pesquisar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastrar_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastrar_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apagar_Disabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
