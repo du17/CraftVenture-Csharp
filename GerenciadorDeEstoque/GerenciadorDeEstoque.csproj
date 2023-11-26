@@ -185,6 +185,12 @@
     <Compile Include="Apresentação\frmCadastroRenda.Designer.cs">
       <DependentUpon>frmCadastroRenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\frmHistorico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmHistorico.Designer.cs">
+      <DependentUpon>frmHistorico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastroRenda.resx">
       <DependentUpon>frmCadastroRenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmHistorico.resx">
+      <DependentUpon>frmHistorico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
