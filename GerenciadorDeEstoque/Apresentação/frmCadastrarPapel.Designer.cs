@@ -439,7 +439,7 @@
             this.dgvPapelKrypton.ReadOnly = true;
             this.dgvPapelKrypton.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPapelKrypton.Size = new System.Drawing.Size(943, 319);
-            this.dgvPapelKrypton.StateCommon.Background.Color1 = System.Drawing.Color.White;
+            this.dgvPapelKrypton.StateCommon.Background.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.dgvPapelKrypton.StateCommon.Background.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
             this.dgvPapelKrypton.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             this.dgvPapelKrypton.StateCommon.DataCell.Content.Color1 = System.Drawing.Color.Black;

@@ -19,9 +19,46 @@ namespace GerenciadorDeEstoque.Apresentação
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
+        DataTable dt = new DataTable();
+
+        bool novoClicado = false;
+
         public frmCadastroAcetato()
         {
             InitializeComponent();
+        }
+
+        private void Inicializar()
+        {
+            dt = DAO.DAO.GetPapel();
+            dgvAcetatoKrypton.DataSource = dt;
+            ConfigurarGradeLivros();
+        }
+
+        private void ConfigurarGradeLivros()
+        {
+            dgvAcetatoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
+            dgvAcetatoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
+            dgvAcetatoKrypton.RowHeadersWidth = 20;
+            dgvAcetatoKrypton.RowTemplate.Height = 40;
+            
+            dgvAcetatoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
+            dgvAcetatoKrypton.Columns["idTipoMaterial"].Visible = true;
+            
+            dgvAcetatoKrypton.Columns["espessura"].HeaderText = "Espessura";
+            dgvAcetatoKrypton.Columns["espessura"].Width = 200;
+            dgvAcetatoKrypton.Columns["espessura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAcetatoKrypton.Columns["espessura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            
+            dgvAcetatoKrypton.Columns["tamanho"].HeaderText = "Tamanho";
+            dgvAcetatoKrypton.Columns["tamanho"].Width = 120;
+            dgvAcetatoKrypton.Columns["tamanho"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAcetatoKrypton.Columns["tamanho"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            
+            dgvAcetatoKrypton.Columns["valor"].HeaderText = "Valor";
+            dgvAcetatoKrypton.Columns["valor"].Width = 100;
+            dgvAcetatoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvAcetatoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -53,45 +90,91 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            acetato = new AcetatoVO();
-            tipoMaterial = new TipoMaterialVO();
-            material = new MaterialVO();
+            /*
 
-            try
+            if (!novoClicado)
             {
-                double espessura = Convert.ToDouble(txtEspessura.Text);
-                double valor = Convert.ToDouble(txtValor.Text);
-                double tamanho = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
-                long idTipoMaterial;
+                acetato = new AcetatoVO();
 
-                tipoMaterial.Nome = nome_material;
-                tipoMaterial.Inserir();
-                idTipoMaterial = tipoMaterial.getLastId();
 
-                acetato.Espessura = espessura;
-                acetato.Tamanho = tamanho;
+                try
+                {
+                    String tipo = cbxTipo.Text;
+                    String cor = txtCor.Text;
+                    String tamanho = cbxTamanho.Text;
+                    int gramatura = Convert.ToInt32(txtGramatura.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
 
-                material.Nome = nome_material;
-                material.Valor = valor;
+                    papel.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                    papel.Tipo = tipo;
+                    papel.Gramatura = gramatura;
+                    papel.Cor = cor;
+                    papel.Tamanho = tamanho;
+                    papel.Valor = valor;
 
-                material.IdMaterial = idTipoMaterial;
-                acetato.itemidTipoMaterial = idTipoMaterial;
+                    papel.Atualizar();
 
-                material.Inserir();
+                    MessageBox.Show("Item Atualizado!");
 
-                acetato.Inserir();
-
-                MessageBox.Show("Item cadastrado!");
-
-            }catch(ArgumentException ex)
+                    Inicializar();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
             {
-                MessageBox.Show(ex.Message);
+                acetato = new AcetatoVO();
+                tipoMaterial = new TipoMaterialVO();
+                material = new MaterialVO();
+
+                try
+                {
+                    double espessura = Convert.ToDouble(txtEspessura.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+                    double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
+                    double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
+                    
+                    long idTipoMaterial;
+
+                    tipoMaterial.Nome = nome_material;
+                    tipoMaterial.Inserir();
+                    idTipoMaterial = tipoMaterial.getLastId();
+
+                    acetato.Espessura = espessura;
+                    acetato.Tamanho = metragemAltura;
+
+                    material.Nome = nome_material;
+                    material.Valor = valor;
+
+                    material.IdMaterial = idTipoMaterial;
+                    acetato.itemidTipoMaterial = idTipoMaterial;
+
+                    material.Inserir();
+
+                    acetato.Inserir();
+
+                    MessageBox.Show("Item cadastrado!");
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                }
+                finally { novoClicado = false; }
+            
+            }*/
         }
     }
 }

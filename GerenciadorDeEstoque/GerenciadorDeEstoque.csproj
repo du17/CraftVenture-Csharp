@@ -212,7 +212,6 @@
     <Compile Include="DAO\MaterialVO.cs" />
     <Compile Include="DAO\PapelVO.cs" />
     <Compile Include="DAO\PerolaVO.cs" />
-    <Compile Include="DAO\RendaVA.cs" />
     <Compile Include="DAO\RendaVO.cs" />
     <Compile Include="DAO\TecidoVO.cs" />
     <Compile Include="DAO\TipoMaterialVO.cs" />
@@ -498,6 +497,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Apagar_Disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Acetato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Canudo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Fita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Perola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Renda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Material_Tecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Acetato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Canudo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Perola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Renda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Tecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Fita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tipo_Tecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastroCliente %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Cliente.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
