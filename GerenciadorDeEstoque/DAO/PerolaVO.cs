@@ -23,19 +23,40 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemidTipoMaterial
         {
             get { return _itemidTipoMaterial; }
-            set { _itemidTipoMaterial = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemidTipoMaterial = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
 
         public String Cor
         {
             get { return cor; }
-            set { cor = value; }
+            set
+            {
+                if (value.Length > 0)
+                {
+                    cor = value;
+                }
+                else { throw new ArgumentException("A cor não pode ser nula!"); }
+            }
         }
 
         public Double Tamanho
         {
             get { return tamanho; }
-            set { tamanho = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    tamanho = value;
+                }
+                else { throw new ArgumentException("O tamanho não pode ser nulo!"); }
+            }
         }
 
         public void Inserir()
@@ -52,7 +73,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDPEROLA(Cor, Tamanho, itemidTipoMaterial);
+            dao.RDPEROLA(itemidTipoMaterial);
         }
 
     }

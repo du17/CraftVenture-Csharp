@@ -214,7 +214,6 @@
     <Compile Include="DAO\PerolaVO.cs" />
     <Compile Include="DAO\RendaVO.cs" />
     <Compile Include="DAO\TecidoVO.cs" />
-    <Compile Include="DAO\TelefonesVO.cs" />
     <Compile Include="DAO\TipoMaterialVO.cs" />
     <Compile Include="DAO\VendaVO.cs" />
     <Compile Include="DAO\ProdutoVO.cs" />

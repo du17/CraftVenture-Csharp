@@ -62,7 +62,13 @@ namespace GerenciadorDeEstoque.DAO
         public Double Espessura
         {
             get { return espessura; }
-            set { espessura = value; }
+            set {if(value > 0)
+                {
+                    espessura = value;
+                }
+                else { throw new ArgumentException("Espessura não pode ser menor que 0!");
+}
+            }
         }
 
         public void Inserir()

@@ -21,17 +21,38 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Int64 IdMaterial
         {
             get { return idmaterial; }
-            set { idmaterial = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idmaterial = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Int64 IdProduto
         {
             get { return idproduto; }
-            set { idproduto = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idproduto = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
 
         public void Inserir()
@@ -48,7 +69,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDMPRODUTO(IdMaterial, IdProduto, itemid);
+            dao.RDMPRODUTO(itemid);
         }
 
     }

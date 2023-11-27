@@ -24,17 +24,37 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemidproduto
         {
             get { return _itemidproduto; }
-            set { _itemidproduto = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemidproduto = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Cor
         {
             get { return cor; }
-            set { cor = value; }
+            set {if(value.Length > 0)
+                {
+                    cor = value;
+                }
+                else { throw new ArgumentException("A cor não pode ser nula!");
+}
+            }
         }
         public Int64 Quantidade
         {
             get { return quantidade; }
-            set { quantidade = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    quantidade = value;
+                }
+                else { throw new ArgumentException("A quantidade não pode ser nula!"); }
+            }
         }
 
         public void Inserir()
@@ -51,7 +71,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDCANUDO(Quantidade, Cor, itemidproduto);
+            dao.RDCANUDO(itemidproduto);
         }
 
     }
