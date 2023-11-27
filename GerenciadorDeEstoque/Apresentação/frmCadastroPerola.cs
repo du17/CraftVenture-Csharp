@@ -74,5 +74,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
