@@ -23,22 +23,50 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemidTipoMaterial
         {
             get { return _itemidTipoMaterial; }
-            set { _itemidTipoMaterial = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemidTipoMaterial = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Tipo
         {
             get { return tipo; }
-            set { tipo = value; }
+            set
+            {
+                if (!value.Equals("Inserir Tipo"))
+                {
+                    tipo = value;
+                }
+                else { throw new ArgumentException("Tipo está nulo"); }
+            }
         }
         public String TipoEstampa
         {
             get { return tipoEstampa; }
-            set { tipoEstampa = value; }
+            set
+            {
+                if (!value.Equals("Inserir Tipo da estampa"))
+                {
+                    tipoEstampa = value;
+                }
+                else { throw new ArgumentException("Tipo da estampa está nulo"); }
+            }
         }
         public Double Metragem
         {
             get { return metragem; }
-            set { metragem = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    metragem = value;
+                }
+                else { throw new ArgumentException("Metragem não pode ser menor que 0!"); }
+            }
         }
 
         public void Inserir()
@@ -55,7 +83,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDTECIDO(Tipo, TipoEstampa, Metragem, itemidTipoMaterial);
+            dao.RDTECIDO(itemidTipoMaterial);
         }
 
     }

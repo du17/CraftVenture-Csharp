@@ -9,7 +9,7 @@ namespace GerenciadorDeEstoque.DAO
     class MaterialVO
     {
         //tipo foto não tem, agora fudeu
-        private Int64 _itemid, idmaterial;
+        private Int64 _itemid, idTipoMaterial;
         private String nome;
         private Double valor;
         private DAO dao;
@@ -32,8 +32,8 @@ namespace GerenciadorDeEstoque.DAO
         }
         public Int64 IdMaterial
         {
-            get { return idmaterial; }
-            set { idmaterial = value; }
+            get { return idTipoMaterial; }
+            set { idTipoMaterial = value; }
         }
         public Double Valor
         {
@@ -55,7 +55,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDM(IdMaterial, Nome, Valor, itemid);
+            dao.RDM(itemid);
         }
 
     }

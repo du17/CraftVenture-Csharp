@@ -60,8 +60,7 @@ namespace GerenciadorDeEstoque.DAO
         public String Cor
         {
             get { return cor; }
-            set { 
-            if(value.Length > 0)
+            set { if(value.Length > 0)
                 {
                     cor = value;
                 }
