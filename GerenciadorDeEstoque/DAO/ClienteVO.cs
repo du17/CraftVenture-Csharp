@@ -97,7 +97,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
+            dao.RDC(itemid);
         }
 
         public Int64 getLastIdCliente()

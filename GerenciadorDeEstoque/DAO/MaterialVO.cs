@@ -23,22 +23,50 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set
+            {
+                if (!value.Equals("Inserir Nome"))
+                {
+                    nome = value;
+                }
+                else { throw new ArgumentException("O Nome está nulo"); }
+            }
         }
         public Int64 IdMaterial
         {
             get { return idTipoMaterial; }
-            set { idTipoMaterial = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idTipoMaterial = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Double Valor
         {
             get { return valor; }
-            set { valor = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    valor = value;
+                }
+                else { throw new ArgumentException("O valor não pode ser nulo!"); }
+            }
         }
 
         public void Inserir()

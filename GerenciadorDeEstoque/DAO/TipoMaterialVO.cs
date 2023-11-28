@@ -22,12 +22,26 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set
+            {
+                if (!value.Equals("Inserir Nome"))
+                {
+                    nome = value;
+                }
+                else { throw new ArgumentException("Nome está nulo"); }
+            }
         }
 
         public void Inserir()
@@ -45,7 +59,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDTIPO(Nome, itemid);
+            dao.RDTIPO(itemid);
         }
 
         public Int64 getLastId()
