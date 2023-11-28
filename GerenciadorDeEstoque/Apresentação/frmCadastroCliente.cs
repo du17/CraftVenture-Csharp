@@ -15,7 +15,6 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmCadastroCliente : Form
     {
         ClienteVO cliente;
-        TelefonesVO telefones;
 
         public frmCadastroCliente()
         {
@@ -55,7 +54,6 @@ namespace GerenciadorDeEstoque.Apresentação
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             cliente = new ClienteVO();
-            telefones = new TelefonesVO();
 
             try
             {

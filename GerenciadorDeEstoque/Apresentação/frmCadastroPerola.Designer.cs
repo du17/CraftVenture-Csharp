@@ -313,6 +313,7 @@
             this.txtPesquisar.StateCommon.Content.Color1 = System.Drawing.Color.Black;
             this.txtPesquisar.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisar.TabIndex = 74;
+            this.txtPesquisar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPesquisar_KeyPress);
             // 
             // pictureBox2
             // 
@@ -342,6 +343,8 @@
             this.dgvPerolaKrypton.StateCommon.DataCell.Content.Color2 = System.Drawing.Color.Black;
             this.dgvPerolaKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvPerolaKrypton.TabIndex = 73;
+            this.dgvPerolaKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerolaKrypton_CellEnter);
+            this.dgvPerolaKrypton.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerolaKrypton_CellMouseEnter);
             // 
             // pictureBox1
             // 
@@ -404,6 +407,7 @@
             this.kryptonButton1.StateTracking.Border.Rounding = 4;
             this.kryptonButton1.TabIndex = 74;
             this.kryptonButton1.Values.Text = "";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // frmCadastroPerola
             // 

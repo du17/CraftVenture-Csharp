@@ -415,6 +415,7 @@
             this.txtPesquisar.StateCommon.Content.Color1 = System.Drawing.Color.Black;
             this.txtPesquisar.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisar.TabIndex = 54;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
             this.txtPesquisar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPesquisar_KeyPress);
             // 
             // pbPapel

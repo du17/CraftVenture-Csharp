@@ -18,21 +18,24 @@ namespace GerenciadorDeEstoque.Apresentação
         CanudoVO canudo;
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
+        String palavra;
 
         DataTable dt = new DataTable();
+
+        bool novoClicado = false;
 
         public frmCadastroCanudo()
         {
             InitializeComponent();
-            //Inicializar();
+            Inicializar();
         }
 
-        /*private void Inicializar()
+        private void Inicializar()
         {
             dt = DAO.DAO.GetCanudo();
-            dgvPapelKrypton.DataSource = dt;
+            dgvCanudoKrypton.DataSource = dt;
             ConfigurarGradeLivros();
-        }*/
+        }
 
         private void ConfigurarGradeLivros()
         {
@@ -44,28 +47,24 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvCanudoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvCanudoKrypton.Columns["idTipoMaterial"].Visible = true;
 
-            dgvCanudoKrypton.Columns["quantidade"].HeaderText = "Tipo";
-            dgvCanudoKrypton.Columns[""].Width = 200;
-            dgvCanudoKrypton.Columns["tipo"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvCanudoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgvCanudoKrypton.Columns["gramatura"].HeaderText = "Gramatura";
-            dgvCanudoKrypton.Columns["gramatura"].Width = 130;
-            dgvCanudoKrypton.Columns["gramatura"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+            dgvCanudoKrypton.Columns["quantidade"].HeaderText = "Quantidade";
+            dgvCanudoKrypton.Columns["quantidade"].Width = 200;
+            dgvCanudoKrypton.Columns["quantidade"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCanudoKrypton.Columns["quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvCanudoKrypton.Columns["cor"].HeaderText = "Cor";
             dgvCanudoKrypton.Columns["cor"].Width = 200;
             dgvCanudoKrypton.Columns["cor"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
 
-            dgvCanudoKrypton.Columns["tamanho"].HeaderText = "Tamanho";
-            dgvCanudoKrypton.Columns["tamanho"].Width = 120;
-            dgvCanudoKrypton.Columns["tamanho"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvCanudoKrypton.Columns["tamanho"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
             dgvCanudoKrypton.Columns["valor"].HeaderText = "Valor";
             dgvCanudoKrypton.Columns["valor"].Width = 100;
             dgvCanudoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvCanudoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
+
+        private object GetValorLinha(String campo)
+        {
+            return dgvCanudoKrypton.Rows[dgvCanudoKrypton.CurrentCell.RowIndex].Cells[campo].Value;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -84,54 +83,189 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
+            canudo = new CanudoVO();
+
+            try
+            {
+                DialogResult dialog = MessageBox.Show("Você tem certeza que dejesa EXCLUIR este item?\nEsta ação não pode ser desfeita", "Excluir canudo: ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dialog == DialogResult.Yes)
+                {
+                    canudo.itemidproduto = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
+                    canudo.Remover();
+                    LimpaTextos();
+                    Inicializar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LimpaTextos()
+        {
             txtValor.Text = string.Empty;
-            txtQuantidade.Text = string.Empty;
             txtCor.Text = string.Empty;
+            txtQuantidade.Text = string.Empty;
+            //pbCanudo.Image = null;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
 
+            if (!novoClicado)
+            {
+                canudo = new CanudoVO();
+
+
+                try
+                {
+                    string cor = txtCor.Text;
+                    int quantidade = Convert.ToInt32(txtQuantidade.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+
+                    canudo.itemidproduto = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                    canudo.Quantidade = quantidade;
+                    canudo.Cor = cor;
+                    material.Valor = valor;
+
+                    canudo.Atualizar();
+
+                    MessageBox.Show("Item Atualizado!");
+
+                    Inicializar();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                canudo = new CanudoVO();
+                material = new MaterialVO();
+                tipoMaterial = new TipoMaterialVO();
+
+                try
+                {
+                    string cor = txtCor.Text;
+                    int quantidade = Convert.ToInt32(txtQuantidade.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+                    long idTipoMaterial;
+
+                    canudo.Cor = cor;
+                    canudo.Quantidade = quantidade;
+
+                    material.Valor = valor;
+                    material.Nome = nome_material;
+
+                    tipoMaterial.Nome = nome_material;
+                    tipoMaterial.Inserir();
+
+                    idTipoMaterial = tipoMaterial.getLastId();
+
+                    canudo.itemidproduto = idTipoMaterial;
+                    material.IdMaterial = idTipoMaterial;
+
+                    material.Inserir();
+
+                    canudo.Inserir();
+
+                    MessageBox.Show("Item Cadastrado!");
+
+                    LimpaTextos();
+                    Inicializar();
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally { novoClicado = false; }
+            }
+
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        //botão de adicionar um novo elemento
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            novoClicado = true;
+            dgvCanudoKrypton.CurrentCell.Selected = false;
+            LimpaTextos();
+
+            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+            btnLimpar.Enabled = false;
+        }
+
+        private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                if (e.KeyChar != '\b')
+                {
+                    palavra += e.KeyChar;
+
+                    dt = DAO.DAO.GetCanudo();
+
+                    dgvCanudoKrypton.DataSource = dt;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvCanudoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
             canudo = new CanudoVO();
-            material = new MaterialVO();   
-            tipoMaterial = new TipoMaterialVO();
+
+            novoClicado = false;
 
             try
             {
-                string cor = txtCor.Text;
-                int quantidade = Convert.ToInt32(txtQuantidade.Text);
-                double valor = Convert.ToDouble(txtValor.Text);
-                long idTipoMaterial;
 
-                canudo.Cor = cor;
-                canudo.Quantidade = quantidade;
+                canudo.Quantidade = Convert.ToInt32(GetValorLinha("quantidade"));
+                canudo.Cor = GetValorLinha("cor").ToString();
 
-                material.Valor = valor;
-                material.Nome = nome_material;
+                txtQuantidade.Text = canudo.Quantidade.ToString();
+                txtCor.Text = canudo.Cor;
+                txtValor.Text = GetValorLinha("valor").ToString();
 
-                tipoMaterial.Nome = nome_material;
-                tipoMaterial.Inserir();
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
 
-                idTipoMaterial = tipoMaterial.getLastId();
-
-                canudo.itemidproduto = idTipoMaterial;
-                material.IdMaterial = idTipoMaterial;
-
-                material.Inserir();
-
-                canudo.Inserir();
-
-                MessageBox.Show("Item cadastrado!");
+                btnLimpar.Enabled = true;
 
             }
-            catch(ArgumentNullException ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.GetType().ToString());
             }
-            catch(Exception ex) 
-            {
-                MessageBox.Show(ex.Message);
-            }
+
         }
     }
 }
