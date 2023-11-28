@@ -19,10 +19,53 @@ namespace GerenciadorDeEstoque.Apresentação
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
+        DataTable dt = new DataTable();
+
         public frmCadastroCanudo()
         {
             InitializeComponent();
+            //Inicializar();
+        }
 
+        /*private void Inicializar()
+        {
+            dt = DAO.DAO.GetCanudo();
+            dgvPapelKrypton.DataSource = dt;
+            ConfigurarGradeLivros();
+        }*/
+
+        private void ConfigurarGradeLivros()
+        {
+            dgvCanudoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
+            dgvCanudoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
+            dgvCanudoKrypton.RowHeadersWidth = 20;
+            dgvCanudoKrypton.RowTemplate.Height = 40;
+
+            dgvCanudoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
+            dgvCanudoKrypton.Columns["idTipoMaterial"].Visible = true;
+
+            dgvCanudoKrypton.Columns["quantidade"].HeaderText = "Tipo";
+            dgvCanudoKrypton.Columns[""].Width = 200;
+            dgvCanudoKrypton.Columns["tipo"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCanudoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvCanudoKrypton.Columns["gramatura"].HeaderText = "Gramatura";
+            dgvCanudoKrypton.Columns["gramatura"].Width = 130;
+            dgvCanudoKrypton.Columns["gramatura"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+
+            dgvCanudoKrypton.Columns["cor"].HeaderText = "Cor";
+            dgvCanudoKrypton.Columns["cor"].Width = 200;
+            dgvCanudoKrypton.Columns["cor"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+
+            dgvCanudoKrypton.Columns["tamanho"].HeaderText = "Tamanho";
+            dgvCanudoKrypton.Columns["tamanho"].Width = 120;
+            dgvCanudoKrypton.Columns["tamanho"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvCanudoKrypton.Columns["tamanho"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvCanudoKrypton.Columns["valor"].HeaderText = "Valor";
+            dgvCanudoKrypton.Columns["valor"].Width = 100;
+            dgvCanudoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvCanudoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
