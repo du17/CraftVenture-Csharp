@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GerenciadorDeEstoque",
+    "\\GerenciadorDeEstoque\\Apresentação"
   ],
-  "SelectedNode": "\\GerenciadorDeEstoque.sln",
+  "SelectedNode": "\\GerenciadorDeEstoque\\Apresentação\\frmCadastroCanudo.cs",
   "PreviewInSolutionExplorer": false
 }
