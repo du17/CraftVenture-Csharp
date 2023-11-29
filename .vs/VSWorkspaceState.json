@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\GerenciadorDeEstoque",
-    "\\GerenciadorDeEstoque\\Apresentação"
+    "\\GerenciadorDeEstoque\\DAO"
   ],
-  "SelectedNode": "\\GerenciadorDeEstoque\\Apresentação\\frmCadastrarPapel.cs",
+  "SelectedNode": "\\GerenciadorDeEstoque\\DAO\\DAO.cs",
   "PreviewInSolutionExplorer": false
 }

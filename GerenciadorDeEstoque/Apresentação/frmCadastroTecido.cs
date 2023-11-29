@@ -21,9 +21,21 @@ namespace GerenciadorDeEstoque.Apresentação
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
+        DataTable dt = new DataTable();
+
+        bool novoClicado = false;
+
         public frmCadastroTecido()
         {
             InitializeComponent();
+            Inicializar();
+        }
+
+        private void Inicializar()
+        {
+            dt = DAO.DAO.GetTecido();
+            dgvTecidoKrypton.DataSource = dt;
+            //ConfigurarGradeTecido();
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
