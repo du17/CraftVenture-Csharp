@@ -221,6 +221,7 @@ namespace GerenciadorDeEstoque.DAO
             String query = "UPDATE cliente " +
                "SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, " +
                " rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento" +
+               "WHERE id = " + itemid;
 
             try
             {
@@ -664,7 +665,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADVENDE(Int64 idvenda, Int64 idproduto, Int32 quantidade, Int64 itemid)
+        public void ADVENDE(Int64 idvenda, Int64 idproduto, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -682,7 +683,6 @@ namespace GerenciadorDeEstoque.DAO
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?idvenda", idvenda);
                 cmd.Parameters.AddWithValue("?idproduto", idproduto);
-                cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -701,7 +701,6 @@ namespace GerenciadorDeEstoque.DAO
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "DELETE FROM estoque";
-            query += " WHERE idTipoMaterial = ?idTipoMaterial, idvenda = ?idvenda, idproduto = ?idproduto";
 
             try
             {
@@ -709,8 +708,6 @@ namespace GerenciadorDeEstoque.DAO
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("?idTipoMaterial", itemid);
-                cmd.Parameters.AddWithValue("?idvenda", idvenda);
-                cmd.Parameters.AddWithValue("?idproduto", idproduto);
 
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();

@@ -10,7 +10,6 @@ namespace GerenciadorDeEstoque.DAO
     public class VendaVO
     {
 
-        //Metodos venda, tomara que funcione
 
         private Int64 _itemid, quantidade, idUsuario, codCliente;
         private String nomeCliente, telefone, nomeProduto, anotacao, formaPagamento, formaEntrega;
@@ -82,11 +81,8 @@ namespace GerenciadorDeEstoque.DAO
             get { return formaPagamento; }
             set
             {
-                if (value > 0)
-                {
                     formaPagamento = value;
-                }
-                else { throw new ArgumentException("O pagamento não pode ser nulo!"); }
+                
             }
         }
 

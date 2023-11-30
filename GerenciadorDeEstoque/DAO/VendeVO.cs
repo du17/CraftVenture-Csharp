@@ -56,19 +56,6 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public Int32 Quantidade
-        {
-            get { return quantidade; }
-            set
-            {
-                if (value > 0)
-                {
-                    quantidade = value;
-                }
-                else { throw new ArgumentException("O id não pode ser nulo!"); }
-            }
-        }
-
         public List<Int64> IdProdutoLista 
         {        
             get { return idProdutoLista;}
@@ -100,7 +87,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADVENDE(IdVenda, IdProduto, Quantidade, itemid);
+            dao.ADVENDE(IdVenda, IdProduto, itemid);
         }
         public void Remover()
         {

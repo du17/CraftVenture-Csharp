@@ -372,7 +372,7 @@ namespace GerenciadorDeEstoque.Apresentação
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetType().ToString());
+                MessageBox.Show(ex.Message);
             }
 
         }

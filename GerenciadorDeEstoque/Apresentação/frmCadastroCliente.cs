@@ -140,7 +140,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtNome.Focus();
         }
 
-        private void btnCadastrar_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e) { 
 
             cliente = new ClienteVO();
 
@@ -233,7 +233,7 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        public string getEstado(String estado)
+        private string getEstado(String estado)
         {
             string estadoSimplificado = "";
 

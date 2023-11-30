@@ -361,10 +361,5 @@ namespace GerenciadorDeEstoque.Apresentação
         {
 
         }
-
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
