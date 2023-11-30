@@ -48,5 +48,21 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
                 Application.Exit();
             }
         }
+
+        private void btnProduto_Click(object sender, EventArgs e)
+        {
+            frmProduto frmProduto = new frmProduto();
+            this.Hide();
+            frmProduto.ShowDialog();
+            this.Show();
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            frmVenda frmVenda = new frmVenda();
+            this.Hide();
+            frmVenda.ShowDialog();
+            this.Show();
+        }
     }
 }

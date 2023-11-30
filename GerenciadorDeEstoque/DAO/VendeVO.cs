@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    class VendeVO
+    public class VendeVO
     {
-
-        //tipo data ficou complicado
         private Int64 _itemid, idvenda, idproduto;
-        private Int32 quantidade;
-        //private tipo ai complico dataEntrega, dataVenda;
+        private List<Int64> idProdutoLista = new List<Int64>();
+        private List<Int32> quantidadeLista = new List<Int32>();
         private DAO dao;
-        //private conexaoUso conn;
 
         public VendeVO()
         {
@@ -71,10 +69,32 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public List<Int64> IdProdutoLista 
+        {        
+            get { return idProdutoLista;}
+            set { idProdutoLista = value; }
+        }
+
+        public List<Int32> QuantidadeLista
+        {
+            get { return quantidadeLista; }
+            set { quantidadeLista = value; }
+        }
+
+
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDVENDE(IdVenda, IdProduto, Quantidade);
+            try
+            {
+                for (int i = 0; i < IdProdutoLista.Count(); i++)
+                {
+                    dao.IDVENDE(IdVenda, IdProdutoLista[i], QuantidadeLista[i]);
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "erro");
+            }
         }
 
         public void Atualizar()

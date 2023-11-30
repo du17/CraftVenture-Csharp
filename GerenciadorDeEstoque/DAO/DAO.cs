@@ -139,7 +139,7 @@ namespace GerenciadorDeEstoque.DAO
 
                 cmd.Connection = con;
 
-                cmd.CommandText = "SELECT id FROM usuario WHERE nome LIKE @nome OR senha LIKE @senha";
+                cmd.CommandText = "SELECT id FROM usuario WHERE nome LIKE @nome AND senha LIKE @senha";
 
                 cmd.Parameters.Clear();
 
@@ -217,10 +217,11 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
+
             String query = "UPDATE cliente " +
                "SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, " +
-               "rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento" +
-               " WHERE id = " + itemid; ;
+               " rua = rua?, bairro = ?bairro, estado = ?estado, complemento = ?complemento" +
+
             try
             {
                 con.Open();
@@ -250,14 +251,17 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE cliente, id, telefone, numero, email, nome, cep, rua, " +
-                "bairro, estado, complemento FROM cliente " +
-                " WHERE id = " + itemid;
+
+            String query = "DELETE FROM cliente " +
+                "WHERE id = " + itemid ;
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
+
+                cmd.Parameters.AddWithValue("?id", itemid);
+
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -273,9 +277,69 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT cliente, id, telefone, numero, email, nome, cep, " +
-                "rua, bairro, estado, complemento FROM cliente" +
-                " ORDER BY id ASC";
+
+            var sql = "SELECT id, nome, telefone, estado, rua, bairro, numero, email, cep, complemento" +
+                " FROM cliente" +
+                " ORDER BY nome ASC";
+
+            try
+            {
+                using (var cn = new MySqlConnection(con.getConnectionString()))
+                {
+                    cn.Open();
+
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetCliente(String tipo)
+        {
+            var sql = "SELECT id, nome, telefone, estado, rua, bairro, numero, email, cep, complemento" +
+                " FROM cliente" +
+                " WHERE nome LIKE '%" + tipo + "%' OR email LIKE '%" + tipo + "%' OR bairro LIKE '%" + tipo + "%'";
+
+            DataTable dt = new DataTable();
+            Conexao conexao = new Conexao();
+
+            try
+            {
+                using (var cn = new MySqlConnection(conexao.getConnectionString()))
+                {
+                    cn.Open();
+
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+
+        public static DataTable GetNomeCliente()
+        {
+            Conexao con = new Conexao();
+            var dt = new DataTable();
+
+            var sql = "SELECT id, nome" +
+                " FROM cliente" +
+                " ORDER BY nome ASC";
+
 
             try
             {
@@ -301,29 +365,36 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Venda
 
-        public void IDV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, String formaEntrega, Int64 CodCliente, Int64 IdUsuario)
+
+        public void IDV(String anotacao, Double valorTotal, String nomeCliente, String formaPagamento, String formaEntrega, Int64 CodCliente, String dataEntrega, String dataVenda)
+
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (nome, quantidade, anotacao, valorTotal, nomeCliente, telefone, formaPagamento, CodCliente, IdCliente) VALUES";
-            query += "(?nome, ?quantidade, ?anotacao, ?valorTotal, ?nomeCliente, ?telefone, ?formaPagamento, ?CodCliente, ?IdUsuario)";
+            String query = "INSERT INTO venda (anotacao, valorTotal, nomeCliente, formaPagamento, formaEntrega, codigoCliente, dataEntrega, dataVenda) VALUES" +
+                "(?anotacao, ?valorTotal, ?nomeCliente, ?formaPagamento, ?formaEntrega, ?codigoCliente, ?dataEntrega, ?dataVenda )";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?quantidade", quantidade);
-                cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?anotacao", anotacao);
                 cmd.Parameters.AddWithValue("?valorTotal", valorTotal);
                 cmd.Parameters.AddWithValue("?nomeCliente", nomeCliente);
-                cmd.Parameters.AddWithValue("?telefone", telefone);
                 cmd.Parameters.AddWithValue("?formaPagamento", formaPagamento);
-                cmd.Parameters.AddWithValue("?CodCliente", CodCliente);
-                cmd.Parameters.AddWithValue("?IdUsuario", IdUsuario);
+                cmd.Parameters.AddWithValue("?formaEntrega", formaEntrega);
+                cmd.Parameters.AddWithValue("?codigoCliente", CodCliente);
+                cmd.Parameters.AddWithValue("?dataEntrega", dataEntrega);
+                cmd.Parameters.AddWithValue("?dataVenda", dataVenda);
+
+
                 cmd.ExecuteNonQuery();
+
+                idLastInsert = cmd.LastInsertedId;
+
                 cmd.Dispose();
             }
             finally
@@ -332,32 +403,32 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADV(String nome, Int64 quantidade, String anotacao, Double valorTotal, String nomeCliente, String telefone, Int64 formaPagamento, String formaEntrega, Int64 CodCliente, Int64 IdUsuario, Int64 itemid)
+        public void ADV(String nome, String anotacao, Double valorTotal, String nomeCliente, String formaPagamento, String formaEntrega, Int64 CodCliente, Int64 itemid, DateTime dataEntrega, DateTime dataVenda)
+
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE venda " +
-               "INNER JOIN usuario ON venda.IdUsuario = usuario.id" +
-               "INNER JOIN cliente ON venda.CodCliente = cliente.id" +
-               "SET quantidade = ?quantidade, anotacao = ?anotacao, nome = ?nome, valorTotal = ?valorTotal," +
-               " nomeCliente = ?nomeCliente, telefone = ?telefone, " +
-               " formaPagamento = ?formaPagamento, formaEntrega = ?formaEntrega, CodCliente = ?CodCliente" +
-               " WHERE itemid =" + itemid;
+
+            String query = "UPDATE estoque SET quantidade = ?quantidade, anotacao = ?anotacao, valorTotal = ?valorTotal, nomeCliente = ?nomeCliente, " +
+                " telefone = ?telefone, formaPagamento = ?formaPagamento, formaEntrega = ?formaEntrega, CodCliente = ?CodCliente";
+            query += " WHERE id = ?itemid";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?quantidade", quantidade);
-                cmd.Parameters.AddWithValue("?nome", nome);
+
+                cmd.Parameters.AddWithValue("?itemid", itemid);
                 cmd.Parameters.AddWithValue("?anotacao", anotacao);
                 cmd.Parameters.AddWithValue("?valorTotal", valorTotal);
                 cmd.Parameters.AddWithValue("?nomeCliente", nomeCliente);
-                cmd.Parameters.AddWithValue("?telefone", telefone);
                 cmd.Parameters.AddWithValue("?formaPagamento", formaPagamento);
                 cmd.Parameters.AddWithValue("?formaEntrega", formaEntrega);
                 cmd.Parameters.AddWithValue("?CodCliente", CodCliente);
+                cmd.Parameters.AddWithValue("?dataEntrega", dataEntrega);
+                cmd.Parameters.AddWithValue("?dataVenda", dataVenda);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -368,23 +439,26 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
+        public void RDV(Int64 idVenda)
 
-        public void RDV(Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE venda, nomeCliente, telefone, nomeProduto, quantidade, formaPagamento, " +
-                            "formaEntrega, valorTotal, anotacao, idUsuario, codigoCliente FROM venda" +
-                             "INNER JOIN usuario ON venda.IdUsuario = usuario.id" +
-                             "INNER JOIN cliente ON venda.CodCliente = cliente.id" +
-                             " WHERE itemid = " + itemid;
+
+
+            String query = "DELETE venda, vende FROM venda" +
+                " INNER JOIN vende ON venda.id = vende.idVenda";
+            query += " WHERE venda.id = ?idVenda";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
+              
+                cmd.Parameters.AddWithValue("?idVenda", idVenda);
+
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -400,11 +474,9 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT venda, id, nomeCliente, telefone, nomeProduto, quantidade, " +
-                      "formaPagamento, formaEntrega, valorTotal, anotacao, idUsuario, codigoCliente FROM venda" +
-                      "INNER JOIN usuario ON venda.IdUsuario = usuario.id" +
-                       "INNER JOIN cliente ON venda.CodCliente = cliente.id" +
-                       " ORDER BY itemid ASC";
+            var sql = "SELECT id, nomeCliente, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
+                "FROM venda " +
+                " ORDER BY nomeCliente ASC";
 
             try
             {
@@ -430,25 +502,27 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Produto
 
-        public void IDP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo)
+        public void IDP(Double valor, Int64 quantidade, String nome, String tipo)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (valor, quantidade, nome, materialUsado, tipo) VALUES";
-            query += "(?valor, ?quantidade, ?nome, ?materialUsado, ?tipo)";
+            String query = "INSERT INTO produto (valor, quantidade, nome, tipo) VALUES";
+            query += " (?valor, ?quantidade, ?nome, ?tipo)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?valor", valor);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
-                cmd.Parameters.AddWithValue("?valor", valor);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.ExecuteNonQuery();
+
+                idLastInsert = cmd.LastInsertedId;
+
                 cmd.Dispose();
             }
             finally
@@ -457,23 +531,21 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADP(Double valor, Int64 quantidade, String nome, String materialUsado, String tipo, Int64 itemid)
+        public void ADP(Double valor, Int64 quantidade, String nome, String tipo, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "UPDATE produto " +
-               " SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, " +
-               "valor = ?valor, materialUsado = ?materialUsado" +
-                " WHERE itemid =" + itemid;
+          
+            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
+            query += " WHERE itemid = ?itemid";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?nome", nome);
-                cmd.Parameters.AddWithValue("?materialUsado", materialUsado);
                 cmd.Parameters.AddWithValue("?valor", valor);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.ExecuteNonQuery();
@@ -493,8 +565,9 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE produto, quantidade, nome, materialUsado, valor, tipo FROM produto" +
-                " WHERE itemid = " + itemid;
+            String query = "DELETE produto, MaterialProduto FROM produto" +
+                " INNER JOIN MaterialProduto ON produto.id = MaterialProduto.idProduto";
+            query += " WHERE id = ?itemid";
             try
             {
                 con.Open();
@@ -510,52 +583,46 @@ namespace GerenciadorDeEstoque.DAO
 
         }
 
-        public static DataTable GetProduto()
+        public static DataTable GetProduto(bool isVenda)
         {
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT produto, quantidade, nome, materialUsado, valor, tipo FROM produto" +
-                " ORDER BY itemid ASC";
+            var sql = "";
+
+            if (isVenda)
+            {
+                sql = "SELECT id, nome, valor " +
+                "FROM produto " +
+                " ORDER BY nome ASC";
+            }
+            else
+            {
+                sql = "SELECT id, nome, valor, quantidade, tipo " +
+                "FROM produto " +
+                " ORDER BY nome ASC";
+            }
+            
 
             try
             {
+
                 using (var cn = new MySqlConnection(con.getConnectionString()))
                 {
                     cn.Open();
 
                     using (var da = new MySqlDataAdapter(sql, cn))
                     {
-                        da.Fill(dt);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return dt;
-        }
-
-        public static DataTable GetProduto(String tipo)
-        {
-            var sql = "SELECT produto, quantidade, nome, materialUsado, valor " +
-                "FROM produto " +
-                " WHERE tipo LIKE '%" + tipo + "%'";
-
-            PapelVO papel = new PapelVO();
-            DataTable dt = new DataTable();
-            Conexao conexao = new Conexao();
-            try
-            {
-                using (var cn = new MySqlConnection(conexao.getConnectionString()))
-                {
-                    cn.Open();
-
-                    using (var da = new MySqlDataAdapter(sql, cn))
-                    {
-                        da.Fill(dt);
+                        if (isVenda)
+                        {
+                            dt.Columns.Add("escolha", typeof(bool));
+                            dt.Columns.Add("quantidade", typeof(int));
+                            da.Fill(dt);
+                        }
+                        else 
+                        {
+                            da.Fill(dt);
+                        }
                     }
 
                 }
@@ -571,21 +638,22 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Vende
 
-        public void IDVENDE(Int64 idvenda, Int64 idproduto, Int32 quantidade)
+        public void IDVENDE(Int64 idVenda, Int64 idProduto, Int32 quantidade)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (idvenda, idproduto, quantidade) VALUES";
-            query += "(?idvenda, ?idproduto, ?quantidade)";
+            String query = "INSERT INTO vende (idVenda, idProduto, quantidade) VALUES";
+            query += "(?idVenda, ?idProduto, ?quantidade)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?idvenda", idvenda);
-                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+              
+                cmd.Parameters.AddWithValue("?idVenda", idVenda);
+                cmd.Parameters.AddWithValue("?idProduto", idProduto);
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -603,10 +671,11 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE vende " +
-                "INNER JOIN venda ON vende.idvenda = venda.id" +
-                "INNER JOIN produto ON vende.idproduto = produto.id" +
-                " SET idvenda = ?idvenda, idproduto = ?idproduto, quantidade = ?quantidade" +
-                " WHERE id =" + itemid;
+                " INNER JOIN venda ON vende.idvenda = venda.id" +
+                " INNER JOIN produto ON vende.idproduto = produto.id" +
+                " SET idvenda = ?idvenda, idproduto = ?idproduto" +
+                " WHERE itemid =" + itemid;
+
             try
             {
                 con.Open();
@@ -630,15 +699,19 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE vende, idvenda, idproduto, quantidade FROM vende" +
-                "INNER JOIN venda ON vende.idvenda = venda.id" +
-                "INNER JOIN produto ON vende.idproduto = produto.id" +
-                " WHERE id = " + itemid;
+
+            String query = "DELETE FROM estoque";
+            query += " WHERE idTipoMaterial = ?idTipoMaterial, idvenda = ?idvenda, idproduto = ?idproduto";
+
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?itemid", itemid);
+
+                cmd.Parameters.AddWithValue("?idTipoMaterial", itemid);
+                cmd.Parameters.AddWithValue("?idvenda", idvenda);
+                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -872,9 +945,10 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT material, nome, valor, idTipoMaterial, id FROM material" +
-                "INNER JOIN tipoMaterial ON material.idTipoMaterial = tipoMaterial.id" +
-                " ORDER BY id ASC";
+
+            var sql = "SELECT idTipoMaterial, nome, valor, foto FROM material" +
+                " ORDER BY idTipoMaterial ASC";
+
 
             try
             {
@@ -884,6 +958,8 @@ namespace GerenciadorDeEstoque.DAO
 
                     using (var da = new MySqlDataAdapter(sql, cn))
                     {
+                        dt.Columns.Add("escolha", typeof(bool));
+                        dt.Columns.Add("quantidade", typeof(int));
                         da.Fill(dt);
                     }
 
@@ -900,20 +976,22 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Material Produto
 
-        public void IDMPRODUTO(Int64 idmaterial, Int64 idproduto)
+        public void IDMPRODUTO(Int64 idmaterial, Int64 idproduto, Int32 quantidade)
         {
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO pedido (idmaterial, idproduto) VALUES";
-            query += "(?idmaterial, ?idproduto)";
+            String query = "INSERT INTO MaterialProduto (idMaterial, idProduto, quantidade) VALUES";
+            query += " (?idmaterial, ?idproduto, ?quantidade)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("?idmaterial", idmaterial);
-                cmd.Parameters.AddWithValue("?idproduto", idproduto);
+                cmd.Parameters.AddWithValue("?idMaterial", idmaterial);
+                cmd.Parameters.AddWithValue("?idProduto", idproduto);
+                cmd.Parameters.AddWithValue("?quantidade", quantidade);
+
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -930,9 +1008,11 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE MaterialProduto " +
-                     "INNER JOIN material ON MaterialProduto.idmaterial = material.id" +
-                     "INNER JOIN produto ON MaterialProduto.idproduto = produto.id" +
-                     "SET material.idmaterial = ?idmaterial, produto.idproduto = ?idproduto";
+
+                     " INNER JOIN material ON MaterialProduto.idmaterial = material.id" +
+                     " INNER JOIN produto ON MaterialProduto.idproduto = produto.id" +
+                     " SET material.idmaterial = ?idmaterial, produto.idproduto = ?idproduto";
+
             query += " WHERE id =" + itemid;
             try
             {
@@ -955,7 +1035,7 @@ namespace GerenciadorDeEstoque.DAO
             con = new MySqlConnection();
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
-            String query = "DELETE MaterialProduto, idproduto, idmaterial FROM MaterialProduto" +
+            String query = "DELETE FROM MaterialProduto" +
                 " INNER JOIN material ON MaterialProduto.idmaterial = material.id" +
                 " INNER JOIN produto ON MaterialProduto.idproduto = produto.id" +
                 " WHERE id = " + itemid;
@@ -979,10 +1059,12 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT MaterialProduto.idmaterial, MaterialProduto.idproduto, id FROM MaterialProduto" +
-                      "INNER JOIN material ON MaterialProduto.idmaterial = material.id" +
-                      "INNER JOIN produto ON MaterialProduto.idproduto = produto.id" +
-                      " ORDER BY id ASC";
+
+            var sql = "SELECT MaterialProduto.idmaterial, MaterialProduto.idproduto, itemid FROM MaterialProduto" +
+                      " INNER JOIN material ON MaterialProduto.idmaterial = material.id" +
+                      " INNER JOIN produto ON MaterialProduto.idproduto = produto.id" +
+                      " ORDER BY itemid ASC";
+
 
             try
             {

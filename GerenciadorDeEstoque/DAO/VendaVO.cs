@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
-    class VendaVO
+    public class VendaVO
     {
 
         //Metodos venda, tomara que funcione
 
-        private Int64 _itemid, quantidade, idUsuario, codCliente, formaPagamento;
-        private String nomeCliente, telefone, nomeProduto, anotacao, formaEntrega;
+        private Int64 _itemid, quantidade, idUsuario, codCliente;
+        private String nomeCliente, telefone, nomeProduto, anotacao, formaPagamento, formaEntrega;
+        private DateTime dataEntrega, dataVenda;
         private Double valorTotal;
         private DAO dao;
         private conexaoUso conn;
 
-        VendaVO()
+        public VendaVO()
         {
+            dao = new DAO();
 
         }
 
@@ -74,7 +77,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public Int64 FormaPagamento
+        public String FormaPagamento
         {
             get { return formaPagamento; }
             set
@@ -87,7 +90,13 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public String Nome
+        public String FormaEntrega
+        {
+            get { return formaEntrega; }
+            set { formaEntrega = value; }
+        }
+
+        public String NomeProduto
         {
             get { return nomeProduto; }
             set
@@ -132,19 +141,17 @@ namespace GerenciadorDeEstoque.DAO
             set { anotacao = value; }
         }
 
-        public String FormaEntrega
+        public DateTime DataEntrega
         {
-            get { return FormaEntrega; }
-            set
-            {
-                if (!value.Equals("Inserir Entrega"))
-                {
-                    formaEntrega = value;
-                }
-                else { throw new ArgumentException("Entrega está nulo"); }
-            }
+            get { return dataEntrega; }
+            set { dataEntrega = value; }
         }
 
+        public DateTime DataVenda
+        {
+            get { return dataVenda; }
+            set { dataVenda = value; }
+        }
         public Double ValorTotal
         {
             get { return valorTotal; }
@@ -159,20 +166,35 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-            dao = new DAO();
-            dao.IDV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, FormaEntrega, CodCliente, IdUsuario);
+            
+            dao.IDV( Anotacao, ValorTotal, NomeCliente, FormaPagamento, formaEntrega, CodCliente, DataEntrega.ToString("yyyy-MM-dd"), DataVenda.ToString("yyyy-MM-dd"));
+
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADV(Nome, Quantidade, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, FormaEntrega, CodCliente, idUsuario, itemid);
+            dao.ADV(NomeProduto, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente, itemid, dataEntrega, DataVenda);
+
         }
 
         public void Remover()
         {
             dao = new DAO();
             dao.RDV(itemid);
+        }
+
+        public Int64 getLastId()
+        {
+            try
+            {
+                return dao.getLastId();
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
         }
 
     }

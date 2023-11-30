@@ -105,6 +105,7 @@
             this.btnProduto.StateTracking.Border.Rounding = 7;
             this.btnProduto.TabIndex = 1;
             this.btnProduto.Values.Text = "";
+            this.btnProduto.Click += new System.EventHandler(this.btnProduto_Click);
             // 
             // btnMaterial
             // 
@@ -194,6 +195,7 @@
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 5;
             this.btnVenda.UseVisualStyleBackColor = false;
+            this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
             // btnSair
             // 

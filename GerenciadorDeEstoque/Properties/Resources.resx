@@ -241,7 +241,7 @@
   <data name="CadastroCliente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CadastroCliente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CANCELAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Cancelar_Menor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CANCELAR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EscolhaAcetato" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -342,5 +342,44 @@
   </data>
   <data name="Tipo_Tecido" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tipo_Tecido.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adicionar_Material" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar_Material.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cadastro_Produto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cadastro_Produto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adicionar_Material_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar_Material_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Textos_Produto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Textos_Produto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CONFIRMAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CONFIRMAR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancelar_Tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancelar_Tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CONFIRMAR_Tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CONFIRMAR_Tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adicionar_Material_Tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar_Material_Tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tela_Venda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tela_Venda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Textos_Venda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Textos_Venda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adicionar_Produtos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar_Produtos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adicionar_Produtos_Tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adicionar_Produtos_Tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

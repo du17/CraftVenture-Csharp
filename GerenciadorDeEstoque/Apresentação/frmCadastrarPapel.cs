@@ -33,10 +33,10 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             dt = DAO.DAO.GetPapel();
             dgvPapelKrypton.DataSource = dt;
-            ConfigurarGradeLivros();
+            ConfigurarGradePapel();
         }
 
-        private void ConfigurarGradeLivros()
+        private void ConfigurarGradePapel()
         {        
             dgvPapelKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
             dgvPapelKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
@@ -198,7 +198,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     idTipoMaterial = tipoMaterial.getLastId();
 
-                    material.Nome = nome_material;
+                    material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                     material.Valor = valor;
                     material.IdTipoMaterial = idTipoMaterial;
                     material.Inserir();
@@ -323,16 +323,43 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnNovo_Click_1(object sender, EventArgs e)
         {
-            novoClicado = true;
-            dgvPapelKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
+            try
+            {
+                if (dgvPapelKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnApagar.Enabled = false;
+                    btnApagar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvPapelKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                    btnApagar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace GerenciadorDeEstoque.DAO
         private Int64 _itemid, telefone, numero;
         private String nome, email, cep, rua, bairro, estado, complemento;
         private DAO dao;
-        //private conexaoUso conn;
+
 
         public ClienteVO()
         {
