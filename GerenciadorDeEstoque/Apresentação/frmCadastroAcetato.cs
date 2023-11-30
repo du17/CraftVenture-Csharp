@@ -43,11 +43,11 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
             dgvAcetatoKrypton.RowHeadersWidth = 20;
             dgvAcetatoKrypton.RowTemplate.Height = 40;
-            
+
             //mudar os bagulho no DAO, dar espacos
             dgvAcetatoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvAcetatoKrypton.Columns["idTipoMaterial"].Visible = true;
-            
+
             dgvAcetatoKrypton.Columns["espessura"].HeaderText = "Espessura";
             dgvAcetatoKrypton.Columns["espessura"].Width = 200;
             dgvAcetatoKrypton.Columns["espessura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -268,15 +268,39 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            novoClicado = true;
-            dgvAcetatoKrypton.CurrentCell.Selected = false;
-            zerarCampos();
+            try
+            {
+                if (dgvAcetatoKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    //dgvPapelKrypton.CurrentCell.Selected = false;
+                    zerarCampos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
-            btnLimpar.Enabled = false;
+
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvAcetatoKrypton.CurrentCell.Selected = false;
+                    zerarCampos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                    btnLimpar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
