@@ -11,9 +11,10 @@ namespace GerenciadorDeEstoque.DAO
 
         //tipo data ficou complicado
         private Int64 _itemid, idvenda, idproduto;
+        private Int32 quantidade;
         //private tipo ai complico dataEntrega, dataVenda;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public VendeVO()
         {
@@ -57,16 +58,29 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public Int32 Quantidade
+        {
+            get { return quantidade; }
+            set
+            {
+                if (value > 0)
+                {
+                    quantidade = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDVENDE(IdVenda, IdProduto);
+            dao.IDVENDE(IdVenda, IdProduto, Quantidade);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADVENDE(IdVenda, IdProduto, itemid);
+            dao.ADVENDE(IdVenda, IdProduto, Quantidade, itemid);
         }
         public void Remover()
         {

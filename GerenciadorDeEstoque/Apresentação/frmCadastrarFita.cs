@@ -190,7 +190,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     idTipoMaterial = tipoMaterial.getLastId();
 
-                    material.IdMaterial = idTipoMaterial;
+                    material.IdTipoMaterial = idTipoMaterial;
                     material.Nome = nome_material;
                     material.Valor = valor;
                     material.Inserir();
@@ -299,16 +299,39 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            novoClicado = true;
-            dgvFitaKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
+            try
+            {
+                if (dgvFitaKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    //dgvPapelKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnApagar.Enabled = false;
+                    btnApagar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvFitaKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                    btnApagar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

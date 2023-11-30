@@ -171,7 +171,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     idTipoMaterial = tipoMaterial.getLastId();
 
                     canudo.itemidproduto = idTipoMaterial;
-                    material.IdMaterial = idTipoMaterial;
+                    material.IdTipoMaterial = idTipoMaterial;
 
                     material.Inserir();
 

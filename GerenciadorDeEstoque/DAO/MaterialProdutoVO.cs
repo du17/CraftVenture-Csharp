@@ -11,7 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemid, idmaterial, idproduto;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         MaterialProdutoVO()
         {

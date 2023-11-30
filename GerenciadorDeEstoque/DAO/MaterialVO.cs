@@ -13,7 +13,7 @@ namespace GerenciadorDeEstoque.DAO
         private String nome;
         private Double valor;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public MaterialVO()
         {
@@ -44,7 +44,7 @@ namespace GerenciadorDeEstoque.DAO
                 else { throw new ArgumentException("O Nome está nulo"); }
             }
         }
-        public Int64 IdMaterial
+        public Int64 IdTipoMaterial
         {
             get { return idTipoMaterial; }
             set
@@ -72,13 +72,13 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDM(IdMaterial, Nome, Valor);
+            dao.IDM(IdTipoMaterial, Nome, Valor);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADM(IdMaterial, Nome, Valor, itemid);
+            dao.ADM(IdTipoMaterial, Nome, Valor, itemid);
         }
         public void Remover()
         {

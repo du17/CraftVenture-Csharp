@@ -200,7 +200,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material;
                     material.Valor = valor;
-                    material.IdMaterial = idTipoMaterial;
+                    material.IdTipoMaterial = idTipoMaterial;
                     material.Inserir();
 
                     papel.itemidTipoMaterial = idTipoMaterial;

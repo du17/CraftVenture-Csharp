@@ -12,7 +12,7 @@ namespace GerenciadorDeEstoque.DAO
         private Int64 _itemid;
         private String nome;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public TipoMaterialVO()
         {

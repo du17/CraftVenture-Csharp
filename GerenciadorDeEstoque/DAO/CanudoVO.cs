@@ -14,7 +14,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private String cor;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public CanudoVO()
         {
