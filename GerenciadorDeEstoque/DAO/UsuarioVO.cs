@@ -22,22 +22,50 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set
+            {
+                if (!value.Equals("Inserir Nome"))
+                {
+                    nome = value;
+                }
+                else { throw new ArgumentException("O Nome está nulo"); }
+            }
         }
         public String Senha
         {
             get { return senha; }
-            set { senha = value; }
+            set
+            {
+                if (!value.Equals("Inserir Senha"))
+                {
+                    senha = value;
+                }
+                else { throw new ArgumentException("A Senha está nulo"); }
+            }
         }
         public String Email
         {
             get { return email; }
-            set { email = value; }
+            set
+            {
+                if (!value.Equals("Inserir Email"))
+                {
+                    email = value;
+                }
+                else { throw new ArgumentException("O Email está nulo"); }
+            }
         }
 
         public void Inserir()
@@ -54,7 +82,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDU(Email, Senha, Nome, itemid);
+            dao.RDU(itemid);
         }
 
         public bool Login()

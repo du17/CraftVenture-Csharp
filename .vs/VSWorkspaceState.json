@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\GerenciadorDeEstoque",
-    "\\GerenciadorDeEstoque\\Apresenta\u00E7\u00E3o",
-    "\\GerenciadorDeEstoque\\DAO",
-    "\\GerenciadorDeEstoque\\Properties"
+    "\\GerenciadorDeEstoque\\Apresentação",
+    "\\GerenciadorDeEstoque\\DAO"
   ],
+
   "SelectedNode": "\\GerenciadorDeEstoque\\Apresenta\u00E7\u00E3o\\frmVenda.cs",
+
   "PreviewInSolutionExplorer": false
 }

@@ -13,7 +13,7 @@ namespace GerenciadorDeEstoque.DAO
         private String cor;
         private Double tamanho;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public PerolaVO()
         {

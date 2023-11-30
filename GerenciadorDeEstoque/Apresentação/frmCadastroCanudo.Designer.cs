@@ -309,7 +309,7 @@
             // 
             this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
             this.txtPesquisar.Name = "txtPesquisar";
-            this.txtPesquisar.Size = new System.Drawing.Size(551, 56);
+            this.txtPesquisar.Size = new System.Drawing.Size(547, 56);
             this.txtPesquisar.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.txtPesquisar.StateCommon.Border.Color1 = System.Drawing.Color.Black;
             this.txtPesquisar.StateCommon.Border.Color2 = System.Drawing.Color.Black;
@@ -320,6 +320,8 @@
             this.txtPesquisar.StateCommon.Content.Color1 = System.Drawing.Color.Black;
             this.txtPesquisar.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisar.TabIndex = 60;
+            this.txtPesquisar.TextChanged += new System.EventHandler(this.txtPesquisar_TextChanged);
+            this.txtPesquisar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPesquisar_KeyPress);
             // 
             // pictureBox2
             // 
@@ -349,6 +351,7 @@
             this.dgvCanudoKrypton.StateCommon.DataCell.Content.Color2 = System.Drawing.Color.Black;
             this.dgvCanudoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvCanudoKrypton.TabIndex = 59;
+            this.dgvCanudoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanudoKrypton_CellEnter);
             // 
             // pictureBox1
             // 
@@ -414,6 +417,7 @@
             this.kryptonButton1.StateTracking.Border.Rounding = 3;
             this.kryptonButton1.TabIndex = 62;
             this.kryptonButton1.Values.Text = "";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // frmCadastroCanudo
             // 

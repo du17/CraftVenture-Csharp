@@ -190,8 +190,10 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     idTipoMaterial = tipoMaterial.getLastId();
 
+
                     material.IdMaterial = idTipoMaterial;
                     material.Nome = nome_material + " Nº " + numero + " Nº Cor " + numeroCor + " " + marca;
+
                     material.Valor = valor;
                     material.Inserir();
 

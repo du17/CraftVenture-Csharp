@@ -21,9 +21,50 @@ namespace GerenciadorDeEstoque.Apresentação
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
+        DataTable dt = new DataTable();
+
+        bool novoClicado = false;
+
         public frmCadastroTecido()
         {
             InitializeComponent();
+            Inicializar();
+        }
+
+        private void Inicializar()
+        {
+            dt = DAO.DAO.GetTecido();
+            dgvTecidoKrypton.DataSource = dt;
+            ConfigurarGradeTecido();
+        }
+
+        private void ConfigurarGradeTecido()
+        {
+            dgvTecidoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
+            dgvTecidoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
+            dgvTecidoKrypton.RowHeadersWidth = 20;
+            dgvTecidoKrypton.RowTemplate.Height = 40;
+
+            dgvTecidoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
+            dgvTecidoKrypton.Columns["idTipoMaterial"].Visible = true;
+
+            dgvTecidoKrypton.Columns["tipo"].HeaderText = "Tipo";
+            dgvTecidoKrypton.Columns["tipo"].Width = 200;
+            dgvTecidoKrypton.Columns["tipo"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTecidoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvTecidoKrypton.Columns["tipoEstampa"].HeaderText = "TipoEstampa";
+            dgvTecidoKrypton.Columns["tipoEstampa"].Width = 130;
+            dgvTecidoKrypton.Columns["tipoEstampa"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+
+            dgvTecidoKrypton.Columns["metragem"].HeaderText = "Metragem";
+            dgvTecidoKrypton.Columns["metragem"].Width = 100;
+            dgvTecidoKrypton.Columns["metragem"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+
+            dgvTecidoKrypton.Columns["valor"].HeaderText = "Valor";
+            dgvTecidoKrypton.Columns["valor"].Width = 100;
+            dgvTecidoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvTecidoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -42,55 +83,211 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            tecido = new TecidoVO();    
-            material = new MaterialVO();
-            tipoMaterial = new TipoMaterialVO();
+            if (!novoClicado)
+            {
+                tecido = new TecidoVO();
 
-            long idTipoMaterial;
+
+                try
+                {
+                    String tipo = cbxTipo.Text;
+                    double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+                    String tipoEstampa;
+
+                    if (rdEstampado.Checked == true)
+                    {
+                        tipoEstampa = "Estampado";
+
+                    }
+                    else if (rdLiso.Checked == true)
+                    {
+                        tipoEstampa = "Liso";
+                    }
+                    else
+                    {
+                        tipoEstampa = "Sem Tipo";
+                    }
+
+                    tecido.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                    tecido.Tipo = tipo;
+                    tecido.Metragem = metragem;
+                    tecido.TipoEstampa = tipoEstampa;
+                    material.Valor = valor;
+
+                    tecido.Atualizar();
+
+                    MessageBox.Show("Item Atualizado!");
+
+                    Inicializar();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                tecido = new TecidoVO();
+                material = new MaterialVO();
+                tipoMaterial = new TipoMaterialVO();
+
+                long idTipoMaterial;
+
+                try
+                {
+                    String tipo = cbxTipo.Text;
+                    double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+                    String tipoEstampa;
+
+                    if (rdEstampado.Checked == true)
+                    {
+                        tipoEstampa = "Estampado";
+
+                    }
+                    else if (rdLiso.Checked == true)
+                    {
+                        tipoEstampa = "Liso";
+                    }
+                    else
+                    {
+                        tipoEstampa = "Sem Tipo";
+                    }
+
+                    tipoMaterial.Nome = nome_material;
+                    tipoMaterial.Inserir();
+                    idTipoMaterial = tipoMaterial.getLastId();
+
+                    material.IdTipoMaterial = idTipoMaterial;
+                    material.Nome = nome_material;
+                    material.Valor = valor;
+                    material.Inserir();
+
+                    tecido.itemidTipoMaterial = idTipoMaterial;
+                    tecido.Tipo = tipo;
+                    tecido.Metragem = metragem;
+                    tecido.TipoEstampa = tipoEstampa;
+                    tecido.Inserir();
+
+                    MessageBox.Show("Item Cadastrado!");
+                    LimpaTextos();
+                    Inicializar();
+
+
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally { novoClicado = false; }
+            }
+        }
+
+        private object GetValorLinha(String campo)
+        {
+            return dgvTecidoKrypton.Rows[dgvTecidoKrypton.CurrentCell.RowIndex].Cells[campo].Value;
+        }
+
+        private void LimpaTextos()
+        {
+            txtMetragemAltura.Text = string.Empty;
+            txtMetragemComprimento.Text = string.Empty;
+            cbxTipo.Text = "Inserir Tipo";
+            txtValor.Text = string.Empty;
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            tecido = new TecidoVO();
 
             try
             {
-                String tipo = cbxTipo.Text;
-                double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
-                double valor = Convert.ToDouble(txtValor.Text);
-                String tipoEstampa;
+                DialogResult dialog = MessageBox.Show("Você tem certeza que dejesa EXCLUIR este item?\nEsta ação não pode ser desfeita", "Excluir papel: " + cbxTipo.SelectedItem, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                if(rdEstampado.Checked == true){
+                if (dialog == DialogResult.Yes)
+                {
+                    tecido.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
+                    tecido.Remover();
+                    LimpaTextos();
+                    Inicializar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvTecidoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            tecido = new TecidoVO();
+
+            novoClicado = false;
+
+            try
+            {
+
+                tecido.Tipo = GetValorLinha("tipo").ToString();
+                tecido.Metragem = Convert.ToDouble(GetValorLinha("metragem"));
+                tecido.TipoEstampa = GetValorLinha("tipoEstampa").ToString();
+                material.Valor = Convert.ToDouble(GetValorLinha("valor"));
+                /*String tipoEstampa;
+
+
+                if (rdEstampado.Checked == true)
+                {
                     tipoEstampa = "Estampado";
 
                 }
-                else if(rdLiso.Checked == true) 
+                else if (rdLiso.Checked == true)
                 {
                     tipoEstampa = "Liso";
                 }
                 else
                 {
                     tipoEstampa = "Sem Tipo";
-                }
+                }*/
 
-                tipoMaterial.Nome = nome_material;
-                tipoMaterial.Inserir();
-                idTipoMaterial = tipoMaterial.getLastId();
+                txtMetragemAltura.Text = tecido.Metragem.ToString();
+                txtMetragemComprimento.Text = tecido.Metragem.ToString();
+                cbxTipo.SelectedItem = tecido.Tipo.ToString();
+                txtValor.Text = material.Valor.ToString();
 
-                material.IdMaterial = idTipoMaterial;
-                material.Nome = nome_material;
-                material.Valor = valor;
-                material.Inserir();
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
 
-                tecido.itemidTipoMaterial = idTipoMaterial;
-                tecido.Tipo = tipo;
-                tecido.Metragem = metragem;
-                tecido.TipoEstampa = tipoEstampa;
-                tecido.Inserir();
-
-                MessageBox.Show("Item Cadastrado!");
-
+                btnLimpar.Enabled = true;
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.GetType().ToString());
             }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            novoClicado = true;
+            dgvTecidoKrypton.CurrentCell.Selected = false;
+            LimpaTextos();
+
+            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+            btnLimpar.Enabled = false;
         }
     }
 }

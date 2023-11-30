@@ -20,6 +20,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         bool novoClicado = false;
 
+
         public frmCadastroCliente()
         {
             InitializeComponent();
@@ -140,8 +141,8 @@ namespace GerenciadorDeEstoque.Apresentação
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
-        {
-            
+
+            cliente = new ClienteVO();
 
             if (!novoClicado)
             {

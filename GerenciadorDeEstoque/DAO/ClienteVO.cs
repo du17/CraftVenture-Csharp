@@ -18,6 +18,7 @@ namespace GerenciadorDeEstoque.DAO
         private String nome, email, cep, rua, bairro, estado, complemento;
         private DAO dao;
 
+
         public ClienteVO()
         {
             dao = new DAO();
@@ -26,55 +27,118 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
 
         public Int64 Telefone
         {
             get { return telefone; }
-            set { telefone = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    telefone = value;
+                }
+                else { throw new ArgumentException("O telefone não pode ser nulo!"); }
+            }
         }
 
         public Int64 Numero
         {
             get { return numero; }
-            set { numero = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    numero = value;
+                }
+                else { throw new ArgumentException("O numero não pode ser nulo!"); }
+            }
         }
 
         public String Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set
+            {
+                if (!value.Equals("Inserir Nome"))
+                {
+                    nome = value;
+                }
+                else { throw new ArgumentException("O Nome está nulo"); }
+            }
         }
         
         public String Email
         {
             get { return email; }
-            set { email = value; }
+            set
+            {
+                if (!value.Equals("Inserir Email"))
+                {
+                    email = value;
+                }
+                else { throw new ArgumentException("O Email está nulo"); }
+            }
         }
 
         public String Cep
         {
             get { return cep; }
-            set { cep = value; }
+            set
+            {
+                if (!value.Equals("Inserir Cep"))
+                {
+                    cep = value;
+                }
+                else { throw new ArgumentException("O Cep está nulo"); }
+            }
         }
 
         public String Rua
         {
             get { return rua; }
-            set { rua = value; }
+            set
+            {
+                if (!value.Equals("Inserir Rua"))
+                {
+                    rua = value;
+                }
+                else { throw new ArgumentException("A Rua está nula"); }
+            }
         }
 
         public String Bairro
         {
             get { return bairro; }
-            set { bairro = value; }
+            set
+            {
+                if (!value.Equals("Inserir Bairro"))
+                {
+                    bairro = value;
+                }
+                else { throw new ArgumentException("O Bairro está nulo"); }
+            }
         }
 
         public String Estado
         {
             get { return estado; }
-            set { estado = value; }
+            set
+            {
+                if (!value.Equals("Inserir Estado"))
+                {
+                    estado = value;
+                }
+                else { throw new ArgumentException("O Estado está nulo"); }
+            }
         }
 
         public String Complemento

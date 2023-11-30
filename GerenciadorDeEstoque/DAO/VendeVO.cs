@@ -22,17 +22,51 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Int64 IdVenda
         {
             get { return idvenda; }
-            set { idvenda = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idvenda = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Int64 IdProduto
         {
             get { return idproduto; }
-            set { idproduto = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idproduto = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
+        }
+
+        public Int32 Quantidade
+        {
+            get { return quantidade; }
+            set
+            {
+                if (value > 0)
+                {
+                    quantidade = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
 
         public List<Int64> IdProdutoLista 
@@ -66,12 +100,12 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADVENDE(IdVenda, IdProduto, itemid);
+            dao.ADVENDE(IdVenda, IdProduto, Quantidade, itemid);
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDVENDE(IdVenda, IdProduto, itemid);
+            dao.RDVENDE(itemid);
         }
 
     }

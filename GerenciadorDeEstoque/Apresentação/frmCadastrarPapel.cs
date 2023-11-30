@@ -200,7 +200,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                     material.Valor = valor;
-                    material.IdMaterial = idTipoMaterial;
+                    material.IdTipoMaterial = idTipoMaterial;
                     material.Inserir();
 
                     papel.itemidTipoMaterial = idTipoMaterial;
@@ -355,6 +355,11 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

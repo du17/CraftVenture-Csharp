@@ -13,7 +13,7 @@ namespace GerenciadorDeEstoque.DAO
         private String nome;
         private Double valor;
         private DAO dao;
-        private conexaoUso conn;
+        //private conexaoUso conn;
 
         public MaterialVO()
         {
@@ -23,34 +23,62 @@ namespace GerenciadorDeEstoque.DAO
         public Int64 itemid
         {
             get { return _itemid; }
-            set { _itemid = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _itemid = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public String Nome
         {
             get { return nome; }
-            set { nome = value; }
+            set
+            {
+                if (!value.Equals("Inserir Nome"))
+                {
+                    nome = value;
+                }
+                else { throw new ArgumentException("O Nome está nulo"); }
+            }
         }
-        public Int64 IdMaterial
+        public Int64 IdTipoMaterial
         {
             get { return idTipoMaterial; }
-            set { idTipoMaterial = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    idTipoMaterial = value;
+                }
+                else { throw new ArgumentException("O id não pode ser nulo!"); }
+            }
         }
         public Double Valor
         {
             get { return valor; }
-            set { valor = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    valor = value;
+                }
+                else { throw new ArgumentException("O valor não pode ser nulo!"); }
+            }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDM(IdMaterial, Nome, Valor);
+            dao.IDM(IdTipoMaterial, Nome, Valor);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADM(IdMaterial, Nome, Valor, itemid);
+            dao.ADM(IdTipoMaterial, Nome, Valor, itemid);
         }
         public void Remover()
         {
