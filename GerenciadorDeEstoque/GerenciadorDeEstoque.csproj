@@ -131,6 +131,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apresentação\frmAdicionarMaterialProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmAdicionarMaterialProduto.Designer.cs">
+      <DependentUpon>frmAdicionarMaterialProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmAdicionarProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmAdicionarProdutos.Designer.cs">
+      <DependentUpon>frmAdicionarProdutos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\frmCadastroAcetato.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +215,18 @@
     <Compile Include="Apresentação\frmCadastroTecido.Designer.cs">
       <DependentUpon>frmCadastroTecido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\frmProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmProduto.Designer.cs">
+      <DependentUpon>frmProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\frmVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\frmVenda.Designer.cs">
+      <DependentUpon>frmVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\AcetatoVO.cs" />
     <Compile Include="DAO\CanudoVO.cs" />
     <Compile Include="DAO\ClienteVO.cs" />
@@ -223,6 +247,12 @@
     <Compile Include="DAO\VendeVO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Apresentação\frmAdicionarMaterialProduto.resx">
+      <DependentUpon>frmAdicionarMaterialProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmAdicionarProdutos.resx">
+      <DependentUpon>frmAdicionarProdutos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastrarFita.resx">
       <DependentUpon>frmCadastrarFita.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\frmCadastroTecido.resx">
       <DependentUpon>frmCadastroTecido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmProduto.resx">
+      <DependentUpon>frmProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\frmVenda.resx">
+      <DependentUpon>frmVenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -436,9 +472,6 @@
     <None Include="Resources\CadastroCliente.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CANCELAR.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\CADASTRAR_SemFundo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -542,6 +575,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Textos_Cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adicionar_Material.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cadastro_Produto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adicionar_Material_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancelar_Menor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Produto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adicionar_Material_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancelar_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CONFIRMAR_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CONFIRMAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Venda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela_Venda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adicionar_Produtos_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Adicionar_Produtos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

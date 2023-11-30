@@ -41,15 +41,15 @@
             this.txtMetragemAltura = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtEspessura = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvAcetatoKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAcetatoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -322,6 +322,32 @@
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 62;
             // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(551, 56);
+            this.txtPesquisar.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.txtPesquisar.StateCommon.Border.Color1 = System.Drawing.Color.Black;
+            this.txtPesquisar.StateCommon.Border.Color2 = System.Drawing.Color.Black;
+            this.txtPesquisar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)(((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left)));
+            this.txtPesquisar.StateCommon.Border.Rounding = 10;
+            this.txtPesquisar.StateCommon.Border.Width = 1;
+            this.txtPesquisar.StateCommon.Content.Color1 = System.Drawing.Color.Black;
+            this.txtPesquisar.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisar.TabIndex = 62;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Pesquisar;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 328);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(602, 65);
+            this.pictureBox2.TabIndex = 63;
+            this.pictureBox2.TabStop = false;
+            // 
             // dgvAcetatoKrypton
             // 
             this.dgvAcetatoKrypton.AllowUserToAddRows = false;
@@ -400,32 +426,7 @@
             this.kryptonButton1.StateTracking.Border.Rounding = 2;
             this.kryptonButton1.TabIndex = 63;
             this.kryptonButton1.Values.Text = "";
-            // 
-            // txtPesquisar
-            // 
-            this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
-            this.txtPesquisar.Name = "txtPesquisar";
-            this.txtPesquisar.Size = new System.Drawing.Size(551, 56);
-            this.txtPesquisar.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
-            this.txtPesquisar.StateCommon.Border.Color1 = System.Drawing.Color.Black;
-            this.txtPesquisar.StateCommon.Border.Color2 = System.Drawing.Color.Black;
-            this.txtPesquisar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)(((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left)));
-            this.txtPesquisar.StateCommon.Border.Rounding = 10;
-            this.txtPesquisar.StateCommon.Border.Width = 1;
-            this.txtPesquisar.StateCommon.Content.Color1 = System.Drawing.Color.Black;
-            this.txtPesquisar.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPesquisar.TabIndex = 62;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Pesquisar;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 328);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(602, 65);
-            this.pictureBox2.TabIndex = 63;
-            this.pictureBox2.TabStop = false;
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // frmCadastroAcetato
             // 
@@ -448,9 +449,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAcetatoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -17,7 +17,6 @@ namespace GerenciadorDeEstoque.DAO
         private Int64 _itemid, telefone, numero;
         private String nome, email, cep, rua, bairro, estado, complemento;
         private DAO dao;
-        private conexaoUso conn;
 
         public ClienteVO()
         {
@@ -97,7 +96,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Remover()
         {
             dao = new DAO();
-            dao.RDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
+            dao.RDC(itemid);
         }
 
         public Int64 getLastIdCliente()

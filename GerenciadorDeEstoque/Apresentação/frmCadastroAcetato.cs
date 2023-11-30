@@ -176,5 +176,10 @@ namespace GerenciadorDeEstoque.Apresentação
             
             }*/
         }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

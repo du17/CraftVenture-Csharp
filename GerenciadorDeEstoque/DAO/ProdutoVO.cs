@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.DAO
@@ -11,7 +12,7 @@ namespace GerenciadorDeEstoque.DAO
     {
         private Int64 _itemid, quantidade;
         private Double valor;
-        private String nome, materialUsado, tipo;
+        private String nome, tipo;
         private DAO dao;
 
         public ProdutoVO()
@@ -43,12 +44,6 @@ namespace GerenciadorDeEstoque.DAO
             set { valor = value; }
         }
 
-        public String MaterialUsado
-        {
-            get{ return materialUsado; }
-            set{ materialUsado = value; }
-        }
-
         public String Tipo
         {
             get { return tipo; }
@@ -58,19 +53,33 @@ namespace GerenciadorDeEstoque.DAO
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDP(Valor, Quantidade, Nome, MaterialUsado, Tipo);
+            dao.IDP(Valor, Quantidade, Nome, Tipo);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADP(Valor, Quantidade, Nome, MaterialUsado, Tipo, itemid);
+            dao.ADP(Valor, Quantidade, Nome, Tipo, itemid);
         }
 
         public void Remover()
         {
             dao = new DAO();
-            dao.RDP(Valor, Quantidade, Nome, MaterialUsado, Tipo, itemid);
+            dao.RDP(itemid);
+        }
+
+        public Int64 getLastId()
+        {
+            try
+            {
+                return dao.getLastId();
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+
         }
     }
 }
