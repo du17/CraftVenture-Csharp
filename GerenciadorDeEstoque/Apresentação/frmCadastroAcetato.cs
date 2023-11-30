@@ -44,6 +44,7 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.RowHeadersWidth = 20;
             dgvAcetatoKrypton.RowTemplate.Height = 40;
             
+            //mudar os bagulho no DAO, dar espacos
             dgvAcetatoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvAcetatoKrypton.Columns["idTipoMaterial"].Visible = true;
             
@@ -209,21 +210,28 @@ namespace GerenciadorDeEstoque.Apresentação
 
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetAcetado();
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
 
-                    dgvAcetatoKrypton.DataSource = dt;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
+
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
+
                 }
 
+                dgvAcetatoKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { }
 
         }
 

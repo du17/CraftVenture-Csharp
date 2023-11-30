@@ -824,8 +824,8 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE material " +
-                     "INNER JOIN tipoMaterial ON material.idTipoMaterial = tipoMaterial.id" +
-                     "SET nome = ?nome, valor = ?valor, idTipoMaterial = ?idTipoMaterial";
+                     " INNER JOIN tipoMaterial ON material.idTipoMaterial = tipoMaterial.id" +
+                     " SET nome = ?nome, valor = ?valor, idTipoMaterial = ?idTipoMaterial";
             query += " WHERE id =" + itemid;
             try
             {
@@ -1837,7 +1837,7 @@ namespace GerenciadorDeEstoque.DAO
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE perola " +
                      "INNER JOIN material ON perola.idTipoMaterial = material.idTipoMaterial" +
-                     "SET cor = ?cor, tamanho = ?tamanho";
+                     " SET cor = ?cor, tamanho = ?tamanho";
             query += " WHERE perola.idTipoMaterial =" + idTipoMaterial;
 
             try
@@ -1891,8 +1891,8 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT perola.idTipoMaterial, cor, tamanho FROM perola" +
-                "INNER JOIN material ON perola.idTipoMaterial = material.idTipoMaterial" +
+            var sql = "SELECT perola.idTipoMaterial, cor, tamanho, material.valor FROM perola" +
+                " INNER JOIN material ON perola.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
             try
