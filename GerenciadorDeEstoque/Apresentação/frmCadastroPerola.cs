@@ -192,21 +192,28 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetPerola();
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
 
-                    dgvPerolaKrypton.DataSource = dt;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
+
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
+
                 }
 
+                dgvPerolaKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void dgvPerolaKrypton_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -245,16 +252,39 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            novoClicado = true;
-            dgvPerolaKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
+            try
+            {
+                if (dgvPerolaKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    //dgvPapelKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnLimpar.Enabled = false;
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvPerolaKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                    btnLimpar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
