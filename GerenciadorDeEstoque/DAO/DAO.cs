@@ -539,8 +539,8 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
           
-            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado";
-            query += " WHERE itemid = ?itemid";
+            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, materialUsado = ?materialUsado" +
+                           " WHERE id = " + itemid;
             try
             {
                 con.Open();
@@ -567,8 +567,8 @@ namespace GerenciadorDeEstoque.DAO
             
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE produto, MaterialProduto FROM produto" +
-                " INNER JOIN MaterialProduto ON produto.id = MaterialProduto.idProduto";
-            query += " WHERE id = ?itemid";
+                " INNER JOIN MaterialProduto ON produto.id = MaterialProduto.idProduto" +
+                " WHERE id = " + itemid;
             try
             {
                 con.Open();
@@ -1398,7 +1398,7 @@ namespace GerenciadorDeEstoque.DAO
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "UPDATE fita " +
-                "INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
+                " INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
                 " SET numero = ?numero, tipo = ?tipo, marca = ?marca, numeroCor = ?numeroCor, metragem = ?metragem, material.valor = ?valor" +
                 " WHERE fita.idTipoMaterial =" + idTipoMaterial;
 
@@ -1465,9 +1465,7 @@ namespace GerenciadorDeEstoque.DAO
             var dt = new DataTable();
 
             var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor " +
-                "FROM fita " +
-
-                "INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
+                " FROM fita INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
             try
@@ -1493,8 +1491,8 @@ namespace GerenciadorDeEstoque.DAO
         public static DataTable GetFita(String tipo)
         {
             var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor " +
-                "FROM fita " +
-                "INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
+                " FROM fita " +
+                " INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
                 " WHERE tipo LIKE '%" + tipo + "%' OR numero LIKE '%"+ tipo +"%'";
 
             FitaVO fita = new FitaVO();
@@ -1846,8 +1844,10 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "UPDATE acetato SET  ?metragemAltura, ?metragemComprimento,, espessura = ?espessura";
-            query += " WHERE idTipoMaterial = ?idTipoMaterial";
+            String query = "UPDATE acetato " +
+                " INNER JOIN material ON acetato.idTipoMaterial = material.idTipoMaterial" +
+                " SET metragemAltura = ?metragemAltura, metragemComprimento = ?metragemComprimento, espessura = ?espessura " +
+                " WHERE acetato.idTipoMaterial =" + idTipoMaterial;
 
             try
             {
@@ -1857,7 +1857,6 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?metragemAltura", metragemAltura);
                 cmd.Parameters.AddWithValue("?metragemComprimento", metragemComprimento);
                 cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
-
                 cmd.Parameters.AddWithValue("?espessura", espessura);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -1879,7 +1878,7 @@ namespace GerenciadorDeEstoque.DAO
             conexao = new Conexao();
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "DELETE acetado, tamanho, espessura, idTipoMaterial FROM acetado" +
+            String query = "DELETE acetado, tamanho, espessura, metragemComprimento, metragemAltura, idTipoMaterial FROM acetado" +
                 " INNER JOIN material ON acetado.idTipoMaterial = material.idTipoMaterial" +
                 " INNER JOIN tipoMaterial ON acetado.idTipoMaterial = tipoMaterial.id" +
                 " WHERE acetado.idTipoMaterial =" + itemidTipoMatreial;
@@ -1904,8 +1903,8 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT acetado.idTipoMaterial, tamanho, espessura FROM acetado " +
-                "INNER JOIN material ON acetado.idTipoMaterial = material.idTipoMaterial" +
+            var sql = "SELECT acetado.idTipoMaterial, tamanho, espessura, metragemAltura, metragemComprimento FROM acetado " +
+                " INNER JOIN material ON acetado.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
             try
