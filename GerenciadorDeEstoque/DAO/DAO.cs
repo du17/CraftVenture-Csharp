@@ -643,7 +643,56 @@ namespace GerenciadorDeEstoque.DAO
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
+            var sqlProduto = "SELECT quantidade FROM produto WHERE id=" +idProduto;
+
+            var sqlAtualizaProduto = "UPDATE produto SET quantidade = ?quantidade" +
+                " WHERE id ="+idProduto;
+
+            try
+            {
+                int quantidadeProduto;
+
+                using (var cn = new MySqlConnection(conexao.getConnectionString()))
+                {
+                    cn.Open();
+                    using (var cmd = new MySqlCommand(sqlProduto, cn))
+                    {
+                        using (var dr = cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                if (dr.Read())
+                                {
+                                    quantidadeProduto = Convert.ToInt32(dr["quantidade"]);
+
+                                    dr.Close();
+
+                                    using (var con = new MySqlConnection(conexao.getConnectionString()))
+                                    {
+                                        using (var cmdAtualiza = new MySqlCommand(sqlAtualizaProduto, cn))
+                                        {
+                                            if (quantidadeProduto - quantidade > 0)
+                                            {
+                                                cmdAtualiza.Parameters.AddWithValue("?quantidade", quantidadeProduto - quantidade);
+                                                cmdAtualiza.ExecuteNonQuery();
+                                            }
+                                            else { throw new ArgumentException("A quantidade dos produtos no estoque não é o bastante"); }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
             con.ConnectionString = conexao.getConnectionString();
 
             String query = "INSERT INTO vende (idVenda, idProduto, quantidade) VALUES";

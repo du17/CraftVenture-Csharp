@@ -16,6 +16,13 @@ namespace GerenciadorDeEstoque.Apresentação
         DataTable dt = new DataTable();
         VendeVO vende;
 
+        public frmAdicionarProdutos(long idProduto)
+        {
+            InitializeComponent();
+
+            Inicializar();
+        }
+
         public frmAdicionarProdutos(VendeVO vende)
         {
             InitializeComponent();

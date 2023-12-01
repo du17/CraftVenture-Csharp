@@ -177,8 +177,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     idLastInsert = venda.getLastId();
 
-                    MessageBox.Show(idLastInsert.ToString());
-
                     vende.IdVenda = idLastInsert;
 
                     vende.Inserir();
