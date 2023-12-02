@@ -233,36 +233,25 @@ namespace GerenciadorDeEstoque.Apresentação
            
         }
 
-        //botão de adicionar um novo elemento
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (dgvCanudoKrypton.Rows.Count == 0)
+                novoClicado = true;
+
+                if (dgvCanudoKrypton.Rows.Count != 0)
                 {
-                    novoClicado = true;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnLimpar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
                     dgvCanudoKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnLimpar.Enabled = false;
                 }
+
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                btnLimpar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -301,38 +290,30 @@ namespace GerenciadorDeEstoque.Apresentação
         private void dgvCanudoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
 
+            canudo = new CanudoVO();
+
+            novoClicado = false;
+
             try
             {
-                if (dgvCanudoKrypton.Rows.Count == 0)
-                {
-                    novoClicado = true;
-                    //dgvPapelKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                canudo.Cor = GetValorLinha("cor").ToString();
+                canudo.Quantidade = Convert.ToInt32(GetValorLinha("quantidade"));
 
 
-                    btnLimpar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
-                    dgvCanudoKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
+                txtQuantidade.Text = canudo.Quantidade.ToString();
+                txtCor.Text = canudo.Cor;
+                txtValor.Text = GetValorLinha("valor").ToString();
 
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
 
+                btnLimpar.Enabled = true;
 
-                    btnLimpar.Enabled = false;
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.GetType().ToString());
             }
 
         }

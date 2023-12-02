@@ -42,7 +42,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void ConfigurarGradeTecido()
         {
-            dgvTecidoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
+            dgvTecidoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 18, FontStyle.Bold);
             dgvTecidoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
             dgvTecidoKrypton.RowHeadersWidth = 20;
             dgvTecidoKrypton.RowTemplate.Height = 40;
@@ -57,16 +57,16 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvTecidoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvTecidoKrypton.Columns["tipoEstampa"].HeaderText = "TipoEstampa";
-            dgvTecidoKrypton.Columns["tipoEstampa"].Width = 300;
+            dgvTecidoKrypton.Columns["tipoEstampa"].Width = 150;
             dgvTecidoKrypton.Columns["tipoEstampa"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
            
             dgvTecidoKrypton.Columns["metragemComprimento"].HeaderText = "Comprimento";
-            dgvTecidoKrypton.Columns["metragemComprimento"].Width = 300;
+            dgvTecidoKrypton.Columns["metragemComprimento"].Width = 160;
             dgvTecidoKrypton.Columns["metragemComprimento"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvTecidoKrypton.Columns["metragemComprimento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             
             dgvTecidoKrypton.Columns["metragemAltura"].HeaderText = "Altura";
-            dgvTecidoKrypton.Columns["metragemAltura"].Width = 300;
+            dgvTecidoKrypton.Columns["metragemAltura"].Width = 80;
             dgvTecidoKrypton.Columns["metragemAltura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvTecidoKrypton.Columns["metragemAltura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 

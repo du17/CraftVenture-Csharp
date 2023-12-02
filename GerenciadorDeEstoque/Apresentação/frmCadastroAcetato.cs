@@ -53,18 +53,18 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.Columns["espessura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAcetatoKrypton.Columns["espessura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             
-            dgvAcetatoKrypton.Columns["metragemComprimento"].HeaderText = "TamanhoComprimento";
-            dgvAcetatoKrypton.Columns["metragemComprimento"].Width = 120;
+            dgvAcetatoKrypton.Columns["metragemComprimento"].HeaderText = "Comprimento";
+            dgvAcetatoKrypton.Columns["metragemComprimento"].Width = 160;
             dgvAcetatoKrypton.Columns["metragemComprimento"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAcetatoKrypton.Columns["metragemComprimento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvAcetatoKrypton.Columns["metragemAltura"].HeaderText = "MetragemAltura";
+            dgvAcetatoKrypton.Columns["metragemAltura"].HeaderText = "Altura";
             dgvAcetatoKrypton.Columns["metragemAltura"].Width = 120;
             dgvAcetatoKrypton.Columns["metragemAltura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAcetatoKrypton.Columns["metragemAltura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvAcetatoKrypton.Columns["valor"].HeaderText = "Valor";
-            dgvAcetatoKrypton.Columns["valor"].Width = 100;
+            dgvAcetatoKrypton.Columns["valor"].Width = 120;
             dgvAcetatoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAcetatoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
