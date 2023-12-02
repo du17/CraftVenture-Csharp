@@ -35,9 +35,8 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         private void btnCliente_Click(object sender, EventArgs e)
         {
             frmCadastroCliente cadastroCliente = new frmCadastroCliente();
-            this.Hide();
-            cadastroCliente.ShowDialog();
-            this.Show();
+            cadastroCliente.Show();
+            this.Close();
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -52,17 +51,15 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
         private void btnProduto_Click(object sender, EventArgs e)
         {
             frmProduto frmProduto = new frmProduto();
-            this.Hide();
-            frmProduto.ShowDialog();
-            this.Show();
+            frmProduto.Show();
+            this.Close();
         }
 
         private void btnVenda_Click(object sender, EventArgs e)
         {
             frmVenda frmVenda = new frmVenda();
-            this.Hide();
-            frmVenda.ShowDialog();
-            this.Show();
+            frmVenda.Show();
+            this.Close();
         }
     }
 }

@@ -621,5 +621,74 @@
   <ItemGroup>
     <None Include="Resources\Adicionar_Produtos.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_Tracking_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Acetato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Canudo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Fita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Papel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Perola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Renda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Tecido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Acetato_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Canudo_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Fita_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Papel_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Perola_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Renda_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Tecido_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Filtrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar_Material_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar_Material.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar_Produtos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar_Produtos_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Fechar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_Fechar_Azul.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

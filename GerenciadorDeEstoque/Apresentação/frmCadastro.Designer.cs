@@ -40,6 +40,7 @@
             this.btnCadastrar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pbSenha = new System.Windows.Forms.PictureBox();
             this.pbRepetirSenha = new System.Windows.Forms.PictureBox();
+            this.btnFechar_Krypton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbSenha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRepetirSenha)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,18 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnEntrar.StateCommon.Border.Rounding = 4;
             this.btnEntrar.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrar.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnEntrar.StateNormal.Content.LongText.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrar.StatePressed.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StatePressed.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnEntrar.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
             this.btnEntrar.TabIndex = 19;
             this.btnEntrar.Values.Image = global::GerenciadorDeEstoque.Properties.Resources.ENTRAR;
             this.btnEntrar.Values.Text = "";
@@ -228,6 +240,47 @@
             this.pbRepetirSenha.TabStop = false;
             this.pbRepetirSenha.Click += new System.EventHandler(this.pbRepetirSenha_Click);
             // 
+            // btnFechar_Krypton
+            // 
+            this.btnFechar_Krypton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.btnFechar_Krypton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar_Krypton.Location = new System.Drawing.Point(1208, 12);
+            this.btnFechar_Krypton.Name = "btnFechar_Krypton";
+            this.btnFechar_Krypton.Size = new System.Drawing.Size(44, 41);
+            this.btnFechar_Krypton.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fechar_Azul;
+            this.btnFechar_Krypton.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnFechar_Krypton.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnFechar_Krypton.StatePressed.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StatePressed.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StatePressed.Back.ColorAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
+            this.btnFechar_Krypton.StatePressed.Back.ColorAngle = 0F;
+            this.btnFechar_Krypton.StatePressed.Back.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.None;
+            this.btnFechar_Krypton.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fechar_Azul;
+            this.btnFechar_Krypton.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnFechar_Krypton.StatePressed.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StatePressed.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StatePressed.Border.DrawBorders = ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.None;
+            this.btnFechar_Krypton.StatePressed.Border.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.None;
+            this.btnFechar_Krypton.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateTracking.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnFechar_Krypton.StateTracking.Back.GraphicsHint = ComponentFactory.Krypton.Toolkit.PaletteGraphicsHint.None;
+            this.btnFechar_Krypton.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fechar_Azul;
+            this.btnFechar_Krypton.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnFechar_Krypton.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnFechar_Krypton.StateTracking.Border.DrawBorders = ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.None;
+            this.btnFechar_Krypton.TabIndex = 26;
+            this.btnFechar_Krypton.Values.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fechar;
+            this.btnFechar_Krypton.Values.Text = "";
+            this.btnFechar_Krypton.Click += new System.EventHandler(this.btnFechar_Krypton_Click);
+            // 
             // frmCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,6 +288,7 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Frame_20frameCadastro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.btnFechar_Krypton);
             this.Controls.Add(this.pbRepetirSenha);
             this.Controls.Add(this.pbSenha);
             this.Controls.Add(this.btnEntrar);
@@ -248,7 +302,7 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnCadastrar);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro";
@@ -274,5 +328,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCadastrar;
         private System.Windows.Forms.PictureBox pbSenha;
         private System.Windows.Forms.PictureBox pbRepetirSenha;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnFechar_Krypton;
     }
 }

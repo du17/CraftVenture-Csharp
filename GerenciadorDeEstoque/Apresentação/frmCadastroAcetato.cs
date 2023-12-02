@@ -1,4 +1,5 @@
-﻿using GerenciadorDeEstoque.DAO;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,6 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.RowHeadersWidth = 20;
             dgvAcetatoKrypton.RowTemplate.Height = 40;
 
-            //mudar os bagulho no DAO, dar espacos
             dgvAcetatoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvAcetatoKrypton.Columns["idTipoMaterial"].Visible = true;
 
@@ -53,10 +53,10 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.Columns["espessura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAcetatoKrypton.Columns["espessura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             
-            dgvAcetatoKrypton.Columns["tamanhoComprimento"].HeaderText = "TamanhoComprimento";
-            dgvAcetatoKrypton.Columns["tamanhoComprimento"].Width = 120;
-            dgvAcetatoKrypton.Columns["tamanhoComprimento"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvAcetatoKrypton.Columns["tamanhoComprimento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAcetatoKrypton.Columns["metragemComprimento"].HeaderText = "TamanhoComprimento";
+            dgvAcetatoKrypton.Columns["metragemComprimento"].Width = 120;
+            dgvAcetatoKrypton.Columns["metragemComprimento"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAcetatoKrypton.Columns["metragemComprimento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvAcetatoKrypton.Columns["metragemAltura"].HeaderText = "MetragemAltura";
             dgvAcetatoKrypton.Columns["metragemAltura"].Width = 120;
@@ -71,7 +71,14 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
+
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -128,22 +135,33 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (txtEspessura.Text == string.Empty || txtValor.Text == string.Empty || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     double espessura = Convert.ToDouble(txtEspessura.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
                     double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
 
+
+
                     acetato.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     acetato.Espessura = espessura;
                     acetato.MetragemAltura = metragemAltura;
                     acetato.MetragemComprimento = metragemComprimento;
-                    material.Valor = valor;
+                    acetato.Valor = valor;
 
                     acetato.Atualizar();
-
+                    
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum campo está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -162,6 +180,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (txtEspessura.Text == string.Empty || txtValor.Text == string.Empty || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     double espessura = Convert.ToDouble(txtEspessura.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
@@ -171,13 +194,14 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
+
                     idTipoMaterial = tipoMaterial.getLastId();
 
                     acetato.Espessura = espessura;
                     acetato.MetragemAltura = metragemAltura;
                     acetato.MetragemComprimento = metragemComprimento;
 
-                    material.Nome = nome_material;
+                    material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
                     material.Valor = valor;
 
                     material.IdTipoMaterial = idTipoMaterial;
@@ -187,8 +211,16 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     acetato.Inserir();
 
+                    novoClicado = false;
+
+                    Inicializar();
+
                     MessageBox.Show("Item cadastrado!");
 
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum campo está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -200,7 +232,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     MessageBox.Show(ex.Message);
                 
                 }
-                finally { novoClicado = false; }
+                
             
             }
         }
@@ -216,17 +248,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
-
-                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
-
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
-
                 }
+
+                dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
 
                 dgvAcetatoKrypton.DataSource = dv;
 
@@ -237,32 +265,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvAcetatoKrypton_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            acetato = new AcetatoVO();
-            novoClicado = false;
-
-            try
-            {
-
-                acetato.MetragemComprimento = Convert.ToDouble(GetValorLinha("tamanhoComprimento")); ;
-                acetato.MetragemAltura = Convert.ToDouble(GetValorLinha("metragemAltura"));;
-                acetato.Espessura = Convert.ToDouble(GetValorLinha("espessura"));
-
-                txtEspessura.Text = acetato.Espessura.ToString();
-                txtMetragemAltura.Text = acetato.MetragemAltura.ToString();
-                txtMetragemComprimento.Text = acetato.MetragemComprimento.ToString();
-                txtValor.Text = GetValorLinha("valor").ToString();
-
-                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
-                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
-                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
-
-                btnLimpar.Enabled = true;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.GetType().ToString());
-            }
+            
 
         }
 
@@ -273,7 +276,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (dgvAcetatoKrypton.Rows.Count == 0)
                 {
                     novoClicado = true;
-                    //dgvPapelKrypton.CurrentCell.Selected = false;
                     zerarCampos();
 
                     btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
@@ -300,6 +302,47 @@ namespace GerenciadorDeEstoque.Apresentação
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda venda = new frmVenda();
+                venda.Show();
+                this.Close();
+            }
+            }
+
+        private void dgvAcetatoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            acetato = new AcetatoVO();
+            novoClicado = false;
+
+            try
+            {
+
+                acetato.MetragemComprimento = Convert.ToDouble(GetValorLinha("metragemComprimento")); ;
+                acetato.MetragemAltura = Convert.ToDouble(GetValorLinha("metragemAltura")); ;
+                acetato.Espessura = Convert.ToDouble(GetValorLinha("espessura"));
+
+                txtEspessura.Text = acetato.Espessura.ToString();
+                txtMetragemAltura.Text = acetato.MetragemAltura.ToString();
+                txtMetragemComprimento.Text = acetato.MetragemComprimento.ToString();
+                txtValor.Text = GetValorLinha("valor").ToString();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
+
+                btnLimpar.Enabled = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetType().ToString());
             }
         }
     }

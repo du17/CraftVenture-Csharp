@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
@@ -94,13 +95,25 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADMPRODUTO(IdMaterial, IdProduto, itemid);
 
+            dao = new DAO();
+            Remover();
+            try
+            {
+                for (int i = 0; i < idmaterialLista.Count(); i++)
+                {
+                    dao.IDMPRODUTO(IdMaterialLista[i], IdProduto, quantidadeLista[i]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "erro");
+            }
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDMPRODUTO(itemid);
+            dao.RDMPRODUTO(IdProduto);
         }
 
         public void AdicionarMaterial()

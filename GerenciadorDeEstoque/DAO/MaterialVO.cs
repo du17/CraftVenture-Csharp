@@ -78,7 +78,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADM(IdTipoMaterial, Nome, Valor, itemid);
+            dao.ADM(IdTipoMaterial, Nome, Valor);
         }
         public void Remover()
         {

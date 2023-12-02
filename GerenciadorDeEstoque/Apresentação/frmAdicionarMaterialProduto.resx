@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="kryptonButton1.StateNormal.Back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCancelar.StateNormal.Back.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAR0AAAA1CAYAAAB84j+UAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAABgVJREFUeF7tnb2OHEUURicjMnLgbAMsRzgaR0u068COQAKZCJKdzJHXuS0BoSOb
+        EAAACxABrSO9dQAABgVJREFUeF7tnb2OHEUURicjMnLgbAMsRzgaR0u068COQAKZCJKdzJHXuS0BoSOb
         hBCERYzEC2A5Bx4ACSQ/gB/BwdDfsLXc+bjV0zNbXdEZ6Ui7Xb9T3fd0Vc9s7SK8vhl489616+trRzcB
         AK6MfCKvDKwkmfK6PvD66Pju+vOffl2f//kOAKAZ8ooENHjmx41xhtfLO2fnaWYAgFbcfnAm8Xy7eP/o
         gzQDAEBLHv7+9t/l1pJZDgB0Yrk6Xy/uP/s+TQQAaM39Zz8gHQDoB9IBgK4gHQDoCtIBgK4gHQDoCtIB

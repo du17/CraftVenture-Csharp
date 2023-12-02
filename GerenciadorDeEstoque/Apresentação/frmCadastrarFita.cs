@@ -48,6 +48,7 @@ namespace GerenciadorDeEstoque.Apresentação
             
             dgvFitaKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvFitaKrypton.Columns["idTipoMaterial"].Visible = true;
+            dgvFitaKrypton.Columns["idTipoMaterial"].Width = 100;
             
             dgvFitaKrypton.Columns["tipo"].HeaderText = "Tipo";
             dgvFitaKrypton.Columns["tipo"].Width = 200;
@@ -80,7 +81,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Cadastro", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -137,6 +144,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (ChecarCampos(cbxTipo.Text, txtNumero.Text, txtMetragem.Text, txtMarca.Text, txtNumCor.Text, txtValor.Text))
+                    {
+                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
+                    }
+
                     String tipo = cbxTipo.Text;
                     int numero = Convert.ToInt32(txtNumero.Text);
                     double metragem = Convert.ToDouble(txtMetragem.Text);
@@ -158,6 +170,10 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     Inicializar();
                 }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -177,6 +193,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (ChecarCampos(cbxTipo.Text, txtNumero.Text, txtMetragem.Text, txtMarca.Text, txtNumCor.Text, txtValor.Text))
+                    {
+                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
+                    }
+
                     String tipo = cbxTipo.Text;
                     int numero = Convert.ToInt32(txtNumero.Text);
                     double metragem = Convert.ToDouble(txtMetragem.Text);
@@ -184,17 +205,19 @@ namespace GerenciadorDeEstoque.Apresentação
                     String numeroCor = txtNumCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
 
-
+                    
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
 
                     idTipoMaterial = tipoMaterial.getLastId();
 
+                    MessageBox.Show(idTipoMaterial.ToString());
 
-                    material.itemid = idTipoMaterial;
-                    material.Nome = nome_material + " Nº " + numero + " Nº Cor " + numeroCor + " " + marca;
 
+                    material.IdTipoMaterial = idTipoMaterial;
+                    material.Nome = nome_material + " Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
                     material.Valor = valor;
+
                     material.Inserir();
 
                     fita.itemidTpoMaterial = idTipoMaterial;
@@ -210,7 +233,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     LimpaTextos();
                     Inicializar();
 
-
+                    novoClicado = false;
                 }
                 catch(ArgumentException ex)
                 {
@@ -220,9 +243,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
 
+        }
+
+        private static bool ChecarCampos(string tipo, string numero, string metragem, string marca, string numeroCor, string valor)
+        {
+            return tipo == "Inserir Tipo" || numero == String.Empty || metragem == String.Empty || valor == String.Empty || marca == string.Empty || numeroCor == string.Empty;
         }
 
         private object GetValorLinha(String campo)
@@ -236,30 +263,25 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetFita(palavra);
-
-                    dgvFitaKrypton.DataSource = dt;
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dt = DAO.DAO.GetFita(palavra);
-
-                    dgvFitaKrypton.DataSource = dt;
-
                 }
 
+                dv.RowFilter = String.Format("tipo LIKE '%{0}%'", palavra);
+
+                dgvFitaKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { }
         }
 
         private void dgvFitaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -303,37 +325,36 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (dgvFitaKrypton.Rows.Count == 0)
+                novoClicado = true;
+
+                if (dgvFitaKrypton.Rows.Count != 0)
                 {
-                    novoClicado = true;
-                    //dgvPapelKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
                     dgvFitaKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
                 }
+
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                btnApagar.Enabled = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda frmVenda = new frmVenda(); 
+                frmVenda.Show();
+                this.Close();
+            }
+            }
     }
 }

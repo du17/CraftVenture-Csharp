@@ -100,6 +100,7 @@
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 33;
             this.btnVenda.UseVisualStyleBackColor = false;
+            this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
             // btnEstoque
             // 
@@ -320,7 +321,7 @@
             this.cbxTipo.DropButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
             this.cbxTipo.DropDownWidth = 416;
             this.cbxTipo.Items.AddRange(new object[] {
-            "Setin ",
+            "Cetim ",
             "Gorgurão",
             "Voil"});
             this.cbxTipo.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;

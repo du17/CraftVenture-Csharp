@@ -1,10 +1,13 @@
-﻿using GerenciadorDeEstoque.DAO;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
+using Org.BouncyCastle.Tls.Crypto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +36,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void Inicializar()
         {
-            dt = DAO.DAO.GetFita();
+            dt = DAO.DAO.GetRenda();
             dgvRendaKrypton.DataSource = dt;
             ConfigurarGradeRenda();
         }
@@ -64,7 +67,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -90,81 +99,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!novoClicado)
-            {
-                renda = new RendaVO();
-
-
-                try
-                {
-                    String tamanho = cbxTamanho.Text;
-                    double metragem = Convert.ToDouble(txtMetragem.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
-
-                    renda.idTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-                    renda.Tamanho = tamanho;
-                    renda.Metragem = metragem;
-                    material.Valor = valor;
-
-                    renda.Atualizar();
-
-                    MessageBox.Show("Item Atualizado!");
-
-                    Inicializar();
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                renda = new RendaVO();
-                material = new MaterialVO();
-                tipoMaterial = new TipoMaterialVO();
-
-                long idTipoMaterial;
-
-                try
-                {
-
-                    String tamanho = cbxTamanho.Text.ToString();
-                    Double metragem = Convert.ToDouble(txtMetragem.Text);
-                    Double valor = Convert.ToDouble(txtValor.Text);
-
-                    tipoMaterial.Nome = nome_material;
-                    tipoMaterial.Inserir();
-
-                    idTipoMaterial = tipoMaterial.getLastId();
-
-                    material.IdTipoMaterial = idTipoMaterial;
-                    material.Nome = nome_material;
-                    material.Valor = valor;
-                    material.Inserir();
-
-                    renda.idTipoMaterial = idTipoMaterial;
-                    renda.Tamanho = tamanho;
-                    renda.Metragem = metragem;
-                    MessageBox.Show("Acontece");
-                    renda.Inserir();
-
-                    MessageBox.Show("Item Cadastrado!");
-
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally { novoClicado = false; }
-            }
+            
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -194,26 +129,30 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
-
-                    dt = DAO.DAO.GetRenda();
-
-                    dgvRendaKrypton.DataSource = dt;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);                    
                 }
 
+                dv.RowFilter = String.Format("tamanho LIKE '%{0}%'", palavra);
+
+                dgvRendaKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { }
         }
 
         private void dgvRendaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             renda = new RendaVO();
+            material = new MaterialVO();
 
             novoClicado = false;
 
@@ -244,15 +183,150 @@ namespace GerenciadorDeEstoque.Apresentação
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
-            dgvRendaKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+            try
+            {
+                if (dgvRendaKrypton.Rows.Count == 0)
+                {
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+
+                    dgvRendaKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnLimpar.Enabled = false;
+                    btnLimpar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda venda = new frmVenda();
+                venda.Show();
+                this.Close();
+            }
+            }
+
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+            if (!novoClicado)
+            {
+                renda = new RendaVO();
+
+
+                try
+                {
+                    if (cbxTamanho.Text == "Inserir Tamanho" || txtMetragem.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
+                    String tamanho = cbxTamanho.Text;
+                    double metragem = Convert.ToDouble(txtMetragem.Text);
+                    double valor = Convert.ToDouble(txtValor.Text);
+
+                    renda.idTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                    renda.Tamanho = tamanho;
+                    renda.Metragem = metragem;
+
+                    material.Nome = nome_material + " " + tamanho + " " + metragem + " m";
+                    material.Valor = valor;
+                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
+                    renda.Atualizar();
+                    material.Atualizar();
+
+                    MessageBox.Show("Item Atualizado!");
+
+                    Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                renda = new RendaVO();
+                material = new MaterialVO();
+                tipoMaterial = new TipoMaterialVO();
+
+                long idTipoMaterial;
+
+                try
+                {
+                    if (cbxTamanho.Text == "Inserir Tamanho" || txtMetragem.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
+                    String tamanho = cbxTamanho.Text.ToString();
+                    Double metragem = Convert.ToDouble(txtMetragem.Text);
+                    Double valor = Convert.ToDouble(txtValor.Text);
+
+                    tipoMaterial.Nome = nome_material;
+                    tipoMaterial.Inserir();
+
+                    idTipoMaterial = tipoMaterial.getLastId();
+
+                    material.IdTipoMaterial = idTipoMaterial;
+                    material.Nome = nome_material + " " + tamanho + " " + metragem + " m";
+                    material.Valor = valor;
+                    material.Inserir();
+
+                    renda.idTipoMaterial = idTipoMaterial;
+                    renda.Tamanho = tamanho;
+                    renda.Metragem = metragem;
+                    renda.Inserir();
+
+                    MessageBox.Show("Item Cadastrado!");
+
+                    novoClicado = false;
+
+                    Inicializar();
+
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

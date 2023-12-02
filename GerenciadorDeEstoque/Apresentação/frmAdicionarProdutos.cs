@@ -15,12 +15,18 @@ namespace GerenciadorDeEstoque.Apresentação
     {
         DataTable dt = new DataTable();
         VendeVO vende;
+        long idVenda;
 
-        public frmAdicionarProdutos(long idProduto)
+        bool novaVenda = true;
+
+        public frmAdicionarProdutos(long idVenda, VendeVO vende)
         {
             InitializeComponent();
-
-            Inicializar();
+            this.idVenda = idVenda;
+            this.vende = vende;
+            
+            novaVenda = false;
+            InicializarChecked(this.idVenda);
         }
 
         public frmAdicionarProdutos(VendeVO vende)
@@ -34,11 +40,86 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria de Voltar? (todas as informações não salvas serão perdidas)", "Voltar", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                this.Close();
+                if (novaVenda) { this.Close(); }
+                else
+                {
+                    List<Int64> idProduto = new List<Int64>();
+                    List<Int64> quantidadeErrado = new List<Int64>();
+                    List<Int32> quantidade = new List<Int32>();
+
+                    try
+                    {
+
+                        Dictionary<String, List<long>> idProduto_Quantidade;
+
+                        idProduto_Quantidade = DAO.DAO.GetVendeId(idVenda);
+
+                        idProduto = idProduto_Quantidade["idProduto"];
+                        quantidadeErrado = idProduto_Quantidade["quantidade"];
+
+                        foreach(Int64 l in quantidadeErrado) 
+                        {
+                            quantidade.Add(Convert.ToInt32(l));
+                        }
+
+                        if (idProduto.Count <= 0)
+                        {
+                            throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                        }
+
+                        vende.IdProdutoLista = idProduto;
+                        vende.QuantidadeLista = quantidade;
+
+
+                        this.Close();
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Você não escolheu nenhum produto para vender!");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "erro");
+                    }
+                }
             }
+        }
+
+        private void InicializarChecked(long idVenda)
+        {
+            dt = DAO.DAO.GetProduto(true);
+            Dictionary<String, List<long>> idProduto_Quantidade;
+            List<long> idProduto;
+            List<long> quantidade;
+
+            idProduto_Quantidade = DAO.DAO.GetVendeId(idVenda);
+
+            idProduto = idProduto_Quantidade["idProduto"];
+            quantidade = idProduto_Quantidade["quantidade"];
+
+            int i = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (idProduto.Contains(Convert.ToInt64(row["id"])))
+                {
+                    row["escolha"] = true;
+                    row["quantidade"] = quantidade[i];
+
+                    i++;
+                }
+            }
+
+            dgvAdicionarProdutoKrypton.DataSource = dt;
+            ConfigurarGradeProduto();
         }
 
         private void Inicializar()
@@ -46,7 +127,6 @@ namespace GerenciadorDeEstoque.Apresentação
             dt = DAO.DAO.GetProduto(true);
             dgvAdicionarProdutoKrypton.DataSource = dt;
             ConfigurarGradeProduto();
-
         }
 
         private void ConfigurarGradeProduto()
@@ -88,7 +168,6 @@ namespace GerenciadorDeEstoque.Apresentação
             List<Int64> idProduto = new List<Int64>();
             List<Int32> quantidade = new List<Int32>();
 
-
             try
             {
 
@@ -98,8 +177,6 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         if (row.Cells["quantidade"].Value != DBNull.Value && Convert.ToInt32(row.Cells["quantidade"].Value) > 0)
                         {
-                            MessageBox.Show(row.Cells["id"].Value.ToString());
-
                             idProduto.Add(Convert.ToInt64(row.Cells["id"].Value));
                             quantidade.Add(Convert.ToInt32(row.Cells["quantidade"].Value));
                         }
@@ -111,12 +188,21 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                 }
 
+                if (idProduto.Count <= 0)
+                {
+                    throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                }
+
                 vende.IdProdutoLista = idProduto;
                 vende.QuantidadeLista = quantidade;
 
                 MessageBox.Show("Materiais adicionados ao produto com Sucesso");
 
                 this.Close();
+            }
+            catch(ArgumentNullException ex)
+            {
+                MessageBox.Show("Você não escolheu nenhum produto para vender!");
             }
             catch(ArgumentException ex)
             {

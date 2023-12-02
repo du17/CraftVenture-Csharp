@@ -76,7 +76,7 @@ namespace GerenciadorDeEstoque.DAO
             {
                 for (int i = 0; i < IdProdutoLista.Count(); i++)
                 {
-                    dao.IDVENDE(IdVenda, IdProdutoLista[i], QuantidadeLista[i]);
+                    dao.IDVENDE(IdVenda, IdProdutoLista[i], QuantidadeLista[i], true);
                 }
             }catch(Exception ex)
             {
@@ -87,12 +87,23 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADVENDE(IdVenda, IdProduto, itemid);
+            Remover(); 
+            try
+            {
+                for (int i = 0; i < IdProdutoLista.Count(); i++)
+                {
+                    dao.IDVENDE(IdVenda, IdProdutoLista[i], QuantidadeLista[i], false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "erro");
+            }
         }
         public void Remover()
         {
             dao = new DAO();
-            dao.RDVENDE(itemid);
+            dao.RDVENDE(IdVenda);
         }
 
     }

@@ -17,8 +17,6 @@ namespace GerenciadorDeEstoque.Apresentação
     public partial class frmLogin : KryptonForm
     {
         private UsuarioVO usuario;
-        private MySqlConnection con;
-        private DAO.Conexao conexao;
 
         public frmLogin()
         {
@@ -40,7 +38,6 @@ namespace GerenciadorDeEstoque.Apresentação
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            int n = 0;
             try
             {
                 string nome = txtNome.Text;
@@ -56,22 +53,24 @@ namespace GerenciadorDeEstoque.Apresentação
                         menuCadastro.ShowDialog();
                         
                     }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha não encontrados no banco de dados\nTente novamente ou se cadastre com o texto abaixo");
+                }
                                  
             }
             catch(ArgumentNullException erro) 
             {
                 MessageBox.Show("Algum dos campos está vazio", "Campos nulos");
             }
-
-            
-            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             frmCadastro frmCadastro = new frmCadastro();
-
+            this.Hide();
             frmCadastro.ShowDialog();
+            this.Show();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -92,6 +91,24 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtSenha.UseSystemPasswordChar = true;
                 txtSenha.PasswordChar = '●';
                 pbSenha.BackgroundImage = GerenciadorDeEstoque.Properties.Resources.olho__1_;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? ", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnFechar_Krypton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? ", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }

@@ -21,58 +21,51 @@ namespace GerenciadorDeEstoque.Apresentação
         private void btnCliente_Click(object sender, EventArgs e)
         {
             frmCadastrarPapel frmPapel = new frmCadastrarPapel();
-            this.Hide();
-            frmPapel.ShowDialog();
-            this.Show();
+            frmPapel.Show();
+            this.Close();
         }
 
         private void btnRenda_Click(object sender, EventArgs e)
         {
             frmCadastroRenda frmRenda = new frmCadastroRenda();
-            this.Hide();
-            frmRenda.ShowDialog();
-            this.Show();
+            frmRenda.Show();
+            this.Close();
         }
 
         private void btnPerola_Click(object sender, EventArgs e)
         {
             frmCadastroPerola frmRenda = new frmCadastroPerola();
-            this.Hide();
-            frmRenda.ShowDialog();
-            this.Show();
+            frmRenda.Show();
+            this.Close();
 
         }
 
         private void btnAcetato_Click(object sender, EventArgs e)
         {
             frmCadastroAcetato frmAcetato = new frmCadastroAcetato();
-            this.Hide();
-            frmAcetato.ShowDialog();
-            this.Show();
+            frmAcetato.Show();
+            this.Close();
         }
 
         private void btnFita_Click(object sender, EventArgs e)
         {
             frmCadastrarFita frmFita = new frmCadastrarFita();  
-            this.Hide();
-            frmFita.ShowDialog();
-            this.Show();
+            frmFita.Show();
+            this.Close();
         }
 
         private void btnTecido_Click(object sender, EventArgs e)
         {
             frmCadastroTecido frmTecido = new frmCadastroTecido();
-            this.Hide();
-            frmTecido.ShowDialog();
-            this.Show();
+            frmTecido.Show();
+            this.Close();
         }
 
         private void btnCanudo_Click_1(object sender, EventArgs e)
         {
             frmCadastroCanudo frmCanudo = new frmCadastroCanudo();
-            this.Hide();
-            frmCanudo.ShowDialog();
-            this.Show();
+            frmCanudo.Show();
+            this.Close();
             
         }
 

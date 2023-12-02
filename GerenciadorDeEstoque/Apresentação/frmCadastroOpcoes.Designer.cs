@@ -142,15 +142,23 @@
             this.btnPapel.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnPapel.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnPapel.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnPapel.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Papel;
             this.btnPapel.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnPapel.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnPapel.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnPapel.StateNormal.Border.Rounding = 5;
+            this.btnPapel.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnPapel.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnPapel.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Papel;
+            this.btnPapel.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnPapel.StatePressed.Border.Rounding = 3;
             this.btnPapel.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnPapel.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnPapel.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.PAPEL;
+            this.btnPapel.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Papel_Tracking;
             this.btnPapel.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnPapel.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnPapel.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
@@ -170,10 +178,8 @@
             this.btnFita.Location = new System.Drawing.Point(614, 97);
             this.btnFita.Name = "btnFita";
             this.btnFita.Size = new System.Drawing.Size(271, 158);
-            this.btnFita.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnFita.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnFita.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
-            this.btnFita.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.FITA;
+            this.btnFita.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fita;
             this.btnFita.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
             this.btnFita.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnFita.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
@@ -187,16 +193,23 @@
             this.btnFita.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnFita.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnFita.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnFita.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.FITA;
+            this.btnFita.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fita;
             this.btnFita.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnFita.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnFita.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnFita.StateNormal.Border.Rounding = 12;
+            this.btnFita.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnFita.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnFita.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fita;
+            this.btnFita.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnFita.StatePressed.Border.Rounding = 3;
             this.btnFita.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnFita.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnFita.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.FITA;
+            this.btnFita.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Fita_Tracking;
             this.btnFita.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnFita.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnFita.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
@@ -233,16 +246,19 @@
             this.btnPerola.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnPerola.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnPerola.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnPerola.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.PÉROLA;
+            this.btnPerola.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Perola;
             this.btnPerola.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnPerola.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnPerola.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnPerola.StateNormal.Border.Rounding = 12;
+            this.btnPerola.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnPerola.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnPerola.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Perola;
             this.btnPerola.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnPerola.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnPerola.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.PÉROLA;
+            this.btnPerola.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Perola_Tracking;
             this.btnPerola.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnPerola.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnPerola.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
@@ -279,16 +295,19 @@
             this.btnTecido.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnTecido.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnTecido.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnTecido.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.TECIDO;
+            this.btnTecido.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Tecido;
             this.btnTecido.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnTecido.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnTecido.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnTecido.StateNormal.Border.Rounding = 5;
+            this.btnTecido.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnTecido.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnTecido.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Tecido;
             this.btnTecido.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnTecido.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnTecido.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.TECIDO;
+            this.btnTecido.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Tecido_Tracking;
             this.btnTecido.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnTecido.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnTecido.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
@@ -325,16 +344,19 @@
             this.btnRenda.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnRenda.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnRenda.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnRenda.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.RENDA;
+            this.btnRenda.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Renda;
             this.btnRenda.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnRenda.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnRenda.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnRenda.StateNormal.Border.Rounding = 5;
+            this.btnRenda.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnRenda.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnRenda.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Renda;
             this.btnRenda.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnRenda.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnRenda.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.RENDA;
+            this.btnRenda.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Renda_Tracking;
             this.btnRenda.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnRenda.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnRenda.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
@@ -371,16 +393,19 @@
             this.btnAcetato.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnAcetato.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnAcetato.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnAcetato.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ACETATO;
+            this.btnAcetato.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Acetato;
             this.btnAcetato.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnAcetato.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnAcetato.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnAcetato.StateNormal.Border.Rounding = 5;
+            this.btnAcetato.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnAcetato.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnAcetato.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Acetato;
             this.btnAcetato.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnAcetato.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnAcetato.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.ACETATO;
+            this.btnAcetato.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Acetato_Tracking;
             this.btnAcetato.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnAcetato.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnAcetato.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
@@ -417,16 +442,19 @@
             this.btnCanudo.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnCanudo.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
             this.btnCanudo.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
-            this.btnCanudo.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.CANUDO;
+            this.btnCanudo.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Canudo;
             this.btnCanudo.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCanudo.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnCanudo.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnCanudo.StateNormal.Border.Rounding = 5;
+            this.btnCanudo.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnCanudo.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(212)))), ((int)(((byte)(255)))));
+            this.btnCanudo.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Canudo;
             this.btnCanudo.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
             this.btnCanudo.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.btnCanudo.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.CANUDO;
+            this.btnCanudo.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.btn_Canudo_Tracking;
             this.btnCanudo.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
             this.btnCanudo.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCanudo.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;

@@ -45,7 +45,7 @@
             this.btnNovo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSalvar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnApagar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAdicionarProduto = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSair = new System.Windows.Forms.Button();
             this.btnHistórico = new System.Windows.Forms.Button();
             this.btnVenda = new System.Windows.Forms.Button();
@@ -634,58 +634,58 @@
             this.btnApagar.Values.Text = "";
             this.btnApagar.Click += new System.EventHandler(this.btnApagar_Click);
             // 
-            // kryptonButton1
+            // btnAdicionarProduto
             // 
-            this.kryptonButton1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.kryptonButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.kryptonButton1.Location = new System.Drawing.Point(319, 521);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(894, 45);
-            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
-            this.kryptonButton1.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.LIMPAR;
-            this.kryptonButton1.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
-            this.kryptonButton1.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
-            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAdicionarProduto.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.btnAdicionarProduto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarProduto.Location = new System.Drawing.Point(319, 521);
+            this.btnAdicionarProduto.Name = "btnAdicionarProduto";
+            this.btnAdicionarProduto.Size = new System.Drawing.Size(894, 45);
+            this.btnAdicionarProduto.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnAdicionarProduto.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.LIMPAR;
+            this.btnAdicionarProduto.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
+            this.btnAdicionarProduto.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnAdicionarProduto.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.Rounding = 7;
-            this.kryptonButton1.StateCommon.Content.Image.ImageColorMap = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Content.Image.ImageColorTo = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.kryptonButton1.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos;
-            this.kryptonButton1.StateNormal.Border.Color1 = System.Drawing.Color.Black;
-            this.kryptonButton1.StateNormal.Border.Color2 = System.Drawing.Color.Black;
-            this.kryptonButton1.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAdicionarProduto.StateCommon.Border.Rounding = 7;
+            this.btnAdicionarProduto.StateCommon.Content.Image.ImageColorMap = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Content.Image.ImageColorTo = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.btnAdicionarProduto.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos;
+            this.btnAdicionarProduto.StateNormal.Border.Color1 = System.Drawing.Color.Black;
+            this.btnAdicionarProduto.StateNormal.Border.Color2 = System.Drawing.Color.Black;
+            this.btnAdicionarProduto.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateNormal.Border.Rounding = 5;
-            this.kryptonButton1.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos;
-            this.kryptonButton1.StatePressed.Border.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StatePressed.Border.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAdicionarProduto.StateNormal.Border.Rounding = 5;
+            this.btnAdicionarProduto.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos;
+            this.btnAdicionarProduto.StatePressed.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StatePressed.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StatePressed.Border.Rounding = 5;
-            this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.kryptonButton1.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
-            this.kryptonButton1.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos_Tracking;
-            this.kryptonButton1.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
-            this.kryptonButton1.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateTracking.Border.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
-            this.kryptonButton1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAdicionarProduto.StatePressed.Border.Rounding = 5;
+            this.btnAdicionarProduto.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.btnAdicionarProduto.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.btnAdicionarProduto.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Adicionar_Produtos_Tracking;
+            this.btnAdicionarProduto.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnAdicionarProduto.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnAdicionarProduto.StateTracking.Border.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnAdicionarProduto.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateTracking.Border.Rounding = 6;
-            this.kryptonButton1.TabIndex = 55;
-            this.kryptonButton1.Values.Text = "";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.btnAdicionarProduto.StateTracking.Border.Rounding = 6;
+            this.btnAdicionarProduto.TabIndex = 55;
+            this.btnAdicionarProduto.Values.Text = "";
+            this.btnAdicionarProduto.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // btnSair
             // 
@@ -776,7 +776,7 @@
             this.Controls.Add(this.btnVenda);
             this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
-            this.Controls.Add(this.kryptonButton1);
+            this.Controls.Add(this.btnAdicionarProduto);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnApagar);
@@ -816,7 +816,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnNovo;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSalvar;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnApagar;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAdicionarProduto;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnHistórico;
         private System.Windows.Forms.Button btnVenda;

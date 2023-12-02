@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgvProduto = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtTipo = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -38,6 +39,7 @@
             this.txtValor = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvProdutoKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnNovo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSalvar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnApagar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -47,17 +49,23 @@
             this.btnVenda = new System.Windows.Forms.Button();
             this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
+            this.cbxFiltro = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProduto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoKrypton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxFiltro)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.cbxFiltro);
+            this.panel1.Controls.Add(this.dgvProduto);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.txtTipo);
@@ -67,14 +75,36 @@
             this.panel1.Controls.Add(this.txtValor);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.dgvProdutoKrypton);
+            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Location = new System.Drawing.Point(276, 87);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 410);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // dgvProduto
+            // 
+            this.dgvProduto.AllowUserToAddRows = false;
+            this.dgvProduto.AllowUserToDeleteRows = false;
+            this.dgvProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProduto.Location = new System.Drawing.Point(3, 3);
+            this.dgvProduto.MultiSelect = false;
+            this.dgvProduto.Name = "dgvProduto";
+            this.dgvProduto.ReadOnly = true;
+            this.dgvProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProduto.Size = new System.Drawing.Size(844, 348);
+            this.dgvProduto.StateCommon.Background.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.dgvProduto.StateCommon.Background.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.dgvProduto.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            this.dgvProduto.StateCommon.DataCell.Content.Color1 = System.Drawing.Color.Black;
+            this.dgvProduto.StateCommon.DataCell.Content.Color2 = System.Drawing.Color.Black;
+            this.dgvProduto.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
+            this.dgvProduto.TabIndex = 65;
+            this.dgvProduto.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduto_CellEnter);
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
+            this.txtPesquisar.Location = new System.Drawing.Point(16, 357);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(551, 56);
             this.txtPesquisar.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -93,7 +123,7 @@
             // 
             this.pictureBox2.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Pesquisar;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 328);
+            this.pictureBox2.Location = new System.Drawing.Point(16, 357);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(602, 65);
             this.pictureBox2.TabIndex = 61;
@@ -101,7 +131,7 @@
             // 
             // txtTipo
             // 
-            this.txtTipo.Location = new System.Drawing.Point(230, 500);
+            this.txtTipo.Location = new System.Drawing.Point(232, 595);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Size = new System.Drawing.Size(374, 50);
             this.txtTipo.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -117,7 +147,7 @@
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(231, 570);
+            this.txtQuantidade.Location = new System.Drawing.Point(233, 665);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(231, 50);
             this.txtQuantidade.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -135,7 +165,7 @@
             // 
             this.pbProduto.BackColor = System.Drawing.Color.Transparent;
             this.pbProduto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbProduto.Location = new System.Drawing.Point(490, 642);
+            this.pbProduto.Location = new System.Drawing.Point(492, 737);
             this.pbProduto.Name = "pbProduto";
             this.pbProduto.Size = new System.Drawing.Size(201, 195);
             this.pbProduto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -144,7 +174,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(230, 419);
+            this.txtNome.Location = new System.Drawing.Point(232, 514);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(470, 50);
             this.txtNome.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -160,7 +190,7 @@
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(279, 648);
+            this.txtValor.Location = new System.Drawing.Point(281, 743);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(177, 50);
             this.txtValor.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -177,7 +207,7 @@
             // 
             this.pictureBox1.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Textos_Produto;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Location = new System.Drawing.Point(14, 415);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 510);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(830, 457);
             this.pictureBox1.TabIndex = 54;
@@ -188,7 +218,7 @@
             this.dgvProdutoKrypton.AllowUserToAddRows = false;
             this.dgvProdutoKrypton.AllowUserToDeleteRows = false;
             this.dgvProdutoKrypton.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProdutoKrypton.Location = new System.Drawing.Point(3, 3);
+            this.dgvProdutoKrypton.Location = new System.Drawing.Point(3, -330);
             this.dgvProdutoKrypton.MultiSelect = false;
             this.dgvProdutoKrypton.Name = "dgvProdutoKrypton";
             this.dgvProdutoKrypton.ReadOnly = true;
@@ -202,6 +232,16 @@
             this.dgvProdutoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvProdutoKrypton.TabIndex = 53;
             this.dgvProdutoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPapelKrypton_CellEnter);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Filtrar;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.Location = new System.Drawing.Point(16, 445);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(561, 46);
+            this.pictureBox3.TabIndex = 62;
+            this.pictureBox3.TabStop = false;
             // 
             // btnNovo
             // 
@@ -469,6 +509,7 @@
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 58;
             this.btnVenda.UseVisualStyleBackColor = false;
+            this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
             // btnEstoque
             // 
@@ -501,6 +542,80 @@
             this.btnCadastro.UseVisualStyleBackColor = false;
             this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
+            // cbxFiltro
+            // 
+            this.cbxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbxFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxFiltro.DropBackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.ButtonGallery;
+            this.cbxFiltro.DropButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
+            this.cbxFiltro.DropDownWidth = 416;
+            this.cbxFiltro.Items.AddRange(new object[] {
+            "Nome",
+            "Tipo",
+            "Quantidade"});
+            this.cbxFiltro.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
+            this.cbxFiltro.Location = new System.Drawing.Point(179, 444);
+            this.cbxFiltro.Name = "cbxFiltro";
+            this.cbxFiltro.Size = new System.Drawing.Size(378, 47);
+            this.cbxFiltro.StateActive.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.ComboBox.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.ComboBox.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.ComboBox.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxFiltro.StateCommon.ComboBox.Border.Rounding = 2;
+            this.cbxFiltro.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 22F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateCommon.DropBack.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.DropBack.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.Item.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.Item.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateCommon.Item.Border.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Border.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxFiltro.StateCommon.Item.Border.Rounding = 5;
+            this.cbxFiltro.StateCommon.Item.Content.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.cbxFiltro.StateCommon.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Content.LongText.ColorStyle = ComponentFactory.Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.cbxFiltro.StateCommon.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateCommon.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateDisabled.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateDisabled.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateDisabled.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateDisabled.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateDisabled.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateDisabled.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateNormal.ComboBox.Content.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.ComboBox.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.cbxFiltro.StateNormal.Item.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateNormal.Item.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.cbxFiltro.StateNormal.Item.Border.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Border.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cbxFiltro.StateNormal.Item.Content.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.cbxFiltro.StateNormal.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxFiltro.StateNormal.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateNormal.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxFiltro.StateTracking.Item.Content.LongText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateTracking.Item.Content.LongText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateTracking.Item.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxFiltro.StateTracking.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateTracking.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.cbxFiltro.StateTracking.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxFiltro.TabIndex = 61;
+            this.cbxFiltro.SelectedIndexChanged += new System.EventHandler(this.cbxEstado_SelectedIndexChanged);
+            // 
             // frmProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -524,10 +639,13 @@
             this.Text = "frmProduto";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProduto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutoKrypton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxFiltro)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -553,5 +671,8 @@
         private System.Windows.Forms.Button btnVenda;
         private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvProduto;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbxFiltro;
     }
 }

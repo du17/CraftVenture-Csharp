@@ -1,4 +1,5 @@
-﻿using GerenciadorDeEstoque.DAO;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
@@ -102,40 +103,56 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             if (!novoClicado)
             {
-                /*
-                cliente = new ClienteVO();
-
+                
+                venda = new VendaVO();
 
                 try
                 {
-                    Int64 telefone = Convert.ToInt64(txtTelefone.Text);
-                    Int64 numero = Convert.ToInt64(txtNumero.Text);
-                    String nome = txtNome.Text;
-                    String email = txtEmail.Text;
-                    String cep = txtCep.Text;
-                    String rua = txtRua.Text;
-                    String bairro = txtBairro.Text;
-                    String estado = cbxEstado.Text;
-                    String complemento = txtComplemento.Text;
 
+                    if (cbxNomeCliente.Text == "Escolher Cliente" || cbxFormaEntrega.Text == String.Empty || cbxFormaPagamento.Text == String.Empty || txtValor.Text == String.Empty)
+                    {
+                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                    }
+                    else if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
 
+                    String nomeCliente = cbxNomeCliente.Text;
+                    String formaPagamento = cbxFormaPagamento.Text;
+                    String formaEntrega = cbxFormaEntrega.Text;
+                    String anotacao = txtAnotacao.Text;
 
-                    cliente.itemid = Convert.ToInt64(GetValorLinha("id"));
-                    cliente.Telefone = telefone;
-                    cliente.Numero = numero;
-                    cliente.Nome = nome;
-                    cliente.Email = email;
-                    cliente.Cep = cep;
-                    cliente.Rua = rua;
-                    cliente.Bairro = bairro;
-                    cliente.Estado = getEstado(estado);
-                    cliente.Complemento = complemento;
+                    Int64 valor = Convert.ToInt64(txtValor.Text);
+                    Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
+                    DateTime dataEntrega = dtpDateEntrega.Value;
+                    DateTime dataVenda = dtpDataVenda.Value;
 
-                    cliente.Atualizar();
+                    venda.itemid = Convert.ToInt64(GetValorLinha("id"));
+                    venda.NomeCliente = nomeCliente;
+                    venda.FormaPagamento = formaPagamento;
+                    venda.FormaEntrega = formaEntrega;
+                    venda.Anotacao = anotacao;
+                    venda.ValorTotal = valor;
+                    venda.DataVenda = dataVenda;
+                    venda.DataEntrega = dataEntrega;
+                    venda.CodCliente = idCliente;
 
-                    MessageBox.Show("Item Atualizado!");
+                    vende.IdVenda = Convert.ToInt64(GetValorLinha("id"));
+
+                    vende.Atualizar();
+
+                    venda.Atualizar();
+
+                    
+
+                    MessageBox.Show("Venda Atualizada!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
@@ -144,7 +161,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }*/
+                }
             }
             else
             {
@@ -154,6 +171,16 @@ namespace GerenciadorDeEstoque.Apresentação
                 
                 try
                 {
+
+                    if (cbxNomeCliente.Text == "Escolher Cliente" || cbxFormaEntrega.Text == String.Empty || cbxFormaPagamento.Text == String.Empty || txtValor.Text == String.Empty)
+                    {
+                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                    }
+                    else if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
+
                     String nomeCliente = cbxNomeCliente.Text;
                     String formaPagamento = cbxFormaPagamento.Text;
                     String formaEntrega = cbxFormaEntrega.Text;
@@ -183,7 +210,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     MessageBox.Show("Venda Cadastrada!");
 
+                    novoClicado = false;
+
                     Inicializar();
+                }
+                catch(ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
@@ -193,13 +226,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
         }
 
         private void btnApagar_Click(object sender, EventArgs e)
         {
             venda = new VendaVO();
+            vende = new VendeVO();
 
             try
             {
@@ -208,8 +241,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (dialog == DialogResult.Yes)
                 {
                     venda.itemid = Convert.ToInt64(GetValorLinha("id"));
-
+                    vende.IdVenda = Convert.ToInt64(GetValorLinha("id"));
+                                        
                     venda.Remover();
+                    vende.Remover();
 
                     LimpaTextos();
                     Inicializar();
@@ -235,6 +270,9 @@ namespace GerenciadorDeEstoque.Apresentação
                     btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
                     btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
+                    btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
+                    btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
+                    btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
 
                     btnApagar.Enabled = false;
                 }
@@ -248,6 +286,9 @@ namespace GerenciadorDeEstoque.Apresentação
                     btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
                     btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
+                    btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
+                    btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
+                    btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
 
                     btnApagar.Enabled = false;
                 }
@@ -306,9 +347,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (vende != null)
+            if (vende != null && novoClicado == true)
             {
                 frmAdicionarProdutos Adicionar = new frmAdicionarProdutos(vende);
+
+                Adicionar.ShowDialog();
+            }
+            else if(vende != null && novoClicado == false)
+            {
+                frmAdicionarProdutos Adicionar = new frmAdicionarProdutos(Convert.ToInt64(GetValorLinha("id")), vende);
 
                 Adicionar.ShowDialog();
             }
@@ -325,9 +372,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Abrir Cadastro", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
                 this.Close();
             }
         }
@@ -365,7 +414,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
 
+                btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Editar_Produtos;
+                btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Editar_Produtos;
+                btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Editar_Produtos_Tracking;
+
                 btnApagar.Enabled = true;
+
+                vende = new VendeVO();
 
             }
             catch (Exception ex)

@@ -82,12 +82,18 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnVenda_Click(object sender, EventArgs e)
         {
-
-        }
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda venda = new frmVenda();
+                venda.Show();
+                this.Close();
+            }
+            }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Saindo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 Application.Exit();
@@ -96,9 +102,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Menu", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
                 this.Close();
             }
         }
@@ -140,10 +148,14 @@ namespace GerenciadorDeEstoque.Apresentação
             if (!novoClicado)
             {
                 papel = new PapelVO();
-
+                material = new MaterialVO();
 
                 try
                 {
+                    if (cbxTipo.Text == string.Empty || txtCor.Text == string.Empty || cbxTamanho.Text == "Tamanho" || txtGramatura.Text == string.Empty ||txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException("Um ou mais campos estão vazios!");
+                    }
                     String tipo = cbxTipo.Text;
                     String cor = txtCor.Text;
                     String tamanho = cbxTamanho.Text;
@@ -157,11 +169,20 @@ namespace GerenciadorDeEstoque.Apresentação
                     papel.Tamanho = tamanho;
                     papel.Valor = valor;
 
+                    material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
+                    material.Valor = valor;
+                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
                     papel.Atualizar();
+                    material.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -182,6 +203,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (cbxTipo.Text == string.Empty || txtCor.Text == string.Empty || cbxTamanho.Text == "Tamanho" || txtGramatura.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
+                    }
+
                     String tipo = cbxTipo.Text;
                     String cor = txtCor.Text;
                     String tamanho = cbxTamanho.Text;
@@ -212,7 +238,12 @@ namespace GerenciadorDeEstoque.Apresentação
                     LimpaTextos();
                     Inicializar();
 
+                    novoClicado = false;
                     
+                }
+                catch(ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -222,7 +253,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
         }
 

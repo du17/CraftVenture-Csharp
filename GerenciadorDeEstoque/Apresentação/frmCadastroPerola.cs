@@ -1,5 +1,6 @@
 
-﻿using GerenciadorDeEstoque.DAO;
+using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,13 +47,14 @@ namespace GerenciadorDeEstoque.Apresentação
 
             dgvPerolaKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvPerolaKrypton.Columns["idTipoMaterial"].Visible = true;
+            dgvPerolaKrypton.Columns["idTipoMaterial"].Width = 80;
 
             dgvPerolaKrypton.Columns["tamanho"].HeaderText = "Tamanho";
             dgvPerolaKrypton.Columns["tamanho"].Width = 130;
             dgvPerolaKrypton.Columns["tamanho"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
 
             dgvPerolaKrypton.Columns["cor"].HeaderText = "Cor";
-            dgvPerolaKrypton.Columns["cor"].Width = 120;
+            dgvPerolaKrypton.Columns["cor"].Width = 200;
             dgvPerolaKrypton.Columns["cor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPerolaKrypton.Columns["cor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -64,7 +66,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -86,10 +94,15 @@ namespace GerenciadorDeEstoque.Apresentação
             if (!novoClicado)
             {
                 perola = new PerolaVO();
-
+                material = new MaterialVO();
 
                 try
                 {
+                    if (txtCor.Text == String.Empty || txtTamanho.Text == String.Empty || txtValor.Text == String.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     double tamanho = Convert.ToDouble(txtTamanho.Text);;
                     String cor = txtCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
@@ -97,13 +110,22 @@ namespace GerenciadorDeEstoque.Apresentação
                     perola.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     perola.Tamanho = tamanho;
                     perola.Cor = cor;
+                    perola.Valor = valor;
+
+                    material.Nome = nome_material + " " + cor + " " + tamanho + " cm";
                     material.Valor = valor;
+                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                     perola.Atualizar();
+                    material.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -124,9 +146,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (txtCor.Text == String.Empty || txtTamanho.Text == String.Empty || txtValor.Text == String.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
                     String cor = txtCor.Text;
                     Double tamanho = Convert.ToDouble(txtTamanho.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
+                    Double valor = Convert.ToDouble(txtValor.Text);
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
@@ -134,7 +160,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     idTipoMaterial = tipoMaterial.getLastId();
 
                     material.IdTipoMaterial = idTipoMaterial;
-                    material.Nome = nome_material;
+                    material.Nome = nome_material + " " + cor + " " + tamanho + " cm";
                     material.Valor = valor;
                     material.Inserir();
 
@@ -145,6 +171,14 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     MessageBox.Show("Item Cadastrado!");
 
+                    novoClicado = false;
+
+                    Inicializar();
+
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -154,7 +188,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
         }
 
@@ -192,21 +225,25 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetPerola();
-
-                    dgvPerolaKrypton.DataSource = dt;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
                 }
 
+                dv.RowFilter = String.Format("cor LIKE '%{0}%'", palavra);
+
+                dgvPerolaKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { }
         }
 
         private void dgvPerolaKrypton_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -224,11 +261,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 perola.Tamanho = Convert.ToDouble(GetValorLinha("tamanho"));
                 perola.Cor = GetValorLinha("cor").ToString();
-                material.Valor = Convert.ToDouble(GetValorLinha("valor"));
+                perola.Valor = Convert.ToDouble(GetValorLinha("valor"));
 
                 txtCor.Text = perola.Cor.ToString();
                 txtTamanho.Text = perola.Tamanho.ToString();
-                txtValor.Text = material.Valor.ToString();
+                txtValor.Text = perola.Valor.ToString();
 
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
@@ -246,15 +283,48 @@ namespace GerenciadorDeEstoque.Apresentação
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
-            dgvPerolaKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+            try
+            {
+                if (dgvPerolaKrypton.Rows.Count == 0)
+                {
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+                    
+                    dgvPerolaKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnLimpar.Enabled = false;
+                    btnLimpar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda venda = new frmVenda();
+                venda.Show();
+                this.Close();
+            }
+            }
     }
 }
