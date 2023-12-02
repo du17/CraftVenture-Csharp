@@ -274,50 +274,65 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetCanudo();
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
 
-                    dgvCanudoKrypton.DataSource = dt;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
+
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
+
                 }
 
+                dgvCanudoKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void dgvCanudoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
 
-            canudo = new CanudoVO();
-
-            novoClicado = false;
-
             try
             {
+                if (dgvCanudoKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    //dgvPapelKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
 
-                canudo.Quantidade = Convert.ToInt32(GetValorLinha("quantidade"));
-                canudo.Cor = GetValorLinha("cor").ToString();
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
-                txtQuantidade.Text = canudo.Quantidade.ToString();
-                txtCor.Text = canudo.Cor;
-                txtValor.Text = GetValorLinha("valor").ToString();
 
-                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
-                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
-                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvCanudoKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
 
-                btnLimpar.Enabled = true;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
+
+                    btnLimpar.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetType().ToString());
+                MessageBox.Show(ex.Message);
             }
 
         }

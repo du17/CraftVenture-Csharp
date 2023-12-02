@@ -236,7 +236,17 @@ namespace GerenciadorDeEstoque.Apresentação
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
+
                 }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
+
+                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
+
+                }
+
+                dgvPerolaKrypton.DataSource = dv;
 
                 dv.RowFilter = String.Format("cor LIKE '%{0}%'", palavra);
 
@@ -301,6 +311,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     
                     dgvPerolaKrypton.CurrentCell.Selected = false;
                     LimpaTextos();
+
 
                     btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
                     btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
