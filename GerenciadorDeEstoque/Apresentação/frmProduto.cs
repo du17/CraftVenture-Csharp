@@ -1,4 +1,5 @@
-﻿using GerenciadorDeEstoque.DAO;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace GerenciadorDeEstoque.Apresentação
         private void Inicializar()
         {
             dt = DAO.DAO.GetProduto(false);
-            dgvProdutoKrypton.DataSource = dt;
+            dgvProduto.DataSource = dt;
             
             ConfigurarGradeProdutos();
             
@@ -38,41 +39,47 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void ConfigurarGradeProdutos()
         {
-            dgvProdutoKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
-            dgvProdutoKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
-            dgvProdutoKrypton.RowHeadersWidth = 20;
-            dgvProdutoKrypton.RowTemplate.Height = 40;
+            dgvProduto.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
+            dgvProduto.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
+            dgvProduto.RowHeadersWidth = 20;
+            dgvProduto.RowTemplate.Height = 40;
 
-            dgvProdutoKrypton.Columns["id"].HeaderText = "ID";
-            dgvProdutoKrypton.Columns["id"].Visible = true;
+            dgvProduto.Columns["id"].HeaderText = "ID";
+            dgvProduto.Columns["id"].Visible = true;
 
-            dgvProdutoKrypton.Columns["tipo"].HeaderText = "Tipo";
-            dgvProdutoKrypton.Columns["tipo"].Width = 200;
-            dgvProdutoKrypton.Columns["tipo"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvProdutoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduto.Columns["tipo"].HeaderText = "Tipo";
+            dgvProduto.Columns["tipo"].Width = 200;
+            dgvProduto.Columns["tipo"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduto.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvProdutoKrypton.Columns["nome"].HeaderText = "Nome";
-            dgvProdutoKrypton.Columns["nome"].Width = 130;
-            dgvProdutoKrypton.Columns["nome"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+            dgvProduto.Columns["nome"].HeaderText = "Nome";
+            dgvProduto.Columns["nome"].Width = 130;
+            dgvProduto.Columns["nome"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
 
-            dgvProdutoKrypton.Columns["quantidade"].HeaderText = "Quantidade";
-            dgvProdutoKrypton.Columns["quantidade"].Width = 120;
-            dgvProdutoKrypton.Columns["quantidade"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvProdutoKrypton.Columns["quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduto.Columns["quantidade"].HeaderText = "Quantidade";
+            dgvProduto.Columns["quantidade"].Width = 120;
+            dgvProduto.Columns["quantidade"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvProduto.Columns["quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvProdutoKrypton.Columns["valor"].HeaderText = "Valor";
-            dgvProdutoKrypton.Columns["valor"].Width = 100;
-            dgvProdutoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvProdutoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProduto.Columns["valor"].HeaderText = "Valor";
+            dgvProduto.Columns["valor"].Width = 100;
+            dgvProduto.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvProduto.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         
 
         private void btnAcidionarMaterial_Click(object sender, EventArgs e)
         {
-            if (materialProduto != null)
+            if (materialProduto != null && novoClicado == true)
             {
                 frmAdicionarMaterialProduto Adicionar = new frmAdicionarMaterialProduto(materialProduto);
+
+                Adicionar.ShowDialog();
+            }
+            else if (materialProduto != null && novoClicado == false)
+            {
+                frmAdicionarMaterialProduto Adicionar = new frmAdicionarMaterialProduto(Convert.ToInt64(GetValorLinha("id")), materialProduto);
 
                 Adicionar.ShowDialog();
             }
@@ -80,35 +87,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvPapelKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            produto = new ProdutoVO();
-
-            novoClicado = false;
-
-            try
-            {
-
-                produto.Nome = GetValorLinha("nome").ToString();
-                produto.Valor = Convert.ToInt64(GetValorLinha("valor"));
-                produto.Quantidade = Convert.ToInt64(GetValorLinha("quantidade"));
-                produto.Tipo = GetValorLinha("tipo").ToString();
-                produto.itemid = Convert.ToInt64(GetValorLinha("id"));
-
-                txtNome.Text = produto.Nome;
-                txtValor.Text = produto.Valor.ToString();
-                txtQuantidade.Text = produto.Quantidade.ToString();
-                txtTipo.Text = produto.Tipo;
-
-                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
-                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
-                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
-
-                btnApagar.Enabled = true;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.GetType().ToString());
-            }
+            
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -121,15 +100,31 @@ namespace GerenciadorDeEstoque.Apresentação
                 try
                 {
 
+                    if(txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                    }
+                    else if (materialProduto.IdMaterialLista == null)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
+
                     String nome = txtNome.Text;
+                    String tipo = txtTipo.Text;
                     Int64 valor = Convert.ToInt64(txtValor.Text);
                     Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
 
                     produto.Nome = nome;
                     produto.Valor = valor;
                     produto.Quantidade = quantidade;
+                    produto.Tipo = tipo;
+                    produto.itemid = Convert.ToInt64(GetValorLinha("id"));
 
                     produto.Atualizar();
+
+                    materialProduto.IdProduto = Convert.ToInt64(GetValorLinha("id"));
+
+                    materialProduto.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
@@ -153,6 +148,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                    }
+                    else if (materialProduto.IdMaterialLista == null)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
+
                     String nome = txtNome.Text;
                     String tipo = txtTipo.Text;
                     Int64 valor = Convert.ToInt64(txtValor.Text);
@@ -178,6 +182,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     materialProduto = null;
 
+                    novoClicado = false;
+
                 }
                 catch (ArgumentException ex)
                 {
@@ -191,10 +197,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
 
-                    produto.itemid = produto.getLastId();
-                    produto.Remover();
                 }
-                finally { novoClicado = false; }
             }
         }
 
@@ -202,37 +205,26 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (dgvProdutoKrypton.Rows.Count == 0)
+                novoClicado = true;
+
+                if (dgvProdutoKrypton.Rows.Count != 0)
                 {
-                    novoClicado = true;
-
-                    materialProduto = new MaterialProdutoVO();
-
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
                     dgvProdutoKrypton.CurrentCell.Selected = false;
-
-                    materialProduto = new MaterialProdutoVO();
-
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
                 }
+
+                materialProduto = new MaterialProdutoVO();
+
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                btnAcidionarMaterial.StateNormal.Back.Image = Properties.Resources.Adicionar_Material_btn;
+                btnAcidionarMaterial.StatePressed.Back.Image = Properties.Resources.Adicionar_Material_btn;
+                btnAcidionarMaterial.StateTracking.Back.Image = Properties.Resources.Adicionar_Material_Tracking;
+
+                btnApagar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -276,7 +268,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private object GetValorLinha(String campo)
         {
-            return dgvProdutoKrypton.Rows[dgvProdutoKrypton.CurrentCell.RowIndex].Cells[campo].Value;
+            return dgvProduto.Rows[dgvProduto.CurrentCell.RowIndex].Cells[campo].Value;
         }
 
         String palavra;
@@ -323,7 +315,82 @@ namespace GerenciadorDeEstoque.Apresentação
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria de voltar ao menu? (todas as informações não salvas serão apagadas)", "Saindo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                this.Hide();
+                menuCadastro.Show();
                 this.Close();
+            }
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda frmVenda = new frmVenda();                
+                frmVenda.Show();
+                this.Close();
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvProduto_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            produto = new ProdutoVO();
+
+            novoClicado = false;
+
+            try
+            {
+
+                produto.Nome = GetValorLinha("nome").ToString();
+                produto.Valor = Convert.ToInt64(GetValorLinha("valor"));
+                produto.Quantidade = Convert.ToInt64(GetValorLinha("quantidade"));
+                produto.Tipo = GetValorLinha("tipo").ToString();
+                produto.itemid = Convert.ToInt64(GetValorLinha("id"));
+
+                txtNome.Text = produto.Nome;
+                txtValor.Text = produto.Valor.ToString();
+                txtQuantidade.Text = produto.Quantidade.ToString();
+                txtTipo.Text = produto.Tipo;
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
+
+                btnAcidionarMaterial.StateNormal.Back.Image = Properties.Resources.Editar_Material;
+                btnAcidionarMaterial.StatePressed.Back.Image = Properties.Resources.Editar_Material;
+                btnAcidionarMaterial.StateTracking.Back.Image = Properties.Resources.Editar_Material_Tracking;
+
+                btnApagar.Enabled = true;
+
+                materialProduto = new MaterialProdutoVO();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetType().ToString());
+            }
+        }
+
+        private void cbxEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String Filtro = cbxFiltro.Text;
+
+            if (Filtro.Equals("Nome"))
+            {
+                dgvProduto.Sort(dgvProduto.Columns["nome"], ListSortDirection.Ascending);
+            }
+            else if (Filtro.Equals("Tipo"))
+            {
+                dgvProduto.Sort(dgvProduto.Columns["tipo"], ListSortDirection.Ascending);
+            }
+            else if (Filtro.Equals("Quantidade"))
+            {
+                dgvProduto.Sort(dgvProduto.Columns["quantidade"], ListSortDirection.Ascending);
             }
         }
     }

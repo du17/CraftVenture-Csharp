@@ -11,7 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemidTipoMaterial;
         private String tipo, tipoEstampa; 
-        private Double metragem;
+        private Double metragemComprimento, metragemAltura;
         private DAO dao;
         private conexaoUso conn;
 
@@ -32,6 +32,35 @@ namespace GerenciadorDeEstoque.DAO
                 else { throw new ArgumentException("O id não pode ser nulo!"); }
             }
         }
+
+        public Double MetragemAltura
+        {
+            get { return metragemAltura; }
+            set
+            {
+                if (value > 1)
+                {
+                    metragemAltura = value;
+                }
+                else { throw new ArgumentException("O tamanho não pode ser menor que 1"); }
+
+            }
+        }
+
+        public Double MetragemComprimento
+        {
+            get { return metragemComprimento; }
+            set
+            {
+                if (value > 1)
+                {
+                    metragemComprimento = value;
+                }
+                else { throw new ArgumentException("O tamanho não pode ser menor que 1"); }
+
+            }
+        }
+
         public String Tipo
         {
             get { return tipo; }
@@ -49,36 +78,20 @@ namespace GerenciadorDeEstoque.DAO
             get { return tipoEstampa; }
             set
             {
-                if (!value.Equals("Inserir Tipo da estampa"))
-                {
                     tipoEstampa = value;
-                }
-                else { throw new ArgumentException("Tipo da estampa está nulo"); }
-            }
-        }
-        public Double Metragem
-        {
-            get { return metragem; }
-            set
-            {
-                if (value > 0)
-                {
-                    metragem = value;
-                }
-                else { throw new ArgumentException("Metragem não pode ser menor que 0!"); }
             }
         }
 
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDTECIDO(itemidTipoMaterial, Tipo, TipoEstampa, Metragem);
+            dao.IDTECIDO(itemidTipoMaterial, Tipo, TipoEstampa, MetragemComprimento, MetragemAltura);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADTECIDO(Tipo, TipoEstampa, Metragem, itemidTipoMaterial);
+            dao.ADTECIDO(Tipo, TipoEstampa, MetragemComprimento, MetragemAltura, itemidTipoMaterial);
         }
         public void Remover()
         {

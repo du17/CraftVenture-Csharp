@@ -21,6 +21,8 @@ namespace GerenciadorDeEstoque.Apresentação
         MaterialVO material;
         TipoMaterialVO tipoMaterial;
 
+        String palavra;
+
         DataTable dt = new DataTable();
 
         bool novoClicado = false;
@@ -47,6 +49,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
             dgvTecidoKrypton.Columns["idTipoMaterial"].HeaderText = "ID";
             dgvTecidoKrypton.Columns["idTipoMaterial"].Visible = true;
+            dgvTecidoKrypton.Columns["idTipoMaterial"].Width = 100;
 
             dgvTecidoKrypton.Columns["tipo"].HeaderText = "Tipo";
             dgvTecidoKrypton.Columns["tipo"].Width = 200;
@@ -54,22 +57,34 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvTecidoKrypton.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvTecidoKrypton.Columns["tipoEstampa"].HeaderText = "TipoEstampa";
-            dgvTecidoKrypton.Columns["tipoEstampa"].Width = 130;
+            dgvTecidoKrypton.Columns["tipoEstampa"].Width = 300;
             dgvTecidoKrypton.Columns["tipoEstampa"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
-
-            dgvTecidoKrypton.Columns["metragem"].HeaderText = "Metragem";
-            dgvTecidoKrypton.Columns["metragem"].Width = 100;
-            dgvTecidoKrypton.Columns["metragem"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
+           
+            dgvTecidoKrypton.Columns["metragemComprimento"].HeaderText = "Comprimento";
+            dgvTecidoKrypton.Columns["metragemComprimento"].Width = 300;
+            dgvTecidoKrypton.Columns["metragemComprimento"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTecidoKrypton.Columns["metragemComprimento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            
+            dgvTecidoKrypton.Columns["metragemAltura"].HeaderText = "Altura";
+            dgvTecidoKrypton.Columns["metragemAltura"].Width = 300;
+            dgvTecidoKrypton.Columns["metragemAltura"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTecidoKrypton.Columns["metragemAltura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvTecidoKrypton.Columns["valor"].HeaderText = "Valor";
-            dgvTecidoKrypton.Columns["valor"].Width = 100;
+            dgvTecidoKrypton.Columns["valor"].Width = 200;
             dgvTecidoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvTecidoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -86,12 +101,18 @@ namespace GerenciadorDeEstoque.Apresentação
             if (!novoClicado)
             {
                 tecido = new TecidoVO();
-
+                material = new MaterialVO();
 
                 try
                 {
+                    if (cbxTipo.Text == "Inserir Tipo" || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     String tipo = cbxTipo.Text;
-                    double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
+                    double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
+                    double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     String tipoEstampa;
 
@@ -111,15 +132,24 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     tecido.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     tecido.Tipo = tipo;
-                    tecido.Metragem = metragem;
+                    tecido.MetragemComprimento = metragemComprimento;
+                    tecido.MetragemAltura = metragemAltura;
                     tecido.TipoEstampa = tipoEstampa;
-                    material.Valor = valor;
 
+                    material.Nome = nome_material + " " + tipo + " " + tipoEstampa + " " + (metragemAltura * metragemComprimento).ToString() + " cm";
+                    material.Valor = valor;
+                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
+                    material.Atualizar();
                     tecido.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -140,8 +170,14 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+
+                    if (cbxTipo.Text == "Inserir Tipo" || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
                     String tipo = cbxTipo.Text;
-                    double metragem = Convert.ToDouble(txtMetragemAltura.Text) * Convert.ToDouble(txtMetragemComprimento.Text);
+                    double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
+                    double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     String tipoEstampa;
 
@@ -161,24 +197,35 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
+
                     idTipoMaterial = tipoMaterial.getLastId();
 
                     material.IdTipoMaterial = idTipoMaterial;
-                    material.Nome = nome_material;
+                    material.Nome = nome_material + " " + tipo + " " + tipoEstampa + " " + (metragemAltura * metragemComprimento).ToString() + " cm";
                     material.Valor = valor;
                     material.Inserir();
 
                     tecido.itemidTipoMaterial = idTipoMaterial;
                     tecido.Tipo = tipo;
-                    tecido.Metragem = metragem;
                     tecido.TipoEstampa = tipoEstampa;
+                    tecido.MetragemAltura = metragemAltura;
+                    tecido.MetragemComprimento = metragemComprimento;
+
+
                     tecido.Inserir();
 
                     MessageBox.Show("Item Cadastrado!");
+
+                    novoClicado = false;
+
                     LimpaTextos();
                     Inicializar();
 
 
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -188,7 +235,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
         }
 
@@ -231,37 +277,37 @@ namespace GerenciadorDeEstoque.Apresentação
         private void dgvTecidoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             tecido = new TecidoVO();
-
             novoClicado = false;
 
             try
             {
-
                 tecido.Tipo = GetValorLinha("tipo").ToString();
-                tecido.Metragem = Convert.ToDouble(GetValorLinha("metragem"));
-                tecido.TipoEstampa = GetValorLinha("tipoEstampa").ToString();
-                material.Valor = Convert.ToDouble(GetValorLinha("valor"));
-                /*String tipoEstampa;
+                String tipoEstampa;
 
-
-                if (rdEstampado.Checked == true)
+                if (GetValorLinha("tipoEstampa").ToString() == "Estampado")
                 {
                     tipoEstampa = "Estampado";
+                    rdEstampado.Checked = true;
 
                 }
-                else if (rdLiso.Checked == true)
+                else if (GetValorLinha("tipoEstampa").ToString() == "Liso")
                 {
                     tipoEstampa = "Liso";
+                    rdLiso.Checked = true;
                 }
                 else
                 {
                     tipoEstampa = "Sem Tipo";
-                }*/
+                }
 
-                txtMetragemAltura.Text = tecido.Metragem.ToString();
-                txtMetragemComprimento.Text = tecido.Metragem.ToString();
-                cbxTipo.SelectedItem = tecido.Tipo.ToString();
-                txtValor.Text = material.Valor.ToString();
+                tecido.TipoEstampa = tipoEstampa;
+                tecido.MetragemComprimento = Convert.ToDouble(GetValorLinha("metragemComprimento")); ;
+                tecido.MetragemAltura = Convert.ToDouble(GetValorLinha("metragemAltura")); 
+
+                cbxTipo.SelectedItem = tecido.Tipo;
+                txtMetragemAltura.Text = tecido.MetragemAltura.ToString();
+                txtMetragemComprimento.Text = tecido.MetragemComprimento.ToString();
+                txtValor.Text = GetValorLinha("valor").ToString();
 
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
@@ -272,22 +318,69 @@ namespace GerenciadorDeEstoque.Apresentação
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetType().ToString());
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
-            dgvTecidoKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+            try
+            {
+                if (dgvTecidoKrypton.Rows.Count != 0)
+                {
+                    dgvTecidoKrypton.CurrentCell.Selected = false;
+                }
+
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnLimpar.Enabled = false;
+                btnLimpar.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda frmVenda = new frmVenda();
+                frmVenda.Show();
+                this.Close();
+            }
+            }
+
+        private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                DataView dv = new DataView(dt);
+
+
+                if (e.KeyChar != '\b')
+                {
+                    palavra += e.KeyChar;
+                }
+                else if (palavra.Length != 0)
+                {
+                    palavra = palavra.Remove(palavra.Length - 1);
+                }
+
+                dv.RowFilter = String.Format("tipo LIKE '%{0}%' OR tipoEstampa LIKE '%{0}%'", palavra);
+
+                dgvTecidoKrypton.DataSource = dv;
+
+            }
+            catch (Exception ex) { }
         }
     }
 }

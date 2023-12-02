@@ -11,6 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemidproduto;
         private Int64 quantidade;
+        private Double valor;
 
         private String cor;
         private DAO dao;
@@ -57,6 +58,22 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public Double Valor
+        {
+            get { return valor; }
+            set
+            {
+                if (value > 0)
+                {
+                    valor = value;
+                }
+                else
+                {
+                    throw new ArgumentException("O valor não pode ser menor que 0!");
+                }
+            }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
@@ -66,7 +83,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADCANUDO(Quantidade, Cor, itemidproduto);
+            dao.ADCANUDO(Quantidade, Cor, itemidproduto, Valor);
         }
         public void Remover()
         {

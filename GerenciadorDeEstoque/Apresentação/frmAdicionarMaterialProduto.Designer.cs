@@ -134,14 +134,14 @@
             this.btnCancelar.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.btnCancelar.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnCancelar.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.btnCancelar.StateNormal.Back.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton1.StateNormal.Back.Image")));
+            this.btnCancelar.StateNormal.Back.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.StateNormal.Back.Image")));
             this.btnCancelar.StateNormal.Border.Color1 = System.Drawing.Color.Black;
             this.btnCancelar.StateNormal.Border.Color2 = System.Drawing.Color.Black;
             this.btnCancelar.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.btnCancelar.StateNormal.Border.Rounding = 5;
-            this.btnCancelar.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Novo;
+            this.btnCancelar.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Cancelar_Menor;
             this.btnCancelar.StatePressed.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCancelar.StatePressed.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnCancelar.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 

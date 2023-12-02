@@ -11,7 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemidTipoMaterial;
         private String cor;
-        private Double tamanho;
+        private Double tamanho, valor;
         private DAO dao;
         //private conexaoUso conn;
 
@@ -59,6 +59,22 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public Double Valor
+        {
+            get { return valor; }
+            set
+            {
+                if (value > 0)
+                {
+                    valor = value;
+                }
+                else
+                {
+                    throw new ArgumentException("O valor não pode ser menor que 0!");
+                }
+            }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
@@ -68,7 +84,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADPEROLA(Cor, Tamanho, itemidTipoMaterial);
+            dao.ADPEROLA(Cor, Tamanho, itemidTipoMaterial, Valor);
         }
         public void Remover()
         {

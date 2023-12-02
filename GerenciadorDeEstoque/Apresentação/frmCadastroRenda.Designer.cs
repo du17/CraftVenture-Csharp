@@ -105,6 +105,7 @@
             this.btnSalvar.StateTracking.Border.Rounding = 5;
             this.btnSalvar.TabIndex = 70;
             this.btnSalvar.Values.Text = "";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
             // 
             // btnLimpar
             // 
@@ -220,6 +221,7 @@
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 65;
             this.btnVenda.UseVisualStyleBackColor = false;
+            this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
             // btnEstoque
             // 
@@ -340,7 +342,7 @@
             this.cbxTamanho.StateTracking.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
             this.cbxTamanho.StateTracking.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTamanho.TabIndex = 71;
-            this.cbxTamanho.Text = "Tamanho";
+            this.cbxTamanho.Text = "Inserir Tamanho";
             // 
             // panel1
             // 

@@ -12,7 +12,7 @@ namespace GerenciadorDeEstoque.DAO
 
 
         private Int64 _itemid, quantidade, idUsuario, codCliente;
-        private String nomeCliente, telefone, nomeProduto, anotacao, formaPagamento, formaEntrega;
+        private String nomeCliente, anotacao, formaPagamento, formaEntrega;
         private DateTime dataEntrega, dataVenda;
         private Double valorTotal;
         private DAO dao;
@@ -92,19 +92,6 @@ namespace GerenciadorDeEstoque.DAO
             set { formaEntrega = value; }
         }
 
-        public String NomeProduto
-        {
-            get { return nomeProduto; }
-            set
-            {
-                if (!value.Equals("Inserir Nome do Produto"))
-                {
-                    nomeProduto = value;
-                }
-                else { throw new ArgumentException("Nome está nulo"); }
-            }
-        }
-
         public String NomeCliente
         {
             get { return nomeCliente; }
@@ -115,19 +102,6 @@ namespace GerenciadorDeEstoque.DAO
                     nomeCliente = value;
                 }
                 else { throw new ArgumentException("Nome está nulo"); }
-            }
-        }
-
-        public String Telefone
-        {
-            get { return telefone; }
-            set
-            {
-                if (!value.Equals("Inserir telefone"))
-                {
-                    telefone = value;
-                }
-                else { throw new ArgumentException("O telefone está nulo"); }
             }
         }
 
@@ -170,7 +144,7 @@ namespace GerenciadorDeEstoque.DAO
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADV(NomeProduto, Anotacao, ValorTotal, NomeCliente, Telefone, FormaPagamento, CodCliente, itemid, dataEntrega, DataVenda);
+            dao.ADV(Anotacao, ValorTotal, NomeCliente, CodCliente, FormaPagamento, FormaEntrega, itemid, DataEntrega.ToString("yyyy-MM-dd"), DataVenda.ToString("yyyy-MM-dd"));
 
         }
 

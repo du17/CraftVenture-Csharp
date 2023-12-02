@@ -163,6 +163,166 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn_Acetato {
+            get {
+                object obj = ResourceManager.GetObject("btn_Acetato", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Acetato_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Acetato_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Canudo {
+            get {
+                object obj = ResourceManager.GetObject("btn_Canudo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Canudo_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Canudo_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Fechar {
+            get {
+                object obj = ResourceManager.GetObject("btn_Fechar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Fechar_Azul {
+            get {
+                object obj = ResourceManager.GetObject("btn_Fechar_Azul", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Fita {
+            get {
+                object obj = ResourceManager.GetObject("btn_Fita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Fita_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Fita_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Papel {
+            get {
+                object obj = ResourceManager.GetObject("btn_Papel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Papel_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Papel_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Perola {
+            get {
+                object obj = ResourceManager.GetObject("btn_Perola", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Perola_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Perola_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Renda {
+            get {
+                object obj = ResourceManager.GetObject("btn_Renda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Renda_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Renda_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Tecido {
+            get {
+                object obj = ResourceManager.GetObject("btn_Tecido", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_Tecido_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("btn_Tecido_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnLogin {
             get {
                 object obj = ResourceManager.GetObject("btnLogin", resourceCulture);
@@ -413,6 +573,46 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Editar_Material {
+            get {
+                object obj = ResourceManager.GetObject("Editar_Material", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Editar_Material_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("Editar_Material_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Editar_Produtos {
+            get {
+                object obj = ResourceManager.GetObject("Editar_Produtos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Editar_Produtos_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("Editar_Produtos_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ENTRAR {
             get {
                 object obj = ResourceManager.GetObject("ENTRAR", resourceCulture);
@@ -503,6 +703,16 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Filtrar {
+            get {
+                object obj = ResourceManager.GetObject("Filtrar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FITA {
             get {
                 object obj = ResourceManager.GetObject("FITA", resourceCulture);
@@ -556,6 +766,26 @@ namespace GerenciadorDeEstoque.Properties {
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Login_btn {
+            get {
+                object obj = ResourceManager.GetObject("Login_btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Login_Tracking_btn {
+            get {
+                object obj = ResourceManager.GetObject("Login_Tracking_btn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -56,6 +56,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+
         public void Inserir()
         {
             dao = new DAO();

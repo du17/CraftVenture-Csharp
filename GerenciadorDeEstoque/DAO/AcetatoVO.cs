@@ -11,7 +11,7 @@ namespace GerenciadorDeEstoque.DAO
 
         private Int64 _itemidTipoMaterial;
         private Double metragemAltura, metragemComprimento;
-        private Double espessura;
+        private Double espessura, valor;
         private DAO dao;
         private conexaoUso conn;
 
@@ -71,16 +71,32 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public Double Valor
+        {
+            get { return valor; }
+            set
+            {
+                if (value > 0)
+                {
+                    valor = value;
+                }
+                else
+                {
+                    throw new ArgumentException("O valor não pode ser menor que 0!");
+                }
+            }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDE(itemidTipoMaterial, metragemAltura, metragemComprimento, Espessura);
+            dao.IDE(itemidTipoMaterial, MetragemAltura, MetragemComprimento, Espessura);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADE(metragemAltura, metragemComprimento, Espessura, itemidTipoMaterial);
+            dao.ADE(MetragemAltura, MetragemComprimento, Espessura, itemidTipoMaterial, Valor);
         }
         public void Remover()
         {

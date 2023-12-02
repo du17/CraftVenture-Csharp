@@ -55,6 +55,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 string email = txtEmail.Text;
                 string senha = txtSenha.Text;
 
+                if(nome == string.Empty ||  email == string.Empty || senha == string.Empty || txtRepetirSenha.Text == string.Empty) { throw new ArgumentException("Valores nulos, tente novamente!"); }
                 if (senha.Equals( txtRepetirSenha.Text))
                 {
                     usuario.Nome = nome;
@@ -67,19 +68,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 else
                 {
-                    MessageBox.Show("As duas senha devem ser iguais", "Cheque a senha", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    emptyText();
+                    throw new ArgumentException("Senhas são diferentes!!");
 
                 }
                 
             }
-            catch(ArgumentNullException erro) 
+            catch(ArgumentException ex)
             {
-
-                MessageBox.Show("Algum dos campos está Nulo, cheque e tente novamente", "Campos nulos");
-                
+                MessageBox.Show(ex.Message);
             }  
-            
             catch(Exception erro)
             {
                 //cria uma string com as informações do erro
@@ -139,6 +136,15 @@ namespace GerenciadorDeEstoque.Apresentação
         private void frmCadastro_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnFechar_Krypton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? ", "Saindo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

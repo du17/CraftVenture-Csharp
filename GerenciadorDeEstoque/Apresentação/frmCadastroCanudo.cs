@@ -1,4 +1,5 @@
-﻿using GerenciadorDeEstoque.DAO;
+﻿using GerenciadorDeEstoque.Apresentação.Menu;
+using GerenciadorDeEstoque.DAO;
 using MetroFramework;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -118,10 +125,16 @@ namespace GerenciadorDeEstoque.Apresentação
             if (!novoClicado)
             {
                 canudo = new CanudoVO();
+                material = new MaterialVO();
 
 
                 try
                 {
+                    if (txtCor.Text == string.Empty || txtQuantidade.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     string cor = txtCor.Text;
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
@@ -129,13 +142,22 @@ namespace GerenciadorDeEstoque.Apresentação
                     canudo.itemidproduto = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     canudo.Quantidade = quantidade;
                     canudo.Cor = cor;
+                    canudo.Valor = valor;
+
+                    material.Nome = nome_material + " " + cor + " " + quantidade + " Canudo(s)";
                     material.Valor = valor;
+                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                     canudo.Atualizar();
+                    material.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -154,6 +176,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
+                    if (txtCor.Text == string.Empty || txtQuantidade.Text == string.Empty || txtValor.Text == string.Empty)
+                    {
+                        throw new ArgumentNullException();
+                    }
+
                     string cor = txtCor.Text;
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
@@ -163,7 +190,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     canudo.Quantidade = quantidade;
 
                     material.Valor = valor;
-                    material.Nome = nome_material;
+                    material.Nome = nome_material + " " + cor + " " + quantidade + " Canudo(s)";
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
@@ -179,9 +206,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     MessageBox.Show("Item Cadastrado!");
 
+                    novoClicado = false;
+
                     LimpaTextos();
                     Inicializar();
 
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Algum dos campos está vazio!");
                 }
                 catch (ArgumentException ex)
                 {
@@ -191,7 +224,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally { novoClicado = false; }
             }
 
         }
@@ -204,16 +236,38 @@ namespace GerenciadorDeEstoque.Apresentação
         //botão de adicionar um novo elemento
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            novoClicado = true;
-            dgvCanudoKrypton.CurrentCell.Selected = false;
-            LimpaTextos();
+            try
+            {
+                if (dgvCanudoKrypton.Rows.Count == 0)
+                {
+                    novoClicado = true;
+                    LimpaTextos();
 
-            btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-            btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-            btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-            btnLimpar.Enabled = false;
+                    btnLimpar.Enabled = false;
+                }
+                else
+                {
+                    novoClicado = true;
+                    dgvCanudoKrypton.CurrentCell.Selected = false;
+                    LimpaTextos();
+
+                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                    btnLimpar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
@@ -282,5 +336,16 @@ namespace GerenciadorDeEstoque.Apresentação
             }
 
         }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmVenda frmVenda = new frmVenda();
+                frmVenda.Show();
+                this.Close();
+            }
+            }
     }
 }
