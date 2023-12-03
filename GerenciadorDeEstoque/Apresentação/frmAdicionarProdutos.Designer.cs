@@ -205,7 +205,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAdicionarProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Adicionar Produtos";
+            this.Text = "Adicionar Produto";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAdicionarProdutos_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAdicionarProdutos_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionarProdutoKrypton)).EndInit();
             this.ResumeLayout(false);

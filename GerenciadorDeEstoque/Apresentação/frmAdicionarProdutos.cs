@@ -217,5 +217,63 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.Message, "erro");
             }
         }
+
+        private void frmAdicionarProdutos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void frmAdicionarProdutos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+                if (novaVenda) { this.Close(); }
+                else
+                {
+                    List<Int64> idProduto = new List<Int64>();
+                    List<Int64> quantidadeErrado = new List<Int64>();
+                    List<Int32> quantidade = new List<Int32>();
+
+                    try
+                    {
+
+                        Dictionary<String, List<long>> idProduto_Quantidade;
+
+                        idProduto_Quantidade = DAO.DAO.GetVendeId(idVenda);
+
+                        idProduto = idProduto_Quantidade["idProduto"];
+                        quantidadeErrado = idProduto_Quantidade["quantidade"];
+
+                        foreach (Int64 l in quantidadeErrado)
+                        {
+                            quantidade.Add(Convert.ToInt32(l));
+                        }
+
+                        if (idProduto.Count <= 0)
+                        {
+                            throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                        }
+
+                        vende.IdProdutoLista = idProduto;
+                        vende.QuantidadeLista = quantidade;
+
+
+                        this.Close();
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Você não escolheu nenhum produto para vender!");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "erro");
+                    }
+                }
+            
+        }
     }
 }

@@ -263,5 +263,56 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
             }
         }
+
+        private void frmAdicionarMaterialProduto_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (novaVenda) { this.Close(); }
+            else
+            {
+                List<Int64> idMaterial = new List<Int64>();
+                List<Int64> quantidadeErrado = new List<Int64>();
+                List<Int32> quantidade = new List<Int32>();
+
+                try
+                {
+
+                    Dictionary<String, List<long>> idMaterial_Quantidade;
+
+                    idMaterial_Quantidade = DAO.DAO.GetMaterialProdutoId(idTipoMaterial);
+
+                    idMaterial = idMaterial_Quantidade["idProduto"];
+                    quantidadeErrado = idMaterial_Quantidade["quantidade"];
+
+                    foreach (Int64 l in quantidadeErrado)
+                    {
+                        quantidade.Add(Convert.ToInt32(l));
+                    }
+
+                    if (idMaterial.Count <= 0)
+                    {
+                        throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                    }
+
+                    materialProduto.IdMaterialLista = idMaterial;
+                    materialProduto.QuantidadeLista = quantidade;
+
+
+                    this.Close();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show("Você não escolheu nenhum produto para vender!");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "erro");
+                }
+            }
+        }
     }
 }

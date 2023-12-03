@@ -219,10 +219,11 @@
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.dgvAdicionarProdutoKrypton);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmAdicionarMaterialProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmAdicionarMaterialProduto";
+            this.Text = "Adicionar Material";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAdicionarMaterialProduto_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionarProdutoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
