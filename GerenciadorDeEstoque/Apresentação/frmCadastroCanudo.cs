@@ -29,6 +29,8 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             InitializeComponent();
             Inicializar();
+
+            btnCadastro.BackColor = Color.FromArgb(115, 217, 250);
         }
 
         private void Inicializar()
@@ -270,16 +272,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     palavra += e.KeyChar;
 
-                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
-
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
-
                 }
+
+                dv.RowFilter = String.Format("espessura LIKE '%{0}%'", palavra);
 
                 dgvCanudoKrypton.DataSource = dv;
 
@@ -328,5 +327,16 @@ namespace GerenciadorDeEstoque.Apresentação
                 this.Close();
             }
             }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Voltando", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
+                menuOpcoes.Show();
+                this.Close();
+            }
+        }
     }
 }

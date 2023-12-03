@@ -16,6 +16,8 @@ namespace GerenciadorDeEstoque.Apresentação
         public frmCadastroOpcoes()
         {
             InitializeComponent();
+
+            btnCadastro.BackColor = Color.FromArgb(115, 217, 250);
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
@@ -83,6 +85,17 @@ namespace GerenciadorDeEstoque.Apresentação
             frmMenuCadastro menuCadastro = new frmMenuCadastro();
             menuCadastro.Show();
             this.Close();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Voltando", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
     }
 }

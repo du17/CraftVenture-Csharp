@@ -499,6 +499,36 @@ namespace GerenciadorDeEstoque.DAO
             return dt;
         }
 
+        public static DataTable GetHistoricoMes(String mes, String TipoData, bool procuraMes = true, String mesMax = "")
+        {
+            var sql = "SELECT id, nomeCliente, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
+                "FROM venda ";
+            if(procuraMes == true) { sql += " WHERE " + TipoData + " LIKE '%-" + mes + "-%'"; }
+            else { sql += " WHERE (" + TipoData + " BETWEEN '" + mes + "' AND '" + mesMax + "') OR " + TipoData + " BETWEEN '" + mesMax+ "' AND '" + mes + "'"; }
+
+            PapelVO papel = new PapelVO();
+            DataTable dt = new DataTable();
+            Conexao conexao = new Conexao();
+            try
+            {
+                using (var cn = new MySqlConnection(conexao.getConnectionString()))
+                {
+                    cn.Open();
+
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+
         #endregion
 
         #region Produto

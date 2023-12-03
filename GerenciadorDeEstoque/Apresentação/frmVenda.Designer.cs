@@ -782,6 +782,7 @@
             this.Controls.Add(this.btnApagar);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmVenda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Venda";

@@ -219,6 +219,7 @@
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.dgvAdicionarProdutoKrypton);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAdicionarMaterialProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAdicionarMaterialProduto";

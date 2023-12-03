@@ -451,4 +451,22 @@
   <data name="btn_Fechar_Azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btn_Fechar_Azul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Voltar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Voltar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tela_Historico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tela_Historico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Texto_Entrega" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Entrega.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Texto_Venda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Texto_Venda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pesquisar_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pesquisar_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pesquisar_Tracking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pesquisar_Tracking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

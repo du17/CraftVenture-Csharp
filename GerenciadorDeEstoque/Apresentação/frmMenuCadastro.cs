@@ -61,5 +61,23 @@ namespace GerenciadorDeEstoque.Apresentação.Menu
             frmVenda.Show();
             this.Close();
         }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair?\nVocê será deslogado", "Voltando", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmLogin frmLogin = new frmLogin();
+                frmLogin.Show();
+                this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            frmHistorico frmHistorico = new frmHistorico();
+            frmHistorico.Show();
+            this.Close();
+        }
     }
 }

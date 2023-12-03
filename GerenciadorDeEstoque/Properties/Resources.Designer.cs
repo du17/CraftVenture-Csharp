@@ -973,6 +973,26 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pesquisar_btn {
+            get {
+                object obj = ResourceManager.GetObject("Pesquisar_btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pesquisar_Tracking {
+            get {
+                object obj = ResourceManager.GetObject("Pesquisar_Tracking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ProdutoEscolha {
             get {
                 object obj = ResourceManager.GetObject("ProdutoEscolha", resourceCulture);
@@ -1043,9 +1063,39 @@ namespace GerenciadorDeEstoque.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Tela_Historico {
+            get {
+                object obj = ResourceManager.GetObject("Tela_Historico", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tela_Venda {
             get {
                 object obj = ResourceManager.GetObject("Tela_Venda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Texto_Entrega {
+            get {
+                object obj = ResourceManager.GetObject("Texto_Entrega", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Texto_Venda {
+            get {
+                object obj = ResourceManager.GetObject("Texto_Venda", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1166,6 +1216,16 @@ namespace GerenciadorDeEstoque.Properties {
         internal static System.Drawing.Bitmap Venda {
             get {
                 object obj = ResourceManager.GetObject("Venda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Voltar {
+            get {
+                object obj = ResourceManager.GetObject("Voltar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

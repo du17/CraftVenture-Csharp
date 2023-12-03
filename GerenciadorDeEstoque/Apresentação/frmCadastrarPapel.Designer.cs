@@ -50,6 +50,7 @@
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
             this.btnNovo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.panel1.SuspendLayout();
@@ -623,6 +624,58 @@
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.kryptonButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.kryptonButton1.Location = new System.Drawing.Point(29, 30);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Size = new System.Drawing.Size(35, 46);
+            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.kryptonButton1.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.SALVAR;
+            this.kryptonButton1.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
+            this.kryptonButton1.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateCommon.Border.Rounding = 7;
+            this.kryptonButton1.StateCommon.Content.Image.ImageColorMap = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Content.Image.ImageColorTo = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.kryptonButton1.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.kryptonButton1.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.BottomMiddle;
+            this.kryptonButton1.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateNormal.Border.Rounding = 14;
+            this.kryptonButton1.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.kryptonButton1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StatePressed.Border.Rounding = 2;
+            this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.kryptonButton1.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.kryptonButton1.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.kryptonButton1.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.kryptonButton1.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateTracking.Border.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.kryptonButton1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateTracking.Border.Rounding = 0;
+            this.kryptonButton1.TabIndex = 65;
+            this.kryptonButton1.Values.Text = "";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            // 
             // frmCadastrarPapel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,6 +683,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.btnSalvar);
@@ -641,6 +695,7 @@
             this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCadastrarPapel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).EndInit();
@@ -677,5 +732,6 @@
         private System.Windows.Forms.Button btnVoltar;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPesquisar;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }

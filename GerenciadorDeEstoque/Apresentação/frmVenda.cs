@@ -30,6 +30,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
             Inicializar();
             cbxNomeCliente.Text = "Escolher cliente";
+
+            btnVenda.BackColor = Color.FromArgb(115, 217, 250);
         }
 
         private void Inicializar()

@@ -202,6 +202,7 @@
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btnNovo);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAdicionarProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdicionarProdutos";

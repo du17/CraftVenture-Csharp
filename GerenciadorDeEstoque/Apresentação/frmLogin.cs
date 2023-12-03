@@ -46,13 +46,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 usuario.Nome = nome;
                 usuario.Senha = senha;
 
-                    if (usuario.Login())
-                    {
-                        frmMenuCadastro menuCadastro = new frmMenuCadastro();
-                        this.Hide();
-                        menuCadastro.ShowDialog();
+                 if (usuario.Login())
+                 {
+                    frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                    this.Hide();
+                    menuCadastro.Show();
+                    this.Close();
                         
-                    }
+                 }
                 else
                 {
                     MessageBox.Show("Usuário ou senha não encontrados no banco de dados\nTente novamente ou se cadastre com o texto abaixo");
