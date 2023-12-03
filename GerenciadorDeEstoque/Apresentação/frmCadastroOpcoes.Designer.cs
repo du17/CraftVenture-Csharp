@@ -73,6 +73,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 11;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -88,6 +89,7 @@
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 10;
             this.btnVenda.UseVisualStyleBackColor = false;
+            this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
             // btnEstoque
             // 
@@ -472,7 +474,7 @@
             // 
             this.btnVoltar.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
             this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVoltar.Location = new System.Drawing.Point(32, 31);
+            this.btnVoltar.Location = new System.Drawing.Point(30, 30);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(35, 46);
             this.btnVoltar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;

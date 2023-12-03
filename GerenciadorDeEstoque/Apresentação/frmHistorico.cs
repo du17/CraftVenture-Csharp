@@ -43,11 +43,11 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvHistoricoKrypton.Columns["id"].Width = 50;
             dgvHistoricoKrypton.Columns["id"].DisplayIndex = 0;
 
-            dgvHistoricoKrypton.Columns["nomeCliente"].HeaderText = "Nome do cliente";
-            dgvHistoricoKrypton.Columns["nomeCliente"].Width = 200;
-            dgvHistoricoKrypton.Columns["nomeCliente"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvHistoricoKrypton.Columns["nomeCliente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvHistoricoKrypton.Columns["nomeCliente"].DisplayIndex = 1;
+            dgvHistoricoKrypton.Columns["nome"].HeaderText = "Nome do cliente";
+            dgvHistoricoKrypton.Columns["nome"].Width = 200;
+            dgvHistoricoKrypton.Columns["nome"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvHistoricoKrypton.Columns["nome"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvHistoricoKrypton.Columns["nome"].DisplayIndex = 1;
 
             dgvHistoricoKrypton.Columns["dataVenda"].HeaderText = "Data de Venda";
             dgvHistoricoKrypton.Columns["dataVenda"].Width = 120;

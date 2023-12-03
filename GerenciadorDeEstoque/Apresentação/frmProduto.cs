@@ -114,6 +114,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     Int64 valor = Convert.ToInt64(txtValor.Text);
                     Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
 
+                    if(quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor está negativo"); }
+
                     produto.Nome = nome;
                     produto.Valor = valor;
                     produto.Quantidade = quantidade;
@@ -129,6 +133,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     MessageBox.Show("Item Atualizado!");
 
                     Inicializar();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
@@ -161,6 +169,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     String tipo = txtTipo.Text;
                     Int64 valor = Convert.ToInt64(txtValor.Text);
                     Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
+
+                    if (quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor está negativo"); }
 
                     produto.Nome = nome;
                     produto.Valor = valor;
@@ -391,6 +403,38 @@ namespace GerenciadorDeEstoque.Apresentação
             else if (Filtro.Equals("Quantidade"))
             {
                 dgvProduto.Sort(dgvProduto.Columns["quantidade"], ListSortDirection.Ascending);
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Voltando", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
+        }
+
+        private void pbProduto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbProduto.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

@@ -181,7 +181,7 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Cliente
-        public void IDC(Int64 telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento)
+        public void IDC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -212,7 +212,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(Int64 telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
+        public void ADC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -475,9 +475,9 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT id, nomeCliente, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
+            var sql = "SELECT venda.id, cliente.nome, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
                 "FROM venda " +
-                " ORDER BY nomeCliente ASC";
+                " INNER JOIN cliente ON venda.codigoCliente = cliente.id";
 
             try
             {

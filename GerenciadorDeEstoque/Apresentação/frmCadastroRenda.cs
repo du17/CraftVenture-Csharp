@@ -1,7 +1,9 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Tls.Crypto;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -188,29 +190,19 @@ namespace GerenciadorDeEstoque.Apresentação
 
             try
             {
-                if (dgvRendaKrypton.Rows.Count == 0)
+                if (dgvRendaKrypton.Rows.Count != 0)
                 {
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-                    btnLimpar.Enabled = false;
-                }
-                else
-                {
-
                     dgvRendaKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnLimpar.Enabled = false;
                 }
+               
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                btnLimpar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -247,6 +239,12 @@ namespace GerenciadorDeEstoque.Apresentação
                     double metragem = Convert.ToDouble(txtMetragem.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
 
+                    if(!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
+
+                    if(metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
+
+                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
+
                     renda.idTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     renda.Tamanho = tamanho;
                     renda.Metragem = metragem;
@@ -264,11 +262,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -294,6 +296,12 @@ namespace GerenciadorDeEstoque.Apresentação
                     Double metragem = Convert.ToDouble(txtMetragem.Text);
                     Double valor = Convert.ToDouble(txtValor.Text);
 
+                    if (!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
+
+                    if (metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
+
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
 
@@ -318,11 +326,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -339,6 +351,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbPapel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbRenda.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

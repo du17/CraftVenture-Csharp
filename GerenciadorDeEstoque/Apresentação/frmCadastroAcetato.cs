@@ -1,5 +1,6 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -147,7 +148,13 @@ namespace GerenciadorDeEstoque.Apresentação
                     double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
                     double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
 
+                    if(espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
 
+                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
+
+                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
+
+                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
 
                     acetato.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     acetato.Espessura = espessura;
@@ -163,11 +170,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum campo está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -193,6 +204,15 @@ namespace GerenciadorDeEstoque.Apresentação
                     double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                     
                     long idTipoMaterial;
+
+                    if (espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
+
+                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
+
+                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
+
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
@@ -222,12 +242,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum campo está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
-
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -356,6 +379,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbPapel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbPapel.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

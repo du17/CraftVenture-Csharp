@@ -66,7 +66,6 @@
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnCadastrar.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.btnCadastrar.OverrideDefault.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.CADASTRAR_SemFundo;
             this.btnCadastrar.OverrideDefault.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnCadastrar.OverrideDefault.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnCadastrar.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -135,23 +134,21 @@
             this.btnApagar.Name = "btnApagar";
             this.btnApagar.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.btnApagar.OverrideDefault.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Cancelar_Menor;
+            this.btnApagar.OverrideDefault.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Apagar;
             this.btnApagar.OverrideDefault.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideDefault.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnApagar.OverrideDefault.Border.Image = global::GerenciadorDeEstoque.Properties.Resources.Cancelar_Menor;
             this.btnApagar.OverrideDefault.Border.Rounding = 5;
             this.btnApagar.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.btnApagar.OverrideFocus.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Cancelar_Menor;
+            this.btnApagar.OverrideFocus.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Apagar;
             this.btnApagar.OverrideFocus.Border.Color1 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideFocus.Border.Color2 = System.Drawing.Color.Transparent;
             this.btnApagar.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnApagar.OverrideFocus.Border.Image = global::GerenciadorDeEstoque.Properties.Resources.Cancelar_Menor;
             this.btnApagar.OverrideFocus.Border.Rounding = 5;
             this.btnApagar.Size = new System.Drawing.Size(319, 70);
             this.btnApagar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
@@ -237,6 +234,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 36;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -268,6 +266,7 @@
             this.btnEstoque.Size = new System.Drawing.Size(250, 88);
             this.btnEstoque.TabIndex = 34;
             this.btnEstoque.UseVisualStyleBackColor = false;
+            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // btnCadastro
             // 

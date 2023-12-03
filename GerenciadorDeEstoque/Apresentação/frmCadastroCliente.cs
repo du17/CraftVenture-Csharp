@@ -159,7 +159,9 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
-                    Int64 telefone = Convert.ToInt64(txtTelefone.Text);
+                    if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || txtComplemento.Text == string.Empty || cbxEstado.Text == "Inserir Estado") { throw new ArgumentNullException("Algum dos campos está nulo!"); }
+
+                    String telefone = txtTelefone.Text;
                     Int64 numero = Convert.ToInt64(txtNumero.Text);
                     String nome = txtNome.Text;
                     String email = txtEmail.Text;
@@ -169,6 +171,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     String estado = cbxEstado.Text;
                     String complemento = txtComplemento.Text;
 
+                    if (telefone.Count() < 11) { throw new ArgumentException("O número de telefone é inválido"); }
+
+                    
+                    if (GetEstadoCompleto(getEstado(estado)) == "Sem Estado") { throw new ArgumentException("O estado é inválido, escolha um válido da lista"); }
 
 
                     cliente.itemid = Convert.ToInt64(GetValorLinha("id"));
@@ -203,7 +209,9 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 try
                 {
-                    Int64 telefone = Convert.ToInt64(txtTelefone.Text);
+                    if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || txtComplemento.Text == string.Empty || cbxEstado.Text == "Inserir Estado") { throw new ArgumentNullException("Algum dos campos está nulo!"); }
+
+                    String telefone = txtTelefone.Text;
                     Int64 numero = Convert.ToInt64(txtNumero.Text);
                     String nome = txtNome.Text;
                     String email = txtEmail.Text;
@@ -212,6 +220,11 @@ namespace GerenciadorDeEstoque.Apresentação
                     String bairro = txtBairro.Text;
                     String estado = cbxEstado.Text;
                     String complemento = txtComplemento.Text;
+
+                    if (telefone.Count() < 11) { throw new ArgumentException("O número de telefone é inválido"); }
+
+
+                    if (GetEstadoCompleto(getEstado(estado)) == "Sem Estado") { throw new ArgumentException("O estado é inválido, escolha um válido da lista"); }
 
                     cliente.Telefone = telefone;
                     cliente.Numero = numero;
@@ -402,7 +415,7 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 
                 cliente.Nome = GetValorLinha("nome").ToString();
-                cliente.Telefone = Convert.ToInt64(GetValorLinha("telefone"));
+                cliente.Telefone = GetValorLinha("telefone").ToString();
                 cliente.Email = GetValorLinha("email").ToString();
                 cliente.Cep = GetValorLinha("cep").ToString();
                 cliente.Rua = GetValorLinha("rua").ToString();
@@ -486,6 +499,22 @@ namespace GerenciadorDeEstoque.Apresentação
                 menuCadastro.Show();
                 this.Close();
             }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void btnEstoque_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

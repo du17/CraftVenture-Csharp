@@ -97,5 +97,23 @@ namespace GerenciadorDeEstoque.Apresentação
                 this.Close();
             }
         }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            
+        }
+
+        private void btnVenda_Click(object sender, EventArgs e)
+        {
+
+                frmVenda venda = new frmVenda();
+                venda.Show();
+                this.Close();
+            
+        }
     }
 }

@@ -50,12 +50,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbTecido = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTecidoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSair
@@ -88,6 +90,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 44;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -408,6 +411,7 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.panel2.Controls.Add(this.pbTecido);
             this.panel2.Controls.Add(this.txtPesquisar);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.dgvTecidoKrypton);
@@ -584,6 +588,17 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pbTecido
+            // 
+            this.pbTecido.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbTecido.Location = new System.Drawing.Point(222, 674);
+            this.pbTecido.Name = "pbTecido";
+            this.pbTecido.Size = new System.Drawing.Size(201, 195);
+            this.pbTecido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbTecido.TabIndex = 79;
+            this.pbTecido.TabStop = false;
+            this.pbTecido.Click += new System.EventHandler(this.pbTecido_Click);
+            // 
             // frmCadastroTecido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,6 +628,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTecidoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -640,5 +656,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPesquisar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
+        private System.Windows.Forms.PictureBox pbTecido;
     }
 }

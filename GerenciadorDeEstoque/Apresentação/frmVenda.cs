@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
 using Google.Protobuf.WellKnownTypes;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace GerenciadorDeEstoque.Apresentação
             InitializeComponent();
 
             Inicializar();
-            cbxNomeCliente.Text = "Escolher cliente";
+            
 
             btnVenda.BackColor = Color.FromArgb(115, 217, 250);
         }
@@ -43,8 +44,6 @@ namespace GerenciadorDeEstoque.Apresentação
             cbxNomeCliente.DataSource = dtNome;
             cbxNomeCliente.DisplayMember = "nome";
             cbxNomeCliente.ValueMember = "id";
-
-            
 
             ConfigurarGradeClientes();
         }
@@ -60,10 +59,10 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvVendaKrypton.Columns["id"].Visible = true;
             dgvVendaKrypton.Columns["id"].Width = 50;
             
-            dgvVendaKrypton.Columns["nomeCliente"].HeaderText = "Nome do cliente";
-            dgvVendaKrypton.Columns["nomeCliente"].Width = 200;
-            dgvVendaKrypton.Columns["nomeCliente"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvVendaKrypton.Columns["nomeCliente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvVendaKrypton.Columns["nome"].HeaderText = "Nome do cliente";
+            dgvVendaKrypton.Columns["nome"].Width = 200;
+            dgvVendaKrypton.Columns["nome"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvVendaKrypton.Columns["nome"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             dgvVendaKrypton.Columns["dataVenda"].HeaderText = "Data de Venda";
             dgvVendaKrypton.Columns["dataVenda"].Width = 120;
@@ -115,20 +114,36 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         throw new ArgumentNullException("Algum ou vários campos está vazio!");
                     }
-                    else if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
-                    {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
-                    }
+                    
 
                     String nomeCliente = cbxNomeCliente.Text;
                     String formaPagamento = cbxFormaPagamento.Text;
                     String formaEntrega = cbxFormaEntrega.Text;
                     String anotacao = txtAnotacao.Text;
 
+                    bool contemNome = false;
+
+                    foreach (DataRow row in dtNome.Rows)
+                    {
+                        if (row["nome"].ToString() == nomeCliente) { contemNome = true; }
+                    }
+                    if (!contemNome) { throw new ArgumentException("O nome não foi encontrado, utilize um nome da lista!!"); }
+
+                    if (!(formaPagamento.Equals("Pix") || formaPagamento.Equals("Cartão") || formaPagamento.Equals("Depósito"))) { throw new ArgumentException("A forma de pagamento não está correta, utiliza a forma na lista!"); }
+
+                    if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
+
                     Int64 valor = Convert.ToInt64(txtValor.Text);
                     Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
                     DateTime dataEntrega = dtpDateEntrega.Value;
                     DateTime dataVenda = dtpDataVenda.Value;
+
+                    if (valor <= 0) { throw new ArgumentException("O valor está negativo, tente novamente!"); }
+
+                    if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
 
                     venda.itemid = Convert.ToInt64(GetValorLinha("id"));
                     venda.NomeCliente = nomeCliente;
@@ -145,8 +160,6 @@ namespace GerenciadorDeEstoque.Apresentação
                     vende.Atualizar();
 
                     venda.Atualizar();
-
-                    
 
                     MessageBox.Show("Venda Atualizada!");
 
@@ -178,20 +191,36 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         throw new ArgumentNullException("Algum ou vários campos está vazio!");
                     }
-                    else if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
-                    {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
-                    }
+                    
 
                     String nomeCliente = cbxNomeCliente.Text;
                     String formaPagamento = cbxFormaPagamento.Text;
                     String formaEntrega = cbxFormaEntrega.Text;
                     String anotacao = txtAnotacao.Text;
 
+                    bool contemNome = false;
+
+                    foreach(DataRow row in dtNome.Rows)
+                    {
+                        if (row["nome"].ToString() == nomeCliente) { contemNome = true; }
+                    }
+                    if (!contemNome) { throw new ArgumentException("O nome não foi encontrado, utilize um nome da lista!!"); }
+
+                    if (!(formaPagamento.Equals("Pix") || formaPagamento.Equals("Cartão") || formaPagamento.Equals("Depósito"))) { throw new ArgumentException("A forma de pagamento não está correta, utiliza a forma na lista!"); }
+
+                    if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
+
                     Int64 valor = Convert.ToInt64(txtValor.Text);
                     Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
                     DateTime dataEntrega = dtpDateEntrega.Value;
                     DateTime dataVenda = dtpDataVenda.Value;
+
+                    if(valor <= 0) { throw new ArgumentException("O valor está negativo, tente novamente!"); }
+
+                    if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
+                    {
+                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    }
 
                     venda.NomeCliente = nomeCliente;
                     venda.FormaPagamento = formaPagamento;
@@ -263,37 +292,23 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (dgvVendaKrypton.Rows.Count == 0)
+                if (dgvVendaKrypton.Rows.Count != 0)
                 {
-                    novoClicado = true;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-                    btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
-                    btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
-                    btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
-
-                    btnApagar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
                     dgvVendaKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-                    btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
-                    btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
-                    btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
-
-                    btnApagar.Enabled = false;
                 }
+
+                novoClicado = true;
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
+                btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
+                btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
+
+                btnApagar.Enabled = false;
 
                 vende = new VendeVO();
             }
@@ -330,16 +345,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     palavra += e.KeyChar;
 
-                    dv.RowFilter = String.Format("nomeCliente LIKE '%{0}%'", palavra);
-
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dv.RowFilter = String.Format("nomeCliente LIKE '%{0}%'", palavra);
-
                 }
+
+                dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
 
                 dgvVendaKrypton.DataSource = dv;
 
@@ -393,7 +405,7 @@ namespace GerenciadorDeEstoque.Apresentação
             {
 
                 venda.itemid = Convert.ToInt64(GetValorLinha("id"));
-                venda.NomeCliente = GetValorLinha("nomeCliente").ToString();
+                venda.NomeCliente = GetValorLinha("nome").ToString();
                 venda.FormaPagamento = GetValorLinha("formaPagamento").ToString();
                 venda.FormaEntrega = GetValorLinha("formaEntrega").ToString();
                 venda.Anotacao = GetValorLinha("anotacao").ToString();
@@ -435,6 +447,28 @@ namespace GerenciadorDeEstoque.Apresentação
         private object GetValorLinha(String campo)
         {
             return dgvVendaKrypton.Rows[dgvVendaKrypton.CurrentCell.RowIndex].Cells[campo].Value;
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Voltando", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmMenuCadastro menuCadastro = new frmMenuCadastro();
+                menuCadastro.Show();
+                this.Close();
+            }
         }
     }
 }

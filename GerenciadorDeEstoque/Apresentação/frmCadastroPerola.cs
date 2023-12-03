@@ -1,6 +1,7 @@
 
 using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,12 +103,16 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     if (txtCor.Text == String.Empty || txtTamanho.Text == String.Empty || txtValor.Text == String.Empty)
                     {
-                        throw new ArgumentNullException();
+                        throw new ArgumentNullException("Um ou mais campos estão sem dados, por favor preencha-os");
                     }
 
                     double tamanho = Convert.ToDouble(txtTamanho.Text);;
                     String cor = txtCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
+
+                    if(tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
+
+                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
 
                     perola.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     perola.Tamanho = tamanho;
@@ -127,11 +132,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -150,11 +159,16 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     if (txtCor.Text == String.Empty || txtTamanho.Text == String.Empty || txtValor.Text == String.Empty)
                     {
-                        throw new ArgumentNullException();
+                        throw new ArgumentNullException("Um ou mais campos estão sem dados, por favor preencha-os");
                     }
+
                     String cor = txtCor.Text;
                     Double tamanho = Convert.ToDouble(txtTamanho.Text);
                     Double valor = Convert.ToDouble(txtValor.Text);
+
+                    if (tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
 
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
@@ -180,11 +194,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -348,6 +366,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbPapel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbPapel.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

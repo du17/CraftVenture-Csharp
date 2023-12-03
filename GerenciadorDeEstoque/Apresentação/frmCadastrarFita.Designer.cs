@@ -49,11 +49,13 @@
             this.dgvFitaKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbPapel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFitaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSair
@@ -86,6 +88,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 34;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -436,6 +439,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.pbPapel);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvFitaKrypton);
@@ -560,6 +564,17 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pbPapel
+            // 
+            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbPapel.Location = new System.Drawing.Point(645, 728);
+            this.pbPapel.Name = "pbPapel";
+            this.pbPapel.Size = new System.Drawing.Size(201, 195);
+            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPapel.TabIndex = 59;
+            this.pbPapel.TabStop = false;
+            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
+            // 
             // frmCadastrarFita
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +602,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFitaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -613,5 +629,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
+        private System.Windows.Forms.PictureBox pbPapel;
     }
 }

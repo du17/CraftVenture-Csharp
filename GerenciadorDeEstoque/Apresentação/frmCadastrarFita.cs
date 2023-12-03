@@ -1,6 +1,7 @@
 
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -158,6 +159,16 @@ namespace GerenciadorDeEstoque.Apresentação
                     String numeroCor = txtNumCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
 
+                    if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                    if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
+
+                    if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
+
+                    if (metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
+
                     fita.itemidTpoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     fita.Tipo = tipo;
                     fita.Numero = numero;
@@ -179,6 +190,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -207,13 +222,21 @@ namespace GerenciadorDeEstoque.Apresentação
                     String numeroCor = txtNumCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
 
-                    
+                    if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                    if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
+
+                    if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
+
+                    if(metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
+
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
 
                     idTipoMaterial = tipoMaterial.getLastId();
 
-                    MessageBox.Show(idTipoMaterial.ToString());
 
 
                     material.IdTipoMaterial = idTipoMaterial;
@@ -237,9 +260,17 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     novoClicado = false;
                 }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch(ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -367,6 +398,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbPapel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbPapel.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

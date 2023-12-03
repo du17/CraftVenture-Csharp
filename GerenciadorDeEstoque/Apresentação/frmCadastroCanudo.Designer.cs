@@ -46,10 +46,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbPapel = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCanudoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -211,6 +213,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 56;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -295,6 +298,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.panel1.Controls.Add(this.pbPapel);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvCanudoKrypton);
@@ -361,7 +365,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Location = new System.Drawing.Point(3, 446);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(556, 452);
+            this.pictureBox1.Size = new System.Drawing.Size(556, 470);
             this.pictureBox1.TabIndex = 62;
             this.pictureBox1.TabStop = false;
             // 
@@ -473,6 +477,17 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pbPapel
+            // 
+            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbPapel.Location = new System.Drawing.Point(219, 701);
+            this.pbPapel.Name = "pbPapel";
+            this.pbPapel.Size = new System.Drawing.Size(201, 195);
+            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPapel.TabIndex = 65;
+            this.pbPapel.TabStop = false;
+            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
+            // 
             // frmCadastroCanudo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,6 +514,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCanudoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -522,5 +538,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
+        private System.Windows.Forms.PictureBox pbPapel;
     }
 }

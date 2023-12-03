@@ -1,5 +1,6 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -132,6 +133,14 @@ namespace GerenciadorDeEstoque.Apresentação
                         tipoEstampa = "Sem Tipo";
                     }
 
+                    if (!(tipo.Equals("Atoalhado") || tipo.Equals("Tule") || tipo.Equals("Fralda") || tipo.Equals("Tricoline") || tipo.Equals("Feltro"))) { throw new ArgumentException("O tipo de tecido não foi encontrado, utilize a lista"); }
+
+                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
+
+                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
+
                     tecido.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     tecido.Tipo = tipo;
                     tecido.MetragemComprimento = metragemComprimento;
@@ -151,11 +160,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -197,6 +210,14 @@ namespace GerenciadorDeEstoque.Apresentação
                         tipoEstampa = "Sem Tipo";
                     }
 
+                    if(!(tipo.Equals("Atoalhado") || tipo.Equals("Tule") || tipo.Equals("Fralda") || tipo.Equals("Tricoline") || tipo.Equals("Feltro"))) { throw new ArgumentException("O tipo de tecido não foi encontrado, utilize a lista"); }
+
+                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
+
+                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
+    
+                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
+
                     tipoMaterial.Nome = nome_material;
                     tipoMaterial.Inserir();
 
@@ -227,11 +248,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -393,6 +418,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbTecido_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbTecido.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

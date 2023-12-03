@@ -202,10 +202,10 @@
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btnNovo);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAdicionarProdutos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAdicionarProdutos";
+            this.Text = "Adicionar Produtos";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionarProdutoKrypton)).EndInit();
             this.ResumeLayout(false);

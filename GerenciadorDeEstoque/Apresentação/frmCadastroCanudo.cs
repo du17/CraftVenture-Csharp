@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
 using MetroFramework;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -141,6 +142,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
 
+                    if(quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
+
+                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
+
                     canudo.itemidproduto = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     canudo.Quantidade = quantidade;
                     canudo.Cor = cor;
@@ -159,11 +164,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -187,6 +196,10 @@ namespace GerenciadorDeEstoque.Apresentação
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     long idTipoMaterial;
+
+                    if (quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
 
                     canudo.Cor = cor;
                     canudo.Quantidade = quantidade;
@@ -216,11 +229,15 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (ArgumentNullException ex)
                 {
-                    MessageBox.Show("Algum dos campos está vazio!");
+                    MessageBox.Show(ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
                 }
                 catch (Exception ex)
                 {
@@ -336,6 +353,27 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmCadastroOpcoes menuOpcoes = new frmCadastroOpcoes();
                 menuOpcoes.Show();
                 this.Close();
+            }
+        }
+
+        private void btnHistórico_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
+        }
+
+        private void pbPapel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opnfd = new OpenFileDialog();
+            opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
+            if (opnfd.ShowDialog() == DialogResult.OK)
+            {
+                pbPapel.Image = new Bitmap(opnfd.FileName);
             }
         }
     }

@@ -46,11 +46,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.pbRenda = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -207,6 +209,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 66;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -349,6 +352,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.panel1.Controls.Add(this.pbRenda);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvRendaKrypton);
@@ -523,6 +527,17 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // pbRenda
+            // 
+            this.pbRenda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRenda.Location = new System.Drawing.Point(235, 717);
+            this.pbRenda.Name = "pbRenda";
+            this.pbRenda.Size = new System.Drawing.Size(201, 195);
+            this.pbRenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbRenda.TabIndex = 78;
+            this.pbRenda.TabStop = false;
+            this.pbRenda.Click += new System.EventHandler(this.pbPapel_Click);
+            // 
             // frmCadastroRenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,6 +565,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -573,5 +589,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
+        private System.Windows.Forms.PictureBox pbRenda;
     }
 }

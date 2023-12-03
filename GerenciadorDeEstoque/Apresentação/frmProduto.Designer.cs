@@ -50,6 +50,7 @@
             this.btnVenda = new System.Windows.Forms.Button();
             this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
+            this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxFiltro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
@@ -245,6 +246,7 @@
             this.pbProduto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbProduto.TabIndex = 57;
             this.pbProduto.TabStop = false;
+            this.pbProduto.Click += new System.EventHandler(this.pbProduto_Click);
             // 
             // txtNome
             // 
@@ -568,6 +570,7 @@
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 59;
             this.btnHistórico.UseVisualStyleBackColor = false;
+            this.btnHistórico.Click += new System.EventHandler(this.btnHistórico_Click);
             // 
             // btnVenda
             // 
@@ -616,6 +619,58 @@
             this.btnCadastro.UseVisualStyleBackColor = false;
             this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVoltar.Location = new System.Drawing.Point(25, 33);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(35, 46);
+            this.btnVoltar.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Back.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnVoltar.StateCommon.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.SALVAR;
+            this.btnVoltar.StateCommon.Back.ImageAlign = ComponentFactory.Krypton.Toolkit.PaletteRectangleAlign.Local;
+            this.btnVoltar.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnVoltar.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnVoltar.StateCommon.Border.Rounding = 7;
+            this.btnVoltar.StateCommon.Content.Image.ImageColorMap = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Content.Image.ImageColorTo = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateCommon.Content.Image.ImageV = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.btnVoltar.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateNormal.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.btnVoltar.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.BottomMiddle;
+            this.btnVoltar.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnVoltar.StateNormal.Border.Rounding = 14;
+            this.btnVoltar.StatePressed.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.btnVoltar.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnVoltar.StatePressed.Border.Rounding = 2;
+            this.btnVoltar.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.btnVoltar.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(189)))), ((int)(((byte)(243)))));
+            this.btnVoltar.StateTracking.Back.Image = global::GerenciadorDeEstoque.Properties.Resources.Voltar;
+            this.btnVoltar.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.btnVoltar.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.btnVoltar.StateTracking.Border.Draw = ComponentFactory.Krypton.Toolkit.InheritBool.True;
+            this.btnVoltar.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnVoltar.StateTracking.Border.Rounding = 0;
+            this.btnVoltar.TabIndex = 66;
+            this.btnVoltar.Values.Text = "";
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // frmProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -623,6 +678,7 @@
             this.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Cadastro_Produto;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnHistórico);
             this.Controls.Add(this.btnVenda);
@@ -675,5 +731,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvProduto;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbxFiltro;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
     }
 }

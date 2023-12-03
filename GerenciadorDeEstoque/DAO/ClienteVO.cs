@@ -14,8 +14,8 @@ namespace GerenciadorDeEstoque.DAO
 
         //queria dormir
 
-        private Int64 _itemid, telefone, numero;
-        private String nome, email, cep, rua, bairro, estado, complemento;
+        private Int64 _itemid, numero;
+        private String nome, email, cep, rua, bairro, estado, complemento, telefone;
         private DAO dao;
 
 
@@ -37,12 +37,12 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public Int64 Telefone
+        public String Telefone
         {
             get { return telefone; }
             set
             {
-                if (value > 0)
+                if (value != string.Empty)
                 {
                     telefone = value;
                 }

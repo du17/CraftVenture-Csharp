@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GerenciadorDeEstoque.Apresentação.Menu;
 using GerenciadorDeEstoque.DAO;
+using MySql.Data.MySqlClient;
 
 namespace GerenciadorDeEstoque.Apresentação
 {
@@ -79,7 +80,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnHistórico_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrir Histórico", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                frmHistorico historico = new frmHistorico();
+                historico.Show();
+                this.Close();
+            }
         }
 
         private void btnVenda_Click(object sender, EventArgs e)
@@ -164,6 +171,14 @@ namespace GerenciadorDeEstoque.Apresentação
                     int gramatura = Convert.ToInt32(txtGramatura.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
 
+                    if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                    if (!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
+
+                    if (gramatura <= 0) { throw new ArgumentException("A gramatura não pode ser menor que zero!"); }
+
+                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
+
                     papel.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                     papel.Tipo = tipo;
                     papel.Gramatura = gramatura;
@@ -190,6 +205,10 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -215,6 +234,14 @@ namespace GerenciadorDeEstoque.Apresentação
                     String tamanho = cbxTamanho.Text;
                     int gramatura = Convert.ToInt32(txtGramatura.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
+
+                    if(!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                    if(!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
+
+                    if(gramatura <= 0) { throw new ArgumentException("A gramatura não pode ser menor que zero!"); }
+
+                    if(valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
 
                     papel.Tipo = tipo;
                     papel.Cor = cor;
@@ -251,9 +278,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     MessageBox.Show(ex.Message);
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Este material já existe");
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Erro ");
                 }
             }
         }
