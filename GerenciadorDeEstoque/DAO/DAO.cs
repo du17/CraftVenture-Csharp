@@ -532,15 +532,16 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Produto
 
-        public void IDP(Double valor, Int64 quantidade, String nome, String tipo)
+        public void IDP(Double valor, Int64 quantidade, String nome, String tipo, byte[] foto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO produto (valor, quantidade, nome, tipo) VALUES";
-            query += " (?valor, ?quantidade, ?nome, ?tipo)";
+            String query = "INSERT INTO produto (valor, quantidade, nome, tipo, foto) VALUES";
+            query += " (?valor, ?quantidade, ?nome, ?tipo, ?foto)";
+            MessageBox.Show("Comprimento do array de bytes: " + foto.Length);
             try
             {
                 con.Open();
@@ -549,6 +550,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?quantidade", quantidade);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?tipo", tipo);
+                cmd.Parameters.AddWithValue("?foto", foto);
                 cmd.ExecuteNonQuery();
 
                 idLastInsert = cmd.LastInsertedId;
@@ -561,14 +563,14 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADP(Double valor, Int64 quantidade, String nome, String tipo, Int64 itemid)
+        public void ADP(Double valor, Int64 quantidade, String nome, String tipo, Int64 itemid, byte[] foto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
             con.ConnectionString = conexao.getConnectionString();
-          
-            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor" +
+
+            String query = "UPDATE produto SET quantidade = ?quantidade, tipo = ?tipo, nome = ?nome, valor = ?valor, foto = ?foto" +
                            " WHERE id = " + itemid;
             try
             {
@@ -578,6 +580,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?tipo", tipo);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?foto", foto);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -593,7 +596,7 @@ namespace GerenciadorDeEstoque.DAO
         {
             conexao = new Conexao();
             con = new MySqlConnection();
-            
+
             con.ConnectionString = conexao.getConnectionString();
             String query = "DELETE produto FROM produto" +
                 " WHERE id = " + itemid;
@@ -638,7 +641,7 @@ namespace GerenciadorDeEstoque.DAO
                 "FROM produto " +
                 " ORDER BY nome ASC";
             }
-            
+
 
             try
             {
@@ -655,7 +658,7 @@ namespace GerenciadorDeEstoque.DAO
                             dt.Columns.Add("quantidade", typeof(int));
                             da.Fill(dt);
                         }
-                        else 
+                        else
                         {
                             da.Fill(dt);
                         }

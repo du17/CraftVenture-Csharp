@@ -13,6 +13,7 @@ namespace GerenciadorDeEstoque.DAO
         private Int64 _itemid, quantidade;
         private Double valor;
         private String nome, tipo;
+        private byte[] foto;
         private DAO dao;
 
         public ProdutoVO()
@@ -85,16 +86,32 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public byte[] Foto
+        {
+            get { return foto; }
+            set
+            {
+                try
+                {
+                    foto = value ?? new byte[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+                }
+
+            }
+        }
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDP(Valor, Quantidade, Nome, Tipo);
+            dao.IDP(Valor, Quantidade, Nome, Tipo, Foto);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADP(Valor, Quantidade, Nome, Tipo, itemid);
+            dao.ADP(Valor, Quantidade, Nome, Tipo, itemid, Foto);
         }
 
         public void Remover()
