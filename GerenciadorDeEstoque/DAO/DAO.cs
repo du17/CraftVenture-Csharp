@@ -506,7 +506,6 @@ namespace GerenciadorDeEstoque.DAO
             if(procuraMes == true) { sql += " WHERE " + TipoData + " LIKE '%-" + mes + "-%'"; }
             else { sql += " WHERE (" + TipoData + " BETWEEN '" + mes + "' AND '" + mesMax + "') OR " + TipoData + " BETWEEN '" + mesMax+ "' AND '" + mes + "'"; }
 
-            PapelVO papel = new PapelVO();
             DataTable dt = new DataTable();
             Conexao conexao = new Conexao();
             try
@@ -1920,34 +1919,6 @@ namespace GerenciadorDeEstoque.DAO
             return dt;
         }
 
-        public static DataTable GetTecido(String tipo)
-        {
-            var sql = "SELECT tecido.idTipoMaterial, tipoEspessura, metragem FROM tecido " +
-               "INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
-               " WHERE tipo LIKE '%" + tipo + "%'";
-
-            PapelVO papel = new PapelVO();
-            DataTable dt = new DataTable();
-            Conexao conexao = new Conexao();
-            try
-            {
-                using (var cn = new MySqlConnection(conexao.getConnectionString()))
-                {
-                    cn.Open();
-
-                    using (var da = new MySqlDataAdapter(sql, cn))
-                    {
-                        da.Fill(dt);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return dt;
-        }
 
         #endregion
 

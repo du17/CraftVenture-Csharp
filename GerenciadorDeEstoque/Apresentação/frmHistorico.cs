@@ -189,6 +189,8 @@ namespace GerenciadorDeEstoque.Apresentação
             dt = DAO.DAO.GetHistoricoMes(dataMinima, tipoData, false, dataMaxima);
 
             dgvHistoricoKrypton.DataSource = dt;
+
+            Inicializar();
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)

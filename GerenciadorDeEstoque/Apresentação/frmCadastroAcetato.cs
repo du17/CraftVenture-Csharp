@@ -131,135 +131,123 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!novoClicado)
+            try
             {
+                if (txtEspessura.Text == string.Empty || txtValor.Text == string.Empty || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty)
+                {
+                    throw new ArgumentNullException();
+                }
+
+                double espessura = Convert.ToDouble(txtEspessura.Text);
+                double valor = Convert.ToDouble(txtValor.Text);
+                double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
+                double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
+
+                if (espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
+
+                if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
+
+                if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
+
+                if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
+
                 acetato = new AcetatoVO();
-
-
-                try
-                {
-                    if (txtEspessura.Text == string.Empty || txtValor.Text == string.Empty || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty)
-                    {
-                        throw new ArgumentNullException();
-                    }
-
-                    double espessura = Convert.ToDouble(txtEspessura.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
-                    double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
-                    double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
-
-                    if(espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
-
-                    if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
-
-                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
-
-                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
-
-                    acetato.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-                    acetato.Espessura = espessura;
-                    acetato.MetragemAltura = metragemAltura;
-                    acetato.MetragemComprimento = metragemComprimento;
-                    acetato.Valor = valor;
-
-                    acetato.Atualizar();
-                    
-                    MessageBox.Show("Item Atualizado!");
-
-                    Inicializar();
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                acetato = new AcetatoVO();
-                tipoMaterial = new TipoMaterialVO();
                 material = new MaterialVO();
 
-                try
+                if (!novoClicado)
                 {
-                    if (txtEspessura.Text == string.Empty || txtValor.Text == string.Empty || txtMetragemAltura.Text == string.Empty || txtMetragemComprimento.Text == string.Empty)
+                    try
                     {
-                        throw new ArgumentNullException();
+                        acetato.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                        acetato.Espessura = espessura;
+                        acetato.MetragemAltura = metragemAltura;
+                        acetato.MetragemComprimento = metragemComprimento;
+                        acetato.Valor = valor;
+
+                        material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                        material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
+                        material.Valor = valor;
+
+                        material.Atualizar();
+                        acetato.Atualizar();
+
+                        MessageBox.Show("Item Atualizado!");
+
+                        Inicializar();
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    tipoMaterial = new TipoMaterialVO();
+           
+                    try
+                    {
+
+                        long idTipoMaterial;
+
+                        tipoMaterial.Nome = nome_material;
+                        tipoMaterial.Inserir();
+
+                        idTipoMaterial = tipoMaterial.getLastId();
+
+                        acetato.Espessura = espessura;
+                        acetato.MetragemAltura = metragemAltura;
+                        acetato.MetragemComprimento = metragemComprimento;
+
+                        material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
+                        material.Valor = valor;
+
+                        material.IdTipoMaterial = idTipoMaterial;
+                        acetato.itemidTipoMaterial = idTipoMaterial;
+
+                        material.Inserir();
+
+                        acetato.Inserir();
+
+                        novoClicado = false;
+
+                        Inicializar();
+
+                        MessageBox.Show("Item cadastrado!");
+
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
                     }
 
-                    double espessura = Convert.ToDouble(txtEspessura.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
-                    double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
-                    double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
-                    
-                    long idTipoMaterial;
-
-                    if (espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
-
-                    if (metragemAltura <= 0) { throw new ArgumentException("A altura não deve ser negativa"); }
-
-                    if (metragemComprimento <= 0) { throw new ArgumentException("O comprimento não deve ser negativa"); }
-
-
-                    tipoMaterial.Nome = nome_material;
-                    tipoMaterial.Inserir();
-
-                    idTipoMaterial = tipoMaterial.getLastId();
-
-                    acetato.Espessura = espessura;
-                    acetato.MetragemAltura = metragemAltura;
-                    acetato.MetragemComprimento = metragemComprimento;
-
-                    material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
-                    material.Valor = valor;
-
-                    material.IdTipoMaterial = idTipoMaterial;
-                    acetato.itemidTipoMaterial = idTipoMaterial;
-
-                    material.Inserir();
-
-                    acetato.Inserir();
-
-                    novoClicado = false;
-
-                    Inicializar();
-
-                    MessageBox.Show("Item cadastrado!");
 
                 }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                
-                }
-                
-            
-            }
+            }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
         }
 
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)

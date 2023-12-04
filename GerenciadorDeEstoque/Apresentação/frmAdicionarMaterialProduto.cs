@@ -59,21 +59,25 @@ namespace GerenciadorDeEstoque.Apresentação
 
             idProduto_Quantidade = DAO.DAO.GetMaterialProdutoId(idProduto);
 
-            idTipoMaterial = idProduto_Quantidade["idProduto"];
-            quantidade = idProduto_Quantidade["quantidade"];
-
-            int i = 0;
-            foreach (DataRow row in dt.Rows)
+            if (idProduto_Quantidade != null)
             {
-                if (idTipoMaterial.Contains(Convert.ToInt64(row["idTipoMaterial"])))
+
+
+                idTipoMaterial = idProduto_Quantidade["idProduto"];
+                quantidade = idProduto_Quantidade["quantidade"];
+
+                int i = 0;
+                foreach (DataRow row in dt.Rows)
                 {
-                    row["escolha"] = true;
-                    row["quantidade"] = quantidade[i];
+                    if (idTipoMaterial.Contains(Convert.ToInt64(row["idTipoMaterial"])))
+                    {
+                        row["escolha"] = true;
+                        row["quantidade"] = quantidade[i];
 
-                    i++;
-                }
+                        i++;
+                    }
+                } 
             }
-
             dgvAdicionarProdutoKrypton.DataSource = dt;
             ConfigurarGradeMaterialProduto();
         }
@@ -191,17 +195,12 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
-
-                    dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
-
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
-
                 }
+                dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
 
                 dgvAdicionarProdutoKrypton.DataSource = dv;
 

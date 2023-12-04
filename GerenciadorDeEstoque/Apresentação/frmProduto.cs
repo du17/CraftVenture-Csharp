@@ -53,7 +53,7 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvProduto.Columns["tipo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvProduto.Columns["nome"].HeaderText = "Nome";
-            dgvProduto.Columns["nome"].Width = 130;
+            dgvProduto.Columns["nome"].Width = 200;
             dgvProduto.Columns["nome"].DefaultCellStyle.Padding = new Padding(5, 0, 0, 0);
 
             dgvProduto.Columns["quantidade"].HeaderText = "Quantidade";
@@ -85,132 +85,107 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void dgvPapelKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!novoClicado)
+            try
             {
+                if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
+                {
+                    throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                }
+                else if (materialProduto.IdMaterialLista == null)
+                {
+                    throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                }
+
+                String nome = txtNome.Text;
+                String tipo = txtTipo.Text;
+                Int64 valor = Convert.ToInt64(txtValor.Text);
+                Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
+
+                if (quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
+
+                if (valor <= 0) { throw new ArgumentException("O valor está negativo"); }
+
                 produto = new ProdutoVO();
 
-
-                try
+                if (!novoClicado)
                 {
+                    try
+                    {                       
+                        produto.Nome = nome;
+                        produto.Valor = valor;
+                        produto.Quantidade = quantidade;
+                        produto.Tipo = tipo;
+                        produto.itemid = Convert.ToInt64(GetValorLinha("id"));
 
-                    if(txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
-                    {
-                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                        produto.Atualizar();
+
+                        materialProduto.IdProduto = Convert.ToInt64(GetValorLinha("id"));
+
+                        materialProduto.Atualizar();
+
+                        MessageBox.Show("Item Atualizado!");
+
+                        Inicializar();
                     }
-                    else if (materialProduto.IdMaterialLista == null)
+                    catch (ArgumentNullException ex)
                     {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                        MessageBox.Show(ex.Message);
                     }
-
-                    String nome = txtNome.Text;
-                    String tipo = txtTipo.Text;
-                    Int64 valor = Convert.ToInt64(txtValor.Text);
-                    Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
-
-                    if(quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor está negativo"); }
-
-                    produto.Nome = nome;
-                    produto.Valor = valor;
-                    produto.Quantidade = quantidade;
-                    produto.Tipo = tipo;
-                    produto.itemid = Convert.ToInt64(GetValorLinha("id"));
-
-                    produto.Atualizar();
-
-                    materialProduto.IdProduto = Convert.ToInt64(GetValorLinha("id"));
-
-                    materialProduto.Atualizar();
-
-                    MessageBox.Show("Item Atualizado!");
-
-                    Inicializar();
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                produto = new ProdutoVO();
-                
-
-                long idProduto;
-
-                try
-                {
-                    if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
+                    catch (ArgumentException ex)
                     {
-                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                        MessageBox.Show(ex.Message);
                     }
-                    else if (materialProduto.IdMaterialLista == null)
+                    catch (Exception ex)
                     {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                        MessageBox.Show(ex.Message);
                     }
-
-                    String nome = txtNome.Text;
-                    String tipo = txtTipo.Text;
-                    Int64 valor = Convert.ToInt64(txtValor.Text);
-                    Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
-
-                    if (quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor está negativo"); }
-
-                    produto.Nome = nome;
-                    produto.Valor = valor;
-                    produto.Quantidade = quantidade;
-                    produto.Tipo = tipo;
-
-                    produto.Inserir();
-
-                    idProduto = produto.getLastId();
-
-                    materialProduto.IdProduto = idProduto;
-
-                    materialProduto.Inserir();
-
-                    MessageBox.Show("Item Cadastrado!");
-
-                    LimpaTextos();
-                    Inicializar();
-
-                    materialProduto = null;
-
-                    novoClicado = false;
-
                 }
-                catch (ArgumentException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
-                }
-                catch(MySqlException ex)
-                {
-                    MessageBox.Show(ex.Message, "erro");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    long idProduto;
 
+                    try
+                    {
+                        produto.Nome = nome;
+                        produto.Valor = valor;
+                        produto.Quantidade = quantidade;
+                        produto.Tipo = tipo;
+
+                        produto.Inserir();
+
+                        idProduto = produto.getLastId();
+
+                        materialProduto.IdProduto = idProduto;
+
+                        materialProduto.Inserir();
+
+                        MessageBox.Show("Item Cadastrado!");
+
+                        LimpaTextos();
+                        Inicializar();
+
+                        materialProduto = null;
+
+                        novoClicado = false;
+
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message, "erro");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
                 }
-            }
+            }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -295,22 +270,21 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
-
-                    dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
-
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
-
                 }
 
-                dgvProdutoKrypton.DataSource = dv;
+                dv.RowFilter = String.Format("nome LIKE '%{0}%' OR tipo LIKE '%{0}%'", palavra);
+
+                dgvProduto.DataSource = dv;
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -328,7 +302,6 @@ namespace GerenciadorDeEstoque.Apresentação
             if (dialogResult == DialogResult.Yes)
             {
                 frmMenuCadastro menuCadastro = new frmMenuCadastro();
-                this.Hide();
                 menuCadastro.Show();
                 this.Close();
             }

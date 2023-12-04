@@ -138,145 +138,123 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            
 
-            if (!novoClicado)
+            try
             {
+                if (ChecarCampos(cbxTipo.Text, txtNumero.Text, txtMetragem.Text, txtMarca.Text, txtNumCor.Text, txtValor.Text))
+                {
+                    throw new ArgumentNullException("Um ou mais campos estão vazios");
+                }
+
+                String tipo = cbxTipo.Text;
+                int numero = Convert.ToInt32(txtNumero.Text);
+                double metragem = Convert.ToDouble(txtMetragem.Text);
+                String marca = txtMarca.Text;
+                String numeroCor = txtNumCor.Text;
+                double valor = Convert.ToDouble(txtValor.Text);
+
+                if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
+
+                if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
+
+                if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
+
+                if (metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
+
                 fita = new FitaVO();
 
-
-                try
+                if (!novoClicado)
                 {
-                    if (ChecarCampos(cbxTipo.Text, txtNumero.Text, txtMetragem.Text, txtMarca.Text, txtNumCor.Text, txtValor.Text))
+                    try
                     {
-                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
+
+                        fita.itemidTpoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                        fita.Tipo = tipo;
+                        fita.Numero = numero;
+                        fita.Metragem = metragem;
+                        fita.Marca = marca;
+                        fita.NumeroCor = numeroCor;
+                        fita.Valor = valor;
+
+                        fita.Atualizar();
+
+                        MessageBox.Show("Item Atualizado!");
+
+                        Inicializar();
                     }
-
-                    String tipo = cbxTipo.Text;
-                    int numero = Convert.ToInt32(txtNumero.Text);
-                    double metragem = Convert.ToDouble(txtMetragem.Text);
-                    String marca = txtMarca.Text;
-                    String numeroCor = txtNumCor.Text;
-                    double valor = Convert.ToDouble(txtValor.Text);
-
-                    if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
-
-                    if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
-
-                    if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
-
-                    if (metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
-
-                    fita.itemidTpoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-                    fita.Tipo = tipo;
-                    fita.Numero = numero;
-                    fita.Metragem = metragem;
-                    fita.Marca = marca;
-                    fita.NumeroCor = numeroCor;
-                    fita.Valor = valor;
-
-                    fita.Atualizar();
-
-                    MessageBox.Show("Item Atualizado!");
-
-                    Inicializar();
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                fita = new FitaVO();
-                material = new MaterialVO();
-                tipoMaterial = new TipoMaterialVO();
-
-                long idTipoMaterial;
-
-                try
-                {
-                    if (ChecarCampos(cbxTipo.Text, txtNumero.Text, txtMetragem.Text, txtMarca.Text, txtNumCor.Text, txtValor.Text))
+                    catch (ArgumentNullException ex)
                     {
-                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
+                        MessageBox.Show(ex.Message);
                     }
-
-                    String tipo = cbxTipo.Text;
-                    int numero = Convert.ToInt32(txtNumero.Text);
-                    double metragem = Convert.ToDouble(txtMetragem.Text);
-                    String marca = txtMarca.Text;
-                    String numeroCor = txtNumCor.Text;
-                    double valor = Convert.ToDouble(txtValor.Text);
-
-                    if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
-
-                    if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
-
-                    if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
-
-                    if(metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
-
-                    tipoMaterial.Nome = nome_material;
-                    tipoMaterial.Inserir();
-
-                    idTipoMaterial = tipoMaterial.getLastId();
-
-
-
-                    material.IdTipoMaterial = idTipoMaterial;
-                    material.Nome = nome_material + " Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
-                    material.Valor = valor;
-
-                    material.Inserir();
-
-                    fita.itemidTpoMaterial = idTipoMaterial;
-                    fita.Tipo = tipo;
-                    fita.Numero = numero;
-                    fita.Metragem = metragem;
-                    fita.Marca = marca;
-                    fita.NumeroCor = numeroCor;
-                    fita.Inserir();
-
-                    MessageBox.Show("Item Cadastrado!");
-
-                    LimpaTextos();
-                    Inicializar();
-
-                    novoClicado = false;
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (ArgumentNullException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    material = new MaterialVO();
+                    tipoMaterial = new TipoMaterialVO();
+
+                    long idTipoMaterial;
+
+                    try
+                    {
+
+                        tipoMaterial.Nome = nome_material;
+                        tipoMaterial.Inserir();
+
+                        idTipoMaterial = tipoMaterial.getLastId();
+
+                        material.IdTipoMaterial = idTipoMaterial;
+                        material.Nome = nome_material + " "+ tipo +" Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
+                        material.Valor = valor;
+
+                        material.Inserir();
+
+                        fita.itemidTpoMaterial = idTipoMaterial;
+                        fita.Tipo = tipo;
+                        fita.Numero = numero;
+                        fita.Metragem = metragem;
+                        fita.Marca = marca;
+                        fita.NumeroCor = numeroCor;
+                        fita.Inserir();
+
+                        MessageBox.Show("Item Cadastrado!");
+
+                        LimpaTextos();
+                        Inicializar();
+
+                        novoClicado = false;
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch(ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
 
         }
 

@@ -451,32 +451,28 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
 
-                    dt = DAO.DAO.GetCliente(palavra);
-
-                    dgvClienteKrypton.DataSource = dt;
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dt = DAO.DAO.GetCliente(palavra);
-
-                    dgvClienteKrypton.DataSource = dt;
-
                 }
 
+                dv.RowFilter = String.Format("nome LIKE '%{0}%'", palavra);
+
+                dgvClienteKrypton.DataSource = dv;
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnVenda_Click(object sender, EventArgs e)

@@ -307,7 +307,7 @@
             this.dgvProdutoKrypton.StateCommon.DataCell.Content.Color2 = System.Drawing.Color.Black;
             this.dgvProdutoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvProdutoKrypton.TabIndex = 53;
-            this.dgvProdutoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPapelKrypton_CellEnter);
+            //this.dgvProdutoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPapelKrypton_CellEnter);
             // 
             // pictureBox3
             // 

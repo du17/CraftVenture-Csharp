@@ -103,18 +103,21 @@ namespace GerenciadorDeEstoque.Apresentação
 
             idProduto_Quantidade = DAO.DAO.GetVendeId(idVenda);
 
-            idProduto = idProduto_Quantidade["idProduto"];
-            quantidade = idProduto_Quantidade["quantidade"];
-
-            int i = 0;
-            foreach (DataRow row in dt.Rows)
+            if (idProduto_Quantidade != null)
             {
-                if (idProduto.Contains(Convert.ToInt64(row["id"])))
-                {
-                    row["escolha"] = true;
-                    row["quantidade"] = quantidade[i];
+                idProduto = idProduto_Quantidade["idProduto"];
+                quantidade = idProduto_Quantidade["quantidade"];
 
-                    i++;
+                int i = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (idProduto.Contains(Convert.ToInt64(row["id"])))
+                    {
+                        row["escolha"] = true;
+                        row["quantidade"] = quantidade[i];
+
+                        i++;
+                    }
                 }
             }
 
@@ -138,6 +141,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
             dgvAdicionarProdutoKrypton.Columns["id"].HeaderText = "ID";
             dgvAdicionarProdutoKrypton.Columns["id"].Visible = true;
+            dgvAdicionarProdutoKrypton.Columns["id"].ReadOnly = true;
 
             dgvAdicionarProdutoKrypton.Columns["escolha"].HeaderText = "Escolha";
             dgvAdicionarProdutoKrypton.Columns["escolha"].Width = 100;
@@ -149,11 +153,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAdicionarProdutoKrypton.Columns["nome"].Width = 300;
             dgvAdicionarProdutoKrypton.Columns["nome"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAdicionarProdutoKrypton.Columns["nome"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAdicionarProdutoKrypton.Columns["nome"].ReadOnly = true;
 
             dgvAdicionarProdutoKrypton.Columns["valor"].HeaderText = "Valor";
             dgvAdicionarProdutoKrypton.Columns["valor"].Width = 150;
             dgvAdicionarProdutoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvAdicionarProdutoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvAdicionarProdutoKrypton.Columns["valor"].ReadOnly = true;
 
             dgvAdicionarProdutoKrypton.Columns["quantidade"].HeaderText = "Quantidade";
             dgvAdicionarProdutoKrypton.Columns["quantidade"].Width = 100;

@@ -38,11 +38,11 @@ namespace GerenciadorDeEstoque.DAO
             get { return metragemAltura; }
             set
             {
-                if (value > 1)
+                if (value > 0)
                 {
                     metragemAltura = value;
                 }
-                else { throw new ArgumentException("O tamanho não pode ser menor que 1"); }
+                else { throw new ArgumentException("O tamanho não pode ser negativo"); }
 
             }
         }
@@ -52,11 +52,11 @@ namespace GerenciadorDeEstoque.DAO
             get { return metragemComprimento; }
             set
             {
-                if (value > 1)
+                if (value > 0)
                 {
                     metragemComprimento = value;
                 }
-                else { throw new ArgumentException("O tamanho não pode ser menor que 1"); }
+                else { throw new ArgumentException("O tamanho não pode ser negativo"); }
 
             }
         }

@@ -98,7 +98,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 venda.Show();
                 this.Close();
             }
-            }
+        }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
@@ -154,139 +154,123 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!novoClicado)
+            try
             {
+                if (cbxTipo.Text == string.Empty || txtCor.Text == string.Empty || cbxTamanho.Text == "Tamanho" || txtGramatura.Text == string.Empty || txtValor.Text == string.Empty)
+                {
+                    throw new ArgumentNullException("Um ou mais campos estão vazios!");
+                }
+                String tipo = cbxTipo.Text;
+                String cor = txtCor.Text;
+                String tamanho = cbxTamanho.Text;
+                int gramatura = Convert.ToInt32(txtGramatura.Text);
+                double valor = Convert.ToDouble(txtValor.Text);
+
+                if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
+
+                if (!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
+
+                if (gramatura <= 0) { throw new ArgumentException("A gramatura não pode ser menor que zero!"); }
+
+                if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
+
                 papel = new PapelVO();
                 material = new MaterialVO();
 
-                try
+                if (!novoClicado)
                 {
-                    if (cbxTipo.Text == string.Empty || txtCor.Text == string.Empty || cbxTamanho.Text == "Tamanho" || txtGramatura.Text == string.Empty ||txtValor.Text == string.Empty)
+                    try
                     {
-                        throw new ArgumentNullException("Um ou mais campos estão vazios!");
+                        papel.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                        papel.Tipo = tipo;
+                        papel.Gramatura = gramatura;
+                        papel.Cor = cor;
+                        papel.Tamanho = tamanho;
+                        papel.Valor = valor;
+
+                        material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
+                        material.Valor = valor;
+                        material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+
+                        papel.Atualizar();
+                        material.Atualizar();
+
+                        MessageBox.Show("Item Atualizado!");
+
+                        Inicializar();
                     }
-                    String tipo = cbxTipo.Text;
-                    String cor = txtCor.Text;
-                    String tamanho = cbxTamanho.Text;
-                    int gramatura = Convert.ToInt32(txtGramatura.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
-
-                    if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
-
-                    if (!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
-
-                    if (gramatura <= 0) { throw new ArgumentException("A gramatura não pode ser menor que zero!"); }
-
-                    if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
-
-                    papel.itemidTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-                    papel.Tipo = tipo;
-                    papel.Gramatura = gramatura;
-                    papel.Cor = cor;
-                    papel.Tamanho = tamanho;
-                    papel.Valor = valor;
-
-                    material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
-                    material.Valor = valor;
-                    material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-
-                    papel.Atualizar();
-                    material.Atualizar();
-
-                    MessageBox.Show("Item Atualizado!");
-
-                    Inicializar();
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Algum dos campos está vazio!");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show("Algum dos campos está vazio!");
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                else
+                {                    
+                    tipoMaterial = new TipoMaterialVO();
+
+                    long idTipoMaterial;
+
+                    try
+                    {
+
+                        papel.Tipo = tipo;
+                        papel.Cor = cor;
+                        papel.Tamanho = tamanho;
+                        papel.Gramatura = gramatura;
+
+                        tipoMaterial.Nome = nome_material;
+                        tipoMaterial.Inserir();
+
+                        idTipoMaterial = tipoMaterial.getLastId();
+
+                        material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
+                        material.Valor = valor;
+                        material.IdTipoMaterial = idTipoMaterial;
+                        material.Inserir();
+
+                        papel.itemidTipoMaterial = idTipoMaterial;
+
+                        papel.Inserir();
+
+                        MessageBox.Show("Item Cadastrado!");
+
+                        LimpaTextos();
+                        Inicializar();
+
+                        novoClicado = false;
+
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Algum dos campos está vazio!");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Este material já existe");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro ");
+                    }
                 }
             }
-            else
-            {
-                papel = new PapelVO();
-                material = new MaterialVO();
-                tipoMaterial = new TipoMaterialVO();
-
-                long idTipoMaterial;
-
-                try
-                {
-                    if (cbxTipo.Text == string.Empty || txtCor.Text == string.Empty || cbxTamanho.Text == "Tamanho" || txtGramatura.Text == string.Empty || txtValor.Text == string.Empty)
-                    {
-                        throw new ArgumentNullException("Um ou mais campos estão vazios ou menor que zero!");
-                    }
-
-                    String tipo = cbxTipo.Text;
-                    String cor = txtCor.Text;
-                    String tamanho = cbxTamanho.Text;
-                    int gramatura = Convert.ToInt32(txtGramatura.Text);
-                    double valor = Convert.ToDouble(txtValor.Text);
-
-                    if(!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
-
-                    if(!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
-
-                    if(gramatura <= 0) { throw new ArgumentException("A gramatura não pode ser menor que zero!"); }
-
-                    if(valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
-
-                    papel.Tipo = tipo;
-                    papel.Cor = cor;
-                    papel.Tamanho = tamanho;
-                    papel.Gramatura = gramatura;
-
-                    tipoMaterial.Nome = nome_material;
-                    tipoMaterial.Inserir();
-
-                    idTipoMaterial = tipoMaterial.getLastId();
-
-                    material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
-                    material.Valor = valor;
-                    material.IdTipoMaterial = idTipoMaterial;
-                    material.Inserir();
-
-                    papel.itemidTipoMaterial = idTipoMaterial;
-
-                    papel.Inserir();
-
-                    MessageBox.Show("Item Cadastrado!");
-
-                    LimpaTextos();
-                    Inicializar();
-
-                    novoClicado = false;
-                    
-                }
-                catch(ArgumentNullException ex)
-                {
-                    MessageBox.Show("Algum dos campos está vazio!");
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Este material já existe");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro ");
-                }
-            }
+            catch(ArgumentException ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnPapelFoto_Click(object sender, EventArgs e)
@@ -317,32 +301,28 @@ namespace GerenciadorDeEstoque.Apresentação
         String palavra;
 
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {            
             try
             {
-                DataTable dt = new DataTable();
+                DataView dv = new DataView(dt);
+
+
                 if (e.KeyChar != '\b')
                 {
                     palavra += e.KeyChar;
-
-                    dt = DAO.DAO.GetPapel(palavra);
-
-                    dgvPapelKrypton.DataSource = dt;
                 }
                 else if (palavra.Length != 0)
                 {
                     palavra = palavra.Remove(palavra.Length - 1);
-
-                    dt = DAO.DAO.GetPapel(palavra);
-
-                    dgvPapelKrypton.DataSource = dt;
-
                 }
 
+                dv.RowFilter = String.Format("tipo LIKE '%{0}%' OR cor LIKE '%{0}%'", palavra);
+
+                dgvPapelKrypton.DataSource = dv;
+
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex) { }
+
         }
 
         private void dgvPapelKrypton_RowEnter_1(object sender, DataGridViewCellEventArgs e)
@@ -388,31 +368,20 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (dgvPapelKrypton.Rows.Count == 0)
+                if (dgvPapelKrypton.Rows.Count != 0)
                 {
-                    novoClicado = true;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
-                }
-                else
-                {
-                    novoClicado = true;
                     dgvPapelKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
-
-                    btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
                 }
+
+                novoClicado = true;
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+
+                btnApagar.Enabled = false;
             }
             catch (Exception ex)
             {

@@ -44,18 +44,18 @@
             this.cbxTipo = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbPapel = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvFitaKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbPapel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFitaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSair
@@ -150,7 +150,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.txtMarca.StateCommon.Border.Rounding = 4;
             this.txtMarca.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold);
-            this.txtMarca.TabIndex = 30;
+            this.txtMarca.TabIndex = 3;
             // 
             // txtNumero
             // 
@@ -166,7 +166,7 @@
             this.txtNumero.StateCommon.Border.Rounding = 5;
             this.txtNumero.StateCommon.Border.Width = 1;
             this.txtNumero.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold);
-            this.txtNumero.TabIndex = 29;
+            this.txtNumero.TabIndex = 2;
             // 
             // txtNumCor
             // 
@@ -198,7 +198,7 @@
             this.txtMetragem.StateCommon.Border.Rounding = 5;
             this.txtMetragem.StateCommon.Border.Width = 1;
             this.txtMetragem.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold);
-            this.txtMetragem.TabIndex = 37;
+            this.txtMetragem.TabIndex = 4;
             // 
             // txtValor
             // 
@@ -213,7 +213,7 @@
             this.txtValor.StateCommon.Border.Rounding = 5;
             this.txtValor.StateCommon.Border.Width = 1;
             this.txtValor.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 21.75F, System.Drawing.FontStyle.Bold);
-            this.txtValor.TabIndex = 38;
+            this.txtValor.TabIndex = 5;
             // 
             // btnSalvar
             // 
@@ -325,7 +325,7 @@
             this.cbxTipo.DropButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
             this.cbxTipo.DropDownWidth = 416;
             this.cbxTipo.Items.AddRange(new object[] {
-            "Cetim ",
+            "Cetim",
             "Gorgurão",
             "Voil"});
             this.cbxTipo.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
@@ -389,7 +389,7 @@
             this.cbxTipo.StateTracking.Item.Content.ShortText.Color1 = System.Drawing.Color.Black;
             this.cbxTipo.StateTracking.Item.Content.ShortText.Color2 = System.Drawing.Color.Black;
             this.cbxTipo.StateTracking.Item.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxTipo.TabIndex = 50;
+            this.cbxTipo.TabIndex = 1;
             this.cbxTipo.Text = "Inserir Tipo";
             // 
             // kryptonButton1
@@ -454,6 +454,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 52;
+            // 
+            // pbPapel
+            // 
+            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbPapel.Location = new System.Drawing.Point(645, 728);
+            this.pbPapel.Name = "pbPapel";
+            this.pbPapel.Size = new System.Drawing.Size(201, 195);
+            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPapel.TabIndex = 59;
+            this.pbPapel.TabStop = false;
+            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
             // 
             // txtPesquisar
             // 
@@ -564,17 +575,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbPapel
-            // 
-            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbPapel.Location = new System.Drawing.Point(645, 728);
-            this.pbPapel.Name = "pbPapel";
-            this.pbPapel.Size = new System.Drawing.Size(201, 195);
-            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbPapel.TabIndex = 59;
-            this.pbPapel.TabStop = false;
-            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
-            // 
             // frmCadastrarFita
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -599,10 +599,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFitaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             this.ResumeLayout(false);
 
         }
