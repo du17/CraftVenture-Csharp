@@ -33,7 +33,6 @@
             this.btnSair = new System.Windows.Forms.Button();
             this.btnHistórico = new System.Windows.Forms.Button();
             this.btnVenda = new System.Windows.Forms.Button();
-            this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
             this.txtEmail = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtNome = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -48,14 +47,15 @@
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvClienteKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pcbtexto = new System.Windows.Forms.PictureBox();
             this.btnNovo = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtCidade = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxEstado)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClienteKrypton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbtexto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCadastrar
@@ -213,7 +213,7 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Location = new System.Drawing.Point(-4, 454);
+            this.btnSair.Location = new System.Drawing.Point(-4, 374);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 37;
@@ -229,7 +229,7 @@
             this.btnHistórico.FlatAppearance.BorderSize = 0;
             this.btnHistórico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnHistórico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistórico.Location = new System.Drawing.Point(-4, 366);
+            this.btnHistórico.Location = new System.Drawing.Point(-4, 286);
             this.btnHistórico.Name = "btnHistórico";
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 36;
@@ -245,28 +245,12 @@
             this.btnVenda.FlatAppearance.BorderSize = 0;
             this.btnVenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenda.Location = new System.Drawing.Point(-4, 278);
+            this.btnVenda.Location = new System.Drawing.Point(-4, 198);
             this.btnVenda.Name = "btnVenda";
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 35;
             this.btnVenda.UseVisualStyleBackColor = false;
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
-            // 
-            // btnEstoque
-            // 
-            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
-            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
-            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstoque.FlatAppearance.BorderSize = 0;
-            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Location = new System.Drawing.Point(-4, 190);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
-            this.btnEstoque.TabIndex = 34;
-            this.btnEstoque.UseVisualStyleBackColor = false;
-            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // btnCadastro
             // 
@@ -350,7 +334,7 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(171, 867);
+            this.txtNumero.Location = new System.Drawing.Point(170, 942);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(133, 49);
             this.txtNumero.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -366,7 +350,7 @@
             // 
             // txtComplemento
             // 
-            this.txtComplemento.Location = new System.Drawing.Point(295, 940);
+            this.txtComplemento.Location = new System.Drawing.Point(294, 1015);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(603, 49);
             this.txtComplemento.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
@@ -416,7 +400,7 @@
             "Sergipe (SE)",
             "Tocantins (TO)"});
             this.cbxEstado.ItemStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Form;
-            this.cbxEstado.Location = new System.Drawing.Point(480, 866);
+            this.cbxEstado.Location = new System.Drawing.Point(480, 942);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(420, 47);
             this.cbxEstado.StateActive.ComboBox.Content.Color1 = System.Drawing.Color.Black;
@@ -493,8 +477,7 @@
             this.txtTelefone.StateCommon.Border.Rounding = 2;
             this.txtTelefone.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.txtTelefone.TabIndex = 48;
-            this.txtTelefone.Text = "___________";
-            this.txtTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
+            this.txtTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // txtCep
             // 
@@ -517,6 +500,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.panel1.Controls.Add(this.txtCidade);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvClienteKrypton);
@@ -529,7 +513,7 @@
             this.panel1.Controls.Add(this.txtBairro);
             this.panel1.Controls.Add(this.txtComplemento);
             this.panel1.Controls.Add(this.txtNumero);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pcbtexto);
             this.panel1.Location = new System.Drawing.Point(263, 78);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 482);
@@ -582,15 +566,15 @@
             this.dgvClienteKrypton.TabIndex = 53;
             this.dgvClienteKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClienteKrypton_CellEnter);
             // 
-            // pictureBox1
+            // pcbtexto
             // 
-            this.pictureBox1.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Textos_Cliente;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 488);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(912, 541);
-            this.pictureBox1.TabIndex = 54;
-            this.pictureBox1.TabStop = false;
+            this.pcbtexto.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Textos_Cliente;
+            this.pcbtexto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pcbtexto.Location = new System.Drawing.Point(12, 488);
+            this.pcbtexto.Name = "pcbtexto";
+            this.pcbtexto.Size = new System.Drawing.Size(912, 636);
+            this.pcbtexto.TabIndex = 54;
+            this.pcbtexto.TabStop = false;
             // 
             // btnNovo
             // 
@@ -713,6 +697,22 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // txtCidade
+            // 
+            this.txtCidade.Location = new System.Drawing.Point(171, 869);
+            this.txtCidade.Name = "txtCidade";
+            this.txtCidade.Size = new System.Drawing.Size(727, 49);
+            this.txtCidade.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.txtCidade.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.txtCidade.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
+            this.txtCidade.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.txtCidade.StateCommon.Border.Rounding = 2;
+            this.txtCidade.StateCommon.Border.Width = 1;
+            this.txtCidade.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 22F, System.Drawing.FontStyle.Bold);
+            this.txtCidade.TabIndex = 59;
+            // 
             // frmCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,7 +728,6 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnHistórico);
             this.Controls.Add(this.btnVenda);
-            this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -739,7 +738,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClienteKrypton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbtexto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -751,7 +750,6 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnHistórico;
         private System.Windows.Forms.Button btnVenda;
-        private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtEmail;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtNome;
@@ -763,11 +761,12 @@
         private ComponentFactory.Krypton.Toolkit.KryptonMaskedTextBox txtTelefone;
         private ComponentFactory.Krypton.Toolkit.KryptonMaskedTextBox txtCep;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pcbtexto;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgvClienteKrypton;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnNovo;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPesquisar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtCidade;
     }
 }

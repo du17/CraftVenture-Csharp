@@ -67,12 +67,14 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvProduto.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduto.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+
             dgvProduto.Columns["foto"].Width = 70;
             dgvProduto.Columns["foto"].HeaderText = "Foto";
             if (dgvProduto.Columns["foto"] is DataGridViewImageColumn fotoColumn)
             {
                 fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
             }
+
         }
 
 
@@ -99,7 +101,7 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 String nome = txtNome.Text;
                 String tipo = txtTipo.Text;
-                Int64 valor = Convert.ToInt64(txtValor.Text);
+                Double valor = Convert.ToDouble(txtValor.Text);
                 Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
                 byte[] foto = null;
 
@@ -141,6 +143,8 @@ namespace GerenciadorDeEstoque.Apresentação
                         materialProduto.Atualizar();
 
                         MessageBox.Show("Item Atualizado!");
+
+                        LimpaTextos();
 
                         Inicializar();
 

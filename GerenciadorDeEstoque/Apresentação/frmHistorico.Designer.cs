@@ -42,7 +42,6 @@
             this.btnSair = new System.Windows.Forms.Button();
             this.btnHistorico = new System.Windows.Forms.Button();
             this.btnVenda = new System.Windows.Forms.Button();
-            this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistoricoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxFiltroMes)).BeginInit();
@@ -371,7 +370,7 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Location = new System.Drawing.Point(2, 454);
+            this.btnSair.Location = new System.Drawing.Point(2, 369);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 78;
@@ -387,7 +386,7 @@
             this.btnHistorico.FlatAppearance.BorderSize = 0;
             this.btnHistorico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorico.Location = new System.Drawing.Point(2, 366);
+            this.btnHistorico.Location = new System.Drawing.Point(2, 281);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(250, 88);
             this.btnHistorico.TabIndex = 77;
@@ -402,27 +401,12 @@
             this.btnVenda.FlatAppearance.BorderSize = 0;
             this.btnVenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenda.Location = new System.Drawing.Point(2, 278);
+            this.btnVenda.Location = new System.Drawing.Point(2, 193);
             this.btnVenda.Name = "btnVenda";
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 76;
             this.btnVenda.UseVisualStyleBackColor = false;
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
-            // 
-            // btnEstoque
-            // 
-            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
-            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
-            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstoque.FlatAppearance.BorderSize = 0;
-            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Location = new System.Drawing.Point(2, 190);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
-            this.btnEstoque.TabIndex = 75;
-            this.btnEstoque.UseVisualStyleBackColor = false;
             // 
             // btnCadastro
             // 
@@ -450,7 +434,6 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.btnVenda);
-            this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.Controls.Add(this.dtpDataMaxima);
             this.Controls.Add(this.dtpDataMinima);
@@ -489,7 +472,6 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnHistorico;
         private System.Windows.Forms.Button btnVenda;
-        private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
     }
 }

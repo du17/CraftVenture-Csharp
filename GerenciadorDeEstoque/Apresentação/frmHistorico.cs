@@ -83,9 +83,6 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvHistoricoKrypton.Columns["anotacao"].Visible = true;
             dgvHistoricoKrypton.Columns["anotacao"].DisplayIndex = 7;
 
-            dgvHistoricoKrypton.Columns["idUsuario"].HeaderText = "idUsuario";
-            dgvHistoricoKrypton.Columns["idUsuario"].Visible = false;
-
             dgvHistoricoKrypton.Columns["codigoCliente"].HeaderText = "codigoCliente";
             dgvHistoricoKrypton.Columns["codigoCliente"].Visible = false;
 

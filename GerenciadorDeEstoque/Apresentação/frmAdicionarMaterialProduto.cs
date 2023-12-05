@@ -21,6 +21,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
         bool novaVenda = true;
 
+        bool editarVenda = false;
+
         public frmAdicionarMaterialProduto(MaterialProdutoVO materialProduto)
         {
             InitializeComponent();
@@ -158,6 +160,8 @@ namespace GerenciadorDeEstoque.Apresentação
                 materialProduto.IdMaterialLista = idMaterial;
                 materialProduto.QuantidadeLista = quantidade;
 
+                editarVenda = true;
+
                 MessageBox.Show("Materiais adicionados ao produto com Sucesso");
 
                 this.Close();
@@ -213,7 +217,7 @@ namespace GerenciadorDeEstoque.Apresentação
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria de Voltar? (todas as informações não salvas serão perdidas)", "Voltar", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (novaVenda) { this.Close(); }
+                if (novaVenda || editarVenda) { this.Close(); }
                 else
                 {
                     List<Int64> idMaterial = new List<Int64>();
@@ -265,7 +269,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void frmAdicionarMaterialProduto_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (novaVenda) { this.Close(); }
+            if (novaVenda || editarVenda) { this.Close(); }
             else
             {
                 List<Int64> idMaterial = new List<Int64>();
