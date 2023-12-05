@@ -66,6 +66,7 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvProduto.Columns["valor"].Width = 100;
             dgvProduto.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduto.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        
         }
 
 
@@ -129,6 +130,8 @@ namespace GerenciadorDeEstoque.Apresentação
                         materialProduto.Atualizar();
 
                         MessageBox.Show("Item Atualizado!");
+
+                        LimpaTextos();
 
                         Inicializar();
                     }

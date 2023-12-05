@@ -631,8 +631,8 @@ namespace GerenciadorDeEstoque.DAO
 
             if (isVenda)
             {
-                sql = "SELECT id, nome, valor " +
-                "FROM produto " +
+                sql = "SELECT id, nome, valor" +
+                " FROM produto " +
                 " ORDER BY nome ASC";
             }
             else
