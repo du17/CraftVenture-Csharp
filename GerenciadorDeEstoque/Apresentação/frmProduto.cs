@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,9 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             dt = DAO.DAO.GetProduto(false);
             dgvProduto.DataSource = dt;
-            
+
             ConfigurarGradeProdutos();
-            
+
         }
 
         private void ConfigurarGradeProdutos()
@@ -67,7 +68,7 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvProduto.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
-        
+
 
         private void btnAcidionarMaterial_Click(object sender, EventArgs e)
         {
@@ -89,7 +90,7 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty)
+                if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty || pbProduto.Image == null)
                 {
                     throw new ArgumentNullException("Algum ou vários campos está vazio!");
                 }
@@ -102,6 +103,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 String tipo = txtTipo.Text;
                 Int64 valor = Convert.ToInt64(txtValor.Text);
                 Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
+                byte[] foto = null;
 
                 if (quantidade <= 0) { throw new ArgumentException("A quantidade está negativa!"); }
 
@@ -112,11 +114,12 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (!novoClicado)
                 {
                     try
-                    {                       
+                    {
                         produto.Nome = nome;
                         produto.Valor = valor;
                         produto.Quantidade = quantidade;
                         produto.Tipo = tipo;
+                        produto.Foto = foto;
                         produto.itemid = Convert.ToInt64(GetValorLinha("id"));
 
                         produto.Atualizar();
@@ -148,10 +151,22 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     try
                     {
+                        if (!string.IsNullOrEmpty(pbProduto.ImageLocation))
+                        {
+                            FileStream fstream = new FileStream(this.pbProduto.ImageLocation, FileMode.Open, FileAccess.Read);
+                            BinaryReader breader = new BinaryReader(fstream);
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("O caminho da imagem não é válido");
+                        }
+
                         produto.Nome = nome;
                         produto.Valor = valor;
                         produto.Quantidade = quantidade;
                         produto.Tipo = tipo;
+                        produto.Foto = foto;
 
                         produto.Inserir();
 
@@ -185,7 +200,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     }
                 }
-            }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
+            }
+            catch (ArgumentException ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -281,7 +297,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 dgvProduto.DataSource = dv;
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -312,7 +328,7 @@ namespace GerenciadorDeEstoque.Apresentação
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Abrindo Venda", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                frmVenda frmVenda = new frmVenda();                
+                frmVenda frmVenda = new frmVenda();
                 frmVenda.Show();
                 this.Close();
             }
@@ -407,7 +423,8 @@ namespace GerenciadorDeEstoque.Apresentação
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbProduto.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbProduto.ImageLocation = localfoto;
             }
         }
     }
