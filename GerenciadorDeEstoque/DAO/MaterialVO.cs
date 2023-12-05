@@ -90,12 +90,14 @@ namespace GerenciadorDeEstoque.DAO
         {
             dao = new DAO();
             dao.IDM(IdTipoMaterial, Nome, Valor, Foto);
+            Foto = null;
         }
 
         public void Atualizar()
         {
             dao = new DAO();
             dao.ADM(IdTipoMaterial, Nome, Valor, Foto);
+            Foto = null;
         }
         public void Remover()
         {
