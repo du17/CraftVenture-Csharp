@@ -363,29 +363,18 @@ namespace GerenciadorDeEstoque.Apresentação
             {
                 if (dgvClienteKrypton.Rows.Count == 0)
                 {
-                    novoClicado = true;
-                    LimpaTextos();
-
-                    btnCadastrar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnCadastrar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnCadastrar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
-
-
-                    btnApagar.Enabled = false;
+                     dgvClienteKrypton.CurrentCell.Selected = false;
                 }
-                else
-                {
-                    novoClicado = true;
-                    dgvClienteKrypton.CurrentCell.Selected = false;
-                    LimpaTextos();
 
-                    btnCadastrar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
-                    btnCadastrar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
-                    btnCadastrar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+                novoClicado = true;
+                LimpaTextos();
+
+                btnCadastrar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnCadastrar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnCadastrar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
 
 
-                    btnApagar.Enabled = false;
-                }
+                btnApagar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -416,6 +405,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 cliente.Estado = GetValorLinha("estado").ToString();
                 cliente.Complemento = GetValorLinha("complemento").ToString();
                 cliente.Numero = Convert.ToInt32(GetValorLinha("numero"));
+                cliente.Cidade = GetValorLinha("cidade").ToString();
 
                 txtNome.Text = cliente.Nome;
                 txtTelefone.Text = cliente.Telefone.ToString();
@@ -426,6 +416,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 cbxEstado.SelectedItem = GetEstadoCompleto(cliente.Estado);
                 txtComplemento.Text = cliente.Complemento;
                 txtNumero.Text = cliente.Numero.ToString();
+                txtCidade.Text = cliente.Cidade;
 
                 btnCadastrar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnCadastrar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
