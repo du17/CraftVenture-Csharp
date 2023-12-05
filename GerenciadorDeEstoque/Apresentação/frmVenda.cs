@@ -92,8 +92,6 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvVendaKrypton.Columns["anotacao"].HeaderText = "Anotação";
             dgvVendaKrypton.Columns["anotacao"].Visible = true;
             
-            dgvVendaKrypton.Columns["idUsuario"].HeaderText = "idUsuario";
-            dgvVendaKrypton.Columns["idUsuario"].Visible = false;
 
             dgvVendaKrypton.Columns["codigoCliente"].HeaderText = "codigoCliente";
             dgvVendaKrypton.Columns["codigoCliente"].Visible = false;
@@ -102,193 +100,180 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (!novoClicado)
+            try
             {
-                
-                venda = new VendaVO();
-
-                try
+                if (cbxNomeCliente.Text == "Escolher Cliente" || cbxFormaEntrega.Text == String.Empty || cbxFormaPagamento.Text == String.Empty || txtValor.Text == String.Empty)
                 {
+                    throw new ArgumentNullException("Algum ou vários campos está vazio!");
+                }
 
-                    if (cbxNomeCliente.Text == "Escolher Cliente" || cbxFormaEntrega.Text == String.Empty || cbxFormaPagamento.Text == String.Empty || txtValor.Text == String.Empty)
+
+                String nomeCliente = cbxNomeCliente.Text;
+                String formaPagamento = cbxFormaPagamento.Text;
+                String formaEntrega = cbxFormaEntrega.Text;
+                String anotacao = txtAnotacao.Text;
+
+                bool contemNome = false;
+
+                foreach (DataRow row in dtNome.Rows)
+                {
+                    if (row["nome"].ToString() == nomeCliente) { contemNome = true; }
+                }
+                if (!contemNome) { throw new ArgumentException("O nome não foi encontrado, utilize um nome da lista!!"); }
+
+                if (!(formaPagamento.Equals("Pix") || formaPagamento.Equals("Cartão") || formaPagamento.Equals("Depósito"))) { throw new ArgumentException("A forma de pagamento não está correta, utiliza a forma na lista!"); }
+
+                if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
+
+                Int64 valor = Convert.ToInt64(txtValor.Text);
+                Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
+                DateTime dataEntrega = dtpDateEntrega.Value;
+                DateTime dataVenda = dtpDataVenda.Value;
+
+                if (valor <= 0) { throw new ArgumentException("O valor está negativo, tente novamente!"); }
+
+                if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
+                {
+                    if (novoClicado == true)
                     {
-                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
-                    }
-                    
-
-                    String nomeCliente = cbxNomeCliente.Text;
-                    String formaPagamento = cbxFormaPagamento.Text;
-                    String formaEntrega = cbxFormaEntrega.Text;
-                    String anotacao = txtAnotacao.Text;
-
-                    bool contemNome = false;
-
-                    foreach (DataRow row in dtNome.Rows)
-                    {
-                        if (row["nome"].ToString() == nomeCliente) { contemNome = true; }
-                    }
-                    if (!contemNome) { throw new ArgumentException("O nome não foi encontrado, utilize um nome da lista!!"); }
-
-                    if (!(formaPagamento.Equals("Pix") || formaPagamento.Equals("Cartão") || formaPagamento.Equals("Depósito"))) { throw new ArgumentException("A forma de pagamento não está correta, utiliza a forma na lista!"); }
-
-                    if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
-
-                    Int64 valor = Convert.ToInt64(txtValor.Text);
-                    Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
-                    DateTime dataEntrega = dtpDateEntrega.Value;
-                    DateTime dataVenda = dtpDataVenda.Value;
-
-                    if (valor <= 0) { throw new ArgumentException("O valor está negativo, tente novamente!"); }
-
-                    if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
-                    {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                        throw new ArgumentException("Nenhum produto escolhido para venda, por favor clique no botão adicionar produtos");
                     }
 
-                    venda.itemid = Convert.ToInt64(GetValorLinha("id"));
-                    venda.NomeCliente = nomeCliente;
-                    venda.FormaPagamento = formaPagamento;
-                    venda.FormaEntrega = formaEntrega;
-                    venda.Anotacao = anotacao;
-                    venda.ValorTotal = valor;
-                    venda.DataVenda = dataVenda;
-                    venda.DataEntrega = dataEntrega;
-                    venda.CodCliente = idCliente;
+                    List<Int64> idProduto;
+                    List<Int64> quantidadeErrado;
+                    List<Int32> quantidade = new List<Int32>();
 
-                    vende.IdVenda = Convert.ToInt64(GetValorLinha("id"));
+                    try
+                    {
 
-                    vende.Atualizar();
+                        Dictionary<String, List<long>> idProduto_Quantidade;
 
-                    venda.Atualizar();
+                        idProduto_Quantidade = DAO.DAO.GetVendeId(Convert.ToInt64(GetValorLinha("id")));
 
-                    MessageBox.Show("Venda Atualizada!");
+                        idProduto = idProduto_Quantidade["idProduto"];
+                        quantidadeErrado = idProduto_Quantidade["quantidade"];
 
-                    Inicializar();
+                        foreach (Int64 l in quantidadeErrado)
+                        {
+                            quantidade.Add(Convert.ToInt32(l));
+                        }
+
+                        if (idProduto.Count <= 0)
+                        {
+                            throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                        }
+
+                        vende.IdProdutoLista = idProduto;
+                        vende.QuantidadeLista = quantidade;
+
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Você não escolheu nenhum produto para vender!");
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "erro");
+                    }
                 }
-                catch (ArgumentNullException ex)
+
+                if (!novoClicado)
                 {
-                    MessageBox.Show(ex.Message);
+
+                    venda = new VendaVO();
+
+                    try
+                    {
+                        venda.itemid = Convert.ToInt64(GetValorLinha("id"));
+                        venda.NomeCliente = nomeCliente;
+                        venda.FormaPagamento = formaPagamento;
+                        venda.FormaEntrega = formaEntrega;
+                        venda.Anotacao = anotacao;
+                        venda.ValorTotal = valor;
+                        venda.DataVenda = dataVenda;
+                        venda.DataEntrega = dataEntrega;
+                        venda.CodCliente = idCliente;
+
+                        vende.IdVenda = Convert.ToInt64(GetValorLinha("id"));
+
+                        vende.Atualizar();
+
+                        venda.Atualizar();
+
+                        MessageBox.Show("Venda Atualizada!");
+
+                        Inicializar();
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (ArgumentException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    venda = new VendaVO();
+
+                    long idLastInsert;
+
+                    try
+                    {
+                        venda.NomeCliente = nomeCliente;
+                        venda.FormaPagamento = formaPagamento;
+                        venda.FormaEntrega = formaEntrega;
+                        venda.Anotacao = anotacao;
+                        venda.ValorTotal = valor;
+                        venda.DataVenda = dataVenda;
+                        venda.DataEntrega = dataEntrega;
+                        venda.CodCliente = idCliente;
+
+                        venda.Inserir();
+
+                        idLastInsert = venda.getLastId();
+
+                        vende.IdVenda = idLastInsert;
+
+                        vende.Inserir();
+
+                        MessageBox.Show("Venda Cadastrada!");
+
+                        novoClicado = false;
+
+                        Inicializar();
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
-            else
+            catch (ArgumentException ex)
             {
-                venda = new VendaVO();
-
-                long idLastInsert;
-                
-                try
-                {
-
-                    if (cbxNomeCliente.Text == "Escolher Cliente" || cbxFormaEntrega.Text == String.Empty || cbxFormaPagamento.Text == String.Empty || txtValor.Text == String.Empty)
-                    {
-                        throw new ArgumentNullException("Algum ou vários campos está vazio!");
-                    }
-                    
-
-                    String nomeCliente = cbxNomeCliente.Text;
-                    String formaPagamento = cbxFormaPagamento.Text;
-                    String formaEntrega = cbxFormaEntrega.Text;
-                    String anotacao = txtAnotacao.Text;
-
-                    bool contemNome = false;
-
-                    foreach(DataRow row in dtNome.Rows)
-                    {
-                        if (row["nome"].ToString() == nomeCliente) { contemNome = true; }
-                    }
-                    if (!contemNome) { throw new ArgumentException("O nome não foi encontrado, utilize um nome da lista!!"); }
-
-                    if (!(formaPagamento.Equals("Pix") || formaPagamento.Equals("Cartão") || formaPagamento.Equals("Depósito"))) { throw new ArgumentException("A forma de pagamento não está correta, utiliza a forma na lista!"); }
-
-                    if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
-
-                    Int64 valor = Convert.ToInt64(txtValor.Text);
-                    Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
-                    DateTime dataEntrega = dtpDateEntrega.Value;
-                    DateTime dataVenda = dtpDataVenda.Value;
-
-                    if(valor <= 0) { throw new ArgumentException("O valor está negativo, tente novamente!"); }
-
-                    if (vende.IdProdutoLista == null || vende.IdProdutoLista.Count <= 0)
-                    {
-                        throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
-                    }
-
-                    venda.NomeCliente = nomeCliente;
-                    venda.FormaPagamento = formaPagamento;
-                    venda.FormaEntrega = formaEntrega;
-                    venda.Anotacao = anotacao;
-                    venda.ValorTotal = valor;
-                    venda.DataVenda = dataVenda;
-                    venda.DataEntrega = dataEntrega;
-                    venda.CodCliente = idCliente;
-
-                    venda.Inserir();
-
-                    idLastInsert = venda.getLastId();
-
-                    vende.IdVenda = idLastInsert;
-
-                    vende.Inserir();
-
-                    MessageBox.Show("Venda Cadastrada!");
-
-                    novoClicado = false;
-
-                    Inicializar();
-                }
-                catch(ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnApagar_Click(object sender, EventArgs e)
-        {
-            venda = new VendaVO();
-            vende = new VendeVO();
-
-            try
-            {
-                DialogResult dialog = MessageBox.Show("Você tem certeza que dejesa EXCLUIR esta venda?\nEsta ação não pode ser desfeita", "Excluir Venda do cliente: " + cbxNomeCliente.SelectedItem, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (dialog == DialogResult.Yes)
-                {
-                    venda.itemid = Convert.ToInt64(GetValorLinha("id"));
-                    vende.IdVenda = Convert.ToInt64(GetValorLinha("id"));
-                                        
-                    venda.Remover();
-                    vende.Remover();
-
-                    LimpaTextos();
-                    Inicializar();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-        }
-
-        private void btnNovo_Click(object sender, EventArgs e)
         {
             try
             {
@@ -468,6 +453,36 @@ namespace GerenciadorDeEstoque.Apresentação
                 frmMenuCadastro menuCadastro = new frmMenuCadastro();
                 menuCadastro.Show();
                 this.Close();
+            }
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvVendaKrypton.Rows.Count != 0)
+                {
+                    dgvVendaKrypton.CurrentCell.Selected = false;
+                }
+
+                novoClicado = true;
+                LimpaTextos();
+
+                btnSalvar.StateNormal.Back.Image = Properties.Resources.Cadastrar_btn;
+                btnSalvar.StateTracking.Back.Image = Properties.Resources.Cadastrar_Tracking;
+                btnSalvar.StatePressed.Back.Image = Properties.Resources.Cadastrar_btn;
+
+                btnAdicionarProduto.StateNormal.Back.Image = Properties.Resources.Adicionar_Produtos;
+                btnAdicionarProduto.StatePressed.Back.Image = Properties.Resources.Adicionar_Produtos;
+                btnAdicionarProduto.StateTracking.Back.Image = Properties.Resources.Adicionar_Produtos_Tracking;
+
+                btnApagar.Enabled = false;
+
+                vende = new VendeVO();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

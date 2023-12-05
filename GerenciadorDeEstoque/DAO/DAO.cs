@@ -181,15 +181,15 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Cliente
-        public void IDC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento)
+        public void IDC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, String cidade)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO cliente (telefone, numero, email, nome, cep, rua, bairro, estado, complemento) VALUES";
-            query += "(?telefone, ?numero, ?email, ?nome, ?cep, ?rua, ?bairro, ?estado, ?complemento)";
+            String query = "INSERT INTO cliente (telefone, numero, email, nome, cep, cidade, rua, bairro, estado, complemento) VALUES";
+            query += "(?telefone, ?numero, ?email, ?nome, ?cep, ?cidade, ?rua, ?bairro, ?estado, ?complemento)";
             try
             {
                 con.Open();
@@ -199,6 +199,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?email", email);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?cep", cep);
+                cmd.Parameters.AddWithValue("?cidade", cidade);
                 cmd.Parameters.AddWithValue("?rua", rua);
                 cmd.Parameters.AddWithValue("?bairro", bairro);
                 cmd.Parameters.AddWithValue("?estado", estado);
@@ -212,7 +213,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
+        public void ADC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid, String cidade)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -221,7 +222,7 @@ namespace GerenciadorDeEstoque.DAO
 
             String query = "UPDATE cliente " +
                "SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, " +
-               " rua = ?rua, bairro = ?bairro, estado = ?estado, complemento = ?complemento" +
+               " rua = ?rua, bairro = ?bairro, estado = ?estado, complemento = ?complemento, cidade = ?cidade" +
                " WHERE id = " + itemid;
 
             try
@@ -237,6 +238,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?bairro", bairro);
                 cmd.Parameters.AddWithValue("?estado", estado);
                 cmd.Parameters.AddWithValue("?complemento", complemento);
+                cmd.Parameters.AddWithValue("?cidade", cidade);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -280,7 +282,7 @@ namespace GerenciadorDeEstoque.DAO
             var dt = new DataTable();
 
 
-            var sql = "SELECT id, nome, telefone, estado, rua, bairro, numero, email, cep, complemento" +
+            var sql = "SELECT id, nome, telefone, estado, cidade, rua, bairro, numero, email, cep, complemento" +
                 " FROM cliente" +
                 " ORDER BY nome ASC";
 
@@ -306,7 +308,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public static DataTable GetCliente(String tipo)
         {
-            var sql = "SELECT id, nome, telefone, estado, rua, bairro, numero, email, cep, complemento" +
+            var sql = "SELECT id, nome, telefone, estado, cidade, rua, bairro, numero, email, cep, complemento" +
                 " FROM cliente" +
                 " WHERE nome LIKE '%" + tipo + "%' OR email LIKE '%" + tipo + "%' OR bairro LIKE '%" + tipo + "%'";
 
@@ -475,7 +477,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT venda.id, cliente.nome, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
+            var sql = "SELECT venda.id, cliente.nome, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente " +
                 "FROM venda " +
                 " INNER JOIN cliente ON venda.codigoCliente = cliente.id";
 
@@ -501,7 +503,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public static DataTable GetHistoricoMes(String mes, String TipoData, bool procuraMes = true, String mesMax = "")
         {
-            var sql = "SELECT id, nomeCliente, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente, idUsuario " +
+            var sql = "SELECT id, nomeCliente, dataEntrega, dataVenda, anotacao, valorTotal, formaPagamento, formaEntrega, CodigoCliente " +
                 "FROM venda ";
             if(procuraMes == true) { sql += " WHERE " + TipoData + " LIKE '%-" + mes + "-%'"; }
             else { sql += " WHERE (" + TipoData + " BETWEEN '" + mes + "' AND '" + mesMax + "') OR " + TipoData + " BETWEEN '" + mesMax+ "' AND '" + mes + "'"; }

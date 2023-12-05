@@ -592,9 +592,6 @@
     <None Include="Resources\CadastroCliente %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Textos_Cliente.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Adicionar_Material.png" />
   </ItemGroup>
   <ItemGroup>
@@ -725,6 +722,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pesquisar_Tracking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Textos_Cliente.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

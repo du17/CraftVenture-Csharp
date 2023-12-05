@@ -15,7 +15,7 @@ namespace GerenciadorDeEstoque.DAO
         //queria dormir
 
         private Int64 _itemid, numero;
-        private String nome, email, cep, rua, bairro, estado, complemento, telefone;
+        private String nome, email, cep, rua, bairro, estado, complemento, telefone, cidade;
         private DAO dao;
 
 
@@ -89,6 +89,16 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public String Cidade
+        {
+            get { return cidade; }
+            set
+            {
+                    cidade = value;
+                
+            }
+        }
+
         public String Cep
         {
             get { return cep; }
@@ -149,13 +159,13 @@ namespace GerenciadorDeEstoque.DAO
 
         public void Inserir()
         {
-            dao.IDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento);
+            dao.IDC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, Cidade);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid);
+            dao.ADC(Telefone, Numero, Email, Nome, Cep, Rua, Bairro, Estado, Complemento, itemid, Cidade);
         }
         public void Remover()
         {

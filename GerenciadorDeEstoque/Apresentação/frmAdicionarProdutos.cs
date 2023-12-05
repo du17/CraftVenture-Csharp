@@ -18,6 +18,7 @@ namespace GerenciadorDeEstoque.Apresentação
         long idVenda;
 
         bool novaVenda = true;
+        bool editarVenda = false;
 
         public frmAdicionarProdutos(long idVenda, VendeVO vende)
         {
@@ -44,7 +45,7 @@ namespace GerenciadorDeEstoque.Apresentação
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria de Voltar? (todas as informações não salvas serão perdidas)", "Voltar", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (novaVenda) { this.Close(); }
+                if (novaVenda || editarVenda) { this.Close(); }
                 else
                 {
                     List<Int64> idProduto = new List<Int64>();
@@ -202,6 +203,8 @@ namespace GerenciadorDeEstoque.Apresentação
                 vende.IdProdutoLista = idProduto;
                 vende.QuantidadeLista = quantidade;
 
+                editarVenda = true;
+
                 MessageBox.Show("Materiais adicionados ao produto com Sucesso");
 
                 this.Close();
@@ -232,7 +235,7 @@ namespace GerenciadorDeEstoque.Apresentação
         private void frmAdicionarProdutos_FormClosed(object sender, FormClosedEventArgs e)
         {
             
-                if (novaVenda) { this.Close(); }
+                if (novaVenda || editarVenda ) { this.Close(); }
                 else
                 {
                     List<Int64> idProduto = new List<Int64>();

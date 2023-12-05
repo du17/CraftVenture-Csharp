@@ -144,6 +144,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtNumero.Text = string.Empty;
             txtRua.Text = string.Empty;
             txtTelefone.Text = string.Empty;
+            txtCidade.Text = string.Empty;
 
             txtNome.Focus();
         }
@@ -152,106 +153,98 @@ namespace GerenciadorDeEstoque.Apresentação
 
             cliente = new ClienteVO();
 
-            if (!novoClicado)
+            try
             {
-                cliente = new ClienteVO();
+                if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || cbxEstado.Text == "Inserir Estado" || txtCidade.Text == string.Empty) { throw new ArgumentNullException("Algum dos campos está nulo!"); }
+
+                String telefone = txtTelefone.Text;
+                Int64 numero = Convert.ToInt64(txtNumero.Text);
+                String nome = txtNome.Text;
+                String email = txtEmail.Text;
+                String cep = txtCep.Text;
+                String rua = txtRua.Text;
+                String bairro = txtBairro.Text;
+                String estado = cbxEstado.Text;
+                String complemento = txtComplemento.Text;
+                String cidade = txtCidade.Text;
+
+                if (telefone.Length < 11) { throw new ArgumentException("O número de telefone é inválido"); }
 
 
-                try
+                if (GetEstadoCompleto(getEstado(estado)) == "Sem Estado") { throw new ArgumentException("O estado é inválido, escolha um válido da lista"); }
+
+
+                if (!novoClicado)
                 {
-                    if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || txtComplemento.Text == string.Empty || cbxEstado.Text == "Inserir Estado") { throw new ArgumentNullException("Algum dos campos está nulo!"); }
-
-                    String telefone = txtTelefone.Text;
-                    Int64 numero = Convert.ToInt64(txtNumero.Text);
-                    String nome = txtNome.Text;
-                    String email = txtEmail.Text;
-                    String cep = txtCep.Text;
-                    String rua = txtRua.Text;
-                    String bairro = txtBairro.Text;
-                    String estado = cbxEstado.Text;
-                    String complemento = txtComplemento.Text;
-
-                    if (telefone.Count() < 11) { throw new ArgumentException("O número de telefone é inválido"); }
-
-                    
-                    if (GetEstadoCompleto(getEstado(estado)) == "Sem Estado") { throw new ArgumentException("O estado é inválido, escolha um válido da lista"); }
+                    cliente = new ClienteVO();
 
 
-                    cliente.itemid = Convert.ToInt64(GetValorLinha("id"));
-                    cliente.Telefone = telefone;
-                    cliente.Numero = numero;
-                    cliente.Nome = nome;
-                    cliente.Email = email;
-                    cliente.Cep = cep;
-                    cliente.Rua = rua;
-                    cliente.Bairro = bairro;
-                    cliente.Estado = getEstado(estado);
-                    cliente.Complemento = complemento;
+                    try
+                    {
 
-                    cliente.Atualizar();
 
-                    MessageBox.Show("Item Atualizado!");
+                        cliente.itemid = Convert.ToInt64(GetValorLinha("id"));
+                        cliente.Telefone = telefone;
+                        cliente.Numero = numero;
+                        cliente.Nome = nome;
+                        cliente.Email = email;
+                        cliente.Cep = cep;
+                        cliente.Rua = rua;
+                        cliente.Bairro = bairro;
+                        cliente.Estado = getEstado(estado);
+                        cliente.Complemento = complemento;
+                        cliente.Cidade = cidade;
 
-                    Inicializar();
+                        cliente.Atualizar();
+
+                        MessageBox.Show("Item Atualizado!");
+
+                        Inicializar();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (ArgumentException ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    cliente = new ClienteVO();
+
+                    try
+                    {
+                        
+                        cliente.Telefone = telefone;
+                        cliente.Numero = numero;
+                        cliente.Nome = nome;
+                        cliente.Email = email;
+                        cliente.Cep = cep;
+                        cliente.Rua = rua;
+                        cliente.Bairro = bairro;
+                        cliente.Estado = getEstado(estado);
+                        cliente.Complemento = complemento;
+                        cliente.Cidade = cidade;
+
+                        cliente.Inserir();
+
+                        MessageBox.Show("Cliente Cadastrado!");
+
+                        Inicializar();
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally { novoClicado = false; }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                cliente = new ClienteVO();
-
-                try
-                {
-                    if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || txtComplemento.Text == string.Empty || cbxEstado.Text == "Inserir Estado") { throw new ArgumentNullException("Algum dos campos está nulo!"); }
-
-                    String telefone = txtTelefone.Text;
-                    Int64 numero = Convert.ToInt64(txtNumero.Text);
-                    String nome = txtNome.Text;
-                    String email = txtEmail.Text;
-                    String cep = txtCep.Text;
-                    String rua = txtRua.Text;
-                    String bairro = txtBairro.Text;
-                    String estado = cbxEstado.Text;
-                    String complemento = txtComplemento.Text;
-
-                    if (telefone.Count() < 11) { throw new ArgumentException("O número de telefone é inválido"); }
-
-
-                    if (GetEstadoCompleto(getEstado(estado)) == "Sem Estado") { throw new ArgumentException("O estado é inválido, escolha um válido da lista"); }
-
-                    cliente.Telefone = telefone;
-                    cliente.Numero = numero;
-                    cliente.Nome = nome;
-                    cliente.Email = email;
-                    cliente.Cep = cep;
-                    cliente.Rua = rua;
-                    cliente.Bairro = bairro;
-                    cliente.Estado = getEstado(estado);
-                    cliente.Complemento = complemento;
-
-                    cliente.Inserir();
-
-                    MessageBox.Show("Cliente Cadastrado!");
-
-                    Inicializar();
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally { novoClicado = false; }
-            }
+            }catch(ArgumentException ex) { MessageBox.Show(ex.Message); }
         }
 
         private string getEstado(String estado)
