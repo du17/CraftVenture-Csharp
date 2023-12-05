@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,8 +110,20 @@ namespace GerenciadorDeEstoque.Apresentação
                     double tamanho = Convert.ToDouble(txtTamanho.Text);;
                     String cor = txtCor.Text;
                     double valor = Convert.ToDouble(txtValor.Text);
+                    byte[] foto = null;
 
-                    if(tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
+                    if (!string.IsNullOrEmpty(pbPerola.ImageLocation))
+                    {
+                        FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read);
+                        BinaryReader breader = new BinaryReader(fstream);
+                        foto = breader.ReadBytes((int)fstream.Length);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("O caminho da imagem não é válido");
+                    }
+
+                    if (tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
 
                     if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
 
@@ -121,6 +134,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material + " " + cor + " " + tamanho + " cm";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                     perola.Atualizar();
@@ -165,6 +179,18 @@ namespace GerenciadorDeEstoque.Apresentação
                     String cor = txtCor.Text;
                     Double tamanho = Convert.ToDouble(txtTamanho.Text);
                     Double valor = Convert.ToDouble(txtValor.Text);
+                    byte[] foto = null;
+
+                    if (!string.IsNullOrEmpty(pbPerola.ImageLocation))
+                    {
+                        FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read);
+                        BinaryReader breader = new BinaryReader(fstream);
+                        foto = breader.ReadBytes((int)fstream.Length);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("O caminho da imagem não é válido");
+                    }
 
                     if (tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
 
@@ -178,6 +204,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     material.IdTipoMaterial = idTipoMaterial;
                     material.Nome = nome_material + " " + cor + " " + tamanho + " cm";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.Inserir();
 
                     perola.itemidTipoMaterial = idTipoMaterial;
@@ -216,6 +243,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtCor.Text = string.Empty;
             txtTamanho.Text = string.Empty;
             txtValor.Text = string.Empty;
+            pbPerola.Image = null;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -297,6 +325,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtTamanho.Text = perola.Tamanho.ToString();
                 txtValor.Text = perola.Valor.ToString();
 
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbPerola.Image = imagem;
+                }
+
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
@@ -309,7 +344,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.GetType().ToString());
             }
         }
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
@@ -380,13 +422,14 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void pbPapel_Click(object sender, EventArgs e)
+        private void pbPerola_Click(object sender, EventArgs e)
         {
             OpenFileDialog opnfd = new OpenFileDialog();
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbPerola.ImageLocation = localfoto;
             }
         }
     }

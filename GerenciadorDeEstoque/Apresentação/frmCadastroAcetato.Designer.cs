@@ -41,18 +41,18 @@
             this.txtMetragemAltura = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtEspessura = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbAcetato = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvAcetatoKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbPapel = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAcetato)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAcetatoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -314,7 +314,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
-            this.panel1.Controls.Add(this.pbPapel);
+            this.panel1.Controls.Add(this.pbAcetato);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvAcetatoKrypton);
@@ -327,6 +327,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 62;
+            // 
+            // pbAcetato
+            // 
+            this.pbAcetato.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbAcetato.Location = new System.Drawing.Point(207, 674);
+            this.pbAcetato.Name = "pbAcetato";
+            this.pbAcetato.Size = new System.Drawing.Size(201, 195);
+            this.pbAcetato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbAcetato.TabIndex = 64;
+            this.pbAcetato.TabStop = false;
+            this.pbAcetato.Click += new System.EventHandler(this.pbAcetato_Click);
             // 
             // txtPesquisar
             // 
@@ -374,7 +385,7 @@
             this.dgvAcetatoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvAcetatoKrypton.TabIndex = 60;
             this.dgvAcetatoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAcetatoKrypton_CellEnter);
-            this.dgvAcetatoKrypton.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAcetatoKrypton_CellMouseEnter);
+//            this.dgvAcetatoKrypton.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAcetatoKrypton_CellMouseEnter);
             // 
             // pictureBox1
             // 
@@ -489,17 +500,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbPapel
-            // 
-            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbPapel.Location = new System.Drawing.Point(207, 674);
-            this.pbPapel.Name = "pbPapel";
-            this.pbPapel.Size = new System.Drawing.Size(201, 195);
-            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbPapel.TabIndex = 64;
-            this.pbPapel.TabStop = false;
-            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
-            // 
             // frmCadastroAcetato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -523,10 +523,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAcetato)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAcetatoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -551,6 +551,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtPesquisar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
-        private System.Windows.Forms.PictureBox pbPapel;
+        private System.Windows.Forms.PictureBox pbAcetato;
     }
 }

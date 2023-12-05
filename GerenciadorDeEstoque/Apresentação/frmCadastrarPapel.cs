@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -165,6 +166,18 @@ namespace GerenciadorDeEstoque.Apresentação
                 String tamanho = cbxTamanho.Text;
                 int gramatura = Convert.ToInt32(txtGramatura.Text);
                 double valor = Convert.ToDouble(txtValor.Text);
+                byte[] foto = null;
+
+                if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
+                {
+                    FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read);
+                    BinaryReader breader = new BinaryReader(fstream);
+                    foto = breader.ReadBytes((int)fstream.Length);
+                }
+                else
+                {
+                    throw new ArgumentException("O caminho da imagem não é válido");
+                }
 
                 if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
 
@@ -191,6 +204,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                         material.Valor = valor;
                         material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
+                        material.Foto = foto;
 
                         papel.Atualizar();
                         material.Atualizar();
@@ -224,6 +238,16 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     try
                     {
+                        if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
+                        {
+                            FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read);
+                            BinaryReader breader = new BinaryReader(fstream);
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("O caminho da imagem não é válido");
+                        }
 
                         papel.Tipo = tipo;
                         papel.Cor = cor;
@@ -238,6 +262,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                         material.Valor = valor;
                         material.IdTipoMaterial = idTipoMaterial;
+                        material.Foto = foto;
                         material.Inserir();
 
                         papel.itemidTipoMaterial = idTipoMaterial;
@@ -250,7 +275,6 @@ namespace GerenciadorDeEstoque.Apresentação
                         Inicializar();
 
                         novoClicado = false;
-
                     }
                     catch (ArgumentNullException ex)
                     {
@@ -284,7 +308,8 @@ namespace GerenciadorDeEstoque.Apresentação
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbPapel.ImageLocation = localfoto;
             }
         }
 
@@ -344,12 +369,18 @@ namespace GerenciadorDeEstoque.Apresentação
                 papel.Cor = GetValorLinha("cor").ToString();
                 papel.Tamanho = GetValorLinha("tamanho").ToString();
 
-
                 cbxTipo.SelectedItem = papel.Tipo;
                 txtGramatura.Text = papel.Gramatura.ToString();
                 txtCor.Text = papel.Cor;
                 cbxTamanho.SelectedItem = papel.Tamanho;
                 txtValor.Text = GetValorLinha("valor").ToString();
+
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbPapel.Image = imagem;
+                }
 
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
@@ -360,7 +391,16 @@ namespace GerenciadorDeEstoque.Apresentação
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetType().ToString());
+                MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+            }
+        }
+
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
             }
         }
 

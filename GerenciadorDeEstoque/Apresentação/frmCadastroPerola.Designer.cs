@@ -40,18 +40,18 @@
             this.txtCor = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.txtTamanho = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbPerola = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvPerolaKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbPapel = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPerola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerolaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -291,7 +291,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(229)))), ((int)(((byte)(253)))));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panel1.Controls.Add(this.pbPapel);
+            this.panel1.Controls.Add(this.pbPerola);
             this.panel1.Controls.Add(this.txtPesquisar);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.dgvPerolaKrypton);
@@ -303,6 +303,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 73;
+            // 
+            // pbPerola
+            // 
+            this.pbPerola.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbPerola.Location = new System.Drawing.Point(219, 670);
+            this.pbPerola.Name = "pbPerola";
+            this.pbPerola.Size = new System.Drawing.Size(201, 195);
+            this.pbPerola.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPerola.TabIndex = 77;
+            this.pbPerola.TabStop = false;
+            this.pbPerola.Click += new System.EventHandler(this.pbPerola_Click);
             // 
             // txtPesquisar
             // 
@@ -467,17 +478,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbPapel
-            // 
-            this.pbPapel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbPapel.Location = new System.Drawing.Point(219, 670);
-            this.pbPapel.Name = "pbPapel";
-            this.pbPapel.Size = new System.Drawing.Size(201, 195);
-            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbPapel.TabIndex = 77;
-            this.pbPapel.TabStop = false;
-            this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
-            // 
             // frmCadastroPerola
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,10 +501,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPerola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerolaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPapel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -528,6 +528,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVoltar;
-        private System.Windows.Forms.PictureBox pbPapel;
+        private System.Windows.Forms.PictureBox pbPerola;
     }
 }

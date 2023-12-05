@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GerenciadorDeEstoque.DAO
 {
@@ -13,6 +15,7 @@ namespace GerenciadorDeEstoque.DAO
         private String nome;
         private Double valor;
         private DAO dao;
+        private byte[] foto;
         //private conexaoUso conn;
 
         public MaterialVO()
@@ -69,16 +72,32 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
+        public byte[] Foto
+        {
+            get { return foto; }
+            set
+            {
+                try
+                {
+                    foto = value;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+                }
+            }
+        }
+
         public void Inserir()
         {
             dao = new DAO();
-            dao.IDM(IdTipoMaterial, Nome, Valor);
+            dao.IDM(IdTipoMaterial, Nome, Valor, Foto);
         }
 
         public void Atualizar()
         {
             dao = new DAO();
-            dao.ADM(IdTipoMaterial, Nome, Valor);
+            dao.ADM(IdTipoMaterial, Nome, Valor, Foto);
         }
         public void Remover()
         {

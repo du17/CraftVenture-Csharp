@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtValor.Text = string.Empty;
             txtCor.Text = string.Empty;
             txtQuantidade.Text = string.Empty;
-            //pbCanudo.Image = null;
+            pbCanudo.Image = null;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -141,8 +142,20 @@ namespace GerenciadorDeEstoque.Apresentação
                     string cor = txtCor.Text;
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
+                    byte[] foto = null;
+                    
+                    if (!string.IsNullOrEmpty(pbCanudo.ImageLocation))
+                    {
+                        FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read);
+                        BinaryReader breader = new BinaryReader(fstream);
+                        foto = breader.ReadBytes((int)fstream.Length);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("O caminho da imagem não é válido");
+                    }
 
-                    if(quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
+                    if (quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
 
                     if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo!"); }
 
@@ -153,10 +166,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material + " " + cor + " " + quantidade + " Canudo(s)";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
-                    canudo.Atualizar();
                     material.Atualizar();
+                    canudo.Atualizar();
 
                     MessageBox.Show("Item Atualizado!");
 
@@ -196,6 +210,18 @@ namespace GerenciadorDeEstoque.Apresentação
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     long idTipoMaterial;
+                    byte[] foto = null;
+
+                    if (!string.IsNullOrEmpty(pbCanudo.ImageLocation))
+                    {
+                        FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read);
+                        BinaryReader breader = new BinaryReader(fstream);
+                        foto = breader.ReadBytes((int)fstream.Length);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("O caminho da imagem não é válido");
+                    }
 
                     if (quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
 
@@ -205,6 +231,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     canudo.Quantidade = quantidade;
 
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.Nome = nome_material + " " + cor + " " + quantidade + " Canudo(s)";
 
                     tipoMaterial.Nome = nome_material;
@@ -305,13 +332,13 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvCanudoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-
             canudo = new CanudoVO();
 
             novoClicado = false;
 
             try
             {
+
                 canudo.Cor = GetValorLinha("cor").ToString();
                 canudo.Quantidade = Convert.ToInt32(GetValorLinha("quantidade"));
 
@@ -319,6 +346,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtQuantidade.Text = canudo.Quantidade.ToString();
                 txtCor.Text = canudo.Cor;
                 txtValor.Text = GetValorLinha("valor").ToString();
+
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbCanudo.Image = imagem;
+                }
 
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
@@ -332,6 +366,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.GetType().ToString());
             }
 
+        }
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
         }
 
         private void btnVenda_Click(object sender, EventArgs e)
@@ -367,14 +409,16 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void pbPapel_Click(object sender, EventArgs e)
+        private void pbCanudo_Click(object sender, EventArgs e)
         {
             OpenFileDialog opnfd = new OpenFileDialog();
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbCanudo.ImageLocation = localfoto;
             }
         }
+
     }
 }

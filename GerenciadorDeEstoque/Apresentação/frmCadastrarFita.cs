@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -125,6 +126,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtNumero.Text = string.Empty;
             cbxTipo.Text = "Inserir Tipo";
             txtValor.Text = string.Empty;
+            pbFita.Image = null;
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -138,6 +140,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            material = new MaterialVO();
 
             try
             {
@@ -152,12 +155,25 @@ namespace GerenciadorDeEstoque.Apresentação
                 String marca = txtMarca.Text;
                 String numeroCor = txtNumCor.Text;
                 double valor = Convert.ToDouble(txtValor.Text);
+                byte[] foto = null;
+
+                if (!string.IsNullOrEmpty(pbFita.ImageLocation))
+                {
+                    FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read);
+                    BinaryReader breader = new BinaryReader(fstream);
+                    foto = breader.ReadBytes((int)fstream.Length);
+                }
+                else
+                {
+                    throw new ArgumentException("O caminho da imagem não é válido");
+                }
 
                 if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
 
                 if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
 
                 if (Convert.ToInt32(numeroCor) <= 0) { throw new ArgumentException("O Nº de Número da cor não pode ser negativo"); }
+                else if (Convert.ToInt32(numeroCor) > 999) { throw new ArgumentException("O Nº é maior do que 3 digitos"); }
 
                 if (valor <= 0) { throw new ArgumentException("O valor não pode ser negativo!"); }
 
@@ -177,7 +193,9 @@ namespace GerenciadorDeEstoque.Apresentação
                         fita.Marca = marca;
                         fita.NumeroCor = numeroCor;
                         fita.Valor = valor;
+                        material.Foto = foto;
 
+                        material.Atualizar();
                         fita.Atualizar();
 
                         MessageBox.Show("Item Atualizado!");
@@ -194,7 +212,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show("Este material já existe" + ex);
                     }
                     catch (Exception ex)
                     {
@@ -210,6 +228,16 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     try
                     {
+                        if (!string.IsNullOrEmpty(pbFita.ImageLocation))
+                        {
+                            FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read);
+                            BinaryReader breader = new BinaryReader(fstream);
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("O caminho da imagem não é válido");
+                        }
 
                         tipoMaterial.Nome = nome_material;
                         tipoMaterial.Inserir();
@@ -219,6 +247,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.IdTipoMaterial = idTipoMaterial;
                         material.Nome = nome_material + " "+ tipo +" Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
                         material.Valor = valor;
+                        material.Foto = foto;
 
                         material.Inserir();
 
@@ -247,7 +276,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show("Este material já existe" + ex);
                     }
                     catch (Exception ex)
                     {
@@ -319,6 +348,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 cbxTipo.SelectedItem = fita.Tipo.ToString();
                 txtValor.Text = fita.Valor.ToString();
 
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbFita.Image = imagem;
+                }
+
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
@@ -331,7 +367,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.GetType().ToString());
             }
         }
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             try
@@ -390,13 +433,14 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void pbPapel_Click(object sender, EventArgs e)
+        private void pbFita_Click(object sender, EventArgs e)
         {
             OpenFileDialog opnfd = new OpenFileDialog();
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbFita.ImageLocation = localfoto;
             }
         }
     }
