@@ -35,24 +35,23 @@
             this.btnSair = new System.Windows.Forms.Button();
             this.btnHistórico = new System.Windows.Forms.Button();
             this.btnVenda = new System.Windows.Forms.Button();
-            this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
             this.txtMetragem = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.cbxTamanho = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbRenda = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvRendaKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbRenda = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -188,7 +187,7 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Location = new System.Drawing.Point(0, 467);
+            this.btnSair.Location = new System.Drawing.Point(0, 385);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 67;
@@ -204,7 +203,7 @@
             this.btnHistórico.FlatAppearance.BorderSize = 0;
             this.btnHistórico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnHistórico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistórico.Location = new System.Drawing.Point(0, 379);
+            this.btnHistórico.Location = new System.Drawing.Point(0, 297);
             this.btnHistórico.Name = "btnHistórico";
             this.btnHistórico.Size = new System.Drawing.Size(250, 88);
             this.btnHistórico.TabIndex = 66;
@@ -220,27 +219,12 @@
             this.btnVenda.FlatAppearance.BorderSize = 0;
             this.btnVenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenda.Location = new System.Drawing.Point(0, 291);
+            this.btnVenda.Location = new System.Drawing.Point(0, 209);
             this.btnVenda.Name = "btnVenda";
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 65;
             this.btnVenda.UseVisualStyleBackColor = false;
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
-            // 
-            // btnEstoque
-            // 
-            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
-            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
-            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstoque.FlatAppearance.BorderSize = 0;
-            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Location = new System.Drawing.Point(0, 203);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
-            this.btnEstoque.TabIndex = 64;
-            this.btnEstoque.UseVisualStyleBackColor = false;
             // 
             // btnCadastro
             // 
@@ -364,6 +348,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 72;
+            // 
+            // pbRenda
+            // 
+            this.pbRenda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRenda.Location = new System.Drawing.Point(235, 717);
+            this.pbRenda.Name = "pbRenda";
+            this.pbRenda.Size = new System.Drawing.Size(201, 195);
+            this.pbRenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbRenda.TabIndex = 78;
+            this.pbRenda.TabStop = false;
+            this.pbRenda.Click += new System.EventHandler(this.pbPapel_Click);
             // 
             // txtPesquisar
             // 
@@ -527,17 +522,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbRenda
-            // 
-            this.pbRenda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbRenda.Location = new System.Drawing.Point(235, 717);
-            this.pbRenda.Name = "pbRenda";
-            this.pbRenda.Size = new System.Drawing.Size(201, 195);
-            this.pbRenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbRenda.TabIndex = 78;
-            this.pbRenda.TabStop = false;
-            this.pbRenda.Click += new System.EventHandler(this.pbPapel_Click);
-            // 
             // frmCadastroRenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -553,7 +537,6 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnHistórico);
             this.Controls.Add(this.btnVenda);
-            this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -562,10 +545,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,7 +561,6 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnHistórico;
         private System.Windows.Forms.Button btnVenda;
-        private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtMetragem;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox cbxTamanho;

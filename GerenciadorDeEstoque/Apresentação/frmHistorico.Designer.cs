@@ -42,13 +42,14 @@
             this.btnSair = new System.Windows.Forms.Button();
             this.btnHistorico = new System.Windows.Forms.Button();
             this.btnVenda = new System.Windows.Forms.Button();
-            this.btnEstoque = new System.Windows.Forms.Button();
             this.btnCadastro = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistoricoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxFiltroMes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvHistoricoKrypton
@@ -233,9 +234,9 @@
             this.panel1.Controls.Add(this.rdDataVenda);
             this.panel1.Controls.Add(this.rdDateEntrega);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(452, 78);
+            this.panel1.Location = new System.Drawing.Point(450, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 48);
+            this.panel1.Size = new System.Drawing.Size(331, 48);
             this.panel1.TabIndex = 70;
             // 
             // pictureBox1
@@ -329,7 +330,7 @@
             // dtpDataMinima
             // 
             this.dtpDataMinima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataMinima.Location = new System.Drawing.Point(798, 84);
+            this.dtpDataMinima.Location = new System.Drawing.Point(790, 84);
             this.dtpDataMinima.MaxDate = new System.DateTime(2090, 12, 31, 0, 0, 0, 0);
             this.dtpDataMinima.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.dtpDataMinima.Name = "dtpDataMinima";
@@ -371,7 +372,7 @@
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Location = new System.Drawing.Point(2, 454);
+            this.btnSair.Location = new System.Drawing.Point(2, 372);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(250, 88);
             this.btnSair.TabIndex = 78;
@@ -387,7 +388,7 @@
             this.btnHistorico.FlatAppearance.BorderSize = 0;
             this.btnHistorico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorico.Location = new System.Drawing.Point(2, 366);
+            this.btnHistorico.Location = new System.Drawing.Point(2, 284);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(250, 88);
             this.btnHistorico.TabIndex = 77;
@@ -402,27 +403,12 @@
             this.btnVenda.FlatAppearance.BorderSize = 0;
             this.btnVenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
             this.btnVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenda.Location = new System.Drawing.Point(2, 278);
+            this.btnVenda.Location = new System.Drawing.Point(2, 196);
             this.btnVenda.Name = "btnVenda";
             this.btnVenda.Size = new System.Drawing.Size(250, 88);
             this.btnVenda.TabIndex = 76;
             this.btnVenda.UseVisualStyleBackColor = false;
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
-            // 
-            // btnEstoque
-            // 
-            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
-            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
-            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstoque.FlatAppearance.BorderSize = 0;
-            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Location = new System.Drawing.Point(2, 190);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
-            this.btnEstoque.TabIndex = 75;
-            this.btnEstoque.UseVisualStyleBackColor = false;
             // 
             // btnCadastro
             // 
@@ -440,6 +426,17 @@
             this.btnCadastro.UseVisualStyleBackColor = false;
             this.btnCadastro.Click += new System.EventHandler(this.btnCadastro_Click);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Linha;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.Location = new System.Drawing.Point(947, 99);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(18, 10);
+            this.pictureBox3.TabIndex = 79;
+            this.pictureBox3.TabStop = false;
+            // 
             // frmHistorico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,7 +447,6 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.btnVenda);
-            this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnCadastro);
             this.Controls.Add(this.dtpDataMaxima);
             this.Controls.Add(this.dtpDataMinima);
@@ -459,6 +455,7 @@
             this.Controls.Add(this.cbxFiltroMes);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.dgvHistoricoKrypton);
+            this.Controls.Add(this.pictureBox3);
             this.DoubleBuffered = true;
             this.Name = "frmHistorico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -469,6 +466,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,7 +487,7 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnHistorico;
         private System.Windows.Forms.Button btnVenda;
-        private System.Windows.Forms.Button btnEstoque;
         private System.Windows.Forms.Button btnCadastro;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

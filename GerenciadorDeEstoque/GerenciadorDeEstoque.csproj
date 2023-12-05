@@ -726,5 +726,8 @@
   <ItemGroup>
     <None Include="Resources\Pesquisar_Tracking.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Linha.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

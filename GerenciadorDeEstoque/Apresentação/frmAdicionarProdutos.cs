@@ -235,8 +235,8 @@ namespace GerenciadorDeEstoque.Apresentação
                 if (novaVenda || editarVenda) { this.Close(); }
                 else
                 {
-                    List<Int64> idProduto = new List<Int64>();
-                    List<Int64> quantidadeErrado = new List<Int64>();
+                List<Int64> idProduto;
+                List<Int64> quantidadeErrado;
                     List<Int32> quantidade = new List<Int32>();
 
                     try

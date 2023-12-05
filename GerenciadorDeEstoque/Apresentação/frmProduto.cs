@@ -93,8 +93,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     throw new ArgumentNullException("Algum ou vários campos está vazio!");
                 }
-                else if (materialProduto.IdMaterialLista == null)
+                else if (materialProduto.IdMaterialLista == null || materialProduto.IdMaterialLista.Count <= 0)
                 {
+                    if (novoClicado == true)
+                    {
+                        throw new ArgumentException("Nenhum produto escolhido para venda, por favor clique no botão adicionar produtos");
+                    }
+
                     List<Int64> idMaterial = new List<Int64>();
                     List<Int64> quantidadeErrado = new List<Int64>();
                     List<Int32> quantidadeLista = new List<Int32>();
