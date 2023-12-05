@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
@@ -67,6 +68,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvRendaKrypton.Columns["valor"].Width = 100;
             dgvRendaKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvRendaKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRendaKrypton.Columns["foto"].Width = 70;
+            dgvRendaKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvRendaKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -94,6 +102,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtMetragem.Text = string.Empty;
             cbxTamanho.Text = "Inserir Tamanho";
             txtValor.Text = string.Empty;
+            pbRenda.Image = null;
         }
 
         private object GetValorLinha(String campo)
@@ -155,6 +164,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvRendaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbRenda.Image = null;
             renda = new RendaVO();
             material = new MaterialVO();
 
@@ -171,6 +181,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 cbxTamanho.SelectedItem = renda.Tamanho.ToString();
                 txtValor.Text = material.Valor.ToString();
 
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbRenda.Image = imagem;
+                }
+
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
@@ -183,7 +200,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.GetType().ToString());
             }
         }
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
@@ -238,8 +262,23 @@ namespace GerenciadorDeEstoque.Apresentação
                     String tamanho = cbxTamanho.Text;
                     double metragem = Convert.ToDouble(txtMetragem.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
+                    byte[] foto = null;
 
-                    if(!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
+                    if (!string.IsNullOrEmpty(pbRenda.ImageLocation))
+                    {
+                        using (FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
+                    }
+                    else
+                    {
+                        foto = null;
+                    }
+
+                    if (!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
 
                     if(metragem <= 0) { throw new ArgumentException("A metragem não deve ser negativa!"); }
 
@@ -251,6 +290,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material + " " + tamanho + " " + metragem + " m";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                     renda.Atualizar();
@@ -270,7 +310,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -295,6 +335,20 @@ namespace GerenciadorDeEstoque.Apresentação
                     String tamanho = cbxTamanho.Text.ToString();
                     Double metragem = Convert.ToDouble(txtMetragem.Text);
                     Double valor = Convert.ToDouble(txtValor.Text);
+                    byte[] foto = null;
+
+                    if (!string.IsNullOrEmpty(pbRenda.ImageLocation))
+                    {
+                        using (FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
+                    }
+                    else
+                    {
+                        foto = null;
+                    }
 
                     if (!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
 
@@ -310,6 +364,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     material.IdTipoMaterial = idTipoMaterial;
                     material.Nome = nome_material + " " + tamanho + " " + metragem + " m";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.Inserir();
 
                     renda.idTipoMaterial = idTipoMaterial;
@@ -334,7 +389,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -371,7 +426,8 @@ namespace GerenciadorDeEstoque.Apresentação
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbRenda.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbRenda.ImageLocation = localfoto;
             }
         }
     }

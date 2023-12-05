@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,8 @@ namespace GerenciadorDeEstoque.Apresentação
         }
 
         private void ConfigurarGradePapel()
-        {        
+        {
+
             dgvPapelKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
             dgvPapelKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
             dgvPapelKrypton.RowHeadersWidth = 20;
@@ -71,11 +73,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvPapelKrypton.Columns["valor"].Width = 100;
             dgvPapelKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPapelKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        }
 
-        private void btnEstoque_Click(object sender, EventArgs e)
-        {
-
+            dgvPapelKrypton.Columns["foto"].Width= 70;
+            dgvPapelKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvPapelKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnHistórico_Click(object sender, EventArgs e)
@@ -165,6 +169,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 String tamanho = cbxTamanho.Text;
                 int gramatura = Convert.ToInt32(txtGramatura.Text);
                 double valor = Convert.ToDouble(txtValor.Text);
+                byte[] foto = null;
 
                 if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
 
@@ -187,6 +192,21 @@ namespace GerenciadorDeEstoque.Apresentação
                         papel.Cor = cor;
                         papel.Tamanho = tamanho;
                         papel.Valor = valor;
+                        
+
+                        if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                                material.Foto = foto;
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
 
                         material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                         material.Valor = valor;
@@ -209,7 +229,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -224,6 +244,18 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     try
                     {
+                        if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
 
                         papel.Tipo = tipo;
                         papel.Cor = cor;
@@ -238,6 +270,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                         material.Valor = valor;
                         material.IdTipoMaterial = idTipoMaterial;
+                        material.Foto = foto;
                         material.Inserir();
 
                         papel.itemidTipoMaterial = idTipoMaterial;
@@ -250,7 +283,6 @@ namespace GerenciadorDeEstoque.Apresentação
                         Inicializar();
 
                         novoClicado = false;
-
                     }
                     catch (ArgumentNullException ex)
                     {
@@ -262,7 +294,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -284,7 +316,8 @@ namespace GerenciadorDeEstoque.Apresentação
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbPapel.ImageLocation = localfoto;
             }
         }
 
@@ -332,6 +365,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvPapelKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbPapel.Image = null;
             papel = new PapelVO();
 
             novoClicado = false;
@@ -344,12 +378,18 @@ namespace GerenciadorDeEstoque.Apresentação
                 papel.Cor = GetValorLinha("cor").ToString();
                 papel.Tamanho = GetValorLinha("tamanho").ToString();
 
-
                 cbxTipo.SelectedItem = papel.Tipo;
                 txtGramatura.Text = papel.Gramatura.ToString();
                 txtCor.Text = papel.Cor;
                 cbxTamanho.SelectedItem = papel.Tamanho;
                 txtValor.Text = GetValorLinha("valor").ToString();
+
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbPapel.Image = imagem;
+                }
 
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
@@ -360,7 +400,16 @@ namespace GerenciadorDeEstoque.Apresentação
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.GetType().ToString());
+                MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+            }
+        }
+
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
             }
         }
 
@@ -404,5 +453,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 this.Close();
             }
         }
+
     }
 }

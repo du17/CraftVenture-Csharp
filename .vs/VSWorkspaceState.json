@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GerenciadorDeEstoque",
+    "\\GerenciadorDeEstoque\\Apresenta\u00E7\u00E3o",
+    "\\GerenciadorDeEstoque\\DAO"
   ],
+  "SelectedNode": "\\GerenciadorDeEstoque\\Apresenta\u00E7\u00E3o\\frmCadastroAcetato.cs",
   "PreviewInSolutionExplorer": false
 }

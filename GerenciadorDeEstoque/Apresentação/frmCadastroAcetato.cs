@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,14 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.Columns["valor"].Width = 120;
             dgvAcetatoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAcetatoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvAcetatoKrypton.Columns["foto"].Width = 70;
+            dgvAcetatoKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvAcetatoKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
+
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -142,6 +151,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 double valor = Convert.ToDouble(txtValor.Text);
                 double metragemAltura = Convert.ToDouble(txtMetragemAltura.Text);
                 double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
+                byte[] foto = null;
 
                 if (espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
 
@@ -167,6 +177,29 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                         material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
                         material.Valor = valor;
+                        material.Foto = foto;
+
+                        if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                try
+                                {
+                                    foto = breader.ReadBytes((int)fstream.Length);
+                                    material.Foto = foto;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
 
                         material.Atualizar();
                         acetato.Atualizar();
@@ -185,7 +218,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -198,6 +231,18 @@ namespace GerenciadorDeEstoque.Apresentação
            
                     try
                     {
+                        if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
 
                         long idTipoMaterial;
 
@@ -212,6 +257,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                         material.Nome = nome_material + " " + espessura + " Micra " + metragemAltura + " X " + metragemComprimento;
                         material.Valor = valor;
+                        material.Foto = foto;
 
                         material.IdTipoMaterial = idTipoMaterial;
                         acetato.itemidTipoMaterial = idTipoMaterial;
@@ -237,7 +283,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -273,12 +319,6 @@ namespace GerenciadorDeEstoque.Apresentação
 
             }
             catch (Exception ex) { }
-
-        }
-
-        private void dgvAcetatoKrypton_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            
 
         }
 
@@ -331,6 +371,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvAcetatoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbAcetato.Image = null;
             acetato = new AcetatoVO();
             novoClicado = false;
 
@@ -346,6 +387,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtMetragemComprimento.Text = acetato.MetragemComprimento.ToString();
                 txtValor.Text = GetValorLinha("valor").ToString();
 
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbAcetato.Image = imagem;
+                }
+
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
@@ -358,7 +406,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.GetType().ToString());
             }
         }
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Tem certeza que gostaria sair? (todas as informações não salvas serão perdidas)", "Voltando", MessageBoxButtons.YesNo);
@@ -381,13 +436,14 @@ namespace GerenciadorDeEstoque.Apresentação
             }
         }
 
-        private void pbPapel_Click(object sender, EventArgs e)
+        private void pbAcetato_Click(object sender, EventArgs e)
         {
             OpenFileDialog opnfd = new OpenFileDialog();
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbPapel.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbAcetato.ImageLocation = localfoto;
             }
         }
     }

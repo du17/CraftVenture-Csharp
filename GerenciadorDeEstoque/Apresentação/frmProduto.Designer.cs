@@ -242,7 +242,7 @@
             this.pbProduto.Location = new System.Drawing.Point(492, 737);
             this.pbProduto.Name = "pbProduto";
             this.pbProduto.Size = new System.Drawing.Size(201, 195);
-            this.pbProduto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbProduto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProduto.TabIndex = 57;
             this.pbProduto.TabStop = false;
             this.pbProduto.Click += new System.EventHandler(this.pbProduto_Click);

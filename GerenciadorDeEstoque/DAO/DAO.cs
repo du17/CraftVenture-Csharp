@@ -3,12 +3,15 @@ using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using GerenciadorDeEstoque.Apresentação.Menu;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -543,7 +546,6 @@ namespace GerenciadorDeEstoque.DAO
 
             String query = "INSERT INTO produto (valor, quantidade, nome, tipo, foto) VALUES";
             query += " (?valor, ?quantidade, ?nome, ?tipo, ?foto)";
-            MessageBox.Show("Comprimento do array de bytes: " + foto.Length);
             try
             {
                 con.Open();
@@ -633,13 +635,15 @@ namespace GerenciadorDeEstoque.DAO
 
             if (isVenda)
             {
-                sql = "SELECT id, nome, valor" +
-                " FROM produto " +
+
+                sql = "SELECT id, nome, valor, foto " +
+                "FROM produto " +
+
                 " ORDER BY nome ASC";
             }
             else
             {
-                sql = "SELECT id, nome, valor, quantidade, tipo " +
+                sql = "SELECT id, nome, valor, quantidade, tipo, foto " +
                 "FROM produto " +
                 " ORDER BY nome ASC";
             }
@@ -1001,15 +1005,15 @@ namespace GerenciadorDeEstoque.DAO
 
         #region Material
 
-        public void IDM(Int64 idTipoMaterial, String nome, Double valor)
+        public void IDM(Int64 idTipoMaterial, String nome, Double valor, byte[] foto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO material (idTipoMaterial, nome, valor) VALUES";
-            query += "(?idTipoMaterial, ?nome, ?valor)";
+            String query = "INSERT INTO material (idTipoMaterial, nome, valor, foto) VALUES";
+            query += "(?idTipoMaterial, ?nome, ?valor, ?foto)";
             try
             {
                 con.Open();
@@ -1017,6 +1021,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?foto", foto);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -1026,14 +1031,14 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADM(Int64 idTipoMaterial, String nome, Double valor)
+        public void ADM(Int64 idTipoMaterial, String nome, Double valor, byte[] foto)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
             String query = "UPDATE material " +
-                     " SET nome = ?nome, valor = ?valor";
+                     " SET nome = ?nome, valor = ?valor, foto = ?foto";
             query += " WHERE material.idTipoMaterial = ?idTipoMaterial";
             try
             {
@@ -1042,6 +1047,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?idTipoMaterial", idTipoMaterial);
                 cmd.Parameters.AddWithValue("?nome", nome);
                 cmd.Parameters.AddWithValue("?valor", valor);
+                cmd.Parameters.AddWithValue("?foto", foto);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -1091,14 +1097,14 @@ namespace GerenciadorDeEstoque.DAO
                 using (var cn = new MySqlConnection(con.getConnectionString()))
                 {
                     cn.Open();
+                    var da = new MySqlDataAdapter(sql, cn);
 
-                    using (var da = new MySqlDataAdapter(sql, cn))
+                    using (da)
                     {
                         dt.Columns.Add("escolha", typeof(bool));
                         dt.Columns.Add("quantidade", typeof(int));
                         da.Fill(dt);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -1107,9 +1113,14 @@ namespace GerenciadorDeEstoque.DAO
             }
             return dt;
         }
-
-
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         #endregion
 
         #region Material Produto
@@ -1361,7 +1372,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT renda.idTipoMaterial, tamanho, metragem, material.valor FROM renda" +
+            var sql = "SELECT renda.idTipoMaterial, tamanho, metragem, material.valor, material.foto FROM renda" +
                 " INNER JOIN material ON renda.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
@@ -1476,7 +1487,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT canudo.idTipoMaterial, cor, canudo.quantidade, material.valor FROM canudo " +
+            var sql = "SELECT canudo.idTipoMaterial, cor, canudo.quantidade, material.valor, material.foto FROM canudo " +
                 "INNER JOIN material ON canudo.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
@@ -1604,7 +1615,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor " +
+            var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor, material.foto " +
                 " FROM fita INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
@@ -1630,7 +1641,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public static DataTable GetFita(String tipo)
         {
-            var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor " +
+            var sql = "SELECT fita.idTipoMaterial, tipo, numero, metragem, marca, numeroCor, material.valor, material.foto " +
                 " FROM fita " +
                 " INNER JOIN material ON fita.idTipoMaterial = material.idTipoMaterial" +
                 " WHERE tipo LIKE '%" + tipo + "%' OR numero LIKE '%"+ tipo +"%'";
@@ -1755,7 +1766,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor " +
+            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor, material.foto " +
                 "FROM papel " +
                 "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
@@ -1782,7 +1793,7 @@ namespace GerenciadorDeEstoque.DAO
 
         public static DataTable GetPapel(String tipo)
         {
-            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor " +
+            var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor, material.foto " +
                 "FROM papel " +
                 "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
                 " WHERE tipo LIKE '%"+tipo+"%'";
@@ -1900,7 +1911,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT tecido.idTipoMaterial, tipo, tipoEstampa, metragemAltura, metragemComprimento, material.valor FROM tecido " +
+            var sql = "SELECT tecido.idTipoMaterial, tipo, tipoEstampa, metragemAltura, metragemComprimento, material.valor, material.foto FROM tecido " +
                 "INNER JOIN material ON tecido.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
@@ -1923,7 +1934,6 @@ namespace GerenciadorDeEstoque.DAO
             }
             return dt;
         }
-
 
         #endregion
 
@@ -2021,7 +2031,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT acetato.idTipoMaterial, espessura, metragemAltura, metragemComprimento, material.valor FROM acetato " +
+            var sql = "SELECT acetato.idTipoMaterial, espessura, metragemAltura, metragemComprimento, material.valor, material.foto FROM acetato " +
                 " INNER JOIN material ON acetato.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
@@ -2137,7 +2147,7 @@ namespace GerenciadorDeEstoque.DAO
             Conexao con = new Conexao();
             var dt = new DataTable();
 
-            var sql = "SELECT perola.idTipoMaterial, cor, tamanho, material.valor FROM perola" +
+            var sql = "SELECT perola.idTipoMaterial, cor, tamanho, material.valor, material.foto FROM perola" +
                 " INNER JOIN material ON perola.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
