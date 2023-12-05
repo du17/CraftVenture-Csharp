@@ -44,20 +44,20 @@
             this.btnLimpar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cbxTipo = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pbTecido = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvTecidoKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbTecido = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTecidoKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSair
@@ -426,6 +426,17 @@
             this.panel2.Size = new System.Drawing.Size(976, 482);
             this.panel2.TabIndex = 52;
             // 
+            // pbTecido
+            // 
+            this.pbTecido.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbTecido.Location = new System.Drawing.Point(222, 674);
+            this.pbTecido.Name = "pbTecido";
+            this.pbTecido.Size = new System.Drawing.Size(201, 195);
+            this.pbTecido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTecido.TabIndex = 79;
+            this.pbTecido.TabStop = false;
+            this.pbTecido.Click += new System.EventHandler(this.pbTecido_Click);
+            // 
             // txtPesquisar
             // 
             this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
@@ -588,17 +599,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbTecido
-            // 
-            this.pbTecido.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbTecido.Location = new System.Drawing.Point(222, 674);
-            this.pbTecido.Name = "pbTecido";
-            this.pbTecido.Size = new System.Drawing.Size(201, 195);
-            this.pbTecido.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbTecido.TabIndex = 79;
-            this.pbTecido.TabStop = false;
-            this.pbTecido.Click += new System.EventHandler(this.pbTecido_Click);
-            // 
             // frmCadastroTecido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,10 +625,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxTipo)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTecidoKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTecido)).EndInit();
             this.ResumeLayout(false);
 
         }

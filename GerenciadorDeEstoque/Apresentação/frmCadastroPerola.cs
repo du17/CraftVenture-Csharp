@@ -66,6 +66,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvPerolaKrypton.Columns["valor"].Width = 100;
             dgvPerolaKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPerolaKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvPerolaKrypton.Columns["foto"].Width = 70;
+            dgvPerolaKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvPerolaKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -114,15 +121,17 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbPerola.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
-
                     if (tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
 
                     if(valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
@@ -154,7 +163,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -183,13 +192,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbPerola.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbPerola.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (tamanho <= 0) { throw new ArgumentException("O tamanho não deve ser negativo!"); }
@@ -229,7 +240,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -311,6 +322,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvPerolaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbPerola.Image = null;
             perola = new PerolaVO();
             novoClicado = false;
 

@@ -68,6 +68,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvRendaKrypton.Columns["valor"].Width = 100;
             dgvRendaKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvRendaKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvRendaKrypton.Columns["foto"].Width = 70;
+            dgvRendaKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvRendaKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -157,6 +164,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvRendaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbRenda.Image = null;
             renda = new RendaVO();
             material = new MaterialVO();
 
@@ -258,13 +266,16 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbRenda.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
@@ -299,7 +310,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -328,13 +339,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbRenda.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbRenda.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (!(tamanho.Equals("P") || tamanho.Equals("N") || tamanho.Equals("G"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize a lista"); }
@@ -376,7 +389,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {

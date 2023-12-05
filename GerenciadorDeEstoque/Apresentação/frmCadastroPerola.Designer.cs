@@ -310,7 +310,7 @@
             this.pbPerola.Location = new System.Drawing.Point(219, 670);
             this.pbPerola.Name = "pbPerola";
             this.pbPerola.Size = new System.Drawing.Size(201, 195);
-            this.pbPerola.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPerola.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPerola.TabIndex = 77;
             this.pbPerola.TabStop = false;
             this.pbPerola.Click += new System.EventHandler(this.pbPerola_Click);

@@ -66,6 +66,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvProduto.Columns["valor"].Width = 100;
             dgvProduto.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvProduto.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvProduto.Columns["foto"].Width = 70;
+            dgvProduto.Columns["foto"].HeaderText = "Foto";
+            if (dgvProduto.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
 
@@ -90,15 +97,6 @@ namespace GerenciadorDeEstoque.Apresentação
         {
             try
             {
-                if (txtNome.Text == string.Empty || txtTipo.Text == string.Empty || txtValor.Text == string.Empty || txtQuantidade.Text == string.Empty || pbProduto.Image == null)
-                {
-                    throw new ArgumentNullException("Algum ou vários campos está vazio!");
-                }
-                else if (materialProduto.IdMaterialLista == null)
-                {
-                    throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
-                }
-
                 String nome = txtNome.Text;
                 String tipo = txtTipo.Text;
                 Int64 valor = Convert.ToInt64(txtValor.Text);
@@ -122,6 +120,20 @@ namespace GerenciadorDeEstoque.Apresentação
                         produto.Foto = foto;
                         produto.itemid = Convert.ToInt64(GetValorLinha("id"));
 
+                        if (!string.IsNullOrEmpty(pbProduto.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbProduto.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                                produto.Foto = foto;
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
+
                         produto.Atualizar();
 
                         materialProduto.IdProduto = Convert.ToInt64(GetValorLinha("id"));
@@ -131,6 +143,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         MessageBox.Show("Item Atualizado!");
 
                         Inicializar();
+
                     }
                     catch (ArgumentNullException ex)
                     {
@@ -138,7 +151,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (ArgumentException ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -153,13 +166,15 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         if (!string.IsNullOrEmpty(pbProduto.ImageLocation))
                         {
-                            FileStream fstream = new FileStream(this.pbProduto.ImageLocation, FileMode.Open, FileAccess.Read);
-                            BinaryReader breader = new BinaryReader(fstream);
-                            foto = breader.ReadBytes((int)fstream.Length);
+                            using (FileStream fstream = new FileStream(this.pbProduto.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
                         }
                         else
                         {
-                            throw new ArgumentException("O caminho da imagem não é válido");
+                            foto = null;
                         }
 
                         produto.Nome = nome;
@@ -192,7 +207,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show(ex.Message, "erro");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -341,6 +356,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvProduto_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbProduto.Image = null;
             produto = new ProdutoVO();
 
             novoClicado = false;

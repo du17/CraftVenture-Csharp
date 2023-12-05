@@ -10,13 +10,11 @@ namespace GerenciadorDeEstoque.DAO
 {
     class MaterialVO
     {
-        //tipo foto não tem, agora fudeu
         private Int64 _itemid, idTipoMaterial;
         private String nome;
         private Double valor;
         private DAO dao;
         private byte[] foto;
-        //private conexaoUso conn;
 
         public MaterialVO()
         {

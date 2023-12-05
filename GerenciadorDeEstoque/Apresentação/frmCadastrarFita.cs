@@ -81,6 +81,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvFitaKrypton.Columns["valor"].Width = 100;
             dgvFitaKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvFitaKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvFitaKrypton.Columns["foto"].Width = 70;
+            dgvFitaKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvFitaKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -157,17 +164,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 double valor = Convert.ToDouble(txtValor.Text);
                 byte[] foto = null;
 
-                if (!string.IsNullOrEmpty(pbFita.ImageLocation))
-                {
-                    FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read);
-                    BinaryReader breader = new BinaryReader(fstream);
-                    foto = breader.ReadBytes((int)fstream.Length);
-                }
-                else
-                {
-                    throw new ArgumentException("O caminho da imagem não é válido");
-                }
-
                 if (!(tipo.Equals("Cetim") || tipo.Equals("Gorgurão") || tipo.Equals("Voil"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
 
                 if (numero <= 0) { throw new ArgumentException("O Nº não pode ser negativo"); }
@@ -185,7 +181,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     try
                     {
-
                         fita.itemidTpoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
                         fita.Tipo = tipo;
                         fita.Numero = numero;
@@ -193,7 +188,24 @@ namespace GerenciadorDeEstoque.Apresentação
                         fita.Marca = marca;
                         fita.NumeroCor = numeroCor;
                         fita.Valor = valor;
-                        material.Foto = foto;
+
+                        if (!string.IsNullOrEmpty(pbFita.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                                material.Foto = foto;
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
+
+                        material.Nome = nome_material + " " + tipo + " Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
+                        material.Valor = valor;
+                        material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                         material.Atualizar();
                         fita.Atualizar();
@@ -230,13 +242,15 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         if (!string.IsNullOrEmpty(pbFita.ImageLocation))
                         {
-                            FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read);
-                            BinaryReader breader = new BinaryReader(fstream);
-                            foto = breader.ReadBytes((int)fstream.Length);
+                            using (FileStream fstream = new FileStream(this.pbFita.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
                         }
                         else
                         {
-                            throw new ArgumentException("O caminho da imagem não é válido");
+                            foto = null;
                         }
 
                         tipoMaterial.Nome = nome_material;
@@ -247,7 +261,6 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.IdTipoMaterial = idTipoMaterial;
                         material.Nome = nome_material + " "+ tipo +" Nº " + numero.ToString() + " Nº Cor " + numeroCor + " " + marca;
                         material.Valor = valor;
-                        material.Foto = foto;
 
                         material.Inserir();
 
@@ -266,21 +279,18 @@ namespace GerenciadorDeEstoque.Apresentação
 
                         novoClicado = false;
                     }
-                    catch (ArgumentNullException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
                     catch (ArgumentException ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe" + ex);
+                        MessageBox.Show(ex.Message, "erro");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+
                     }
                 }
             }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
@@ -326,6 +336,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvFitaKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbFita.Image = null;
             fita = new FitaVO();
 
             novoClicado = false;

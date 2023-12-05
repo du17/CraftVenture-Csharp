@@ -71,6 +71,14 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvAcetatoKrypton.Columns["valor"].Width = 120;
             dgvAcetatoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAcetatoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvAcetatoKrypton.Columns["foto"].Width = 70;
+            dgvAcetatoKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvAcetatoKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
+
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -145,17 +153,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                 byte[] foto = null;
 
-                if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
-                {
-                    FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read);
-                    BinaryReader breader = new BinaryReader(fstream);
-                    foto = breader.ReadBytes((int)fstream.Length);
-                }
-                else
-                {
-                    throw new ArgumentException("O caminho da imagem não é válido");
-                }
-
                 if (espessura <= 0) { throw new ArgumentException("A espessura não deve ser negativa!"); }
 
                 if (valor <= 0) { throw new ArgumentException("O valor não deve ser negativo"); }
@@ -182,6 +179,28 @@ namespace GerenciadorDeEstoque.Apresentação
                         material.Valor = valor;
                         material.Foto = foto;
 
+                        if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                try
+                                {
+                                    foto = breader.ReadBytes((int)fstream.Length);
+                                    material.Foto = foto;
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
+
                         material.Atualizar();
                         acetato.Atualizar();
 
@@ -199,7 +218,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -214,13 +233,15 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
                         {
-                            FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read);
-                            BinaryReader breader = new BinaryReader(fstream);
-                            foto = breader.ReadBytes((int)fstream.Length);
+                            using (FileStream fstream = new FileStream(this.pbAcetato.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
                         }
                         else
                         {
-                            throw new ArgumentException("O caminho da imagem não é válido");
+                            foto = null;
                         }
 
                         long idTipoMaterial;
@@ -262,7 +283,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -350,6 +371,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvAcetatoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbAcetato.Image = null;
             acetato = new AcetatoVO();
             novoClicado = false;
 

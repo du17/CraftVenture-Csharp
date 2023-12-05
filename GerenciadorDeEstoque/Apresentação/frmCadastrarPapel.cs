@@ -41,7 +41,8 @@ namespace GerenciadorDeEstoque.Apresentação
         }
 
         private void ConfigurarGradePapel()
-        {        
+        {
+
             dgvPapelKrypton.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 20, FontStyle.Bold);
             dgvPapelKrypton.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Emoji", 15, FontStyle.Bold);
             dgvPapelKrypton.RowHeadersWidth = 20;
@@ -72,11 +73,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvPapelKrypton.Columns["valor"].Width = 100;
             dgvPapelKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvPapelKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        }
 
-        private void btnEstoque_Click(object sender, EventArgs e)
-        {
-
+            dgvPapelKrypton.Columns["foto"].Width= 70;
+            dgvPapelKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvPapelKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnHistórico_Click(object sender, EventArgs e)
@@ -168,17 +171,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 double valor = Convert.ToDouble(txtValor.Text);
                 byte[] foto = null;
 
-                if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
-                {
-                    FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read);
-                    BinaryReader breader = new BinaryReader(fstream);
-                    foto = breader.ReadBytes((int)fstream.Length);
-                }
-                else
-                {
-                    throw new ArgumentException("O caminho da imagem não é válido");
-                }
-
                 if (!(tipo.Equals("Fotográfico") || tipo.Equals("Offset") || tipo.Equals("Colorplus") || tipo.Equals("Fosco") || tipo.Equals("Pólen"))) { throw new ArgumentException("O tipo não foi encontrado, utilize a lista!"); }
 
                 if (!(tamanho.Equals("A0") || tamanho.Equals("A1") || tamanho.Equals("A2") || tamanho.Equals("A3") || tamanho.Equals("A4") || tamanho.Equals("A5") || tamanho.Equals("A6") || tamanho.Equals("A7") || tamanho.Equals("A8") || tamanho.Equals("A9") || tamanho.Equals("A10"))) { throw new ArgumentException("O tamanho não foi encontrado, utilize as lista!"); }
@@ -200,11 +192,25 @@ namespace GerenciadorDeEstoque.Apresentação
                         papel.Cor = cor;
                         papel.Tamanho = tamanho;
                         papel.Valor = valor;
+                        
+
+                        if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
+                        {
+                            using (FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                                material.Foto = foto;
+                            }
+                        }
+                        else
+                        {
+                            foto = null;
+                        }
 
                         material.Nome = nome_material + " " + tipo + " " + cor + " " + tamanho + " " + gramatura.ToString();
                         material.Valor = valor;
                         material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
-                        material.Foto = foto;
 
                         papel.Atualizar();
                         material.Atualizar();
@@ -223,7 +229,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -240,13 +246,15 @@ namespace GerenciadorDeEstoque.Apresentação
                     {
                         if (!string.IsNullOrEmpty(pbPapel.ImageLocation))
                         {
-                            FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read);
-                            BinaryReader breader = new BinaryReader(fstream);
-                            foto = breader.ReadBytes((int)fstream.Length);
+                            using (FileStream fstream = new FileStream(this.pbPapel.ImageLocation, FileMode.Open, FileAccess.Read))
+                            using (BinaryReader breader = new BinaryReader(fstream))
+                            {
+                                foto = breader.ReadBytes((int)fstream.Length);
+                            }
                         }
                         else
                         {
-                            throw new ArgumentException("O caminho da imagem não é válido");
+                            foto = null;
                         }
 
                         papel.Tipo = tipo;
@@ -286,7 +294,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("Este material já existe");
+                        MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                     }
                     catch (Exception ex)
                     {
@@ -357,6 +365,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvPapelKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbPapel.Image = null;
             papel = new PapelVO();
 
             novoClicado = false;
@@ -444,5 +453,6 @@ namespace GerenciadorDeEstoque.Apresentação
                 this.Close();
             }
         }
+
     }
 }

@@ -23,6 +23,7 @@ namespace GerenciadorDeEstoque.Apresentação
             InitializeComponent();
 
             usuario = new UsuarioVO();
+            txtNome.Focus();
         }
 
         private void txtNome_KeyPress_1(object sender, KeyPressEventArgs e)

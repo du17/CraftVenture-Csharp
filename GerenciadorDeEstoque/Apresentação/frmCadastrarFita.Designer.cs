@@ -461,7 +461,7 @@
             this.pbFita.Location = new System.Drawing.Point(645, 728);
             this.pbFita.Name = "pbFita";
             this.pbFita.Size = new System.Drawing.Size(201, 195);
-            this.pbFita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbFita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFita.TabIndex = 59;
             this.pbFita.TabStop = false;
             this.pbFita.Click += new System.EventHandler(this.pbFita_Click);

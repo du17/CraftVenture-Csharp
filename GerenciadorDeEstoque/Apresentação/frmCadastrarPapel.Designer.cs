@@ -425,7 +425,7 @@
             this.pbPapel.Location = new System.Drawing.Point(203, 709);
             this.pbPapel.Name = "pbPapel";
             this.pbPapel.Size = new System.Drawing.Size(201, 195);
-            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPapel.TabIndex = 53;
             this.pbPapel.TabStop = false;
             this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
@@ -533,7 +533,7 @@
             this.btnEstoque.Size = new System.Drawing.Size(250, 88);
             this.btnEstoque.TabIndex = 24;
             this.btnEstoque.UseVisualStyleBackColor = false;
-            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
+//            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // btnCadastro
             // 

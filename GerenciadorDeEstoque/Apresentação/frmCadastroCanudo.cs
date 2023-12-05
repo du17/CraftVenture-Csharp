@@ -65,6 +65,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvCanudoKrypton.Columns["valor"].Width = 100;
             dgvCanudoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvCanudoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvCanudoKrypton.Columns["foto"].Width = 70;
+            dgvCanudoKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvCanudoKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private object GetValorLinha(String campo)
@@ -143,16 +150,19 @@ namespace GerenciadorDeEstoque.Apresentação
                     int quantidade = Convert.ToInt32(txtQuantidade.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     byte[] foto = null;
-                    
+
                     if (!string.IsNullOrEmpty(pbCanudo.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
@@ -186,7 +196,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -214,14 +224,17 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbCanudo.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbCanudo.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
+
 
                     if (quantidade <= 0) { throw new ArgumentException("A quantidade não deve ser negativa"); }
 
@@ -264,7 +277,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -332,6 +345,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvCanudoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbCanudo.Image = null;
             canudo = new CanudoVO();
 
             novoClicado = false;

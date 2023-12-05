@@ -78,6 +78,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvTecidoKrypton.Columns["valor"].Width = 200;
             dgvTecidoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvTecidoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvTecidoKrypton.Columns["foto"].Width = 70;
+            dgvTecidoKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvTecidoKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -123,24 +130,16 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbTecido.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
-                    }
-
-                    if (!string.IsNullOrEmpty(pbTecido.ImageLocation))
-                    {
-                        FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
-                    }
-                    else
-                    {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (rdEstampado.Checked == true)
@@ -193,7 +192,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -224,13 +223,15 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     if (!string.IsNullOrEmpty(pbTecido.ImageLocation))
                     {
-                        FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read);
-                        BinaryReader breader = new BinaryReader(fstream);
-                        foto = breader.ReadBytes((int)fstream.Length);
+                        using (FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
                     }
                     else
                     {
-                        throw new ArgumentException("O caminho da imagem não é válido");
+                        foto = null;
                     }
 
                     if (rdEstampado.Checked == true)
@@ -294,7 +295,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -342,6 +343,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvTecidoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbTecido.Image = null;
             tecido = new TecidoVO();
             novoClicado = false;
 

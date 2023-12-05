@@ -40,19 +40,19 @@
             this.txtMetragem = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.cbxTamanho = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbRenda = new System.Windows.Forms.PictureBox();
             this.txtPesquisar = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dgvRendaKrypton = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnVoltar = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.pbRenda = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSalvar
@@ -365,6 +365,17 @@
             this.panel1.Size = new System.Drawing.Size(976, 482);
             this.panel1.TabIndex = 72;
             // 
+            // pbRenda
+            // 
+            this.pbRenda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRenda.Location = new System.Drawing.Point(235, 717);
+            this.pbRenda.Name = "pbRenda";
+            this.pbRenda.Size = new System.Drawing.Size(201, 195);
+            this.pbRenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRenda.TabIndex = 78;
+            this.pbRenda.TabStop = false;
+            this.pbRenda.Click += new System.EventHandler(this.pbPapel_Click);
+            // 
             // txtPesquisar
             // 
             this.txtPesquisar.Location = new System.Drawing.Point(3, 328);
@@ -527,17 +538,6 @@
             this.btnVoltar.Values.Text = "";
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // pbRenda
-            // 
-            this.pbRenda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbRenda.Location = new System.Drawing.Point(235, 717);
-            this.pbRenda.Name = "pbRenda";
-            this.pbRenda.Size = new System.Drawing.Size(201, 195);
-            this.pbRenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbRenda.TabIndex = 78;
-            this.pbRenda.TabStop = false;
-            this.pbRenda.Click += new System.EventHandler(this.pbPapel_Click);
-            // 
             // frmCadastroRenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,10 +562,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbxTamanho)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRendaKrypton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRenda)).EndInit();
             this.ResumeLayout(false);
 
         }

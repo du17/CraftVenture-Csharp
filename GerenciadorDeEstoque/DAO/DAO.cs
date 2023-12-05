@@ -544,7 +544,6 @@ namespace GerenciadorDeEstoque.DAO
 
             String query = "INSERT INTO produto (valor, quantidade, nome, tipo, foto) VALUES";
             query += " (?valor, ?quantidade, ?nome, ?tipo, ?foto)";
-            MessageBox.Show("Comprimento do array de bytes: " + foto.Length);
             try
             {
                 con.Open();

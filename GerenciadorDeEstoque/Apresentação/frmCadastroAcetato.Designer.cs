@@ -334,7 +334,7 @@
             this.pbAcetato.Location = new System.Drawing.Point(207, 674);
             this.pbAcetato.Name = "pbAcetato";
             this.pbAcetato.Size = new System.Drawing.Size(201, 195);
-            this.pbAcetato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbAcetato.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAcetato.TabIndex = 64;
             this.pbAcetato.TabStop = false;
             this.pbAcetato.Click += new System.EventHandler(this.pbAcetato_Click);
@@ -385,7 +385,6 @@
             this.dgvAcetatoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvAcetatoKrypton.TabIndex = 60;
             this.dgvAcetatoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAcetatoKrypton_CellEnter);
-//            this.dgvAcetatoKrypton.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAcetatoKrypton_CellMouseEnter);
             // 
             // pictureBox1
             // 

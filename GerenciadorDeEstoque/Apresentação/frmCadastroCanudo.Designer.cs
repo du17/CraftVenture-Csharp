@@ -317,7 +317,7 @@
             this.pbCanudo.Location = new System.Drawing.Point(219, 701);
             this.pbCanudo.Name = "pbCanudo";
             this.pbCanudo.Size = new System.Drawing.Size(201, 195);
-            this.pbCanudo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbCanudo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCanudo.TabIndex = 65;
             this.pbCanudo.TabStop = false;
             this.pbCanudo.Click += new System.EventHandler(this.pbCanudo_Click);
@@ -368,7 +368,6 @@
             this.dgvCanudoKrypton.StateCommon.DataCell.Content.Color2 = System.Drawing.Color.Black;
             this.dgvCanudoKrypton.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI Emoji", 24F, System.Drawing.FontStyle.Bold);
             this.dgvCanudoKrypton.TabIndex = 59;
-//            this.dgvCanudoKrypton.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanudoKrypton_CellContentClick);
             this.dgvCanudoKrypton.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanudoKrypton_CellEnter);
             // 
             // pictureBox1
