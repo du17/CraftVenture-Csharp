@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +78,13 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvTecidoKrypton.Columns["valor"].Width = 200;
             dgvTecidoKrypton.Columns["valor"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvTecidoKrypton.Columns["valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvTecidoKrypton.Columns["foto"].Width = 70;
+            dgvTecidoKrypton.Columns["foto"].HeaderText = "Foto";
+            if (dgvTecidoKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
+            {
+                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
@@ -118,6 +126,21 @@ namespace GerenciadorDeEstoque.Apresentação
                     double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     String tipoEstampa;
+                    byte[] foto = null;
+
+                    if (!string.IsNullOrEmpty(pbTecido.ImageLocation))
+                    {
+                        using (FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                            material.Foto = foto;
+                        }
+                    }
+                    else
+                    {
+                        foto = null;
+                    }
 
                     if (rdEstampado.Checked == true)
                     {
@@ -149,6 +172,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                     material.Nome = nome_material + " " + tipo + " " + tipoEstampa + " " + (metragemAltura * metragemComprimento).ToString() + " cm";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.IdTipoMaterial = Convert.ToInt64(GetValorLinha("idTipoMaterial"));
 
                     material.Atualizar();
@@ -168,7 +192,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -195,6 +219,20 @@ namespace GerenciadorDeEstoque.Apresentação
                     double metragemComprimento = Convert.ToDouble(txtMetragemComprimento.Text);
                     double valor = Convert.ToDouble(txtValor.Text);
                     String tipoEstampa;
+                    byte[] foto = null;
+
+                    if (!string.IsNullOrEmpty(pbTecido.ImageLocation))
+                    {
+                        using (FileStream fstream = new FileStream(this.pbTecido.ImageLocation, FileMode.Open, FileAccess.Read))
+                        using (BinaryReader breader = new BinaryReader(fstream))
+                        {
+                            foto = breader.ReadBytes((int)fstream.Length);
+                        }
+                    }
+                    else
+                    {
+                        foto = null;
+                    }
 
                     if (rdEstampado.Checked == true)
                     {
@@ -226,6 +264,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     material.IdTipoMaterial = idTipoMaterial;
                     material.Nome = nome_material + " " + tipo + " " + tipoEstampa + " " + (metragemAltura * metragemComprimento).ToString() + " cm";
                     material.Valor = valor;
+                    material.Foto = foto;
                     material.Inserir();
 
                     tecido.itemidTipoMaterial = idTipoMaterial;
@@ -256,7 +295,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Este material já existe");
+                    MessageBox.Show(ex.Message + "" + Environment.NewLine + "" + ex.StackTrace + "" + ex.GetType());
                 }
                 catch (Exception ex)
                 {
@@ -276,6 +315,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtMetragemComprimento.Text = string.Empty;
             cbxTipo.Text = "Inserir Tipo";
             txtValor.Text = string.Empty;
+            pbTecido.Image = null;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -303,6 +343,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
         private void dgvTecidoKrypton_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            pbTecido.Image = null;
             tecido = new TecidoVO();
             novoClicado = false;
 
@@ -336,6 +377,13 @@ namespace GerenciadorDeEstoque.Apresentação
                 txtMetragemComprimento.Text = tecido.MetragemComprimento.ToString();
                 txtValor.Text = GetValorLinha("valor").ToString();
 
+                byte[] bytes = GetValorLinha("foto") as byte[];
+                if (bytes != null)
+                {
+                    Image imagem = ByteArrayParaImagem(bytes);
+                    pbTecido.Image = imagem;
+                }
+
                 btnSalvar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnSalvar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
                 btnSalvar.StatePressed.Back.Image = Properties.Resources.SALVAR;
@@ -348,7 +396,14 @@ namespace GerenciadorDeEstoque.Apresentação
                 MessageBox.Show(ex.Message);
             }
         }
-
+        public Image ByteArrayParaImagem(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imagem = Image.FromStream(ms);
+                return imagem;
+            }
+        }
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             novoClicado = true;
@@ -438,7 +493,8 @@ namespace GerenciadorDeEstoque.Apresentação
             opnfd.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;png;)|*.jpg;*.jpeg;.*.gif;*.png;";
             if (opnfd.ShowDialog() == DialogResult.OK)
             {
-                pbTecido.Image = new Bitmap(opnfd.FileName);
+                string localfoto = opnfd.FileName.ToString();
+                pbTecido.ImageLocation = localfoto;
             }
         }
     }

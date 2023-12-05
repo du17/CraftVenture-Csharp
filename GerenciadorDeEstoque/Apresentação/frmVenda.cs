@@ -125,7 +125,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 if (!(formaEntrega.Equals("Motoboy") || formaEntrega.Equals("Melhor Envio") || formaEntrega.Equals("Correio"))) { throw new ArgumentException("A forma de entrega não está correta, utiliza a forma na lista!"); }
 
-                Int64 valor = Convert.ToInt64(txtValor.Text);
+                Double valor = Convert.ToDouble(txtValor.Text);
                 Int64 idCliente = Convert.ToInt64(cbxNomeCliente.SelectedValue);
                 DateTime dataEntrega = dtpDateEntrega.Value;
                 DateTime dataVenda = dtpDataVenda.Value;

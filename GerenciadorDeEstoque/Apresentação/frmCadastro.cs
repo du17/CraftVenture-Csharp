@@ -71,7 +71,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     throw new ArgumentException("Senhas são diferentes!!");
 
                 }
-                
+                this.Close();
             }
             catch(ArgumentException ex)
             {

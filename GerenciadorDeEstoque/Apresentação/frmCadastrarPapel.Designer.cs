@@ -424,7 +424,7 @@
             this.pbPapel.Location = new System.Drawing.Point(203, 709);
             this.pbPapel.Name = "pbPapel";
             this.pbPapel.Size = new System.Drawing.Size(201, 195);
-            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPapel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPapel.TabIndex = 53;
             this.pbPapel.TabStop = false;
             this.pbPapel.Click += new System.EventHandler(this.pbPapel_Click);
@@ -518,6 +518,24 @@
             this.btnVenda.UseVisualStyleBackColor = false;
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
             // 
+
+            // btnEstoque
+            // 
+            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
+            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
+            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstoque.FlatAppearance.BorderSize = 0;
+            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
+            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstoque.Location = new System.Drawing.Point(-1, 194);
+            this.btnEstoque.Name = "btnEstoque";
+            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
+            this.btnEstoque.TabIndex = 24;
+            this.btnEstoque.UseVisualStyleBackColor = false;
+//            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
+            // 
+
             // btnCadastro
             // 
             this.btnCadastro.BackColor = System.Drawing.Color.Transparent;
