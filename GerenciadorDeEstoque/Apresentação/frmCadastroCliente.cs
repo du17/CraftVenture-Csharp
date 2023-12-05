@@ -408,6 +408,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
             novoClicado = false;
 
+            //Cell enter
             try
             {
                 
