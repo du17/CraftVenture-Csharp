@@ -12,6 +12,7 @@ namespace GerenciadorDeEstoque.DAO
         private Int64 _itemid, idTipoMaterial;
         private String nome;
         private Double valor;
+        private byte[] foto;
         private DAO dao;
         //private conexaoUso conn;
 
@@ -66,6 +67,15 @@ namespace GerenciadorDeEstoque.DAO
                     valor = value;
                 }
                 else { throw new ArgumentException("O valor não pode ser nulo!"); }
+            }
+        }
+
+        public byte[] Foto
+        {
+            get { return foto; }
+            set
+            {
+                foto = value;
             }
         }
 

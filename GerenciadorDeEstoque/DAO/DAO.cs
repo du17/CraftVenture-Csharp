@@ -181,15 +181,15 @@ namespace GerenciadorDeEstoque.DAO
         #endregion
 
         #region Cliente
-        public void IDC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento)
+        public void IDC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, String cidade)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
             
             con.ConnectionString = conexao.getConnectionString();
 
-            String query = "INSERT INTO cliente (telefone, numero, email, nome, cep, rua, bairro, estado, complemento) VALUES";
-            query += "(?telefone, ?numero, ?email, ?nome, ?cep, ?rua, ?bairro, ?estado, ?complemento)";
+            String query = "INSERT INTO cliente (telefone, numero, email, nome, cep, rua, bairro, estado, complemento, cidade) VALUES";
+            query += "(?telefone, ?numero, ?email, ?nome, ?cep, ?rua, ?bairro, ?estado, ?complemento, ?cidade)";
             try
             {
                 con.Open();
@@ -203,6 +203,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?bairro", bairro);
                 cmd.Parameters.AddWithValue("?estado", estado);
                 cmd.Parameters.AddWithValue("?complemento", complemento);
+                cmd.Parameters.AddWithValue("?cidade", cidade);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -212,7 +213,7 @@ namespace GerenciadorDeEstoque.DAO
             }
         }
 
-        public void ADC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid)
+        public void ADC(String telefone, Int64 numero, String email, String nome, String cep, String rua, String bairro, String estado, String complemento, Int64 itemid, String cidade)
         {
             conexao = new Conexao();
             con = new MySqlConnection();
@@ -221,7 +222,7 @@ namespace GerenciadorDeEstoque.DAO
 
             String query = "UPDATE cliente " +
                "SET telefone = ?telefone, numero = ?numero, email = ?email, nome = ?nome, cep = ?cep, " +
-               " rua = ?rua, bairro = ?bairro, estado = ?estado, complemento = ?complemento" +
+               " rua = ?rua, bairro = ?bairro, estado = ?estado, complemento = ?complemento, ?cidade = cidade" +
                " WHERE id = " + itemid;
 
             try
@@ -237,6 +238,7 @@ namespace GerenciadorDeEstoque.DAO
                 cmd.Parameters.AddWithValue("?bairro", bairro);
                 cmd.Parameters.AddWithValue("?estado", estado);
                 cmd.Parameters.AddWithValue("?complemento", complemento);
+                cmd.Parameters.AddWithValue("?cidade", cidade);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -280,7 +282,7 @@ namespace GerenciadorDeEstoque.DAO
             var dt = new DataTable();
 
 
-            var sql = "SELECT id, nome, telefone, estado, rua, bairro, numero, email, cep, complemento" +
+            var sql = "SELECT id, nome, telefone, estado, cidade, rua, bairro, numero, email, cep, complemento" +
                 " FROM cliente" +
                 " ORDER BY nome ASC";
 

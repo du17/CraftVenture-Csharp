@@ -65,6 +65,11 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvClienteKrypton.Columns["estado"].Width = 120;
             dgvClienteKrypton.Columns["estado"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvClienteKrypton.Columns["estado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+           
+            dgvClienteKrypton.Columns["cidade"].HeaderText = "Cidade";
+            dgvClienteKrypton.Columns["cidade"].Width = 120;
+            dgvClienteKrypton.Columns["cidade"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvClienteKrypton.Columns["cidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvClienteKrypton.Columns["rua"].HeaderText = "Rua";
             dgvClienteKrypton.Columns["rua"].Width = 200;
@@ -140,6 +145,7 @@ namespace GerenciadorDeEstoque.Apresentação
             txtComplemento.Text = string.Empty;
             txtEmail.Text = string.Empty;
             cbxEstado.Text = "Inserir Estado";
+            txtCidade.Text = string.Empty;
             txtNome.Text = string.Empty;
             txtNumero.Text = string.Empty;
             txtRua.Text = string.Empty;
@@ -155,7 +161,7 @@ namespace GerenciadorDeEstoque.Apresentação
             try
             {
 
-                if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || cbxEstado.Text == "Inserir Estado") { throw new ArgumentNullException("Algum dos campos está nulo!"); }
+                if (txtNome.Text == string.Empty || txtNumero.Text == string.Empty || txtNome.Text == string.Empty || txtEmail.Text == string.Empty || txtRua.Text == string.Empty || txtBairro.Text == string.Empty || txtCep.Text == string.Empty || cbxEstado.Text == "Inserir Estado" || txtCidade.Text == string.Empty) { throw new ArgumentNullException("Algum dos campos está nulo!"); }
 
                 String telefone = txtTelefone.Text;
                 Int64 numero = Convert.ToInt64(txtNumero.Text);
@@ -166,6 +172,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 String bairro = txtBairro.Text;
                 String estado = cbxEstado.Text;
                 String complemento = txtComplemento.Text;
+                String cidade = txtCidade.Text;
 
                 if (telefone.Length < 11) { throw new ArgumentException("O número de telefone é inválido"); }
                 MessageBox.Show(telefone.Length.ToString());
@@ -185,6 +192,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         cliente.Nome = nome;
                         cliente.Email = email;
                         cliente.Cep = cep;
+                        cliente.Cidade = cidade;
                         cliente.Rua = rua;
                         cliente.Bairro = bairro;
                         cliente.Estado = getEstado(estado);
@@ -412,6 +420,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 cliente.Estado = GetValorLinha("estado").ToString();
                 cliente.Complemento = GetValorLinha("complemento").ToString();
                 cliente.Numero = Convert.ToInt32(GetValorLinha("numero"));
+                cliente.Cidade = GetValorLinha("cidade").ToString();
 
                 txtNome.Text = cliente.Nome;
                 txtTelefone.Text = cliente.Telefone.ToString();
@@ -422,6 +431,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 cbxEstado.SelectedItem = GetEstadoCompleto(cliente.Estado);
                 txtComplemento.Text = cliente.Complemento;
                 txtNumero.Text = cliente.Numero.ToString();
+                txtCidade.Text = cliente.Cidade;
 
                 btnCadastrar.StateNormal.Back.Image = Properties.Resources.SALVAR;
                 btnCadastrar.StateTracking.Back.Image = Properties.Resources.Salvar_Tracking;
