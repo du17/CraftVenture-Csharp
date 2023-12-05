@@ -1752,7 +1752,7 @@ namespace GerenciadorDeEstoque.DAO
 
             var sql = "SELECT papel.idTipoMaterial, tipo, gramatura, cor, tamanho, material.valor " +
                 "FROM papel " +
-                "INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
+                " INNER JOIN material ON papel.idTipoMaterial = material.idTipoMaterial" +
                 " ORDER BY idTipoMaterial ASC";
 
             try
