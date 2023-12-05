@@ -95,9 +95,50 @@ namespace GerenciadorDeEstoque.Apresentação
                 {
                     throw new ArgumentNullException("Algum ou vários campos está vazio!");
                 }
-                else if (materialProduto.IdMaterialLista == null)
+                else if (materialProduto.IdMaterialLista == null || materialProduto.IdMaterialLista.Count <= 0)
                 {
-                    throw new ArgumentNullException("Você não escolheu nenhum material que faz parte do produto");
+                    if (novoClicado == true)
+                    {
+                        throw new ArgumentException("Nenhum produto escolhido para venda, por favor clique no botão adicionar produtos");
+                    }
+
+                    List<Int64> idMaterial = new List<Int64>();
+                    List<Int64> quantidadeErrado = new List<Int64>();
+                    List<Int32> quantidadeLista = new List<Int32>();
+
+                    try
+                    {
+
+                        Dictionary<String, List<long>> idMaterial_Quantidade;
+
+                        idMaterial_Quantidade = DAO.DAO.GetMaterialProdutoId(Convert.ToInt64(GetValorLinha("id")));
+
+                        idMaterial = idMaterial_Quantidade["idProduto"];
+                        quantidadeErrado = idMaterial_Quantidade["quantidade"];
+
+                        foreach (Int64 l in quantidadeErrado)
+                        {
+                            quantidadeLista.Add(Convert.ToInt32(l));
+                        }
+
+                        if (idMaterial.Count <= 0)
+                        {
+                            throw new ArgumentNullException("Ao menos um item precisa compor uma venda!");
+                        }
+
+                        materialProduto.IdMaterialLista = idMaterial;
+                        materialProduto.QuantidadeLista = quantidadeLista;
+
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "erro");
+                    }
                 }
 
                 String nome = txtNome.Text;
