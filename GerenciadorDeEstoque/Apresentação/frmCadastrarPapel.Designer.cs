@@ -521,18 +521,7 @@
 
             // btnEstoque
             // 
-            this.btnEstoque.BackColor = System.Drawing.Color.Transparent;
-            this.btnEstoque.BackgroundImage = global::GerenciadorDeEstoque.Properties.Resources.Estoque;
-            this.btnEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstoque.FlatAppearance.BorderSize = 0;
-            this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(216)))), ((int)(((byte)(251)))));
-            this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstoque.Location = new System.Drawing.Point(-1, 194);
-            this.btnEstoque.Name = "btnEstoque";
-            this.btnEstoque.Size = new System.Drawing.Size(250, 88);
-            this.btnEstoque.TabIndex = 24;
-            this.btnEstoque.UseVisualStyleBackColor = false;
+            
 //            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
 

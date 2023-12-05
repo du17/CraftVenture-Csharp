@@ -87,12 +87,6 @@ namespace GerenciadorDeEstoque.Apresentação
             dgvClienteKrypton.Columns["complemento"].HeaderText = "Complemento";
             dgvClienteKrypton.Columns["complemento"].Visible = false;
 
-            dgvClienteKrypton.Columns["foto"].Width = 70;
-            dgvClienteKrypton.Columns["foto"].HeaderText = "Foto";
-            if (dgvClienteKrypton.Columns["foto"] is DataGridViewImageColumn fotoColumn)
-            {
-                fotoColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
-            }
 
         }
 

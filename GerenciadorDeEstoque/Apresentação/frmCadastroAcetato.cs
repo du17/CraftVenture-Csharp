@@ -207,6 +207,7 @@ namespace GerenciadorDeEstoque.Apresentação
                         MessageBox.Show("Item Atualizado!");
 
                         Inicializar();
+                        pbAcetato.Dispose();
                     }
                     catch (ArgumentNullException ex)
                     {
@@ -228,7 +229,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 else
                 {
                     tipoMaterial = new TipoMaterialVO();
-           
+
                     try
                     {
                         if (!string.IsNullOrEmpty(pbAcetato.ImageLocation))
@@ -272,6 +273,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
                         MessageBox.Show("Item cadastrado!");
 
+                        material.Foto = null;
+
                     }
                     catch (ArgumentNullException ex)
                     {
@@ -293,7 +296,8 @@ namespace GerenciadorDeEstoque.Apresentação
 
 
                 }
-            }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
+            }
+            catch (ArgumentException ex) { MessageBox.Show(ex.Message); }
         }
 
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)

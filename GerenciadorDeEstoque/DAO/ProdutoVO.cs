@@ -93,7 +93,7 @@ namespace GerenciadorDeEstoque.DAO
             {
                 try
                 {
-                    foto = value ?? new byte[0];
+                    foto = value;
                 }
                 catch (Exception ex)
                 {
