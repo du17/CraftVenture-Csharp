@@ -102,7 +102,7 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 String nome = txtNome.Text;
                 String tipo = txtTipo.Text;
-                Int64 valor = Convert.ToInt64(txtValor.Text);
+                Double valor = Convert.ToDouble(txtValor.Text);
                 Int64 quantidade = Convert.ToInt64(txtQuantidade.Text);
                 byte[] foto = null;
 
