@@ -424,10 +424,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 btnLimpar.Enabled = false;
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnVenda_Click(object sender, EventArgs e)

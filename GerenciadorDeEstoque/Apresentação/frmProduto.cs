@@ -271,6 +271,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
             }
             catch (ArgumentException ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)

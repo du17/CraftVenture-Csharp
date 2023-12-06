@@ -294,6 +294,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     }
                 }
             }catch(ArgumentException ex) {  MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
         }
 
@@ -405,10 +406,11 @@ namespace GerenciadorDeEstoque.Apresentação
 
                 btnApagar.Enabled = false;
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            catch(Exception ex) {MessageBox.Show(ex.Message);}
         }
 
         private void btnVenda_Click(object sender, EventArgs e)

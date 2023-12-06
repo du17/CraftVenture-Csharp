@@ -246,6 +246,7 @@ namespace GerenciadorDeEstoque.Apresentação
                     finally { novoClicado = false; }
                 }
             }catch(ArgumentException ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private string getEstado(String estado)

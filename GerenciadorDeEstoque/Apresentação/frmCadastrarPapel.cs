@@ -303,6 +303,7 @@ namespace GerenciadorDeEstoque.Apresentação
                 }
             }
             catch(ArgumentException ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void btnPapelFoto_Click(object sender, EventArgs e)
